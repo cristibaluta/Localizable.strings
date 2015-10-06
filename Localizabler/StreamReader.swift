@@ -1,10 +1,3 @@
-//
-//  StreamReader.swift
-//  Localizabler
-//
-//  Created by Cristian Baluta on 02/10/15.
-//  Copyright © 2015 Cristian Baluta. All rights reserved.
-//
 
 import Foundation
 
@@ -73,8 +66,7 @@ class StreamReader  {
         }
         
         // Convert complete line (excluding the delimiter) to a string:
-        let line = NSString(data: buffer.subdataWithRange(NSMakeRange(0, range.location)),
-            encoding: encoding)
+        let line = NSString(data: buffer.subdataWithRange(NSMakeRange(0, range.location)), encoding: encoding)
         // Remove line (and the delimiter) from the buffer:
         buffer.replaceBytesInRange(NSMakeRange(0, range.location + range.length), withBytes: nil, length: 0)
         

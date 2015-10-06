@@ -1,0 +1,13 @@
+/* 
+  test.strings
+  Localizabler
+
+  Created by Baluta Cristian on 06/10/15.
+  Copyright © 2015 Cristian Baluta. All rights reserved.
+*/
+
+"key1" = "value 1";
+
+// Comment
+"key2" = "value 2";
+"key3" = "value 3";

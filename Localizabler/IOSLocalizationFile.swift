@@ -41,21 +41,28 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 	
 	private func processFile() {
 		
-		if let aStreamReader = StreamReader(path: url!.path!) {
-			while let line = aStreamReader.nextLine() {
-				if line.hasPrefix("\"") {
-					let group = splitLine(line)
-					print(group)
+		if let path = url?.path {
+			if let aStreamReader = StreamReader(path: path) {
+				while let line = aStreamReader.nextLine() {
+					print(line)
+					if line.hasPrefix("\"") && line.hasSuffix("\";") {
+						let keyValue = splitLine(line)
+						print(keyValue)
+						terms.append(keyValue.key)
+						translations[keyValue.key] = keyValue.translation
+					}
 				}
+				aStreamReader.close()
 			}
-			aStreamReader.close()
 		}
+		print(translations)
 	}
 	
-	private func splitLine(line: String) -> (key: String, translation: String) {
+	func splitLine(line: String) -> (key: String, translation: String) {
 		
-		let comps = line.componentsSeparatedByString(" = ")
+		let comps = line.componentsSeparatedByString("=")
 		
-		return (key: String(comps.first!.characters.dropFirst().dropLast()), translation: comps.last!)
+		return (key: String(comps.first!.trim().characters.dropFirst().dropLast()),
+				translation: String(comps.last!.trim().characters.dropFirst().dropLast().dropLast()))
 	}
 }

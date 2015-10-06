@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		28778A631BBF1DBB003E4880 /* IOSLocalizationFileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28778A621BBF1DBB003E4880 /* IOSLocalizationFileTests.swift */; settings = {ASSET_TAGS = (); }; };
+		28EF6A2E1BC38A4700F8E725 /* test.strings in Resources */ = {isa = PBXBuildFile; fileRef = 28EF6A2D1BC38A4700F8E725 /* test.strings */; settings = {ASSET_TAGS = (); }; };
+		28EF6A311BC38E6C00F8E725 /* StringExtenssion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */; settings = {ASSET_TAGS = (); }; };
+		28EF6A321BC38E7100F8E725 /* StringExtenssion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */; settings = {ASSET_TAGS = (); }; };
 		6D1E1A761BBD5C6C00BE29EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1A751BBD5C6C00BE29EE /* AppDelegate.swift */; };
 		6D1E1A781BBD5C6C00BE29EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1A771BBD5C6C00BE29EE /* ViewController.swift */; };
 		6D1E1A7A1BBD5C6C00BE29EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D1E1A791BBD5C6C00BE29EE /* Assets.xcassets */; };
 		6D1E1A7D1BBD5C6C00BE29EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D1E1A7B1BBD5C6C00BE29EE /* Main.storyboard */; };
-		6D1E1A881BBD5C6C00BE29EE /* LocalizablerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1A871BBD5C6C00BE29EE /* LocalizablerTests.swift */; };
 		6D1E1AA21BBE686600BE29EE /* SearchLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1AA11BBE686600BE29EE /* SearchLocalizations.swift */; settings = {ASSET_TAGS = (); }; };
 		6D1E1AA31BBE686600BE29EE /* SearchLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1AA11BBE686600BE29EE /* SearchLocalizations.swift */; settings = {ASSET_TAGS = (); }; };
 		6D1E1AA51BBE6CBD00BE29EE /* SearchIOSLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1AA41BBE6CBD00BE29EE /* SearchIOSLocalizations.swift */; settings = {ASSET_TAGS = (); }; };
@@ -37,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		28778A621BBF1DBB003E4880 /* IOSLocalizationFileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOSLocalizationFileTests.swift; sourceTree = "<group>"; };
+		28EF6A2D1BC38A4700F8E725 /* test.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = test.strings; sourceTree = "<group>"; };
+		28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtenssion.swift; sourceTree = "<group>"; };
 		6D1E1A721BBD5C6C00BE29EE /* Localizabler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Localizabler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D1E1A751BBD5C6C00BE29EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D1E1A771BBD5C6C00BE29EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -44,7 +48,6 @@
 		6D1E1A7C1BBD5C6C00BE29EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6D1E1A7E1BBD5C6C00BE29EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D1E1A831BBD5C6C00BE29EE /* LocalizablerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalizablerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D1E1A871BBD5C6C00BE29EE /* LocalizablerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizablerTests.swift; sourceTree = "<group>"; };
 		6D1E1A891BBD5C6C00BE29EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D1E1AA11BBE686600BE29EE /* SearchLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocalizations.swift; sourceTree = "<group>"; };
 		6D1E1AA41BBE6CBD00BE29EE /* SearchIOSLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchIOSLocalizations.swift; sourceTree = "<group>"; };
@@ -86,6 +89,14 @@
 			name = "Data access";
 			sourceTree = "<group>";
 		};
+		28EF6A2F1BC38E3200F8E725 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		6D1E1A691BBD5C6B00BE29EE = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +118,7 @@
 		6D1E1A741BBD5C6C00BE29EE /* Localizabler */ = {
 			isa = PBXGroup;
 			children = (
+				28EF6A2F1BC38E3200F8E725 /* Extensions */,
 				28778A611BBEF178003E4880 /* Data access */,
 				28778A601BBEF139003E4880 /* Entities */,
 				6D1E1AA01BBE651F00BE29EE /* UseCases */,
@@ -118,8 +130,8 @@
 		6D1E1A861BBD5C6C00BE29EE /* LocalizablerTests */ = {
 			isa = PBXGroup;
 			children = (
-				6D1E1A871BBD5C6C00BE29EE /* LocalizablerTests.swift */,
 				28778A621BBF1DBB003E4880 /* IOSLocalizationFileTests.swift */,
+				28EF6A2D1BC38A4700F8E725 /* test.strings */,
 				6D1E1A891BBD5C6C00BE29EE /* Info.plist */,
 			);
 			path = LocalizablerTests;
@@ -237,6 +249,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28EF6A2E1BC38A4700F8E725 /* test.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28EF6A311BC38E6C00F8E725 /* StringExtenssion.swift in Sources */,
 				6D1E1AA81BBE939400BE29EE /* LocalizationFile.swift in Sources */,
 				6D1E1AA51BBE6CBD00BE29EE /* SearchIOSLocalizations.swift in Sources */,
 				6D1E1A781BBD5C6C00BE29EE /* ViewController.swift in Sources */,
@@ -261,13 +275,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28EF6A321BC38E7100F8E725 /* StringExtenssion.swift in Sources */,
 				6D1E1AAF1BBEB94E00BE29EE /* StreamReader.swift in Sources */,
 				6D1E1AA61BBE6CBD00BE29EE /* SearchIOSLocalizations.swift in Sources */,
 				28778A631BBF1DBB003E4880 /* IOSLocalizationFileTests.swift in Sources */,
 				6D1E1AAC1BBE93AB00BE29EE /* IOSLocalizationFile.swift in Sources */,
 				6D1E1AA91BBE939400BE29EE /* LocalizationFile.swift in Sources */,
 				6D1E1AA31BBE686600BE29EE /* SearchLocalizations.swift in Sources */,
-				6D1E1A881BBD5C6C00BE29EE /* LocalizablerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

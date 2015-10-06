@@ -19,7 +19,7 @@ class ViewController: NSViewController {
 
         // Do any additional setup after loading the view.
         if let dir = NSUserDefaults.standardUserDefaults().objectForKey("localizationsDirectory") {
-            self.pathControl!.URL = dir as! NSURL
+            self.pathControl!.URL = dir as? NSURL
             self.readDirectoryForLocalizationfiles()
         }
     }
