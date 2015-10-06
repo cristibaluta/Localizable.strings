@@ -46,7 +46,9 @@ class StreamReader  {
         
         // Read data chunks from file until a line delimiter is found:
         var range = buffer.rangeOfData(delimData, options: NSDataSearchOptions.Anchored, range: NSMakeRange(0, buffer.length))
-        while range.location == NSNotFound {
+		print(range.location)
+		print(range.length)
+		while range.location == NSNotFound {
             let tmpData = fileHandle.readDataOfLength(chunkSize)
             if tmpData.length == 0 {
                 // EOF or read error.

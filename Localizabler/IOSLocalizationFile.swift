@@ -11,20 +11,19 @@ import Foundation
 class IOSLocalizationFile: NSObject, LocalizationFile {
 	
 	private var url: NSURL?
-    private var content: String = ""
 	private var terms = [String]()
+	private var lines = [Line]()
 	private var translations = [String: String]()
 	
     required init(url: NSURL) {
 		super.init()
         self.url = url
-		self.processFile()
+		self.parseFile(url)
     }
 	
 	required init(content: String) {
 		super.init()
-		self.content = content
-//		self.processContent()
+		self.parseContent(content)
 	}
 	
     func allTerms() -> [String] {
@@ -39,30 +38,49 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
         
     }
 	
-	private func processFile() {
+	private func parseContent(content: String) {
 		
-		if let path = url?.path {
+		let lines = content.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
+		for line in lines {
+			parseLine(line)
+		}
+		print(lines)
+		print(terms)
+		print(translations)
+	}
+	
+	private func parseFile(url: NSURL) {
+		
+		if let path = url.path {
 			if let aStreamReader = StreamReader(path: path) {
 				while let line = aStreamReader.nextLine() {
-					print(line)
-					if line.hasPrefix("\"") && line.hasSuffix("\";") {
-						let keyValue = splitLine(line)
-						print(keyValue)
-						terms.append(keyValue.key)
-						translations[keyValue.key] = keyValue.translation
-					}
+					parseLine(line)
 				}
 				aStreamReader.close()
 			}
 		}
+		print(terms)
 		print(translations)
 	}
 	
-	func splitLine(line: String) -> (key: String, translation: String) {
+	func parseLine(line: String) {
+		
+		if line.hasPrefix("\"") && line.hasSuffix("\";") {
+			let l = splitLine(line)
+			lines.append(l)
+			terms.append(l.key)
+			translations[l.key] = l.value
+		} else {
+			lines.append((key: "", value: line, isComment: true))
+		}
+	}
+	
+	func splitLine(line: String) -> Line {
 		
 		let comps = line.componentsSeparatedByString("=")
 		
 		return (key: String(comps.first!.trim().characters.dropFirst().dropLast()),
-				translation: String(comps.last!.trim().characters.dropFirst().dropLast().dropLast()))
+				value: String(comps.last!.trim().characters.dropFirst().dropLast().dropLast()),
+				isComment: false)
 	}
 }

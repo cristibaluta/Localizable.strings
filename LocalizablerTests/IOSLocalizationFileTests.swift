@@ -15,16 +15,15 @@ class IOSLocalizationFileTests: XCTestCase {
 		let file = IOSLocalizationFile(url: NSURL())
 		let comps = file.splitLine("\"key1\" = \"value 1\";")
 		XCTAssert(comps.key == "key1", "Key is wrong")
-		XCTAssert(comps.translation == "value 1", "Translation is wrong")
+		XCTAssert(comps.value == "value 1", "Translation is wrong")
     }
 	
 	func testKeysExtraction() {
 		let path = NSBundle(forClass: self.dynamicType).URLForResource("test", withExtension: "strings")
 		let data = NSData(contentsOfURL: path!)
-		let s = NSString(data: data!, encoding: 1)
-//		let string = try NSString(contentsOfURL: path!, encoding: 0) catch
-		print(s)
-		let file = IOSLocalizationFile(url: path!)
+		let fileContent = NSString(data: data!, encoding: NSUnicodeStringEncoding) as! String
+		print(fileContent)
+		let file = IOSLocalizationFile(content: fileContent)
 		XCTAssert(file.allTerms().count == 3, "Wrong number of keys, check parsing")
 	}
 }
