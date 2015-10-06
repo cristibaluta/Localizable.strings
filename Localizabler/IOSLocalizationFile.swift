@@ -17,8 +17,17 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 	
     required init(url: NSURL) {
 		super.init()
-        self.url = url
-		self.parseFile(url)
+		self.url = url
+//		self.parseFile(url)
+		if url.path != nil {
+			let data = NSData(contentsOfURL: url)
+			if let fileContent = NSString(data: data!, encoding: NSUTF8StringEncoding) as? String {
+				self.parseContent(fileContent)
+			}
+			else if let fileContent = NSString(data: data!, encoding: NSUnicodeStringEncoding) as? String {
+				self.parseContent(fileContent)
+			}
+		}
     }
 	
 	required init(content: String) {
@@ -39,7 +48,7 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
     }
 	
 	private func parseContent(content: String) {
-		
+		print(content)
 		let lines = content.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
 		for line in lines {
 			parseLine(line)
