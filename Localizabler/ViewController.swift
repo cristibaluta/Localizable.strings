@@ -22,6 +22,10 @@ class ViewController: NSViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		let win = NSApplication.sharedApplication().windows.first
+		print(win)
+		win?.titleVisibility = NSWindowTitleVisibility.Hidden;
+		
 		keysTableView?.setDataSource( keysTableViewDataSource )
 		keysTableView?.setDelegate( keysTableViewDataSource )
 		valuesTableView?.setDataSource( valuesTableViewDataSource )
