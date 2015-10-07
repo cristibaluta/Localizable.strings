@@ -48,14 +48,14 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
     }
 	
 	private func parseContent(content: String) {
-		print(content)
+//		print(content)
 		let lines = content.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
 		for line in lines {
 			parseLine(line)
 		}
-		print(lines)
-		print(terms)
-		print(translations)
+//		print(lines)
+//		print(terms)
+//		print(translations)
 	}
 	
 	private func parseFile(url: NSURL) {
@@ -68,8 +68,8 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 				aStreamReader.close()
 			}
 		}
-		print(terms)
-		print(translations)
+//		print(terms)
+//		print(translations)
 	}
 	
 	func parseLine(line: String) {

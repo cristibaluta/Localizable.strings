@@ -691,28 +691,28 @@
                                 </pathCell>
                             </pathControl>
                             <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pnd-0m-jPC">
-                                <rect key="frame" x="18" y="456" width="191" height="24"/>
+                                <rect key="frame" x="18" y="456" width="564" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="lwj-JN-WJ0">
                                     <font key="font" metaFont="system"/>
                                     <segments>
-                                        <segment width="62"/>
-                                        <segment width="61" selected="YES" tag="1"/>
-                                        <segment width="60">
+                                        <segment width="187"/>
+                                        <segment width="185" selected="YES" tag="1"/>
+                                        <segment width="184">
                                             <nil key="label"/>
                                         </segment>
                                     </segments>
                                 </segmentedCell>
                             </segmentedControl>
-                            <splitView fixedFrame="YES" arrangesAllSubviews="NO" dividerStyle="paneSplitter" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nke-YZ-shb">
+                            <splitView arrangesAllSubviews="NO" dividerStyle="paneSplitter" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nke-YZ-shb">
                                 <rect key="frame" x="0.0" y="0.0" width="992" height="448"/>
                                 <subviews>
-                                    <customView fixedFrame="YES" id="Seo-kw-KIc">
+                                    <customView id="Seo-kw-KIc">
                                         <rect key="frame" x="0.0" y="0.0" width="188" height="448"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
-                                            <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adJ-Db-AC5">
+                                            <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adJ-Db-AC5">
                                                 <rect key="frame" x="0.0" y="0.0" width="187" height="404"/>
-                                                <clipView key="contentView" ambiguous="YES" id="E8M-wp-6nc">
+                                                <clipView key="contentView" id="E8M-wp-6nc">
                                                     <rect key="frame" x="1" y="17" width="185" height="386"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
@@ -723,7 +723,7 @@
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                             <tableColumns>
-                                                                <tableColumn identifier="key" width="40" minWidth="40" maxWidth="1000" id="Qfe-Av-a78">
+                                                                <tableColumn identifier="key" width="182" minWidth="40" maxWidth="1000" id="Qfe-Av-a78">
                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -754,7 +754,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableHeaderView>
                                             </scrollView>
-                                            <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wlU-xL-ELJ">
+                                            <searchField wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wlU-xL-ELJ">
                                                 <rect key="frame" x="20" y="412" width="148" height="22"/>
                                                 <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="oUg-5p-24e">
                                                     <font key="font" metaFont="system"/>
@@ -763,6 +763,15 @@
                                                 </searchFieldCell>
                                             </searchField>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="adJ-Db-AC5" firstAttribute="leading" secondItem="Seo-kw-KIc" secondAttribute="leading" id="FCY-XT-nbR"/>
+                                            <constraint firstAttribute="trailing" secondItem="wlU-xL-ELJ" secondAttribute="trailing" constant="20" id="V8F-S6-AKv"/>
+                                            <constraint firstItem="adJ-Db-AC5" firstAttribute="top" secondItem="Seo-kw-KIc" secondAttribute="top" constant="44" id="eI9-Tj-hXx"/>
+                                            <constraint firstItem="wlU-xL-ELJ" firstAttribute="top" secondItem="Seo-kw-KIc" secondAttribute="top" constant="14" id="hQg-eJ-Ryc"/>
+                                            <constraint firstAttribute="bottom" secondItem="adJ-Db-AC5" secondAttribute="bottom" id="kWA-1x-94d"/>
+                                            <constraint firstItem="wlU-xL-ELJ" firstAttribute="leading" secondItem="Seo-kw-KIc" secondAttribute="leading" constant="20" id="mzy-uF-1Vk"/>
+                                            <constraint firstAttribute="trailing" secondItem="adJ-Db-AC5" secondAttribute="trailing" constant="1" id="u4l-hr-IsQ"/>
+                                        </constraints>
                                     </customView>
                                     <customView fixedFrame="YES" id="IqV-4s-3p9">
                                         <rect key="frame" x="198" y="0.0" width="794" height="448"/>
@@ -770,11 +779,17 @@
                                     </customView>
                                 </subviews>
                                 <holdingPriorities>
-                                    <real value="250"/>
+                                    <real value="268"/>
                                     <real value="250"/>
                                 </holdingPriorities>
                             </splitView>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Nke-YZ-shb" secondAttribute="bottom" id="77d-VS-bkv"/>
+                            <constraint firstItem="Nke-YZ-shb" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="7it-WZ-foz"/>
+                            <constraint firstAttribute="trailing" secondItem="Nke-YZ-shb" secondAttribute="trailing" id="MpF-d5-qB2"/>
+                            <constraint firstItem="Nke-YZ-shb" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="81" id="lvd-1H-Lgr"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="keysTableView" destination="jaQ-J7-unX" id="7uq-Uc-q09"/>
