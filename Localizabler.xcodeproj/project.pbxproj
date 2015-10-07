@@ -14,6 +14,10 @@
 		28EF6A341BC44D4900F8E725 /* typedefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A331BC44D4900F8E725 /* typedefs.swift */; settings = {ASSET_TAGS = (); }; };
 		28EF6A351BC44D4900F8E725 /* typedefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A331BC44D4900F8E725 /* typedefs.swift */; settings = {ASSET_TAGS = (); }; };
 		28EF6A371BC45A6D00F8E725 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A361BC45A6D00F8E725 /* StringExtensionTests.swift */; settings = {ASSET_TAGS = (); }; };
+		28EF6A381BC45D4900F8E725 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1A771BBD5C6C00BE29EE /* ViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		28EF6A391BC45D5100F8E725 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1A751BBD5C6C00BE29EE /* AppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		28EF6A3B1BC4613B00F8E725 /* KeysTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A3A1BC4613B00F8E725 /* KeysTableViewDataSource.swift */; settings = {ASSET_TAGS = (); }; };
+		28EF6A3C1BC4613B00F8E725 /* KeysTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A3A1BC4613B00F8E725 /* KeysTableViewDataSource.swift */; settings = {ASSET_TAGS = (); }; };
 		6D1E1A761BBD5C6C00BE29EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1A751BBD5C6C00BE29EE /* AppDelegate.swift */; };
 		6D1E1A781BBD5C6C00BE29EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1A771BBD5C6C00BE29EE /* ViewController.swift */; };
 		6D1E1A7A1BBD5C6C00BE29EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D1E1A791BBD5C6C00BE29EE /* Assets.xcassets */; };
@@ -46,6 +50,7 @@
 		28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtenssion.swift; sourceTree = "<group>"; };
 		28EF6A331BC44D4900F8E725 /* typedefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = typedefs.swift; sourceTree = "<group>"; };
 		28EF6A361BC45A6D00F8E725 /* StringExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
+		28EF6A3A1BC4613B00F8E725 /* KeysTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeysTableViewDataSource.swift; sourceTree = "<group>"; };
 		6D1E1A721BBD5C6C00BE29EE /* Localizabler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Localizabler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D1E1A751BBD5C6C00BE29EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D1E1A771BBD5C6C00BE29EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +165,7 @@
 			children = (
 				6D1E1A751BBD5C6C00BE29EE /* AppDelegate.swift */,
 				6D1E1A771BBD5C6C00BE29EE /* ViewController.swift */,
+				28EF6A3A1BC4613B00F8E725 /* KeysTableViewDataSource.swift */,
 				6D1E1A7B1BBD5C6C00BE29EE /* Main.storyboard */,
 				6D1E1A791BBD5C6C00BE29EE /* Assets.xcassets */,
 				6D1E1A7E1BBD5C6C00BE29EE /* Info.plist */,
@@ -267,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28EF6A3B1BC4613B00F8E725 /* KeysTableViewDataSource.swift in Sources */,
 				28EF6A311BC38E6C00F8E725 /* StringExtenssion.swift in Sources */,
 				28EF6A341BC44D4900F8E725 /* typedefs.swift in Sources */,
 				6D1E1AA81BBE939400BE29EE /* LocalizationFile.swift in Sources */,
@@ -283,6 +290,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28EF6A391BC45D5100F8E725 /* AppDelegate.swift in Sources */,
+				28EF6A381BC45D4900F8E725 /* ViewController.swift in Sources */,
 				28EF6A321BC38E7100F8E725 /* StringExtenssion.swift in Sources */,
 				6D1E1AAF1BBEB94E00BE29EE /* StreamReader.swift in Sources */,
 				28EF6A371BC45A6D00F8E725 /* StringExtensionTests.swift in Sources */,
@@ -291,6 +300,7 @@
 				6D1E1AAC1BBE93AB00BE29EE /* IOSLocalizationFile.swift in Sources */,
 				28EF6A351BC44D4900F8E725 /* typedefs.swift in Sources */,
 				6D1E1AA91BBE939400BE29EE /* LocalizationFile.swift in Sources */,
+				28EF6A3C1BC4613B00F8E725 /* KeysTableViewDataSource.swift in Sources */,
 				6D1E1AA31BBE686600BE29EE /* SearchLocalizations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

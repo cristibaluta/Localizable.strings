@@ -10,28 +10,32 @@ import Cocoa
 
 class ViewController: NSViewController {
 
-    @IBOutlet var pathControl: NSPathControl?
-    @IBOutlet var segmentedControl: NSSegmentedControl?
+	@IBOutlet var pathControl: NSPathControl?
+	@IBOutlet var segmentedControl: NSSegmentedControl?
+	@IBOutlet var keysTableView: NSTableView?
+	@IBOutlet var valuesTableView: NSTableView?
+	
+	var keysTableViewDataSource = KeysTableViewDataSource()
+	var valuesTableViewDataSource = KeysTableViewDataSource()
 	var languages = [String: LocalizationFile]()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        if let dir = NSUserDefaults.standardUserDefaults().objectForKey("localizationsDirectory") {
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		keysTableView?.setDataSource( keysTableViewDataSource )
+		keysTableView?.setDelegate( keysTableViewDataSource )
+		valuesTableView?.setDataSource( valuesTableViewDataSource )
+		valuesTableView?.setDelegate( valuesTableViewDataSource )
+		
+		// Do any additional setup after loading the view.
+		if let dir = NSUserDefaults.standardUserDefaults().objectForKey("localizationsDirectory") {
             self.pathControl!.URL = dir as? NSURL
-            self.readDirectoryForLocalizationfiles()
+            self.scanDirectoryForLocalizationfiles()
         }
     }
-    
-    override var representedObject: AnyObject? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
-    
     
     @IBAction func chosePathClicked(sender: NSButton) {
+		
         let panel = NSOpenPanel()
         panel.canChooseFiles = false
         panel.canChooseDirectories = true
@@ -43,30 +47,41 @@ class ViewController: NSViewController {
                 self.pathControl!.URL = panel.URLs.first
 //                NSUserDefaults.standardUserDefaults().setObject(panel.URLs.first, forKey: "localizationsDirectory")
 //                NSUserDefaults.standardUserDefaults().synchronize()
-                self.readDirectoryForLocalizationfiles()
+                self.scanDirectoryForLocalizationfiles()
+				self.showDefaultLanguage()
             }
         }
     }
     
-    func readDirectoryForLocalizationfiles() {
+    func scanDirectoryForLocalizationfiles() {
         
         _ = SearchIOSLocalizations().searchInDirectory(self.pathControl!.URL!) { (localizationsDict) -> Void in
             print(localizationsDict)
             self.segmentedControl!.segmentCount = localizationsDict.count
             var i = 0
             for (key, url) in localizationsDict {
-				self.languages[key] = IOSLocalizationFile(url: url)
+				self.loadLocalizationFile(url, forKey: key)
                 self.segmentedControl?.setLabel(key, forSegment: i)
                 i++
             }
         }
     }
     
-    func readFile(url: NSURL) {
-        
-//        let data = NSFileManager.defaultManager().contentsAtPath(url.path!)
-//        print(data)
-        
-        
+	func loadLocalizationFile(url: NSURL, forKey key: String) {
+        self.languages[key] = IOSLocalizationFile(url: url)
     }
+	
+	func showDefaultLanguage() {
+		
+		var keys = [String]()
+		if let file = languages["Base"] {
+			keys = file.allTerms()
+		}
+		else if let file = languages["en"] {
+			keys = file.allTerms()
+		}
+		print(keys)
+		keysTableViewDataSource.data = keys
+		keysTableView?.reloadData()
+	}
 }
