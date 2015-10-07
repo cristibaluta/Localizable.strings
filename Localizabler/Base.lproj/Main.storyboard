@@ -723,7 +723,7 @@
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                             <tableColumns>
-                                                                <tableColumn identifier="key" width="156.12109375" minWidth="40" maxWidth="1000" id="Qfe-Av-a78">
+                                                                <tableColumn identifier="key" width="40" minWidth="40" maxWidth="1000" id="Qfe-Av-a78">
                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -742,11 +742,11 @@
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </clipView>
                                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="zyE-ei-IxT">
-                                                    <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                                    <rect key="frame" x="1" y="1" width="0.0" height="16"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="eJO-ad-T9X">
-                                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                                    <rect key="frame" x="-15" y="17" width="16" height="0.0"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </scroller>
                                                 <tableHeaderView key="headerView" id="LBX-up-246">
