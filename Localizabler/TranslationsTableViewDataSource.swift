@@ -1,17 +1,16 @@
 //
-//  KeysTableViewDataSource.swift
+//  TranslationsTableViewDataSource.swift
 //  Localizabler
 //
-//  Created by Baluta Cristian on 06/10/15.
+//  Created by Baluta Cristian on 08/10/15.
 //  Copyright © 2015 Cristian Baluta. All rights reserved.
 //
 
 import Cocoa
 
-class KeysTableViewDataSource: NSObject, NSTableViewDataSource, NSTableViewDelegate {
-	
+class TranslationsTableViewDataSource: NSObject, NSTableViewDataSource, NSTableViewDelegate {
+
 	var data = [String]()
-	var onRowPressed: ((rowNumber: Int, key: String) -> Void)?
 	
 	func numberOfRowsInTableView(aTableView: NSTableView) -> Int {
 		
@@ -21,7 +20,7 @@ class KeysTableViewDataSource: NSObject, NSTableViewDataSource, NSTableViewDeleg
 	func tableView(tableView: NSTableView,
 		objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
 			
-			if (tableColumn?.identifier == "key") {
+			if (tableColumn?.identifier == "translation") {
 				return data[row]
 			}
 			return nil
@@ -30,12 +29,11 @@ class KeysTableViewDataSource: NSObject, NSTableViewDataSource, NSTableViewDeleg
 	func tableViewSelectionDidChange(aNotification: NSNotification) {
 		
 		if let rowView: AnyObject = aNotification.object {
-			onRowPressed?(rowNumber: rowView.selectedRow, key: self.data[rowView.selectedRow])
+			
 		}
 	}
 	
 	func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-		return 20
+		return 50
 	}
-
 }

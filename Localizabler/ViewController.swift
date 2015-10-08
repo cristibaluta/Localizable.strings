@@ -13,10 +13,10 @@ class ViewController: NSViewController {
 	@IBOutlet var pathControl: NSPathControl?
 	@IBOutlet var segmentedControl: NSSegmentedControl?
 	@IBOutlet var keysTableView: NSTableView?
-	@IBOutlet var valuesTableView: NSTableView?
+	@IBOutlet var translationsTableView: NSTableView?
 	
 	var keysTableViewDataSource = KeysTableViewDataSource()
-	var valuesTableViewDataSource = KeysTableViewDataSource()
+	var translationsTableViewDataSource = TranslationsTableViewDataSource()
 	var languages = [String: LocalizationFile]()
 	
 	override func viewDidLoad() {
@@ -27,8 +27,20 @@ class ViewController: NSViewController {
 		
 		keysTableView?.setDataSource( keysTableViewDataSource )
 		keysTableView?.setDelegate( keysTableViewDataSource )
-		valuesTableView?.setDataSource( valuesTableViewDataSource )
-		valuesTableView?.setDelegate( valuesTableViewDataSource )
+		translationsTableView?.setDataSource( translationsTableViewDataSource )
+		translationsTableView?.setDelegate( translationsTableViewDataSource )
+		
+		keysTableViewDataSource.onRowPressed = { (rowNumber: Int, key: String) -> Void in
+			RCLogO(rowNumber)
+			RCLogO(key)
+			var translations = [String]()
+			for (lang, localizationFile) in self.languages {
+				RCLog("\(lang) -> \(localizationFile.translationForTerm(key))")
+				translations.append(localizationFile.translationForTerm(key))
+			}
+			self.translationsTableViewDataSource.data = translations
+			self.translationsTableView?.reloadData()
+		}
 		
 		// Do any additional setup after loading the view.
 		if let dir = NSUserDefaults.standardUserDefaults().objectForKey("localizationsDirectory") {
