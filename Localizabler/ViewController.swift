@@ -22,8 +22,9 @@ class ViewController: NSViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-//		let win = NSApplication.sharedApplication().windows.first
-//		win?.titleVisibility = NSWindowTitleVisibility.Hidden;
+		let win = NSApplication.sharedApplication().windows.first
+		win?.titlebarAppearsTransparent = true
+		win?.titleVisibility = NSWindowTitleVisibility.Hidden;
 		
 		keysTableView?.setDataSource( keysTableViewDataSource )
 		keysTableView?.setDelegate( keysTableViewDataSource )
@@ -44,12 +45,13 @@ class ViewController: NSViewController {
 		
 		// Do any additional setup after loading the view.
 		if let dir = NSUserDefaults.standardUserDefaults().objectForKey("localizationsDirectory") {
-            self.pathControl!.URL = dir as? NSURL
+            self.pathControl!.URL = NSURL(string: dir as! String)
             self.scanDirectoryForLocalizationfiles()
+			self.showDefaultLanguage()
         }
     }
     
-    @IBAction func chosePathClicked(sender: NSButton) {
+    @IBAction func browseButtonClicked(sender: NSButton) {
 		
         let panel = NSOpenPanel()
         panel.canChooseFiles = false
@@ -60,8 +62,8 @@ class ViewController: NSViewController {
             if result == NSFileHandlingPanelOKButton {
                 print(panel.URLs.first)
                 self.pathControl!.URL = panel.URLs.first
-//                NSUserDefaults.standardUserDefaults().setObject(panel.URLs.first, forKey: "localizationsDirectory")
-//                NSUserDefaults.standardUserDefaults().synchronize()
+                NSUserDefaults.standardUserDefaults().setObject(panel.URLs.first?.absoluteString, forKey: "localizationsDirectory")
+                NSUserDefaults.standardUserDefaults().synchronize()
                 self.scanDirectoryForLocalizationfiles()
 				self.showDefaultLanguage()
             }
