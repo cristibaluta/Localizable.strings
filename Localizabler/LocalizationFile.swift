@@ -12,6 +12,7 @@ protocol LocalizationFile {
 
 	init(url: NSURL)
 	init(content: String)
+	func allLines() -> [Line]
     func allTerms() -> [String]
     func translationForTerm(term: String) -> String
     func updateTranslationForTerm(term: String, newValue: String)

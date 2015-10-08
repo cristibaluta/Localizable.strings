@@ -18,7 +18,6 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
     required init(url: NSURL) {
 		super.init()
 		self.url = url
-//		self.parseFile(url)
 		if url.path != nil {
 			let data = NSData(contentsOfURL: url)
 			if let fileContent = NSString(data: data!, encoding: NSUTF8StringEncoding) as? String {
@@ -35,6 +34,10 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 		self.parseContent(content)
 	}
 	
+	func allLines() -> [Line] {
+		return lines
+	}
+	
     func allTerms() -> [String] {
         return terms
     }
@@ -44,18 +47,15 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
     }
     
     func updateTranslationForTerm(term: String, newValue: String) {
-        
+        translations[term] = newValue
     }
 	
 	private func parseContent(content: String) {
-//		print(content)
+		
 		let lines = content.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
 		for line in lines {
 			parseLine(line)
 		}
-//		print(lines)
-//		print(terms)
-//		print(translations)
 	}
 	
 	private func parseFile(url: NSURL) {
@@ -68,25 +68,27 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 				aStreamReader.close()
 			}
 		}
-//		print(terms)
-//		print(translations)
 	}
 	
-	func parseLine(line: String) {
+	@inline(__always) func parseLine(lineContent: String) {
 		
-		if line.hasPrefix("\"") && line.hasSuffix("\";") {
-			let l = splitLine(line)
-			lines.append(l)
-			terms.append(l.key)
-			translations[l.key] = l.value
+		if isValidLine(lineContent) {
+			let line = splitLine(lineContent)
+			lines.append(line)
+			terms.append(line.key)
+			translations[line.key] = line.value
 		} else {
-			lines.append((key: "", value: line, isComment: true))
+			lines.append((key: "", value: lineContent, isComment: true))
 		}
 	}
 	
-	func splitLine(line: String) -> Line {
+	@inline(__always) func isValidLine(lineContent: String) -> Bool {
+		return lineContent.hasPrefix("\"") && lineContent.hasSuffix("\";")
+	}
+	
+	@inline(__always) func splitLine(lineContent: String) -> Line {
 		
-		let comps = line.componentsSeparatedByString("=")
+		let comps = lineContent.componentsSeparatedByString("=")
 		
 		return (key: String(comps.first!.trim().characters.dropFirst().dropLast()),
 				value: String(comps.last!.trim().characters.dropFirst().dropLast().dropLast()),

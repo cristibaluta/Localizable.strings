@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		28778A631BBF1DBB003E4880 /* IOSLocalizationFileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28778A621BBF1DBB003E4880 /* IOSLocalizationFileTests.swift */; settings = {ASSET_TAGS = (); }; };
+		289556CC1BC61A9600FA08E8 /* RCLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289556CB1BC61A9600FA08E8 /* RCLog.swift */; settings = {ASSET_TAGS = (); }; };
+		289556CD1BC61A9600FA08E8 /* RCLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289556CB1BC61A9600FA08E8 /* RCLog.swift */; settings = {ASSET_TAGS = (); }; };
 		28EF6A2E1BC38A4700F8E725 /* test.strings in Resources */ = {isa = PBXBuildFile; fileRef = 28EF6A2D1BC38A4700F8E725 /* test.strings */; settings = {ASSET_TAGS = (); }; };
 		28EF6A311BC38E6C00F8E725 /* StringExtenssion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */; settings = {ASSET_TAGS = (); }; };
 		28EF6A321BC38E7100F8E725 /* StringExtenssion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */; settings = {ASSET_TAGS = (); }; };
@@ -46,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		28778A621BBF1DBB003E4880 /* IOSLocalizationFileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOSLocalizationFileTests.swift; sourceTree = "<group>"; };
+		289556CB1BC61A9600FA08E8 /* RCLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCLog.swift; sourceTree = "<group>"; };
 		28EF6A2D1BC38A4700F8E725 /* test.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = test.strings; sourceTree = "<group>"; };
 		28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtenssion.swift; sourceTree = "<group>"; };
 		28EF6A331BC44D4900F8E725 /* typedefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = typedefs.swift; sourceTree = "<group>"; };
@@ -100,6 +103,15 @@
 			name = "Data access";
 			sourceTree = "<group>";
 		};
+		289556CA1BC61A9600FA08E8 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				289556CB1BC61A9600FA08E8 /* RCLog.swift */,
+			);
+			name = Vendor;
+			path = Localizabler/Vendor;
+			sourceTree = "<group>";
+		};
 		28EF6A2F1BC38E3200F8E725 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +125,7 @@
 			children = (
 				6D1E1A741BBD5C6C00BE29EE /* Localizabler */,
 				6D1E1A861BBD5C6C00BE29EE /* LocalizablerTests */,
+				289556CA1BC61A9600FA08E8 /* Vendor */,
 				6D1E1A731BBD5C6C00BE29EE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -282,6 +295,7 @@
 				6D1E1AAE1BBEB94E00BE29EE /* StreamReader.swift in Sources */,
 				6D1E1AAB1BBE93AB00BE29EE /* IOSLocalizationFile.swift in Sources */,
 				6D1E1A761BBD5C6C00BE29EE /* AppDelegate.swift in Sources */,
+				289556CC1BC61A9600FA08E8 /* RCLog.swift in Sources */,
 				6D1E1AA21BBE686600BE29EE /* SearchLocalizations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,6 +309,7 @@
 				28EF6A321BC38E7100F8E725 /* StringExtenssion.swift in Sources */,
 				6D1E1AAF1BBEB94E00BE29EE /* StreamReader.swift in Sources */,
 				28EF6A371BC45A6D00F8E725 /* StringExtensionTests.swift in Sources */,
+				289556CD1BC61A9600FA08E8 /* RCLog.swift in Sources */,
 				6D1E1AA61BBE6CBD00BE29EE /* SearchIOSLocalizations.swift in Sources */,
 				28778A631BBF1DBB003E4880 /* IOSLocalizationFileTests.swift in Sources */,
 				6D1E1AAC1BBE93AB00BE29EE /* IOSLocalizationFile.swift in Sources */,

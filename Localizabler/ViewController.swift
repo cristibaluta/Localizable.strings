@@ -22,9 +22,8 @@ class ViewController: NSViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		let win = NSApplication.sharedApplication().windows.first
-		print(win)
-		win?.titleVisibility = NSWindowTitleVisibility.Hidden;
+//		let win = NSApplication.sharedApplication().windows.first
+//		win?.titleVisibility = NSWindowTitleVisibility.Hidden;
 		
 		keysTableView?.setDataSource( keysTableViewDataSource )
 		keysTableView?.setDelegate( keysTableViewDataSource )
@@ -45,7 +44,7 @@ class ViewController: NSViewController {
         panel.canChooseDirectories = true
         panel.allowsMultipleSelection = false;
         panel.beginWithCompletionHandler { (result) -> Void in
-            print(result)
+            RCLogO(result)
             if result == NSFileHandlingPanelOKButton {
                 print(panel.URLs.first)
                 self.pathControl!.URL = panel.URLs.first
@@ -60,7 +59,7 @@ class ViewController: NSViewController {
     func scanDirectoryForLocalizationfiles() {
         
         _ = SearchIOSLocalizations().searchInDirectory(self.pathControl!.URL!) { (localizationsDict) -> Void in
-            print(localizationsDict)
+            RCLogO(localizationsDict)
             self.segmentedControl!.segmentCount = localizationsDict.count
             var i = 0
             for (key, url) in localizationsDict {
@@ -84,7 +83,8 @@ class ViewController: NSViewController {
 		else if let file = languages["en"] {
 			keys = file.allTerms()
 		}
-		print(keys)
+		RCLogO(keys)
+		RCLogO(nil)
 		keysTableViewDataSource.data = keys
 		keysTableView?.reloadData()
 	}

@@ -21,6 +21,7 @@ class IOSLocalizationFileTests: XCTestCase {
 	func testKeysExtraction() {
 		let url = NSBundle(forClass: self.dynamicType).URLForResource("test", withExtension: "strings")
 		let file = IOSLocalizationFile(url: url!)
+		XCTAssert(file.allLines().count == 7, "Wrong number of lines, check parsing")
 		XCTAssert(file.allTerms().count == 3, "Wrong number of keys, check parsing")
 		XCTAssert(file.translationForTerm("key1") == "value 1", "Wrong dictionary")
 		XCTAssert(file.translationForTerm("key2") == "value 2", "Wrong dictionary")

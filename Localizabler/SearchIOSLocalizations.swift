@@ -9,6 +9,9 @@
 import Foundation
 
 class SearchIOSLocalizations: NSObject, SearchLocalizations {
+	
+	let suffix = ".lproj/"
+	let localizationFile = "Localizable.strings"
 
     func searchInDirectory(dir: NSURL, result: [String: NSURL] -> Void) {
         
@@ -18,15 +21,15 @@ class SearchIOSLocalizations: NSObject, SearchLocalizations {
                 options: NSDirectoryEnumerationOptions.SkipsSubdirectoryDescendants)
             var resultDict = [String: NSURL]()
             for file in files {
-                if file.absoluteString.hasSuffix(".lproj/") {
-                    let comps = file.absoluteString.componentsSeparatedByString(".lproj/")
+                if file.absoluteString.hasSuffix(suffix) {
+                    let comps = file.absoluteString.componentsSeparatedByString(suffix)
                     let comps2 = comps.first!.componentsSeparatedByString("/")
-                    resultDict[comps2.last!] = file.URLByAppendingPathComponent("Localizable.strings")
+                    resultDict[comps2.last!] = file.URLByAppendingPathComponent(localizationFile)
                 }
             }
             result(resultDict)
         } catch {
-            print("some error")
+            RCLogO("some error while reading files")
         }
     }
 }
