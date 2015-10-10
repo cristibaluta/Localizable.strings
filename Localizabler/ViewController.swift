@@ -14,18 +14,20 @@ class ViewController: NSViewController {
 	@IBOutlet var keysTableView: NSTableView?
 	@IBOutlet var translationsTableView: NSTableView?
 	
-	var keysTableViewDataSource: KeysTableViewDataSource?
-	var translationsTableViewDataSource: TranslationsTableViewDataSource?
+	var keysTableDataSource: KeysTableDataSource?
+	var translationsTableDataSource: TranslationsTableDataSource?
 	var languages = [String: LocalizationFile]()
 	var url: NSURL?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		keysTableViewDataSource = KeysTableViewDataSource(tableView: keysTableView!)
-		translationsTableViewDataSource = TranslationsTableViewDataSource(tableView: translationsTableView!)
+		keysTableView?.backgroundColor = NSColor.clearColor()
 		
-		keysTableViewDataSource?.onRowPressed = { (rowNumber: Int, key: KeyData) -> Void in
+		keysTableDataSource = KeysTableDataSource(tableView: keysTableView!)
+		translationsTableDataSource = TranslationsTableDataSource(tableView: translationsTableView!)
+		
+		keysTableDataSource?.onRowPressed = { (rowNumber: Int, key: KeyData) -> Void in
 			
 			var translations = [TranslationData]()
 			
@@ -38,15 +40,21 @@ class ViewController: NSViewController {
 					) as TranslationData
 				)
 			}
-			self.translationsTableViewDataSource?.data = translations
+			self.translationsTableDataSource?.data = translations
 			self.translationsTableView?.reloadData()
 		}
 		
-		translationsTableViewDataSource?.onEditTranslation = { (translation) -> Void in
-			print(translation)
+		translationsTableDataSource?.onEditTranslation = { (translation) -> Void in
+			
+			// A translation was changed, change also the key object
+			self.keysTableDataSource?.data[self.keysTableView!.selectedRow].translationChanged = true
+			
 			RCLogO(self.keysTableView?.selectedRow)
-			print(self.keysTableViewDataSource?.data[self.keysTableView!.selectedRow])
-			print(self.translationsTableViewDataSource?.data)
+			print(self.keysTableDataSource?.data[self.keysTableView!.selectedRow])
+			print(self.translationsTableDataSource?.data)
+			
+			self.keysTableView?.reloadDataForRowIndexes(NSIndexSet(index: self.keysTableView!.selectedRow),
+				columnIndexes: NSIndexSet(index: 0))
 		}
     }
     
@@ -89,7 +97,7 @@ class ViewController: NSViewController {
 			keysData.append((value: key, newValue: nil, translationChanged: false) as KeyData)
 		}
 		
-		keysTableViewDataSource?.data = keysData
+		keysTableDataSource?.data = keysData
 		keysTableView?.reloadData()
 	}
 }

@@ -12,7 +12,7 @@ class CountriesTests: XCTestCase {
 
     func testValidCountries() {
 		
-		XCTAssert(Countries.countryNameForCode("Base") == "English", "Wrong country name")
+		XCTAssert(Countries.countryNameForCode("Base") == "United States of America", "Wrong country name")
 		XCTAssert(Countries.countryNameForCode("ro") == "Romania", "Wrong country name")
     }
 }

@@ -1,5 +1,5 @@
 //
-//  TranslationsTableViewDataSource.swift
+//  TranslationsTableDataSource.swift
 //  Localizabler
 //
 //  Created by Baluta Cristian on 08/10/15.
@@ -8,8 +8,8 @@
 
 import Cocoa
 
-class TranslationsTableViewDataSource: NSObject, NSTableViewDataSource, NSTableViewDelegate {
-
+class TranslationsTableDataSource: NSObject {
+	
 	let kTranslationCellIdentifier = "TranslationCell"
 	var data = [TranslationData]()
 	var onEditTranslation: ((TranslationData) -> Void)?
@@ -18,18 +18,21 @@ class TranslationsTableViewDataSource: NSObject, NSTableViewDataSource, NSTableV
 		
 		super.init()
 		
-		tableView.setDataSource( self )
-		tableView.setDelegate( self )
+		tableView.setDataSource(self)
+		tableView.setDelegate(self)
 		
+		// Translations table uses view based cells, they need to be loaded from nib and registered
 		assert(NSNib(nibNamed: kTranslationCellIdentifier, bundle: NSBundle.mainBundle()) != nil, "err")
 		
 		if let nib = NSNib(nibNamed: kTranslationCellIdentifier, bundle: NSBundle.mainBundle()) {
 			tableView.registerNib( nib, forIdentifier: kTranslationCellIdentifier)
 		}
 	}
+}
+
+extension TranslationsTableDataSource: NSTableViewDataSource, NSTableViewDelegate {
 	
 	func numberOfRowsInTableView(aTableView: NSTableView) -> Int {
-		
 		return data.count
 	}
 	
@@ -57,7 +60,7 @@ class TranslationsTableViewDataSource: NSObject, NSTableViewDataSource, NSTableV
 			cell?.textView?.stringValue = theData.value
 			
 			cell?.didEditCell = { [weak self] (cell: TranslationCell, newValue: String) in
-				RCLogO(newValue)
+				
 				if let strongSelf = self {
 					strongSelf.data[row].newValue = newValue
 					strongSelf.onEditTranslation?(strongSelf.data[row])

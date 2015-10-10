@@ -1,5 +1,5 @@
 //
-//  KeysTableViewDataSource.swift
+//  KeysTableDataSource.swift
 //  Localizabler
 //
 //  Created by Baluta Cristian on 06/10/15.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class KeysTableViewDataSource: NSObject, NSTableViewDataSource, NSTableViewDelegate {
+class KeysTableDataSource: NSObject {
 	
 	var data = [KeyData]()
 	var onRowPressed: ((rowNumber: Int, key: KeyData) -> Void)?
@@ -17,12 +17,14 @@ class KeysTableViewDataSource: NSObject, NSTableViewDataSource, NSTableViewDeleg
 		
 		super.init()
 		
-		tableView.setDataSource( self )
-		tableView.setDelegate( self )
+		tableView.setDataSource(self)
+		tableView.setDelegate(self)
 	}
+}
+
+extension KeysTableDataSource: NSTableViewDataSource, NSTableViewDelegate {
 	
 	func numberOfRowsInTableView(aTableView: NSTableView) -> Int {
-		
 		return data.count
 	}
 	
@@ -30,6 +32,7 @@ class KeysTableViewDataSource: NSObject, NSTableViewDataSource, NSTableViewDeleg
 		objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
 			
 			let theData: KeyData = data[row]
+			
 			if (tableColumn?.identifier == "key") {
 				return theData.value
 			}
