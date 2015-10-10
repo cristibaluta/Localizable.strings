@@ -42,8 +42,8 @@ class ViewController: NSViewController {
 			self.translationsTableView?.reloadData()
 		}
 		
-		translationsTableViewDataSource?.onEditTranslation = { () -> Void in
-//			print(translation)
+		translationsTableViewDataSource?.onEditTranslation = { (translation) -> Void in
+			print(translation)
 			RCLogO(self.keysTableView?.selectedRow)
 			print(self.keysTableViewDataSource?.data[self.keysTableView!.selectedRow])
 			print(self.translationsTableViewDataSource?.data)
