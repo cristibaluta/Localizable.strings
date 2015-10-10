@@ -1,4 +1,4 @@
 # Localizabler
-Mac app to deal with Xcode localization files from messy projects that do not use specialized websites to localize it.
+Mac app to deal with Xcode localization files from messy or small projects that do not use specialized websites to localize it. And honestly an app is better and faster.
 
-Read the wiki!
+For contributions read the wiki please!
