@@ -12,6 +12,8 @@ class TranslationsTableViewDataSource: NSObject, NSTableViewDataSource, NSTableV
 
 	let kTranslationCellIdentifier = "TranslationCell"
 	var data = [TranslationData]()
+//	var onEditTranslation: ((translation: TranslationData) -> Void)?
+	var onEditTranslation: (() -> Void)?
 	
 	init(tableView: NSTableView) {
 		
@@ -34,7 +36,7 @@ class TranslationsTableViewDataSource: NSObject, NSTableViewDataSource, NSTableV
 	
 	func tableViewSelectionDidChange(aNotification: NSNotification) {
 		
-		if let rowView: AnyObject = aNotification.object {
+		if let _: AnyObject = aNotification.object {
 			
 		}
 	}
@@ -47,16 +49,20 @@ class TranslationsTableViewDataSource: NSObject, NSTableViewDataSource, NSTableV
 		viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
 			
 			let theData: TranslationData = data[row]
-			let cell: TranslationCell? = tableView.makeViewWithIdentifier(kTranslationCellIdentifier, owner: self) as? TranslationCell
+			let countryName = Countries.countryNameForCode(theData.countryCode)
+			let cell = tableView.makeViewWithIdentifier(kTranslationCellIdentifier, owner: self) as? TranslationCell
 			assert(cell != nil, "Cell can't be nil, check the identifier")
 			
-			let countryName = Countries.countryNameForCode(theData.countryCode)
 			cell?.flagImage!.image = NSImage(named: countryName)
 			cell?.countryName?.stringValue = countryName
-			cell?.textView?.stringValue = theData.originalValue
+			cell?.textView?.stringValue = theData.value
 			
-			cell?.didEditCell = { (cell: TranslationCell) in
-				
+			cell?.didEditCell = { [weak self] (cell: TranslationCell, newValue: String) in
+				RCLogO(newValue)
+				if let strongSelf = self {
+					strongSelf.data[row].newValue = newValue
+					strongSelf.onEditTranslation?()
+				}
 			}
 			
 			return cell

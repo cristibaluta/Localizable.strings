@@ -10,8 +10,8 @@ import Cocoa
 
 class KeysTableViewDataSource: NSObject, NSTableViewDataSource, NSTableViewDelegate {
 	
-	var data = [String]()
-	var onRowPressed: ((rowNumber: Int, key: String) -> Void)?
+	var data = [KeyData]()
+	var onRowPressed: ((rowNumber: Int, key: KeyData) -> Void)?
 	
 	init(tableView: NSTableView) {
 		
@@ -29,8 +29,14 @@ class KeysTableViewDataSource: NSObject, NSTableViewDataSource, NSTableViewDeleg
 	func tableView(tableView: NSTableView,
 		objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
 			
+			let theData: KeyData = data[row]
 			if (tableColumn?.identifier == "key") {
-				return data[row]
+				return theData.value
+			}
+			else if (tableColumn?.identifier == "status") {
+				return NSImage(named: theData.translationChanged
+					? NSImageNameStatusPartiallyAvailable
+					: NSImageNameStatusAvailable)
 			}
 			return nil
 	}

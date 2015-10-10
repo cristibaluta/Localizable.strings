@@ -39,8 +39,8 @@ class WindowController: NSWindowController {
 	func loadProjectAtUrl(url: NSURL) {
 		pathControl?.URL = url
 		viewController.url = url
-		viewController.scanDirectoryForLocalizationfiles()
-		viewController.showDefaultLanguage()
+		viewController.scanDirectoryForLocalizationFiles()
+		viewController.showBaseLanguage()
 	}
 	
 	// MARK: Actions

@@ -25,25 +25,32 @@ class ViewController: NSViewController {
 		keysTableViewDataSource = KeysTableViewDataSource(tableView: keysTableView!)
 		translationsTableViewDataSource = TranslationsTableViewDataSource(tableView: translationsTableView!)
 		
-		keysTableViewDataSource?.onRowPressed = { (rowNumber: Int, key: String) -> Void in
+		keysTableViewDataSource?.onRowPressed = { (rowNumber: Int, key: KeyData) -> Void in
 			
 			var translations = [TranslationData]()
 			
 			for (lang, localizationFile) in self.languages {
 				
 				translations.append(
-					(originalValue: localizationFile.translationForTerm(key),
-						newValue: nil,
-						countryCode: lang
+					(value: localizationFile.translationForTerm(key.value),
+					newValue: nil,
+					countryCode: lang
 					) as TranslationData
 				)
 			}
 			self.translationsTableViewDataSource?.data = translations
 			self.translationsTableView?.reloadData()
 		}
+		
+		translationsTableViewDataSource?.onEditTranslation = { () -> Void in
+//			print(translation)
+			RCLogO(self.keysTableView?.selectedRow)
+			print(self.keysTableViewDataSource?.data[self.keysTableView!.selectedRow])
+			print(self.translationsTableViewDataSource?.data)
+		}
     }
     
-    func scanDirectoryForLocalizationfiles() {
+    func scanDirectoryForLocalizationFiles() {
         
         _ = SearchIOSLocalizations().searchInDirectory(url!) { (localizationsDict) -> Void in
             RCLogO(localizationsDict)
@@ -61,7 +68,7 @@ class ViewController: NSViewController {
         self.languages[key] = IOSLocalizationFile(url: url)
     }
 	
-	func showDefaultLanguage() {
+	func showBaseLanguage() {
 		
 		var keys = [String]()
 		if let file = languages["Base"] {
@@ -70,7 +77,19 @@ class ViewController: NSViewController {
 		else if let file = languages["en"] {
 			keys = file.allTerms()
 		}
-		keysTableViewDataSource?.data = keys
+		
+		// Build KeyData from Strings
+		showKeys(keys)
+	}
+	
+	func showKeys(keys: [String]) {
+		
+		var keysData = [KeyData]()
+		for key in keys {
+			keysData.append((value: key, newValue: nil, translationChanged: false) as KeyData)
+		}
+		
+		keysTableViewDataSource?.data = keysData
 		keysTableView?.reloadData()
 	}
 }
