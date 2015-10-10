@@ -13,6 +13,14 @@ class KeysTableViewDataSource: NSObject, NSTableViewDataSource, NSTableViewDeleg
 	var data = [String]()
 	var onRowPressed: ((rowNumber: Int, key: String) -> Void)?
 	
+	init(tableView: NSTableView) {
+		
+		super.init()
+		
+		tableView.setDataSource( self )
+		tableView.setDelegate( self )
+	}
+	
 	func numberOfRowsInTableView(aTableView: NSTableView) -> Int {
 		
 		return data.count

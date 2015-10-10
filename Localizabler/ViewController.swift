@@ -15,8 +15,8 @@ class ViewController: NSViewController {
 	@IBOutlet var keysTableView: NSTableView?
 	@IBOutlet var translationsTableView: NSTableView?
 	
-	var keysTableViewDataSource = KeysTableViewDataSource()
-	var translationsTableViewDataSource = TranslationsTableViewDataSource()
+	var keysTableViewDataSource: KeysTableViewDataSource?
+	var translationsTableViewDataSource: TranslationsTableViewDataSource?
 	var languages = [String: LocalizationFile]()
 	
 	override func viewDidLoad() {
@@ -26,20 +26,23 @@ class ViewController: NSViewController {
 		win?.titlebarAppearsTransparent = true
 		win?.titleVisibility = NSWindowTitleVisibility.Hidden;
 		
-		keysTableView?.setDataSource( keysTableViewDataSource )
-		keysTableView?.setDelegate( keysTableViewDataSource )
-		translationsTableView?.setDataSource( translationsTableViewDataSource )
-		translationsTableView?.setDelegate( translationsTableViewDataSource )
+		keysTableViewDataSource = KeysTableViewDataSource(tableView: keysTableView!)
+		translationsTableViewDataSource = TranslationsTableViewDataSource(tableView: translationsTableView!)
 		
-		keysTableViewDataSource.onRowPressed = { (rowNumber: Int, key: String) -> Void in
-			RCLogO(rowNumber)
-			RCLogO(key)
-			var translations = [String]()
+		keysTableViewDataSource?.onRowPressed = { (rowNumber: Int, key: String) -> Void in
+			
+			var translations = [TranslationData]()
+			
 			for (lang, localizationFile) in self.languages {
-				RCLog("\(lang) -> \(localizationFile.translationForTerm(key))")
-				translations.append(localizationFile.translationForTerm(key))
+				
+				translations.append(
+					(originalValue: localizationFile.translationForTerm(key),
+						newValue: nil,
+						countryCode: lang
+					) as TranslationData
+				)
 			}
-			self.translationsTableViewDataSource.data = translations
+			self.translationsTableViewDataSource?.data = translations
 			self.translationsTableView?.reloadData()
 		}
 		
@@ -97,9 +100,7 @@ class ViewController: NSViewController {
 		else if let file = languages["en"] {
 			keys = file.allTerms()
 		}
-		RCLogO(keys)
-		RCLogO(nil)
-		keysTableViewDataSource.data = keys
+		keysTableViewDataSource?.data = keys
 		keysTableView?.reloadData()
 	}
 }

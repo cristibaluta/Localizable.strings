@@ -7,3 +7,4 @@
 //
 
 typealias Line = (key: String, value: String, isComment: Bool)
+typealias TranslationData = (originalValue: String, newValue: String?, countryCode: String)
