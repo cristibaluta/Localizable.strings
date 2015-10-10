@@ -126,8 +126,8 @@
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="5be-rW-6d4"/>
                                 <toolbarItem implicitItemIdentifier="5952D534-AB21-4511-8793-C92738AFFDAF" label="Custom View" paletteLabel="Custom View" id="g6s-QX-XCk">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="96" height="22"/>
-                                    <size key="maxSize" width="96" height="22"/>
+                                    <size key="minSize" width="200" height="22"/>
+                                    <size key="maxSize" width="300" height="22"/>
                                     <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" id="tYn-Je-5x6">
                                         <rect key="frame" x="0.0" y="14" width="96" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -174,12 +174,28 @@
                                         </pathCell>
                                     </pathControl>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="88928E9E-9178-4C01-9DF2-F3A956DE3526" label="Custom View" paletteLabel="Custom View" id="Jos-Mb-0Uu">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="50" height="25"/>
+                                    <size key="maxSize" width="50" height="25"/>
+                                    <button key="view" verticalHuggingPriority="750" id="I82-Qs-9zS">
+                                        <rect key="frame" x="0.0" y="14" width="127" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <animations/>
+                                        <buttonCell key="cell" type="roundTextured" title="Save" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uIN-aK-8VQ">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="LA9-IZ-Gv5"/>
                                 <toolbarItem reference="bdR-aJ-DUE"/>
                                 <toolbarItem reference="5be-rW-6d4"/>
                                 <toolbarItem reference="g6s-QX-XCk"/>
+                                <toolbarItem reference="5be-rW-6d4"/>
+                                <toolbarItem reference="Jos-Mb-0Uu"/>
                             </defaultToolbarItems>
                         </toolbar>
                     </window>
@@ -255,8 +271,8 @@
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="245" id="Qfs-f9-6I6"/>
                                                 </constraints>
                                                 <animations/>
-                                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="zyE-ei-IxT">
-                                                    <rect key="frame" x="0.0" y="478" width="187" height="16"/>
+                                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="zyE-ei-IxT">
+                                                    <rect key="frame" x="0.0" y="478" width="245" height="16"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
                                                 </scroller>
@@ -357,8 +373,8 @@
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" id="BEq-kp-ayp"/>
                                                 </constraints>
                                                 <animations/>
-                                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="hYf-H3-mqD">
-                                                    <rect key="frame" x="0.0" y="-16" width="0.0" height="16"/>
+                                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="hYf-H3-mqD">
+                                                    <rect key="frame" x="0.0" y="513" width="745" height="16"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
                                                 </scroller>
