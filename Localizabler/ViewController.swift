@@ -10,7 +10,6 @@ import Cocoa
 
 class ViewController: NSViewController {
 
-	@IBOutlet var pathControl: NSPathControl?
 	@IBOutlet var segmentedControl: NSSegmentedControl?
 	@IBOutlet var keysTableView: NSTableView?
 	@IBOutlet var translationsTableView: NSTableView?
@@ -18,13 +17,10 @@ class ViewController: NSViewController {
 	var keysTableViewDataSource: KeysTableViewDataSource?
 	var translationsTableViewDataSource: TranslationsTableViewDataSource?
 	var languages = [String: LocalizationFile]()
+	var url: NSURL?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		let win = NSApplication.sharedApplication().windows.first
-		win?.titlebarAppearsTransparent = true
-		win?.titleVisibility = NSWindowTitleVisibility.Hidden;
 		
 		keysTableViewDataSource = KeysTableViewDataSource(tableView: keysTableView!)
 		translationsTableViewDataSource = TranslationsTableViewDataSource(tableView: translationsTableView!)
@@ -45,37 +41,11 @@ class ViewController: NSViewController {
 			self.translationsTableViewDataSource?.data = translations
 			self.translationsTableView?.reloadData()
 		}
-		
-		// Do any additional setup after loading the view.
-		if let dir = NSUserDefaults.standardUserDefaults().objectForKey("localizationsDirectory") {
-            self.pathControl!.URL = NSURL(string: dir as! String)
-            self.scanDirectoryForLocalizationfiles()
-			self.showDefaultLanguage()
-        }
-    }
-    
-    @IBAction func browseButtonClicked(sender: NSButton) {
-		
-        let panel = NSOpenPanel()
-        panel.canChooseFiles = false
-        panel.canChooseDirectories = true
-        panel.allowsMultipleSelection = false;
-        panel.beginWithCompletionHandler { (result) -> Void in
-            RCLogO(result)
-            if result == NSFileHandlingPanelOKButton {
-                print(panel.URLs.first)
-                self.pathControl!.URL = panel.URLs.first
-                NSUserDefaults.standardUserDefaults().setObject(panel.URLs.first?.absoluteString, forKey: "localizationsDirectory")
-                NSUserDefaults.standardUserDefaults().synchronize()
-                self.scanDirectoryForLocalizationfiles()
-				self.showDefaultLanguage()
-            }
-        }
     }
     
     func scanDirectoryForLocalizationfiles() {
         
-        _ = SearchIOSLocalizations().searchInDirectory(self.pathControl!.URL!) { (localizationsDict) -> Void in
+        _ = SearchIOSLocalizations().searchInDirectory(url!) { (localizationsDict) -> Void in
             RCLogO(localizationsDict)
             self.segmentedControl!.segmentCount = localizationsDict.count
             var i = 0
