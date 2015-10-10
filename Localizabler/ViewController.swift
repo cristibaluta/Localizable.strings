@@ -48,10 +48,8 @@ class ViewController: NSViewController {
 			
 			// A translation was changed, change also the key object
 			self.keysTableDataSource?.data[self.keysTableView!.selectedRow].translationChanged = true
-			
-			RCLogO(self.keysTableView?.selectedRow)
-			print(self.keysTableDataSource?.data[self.keysTableView!.selectedRow])
-			print(self.translationsTableDataSource?.data)
+			RCLog(translation)
+			RCLog(self.translationsTableDataSource?.data)
 			
 			self.keysTableView?.reloadDataForRowIndexes(NSIndexSet(index: self.keysTableView!.selectedRow),
 				columnIndexes: NSIndexSet(index: 0))
