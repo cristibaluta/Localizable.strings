@@ -12,8 +12,7 @@ class TranslationsTableViewDataSource: NSObject, NSTableViewDataSource, NSTableV
 
 	let kTranslationCellIdentifier = "TranslationCell"
 	var data = [TranslationData]()
-//	var onEditTranslation: ((translation: TranslationData) -> Void)?
-	var onEditTranslation: (() -> Void)?
+	var onEditTranslation: ((TranslationData) -> Void)?
 	
 	init(tableView: NSTableView) {
 		
@@ -61,7 +60,7 @@ class TranslationsTableViewDataSource: NSObject, NSTableViewDataSource, NSTableV
 				RCLogO(newValue)
 				if let strongSelf = self {
 					strongSelf.data[row].newValue = newValue
-					strongSelf.onEditTranslation?()
+					strongSelf.onEditTranslation?(strongSelf.data[row])
 				}
 			}
 			
