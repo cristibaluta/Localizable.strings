@@ -1,0 +1,67 @@
+"kNotesDefaultText" = "Descrie locul, lumina, si alte impresii pe care nu vrei sa le uiti";
+"kStringLikes" = "LIKES";
+"kStringError" = "EROARE";
+
+// Menu
+"SETTINGS" = "SETARI";
+"TERMS" = "TERMENI";
+"FEEDBACK" = "SUGESTII";
+"SIGN OUT" = "IESIRE CONT";
+"kStringCopyright" = "© 2015 SPOTO. TOATE DREPTURILE REZERVATE.";
+"kAppstoreLabel" = "SCRIE O RECENZIE PE";
+"kEmailLabel" = "SAU TRIMITE-NE UN E-MAIL";
+"kAttentionLabel" = "TINEM CONT DE OPINII";
+"kAppstoreButton" = "APPSTORE";
+"kEmailButton" = "TRIMITE E-MAIL";
+"kSettingPhoto" = "NOTIFICA-MA CAND APAR LOCATII NOI IN ZONA";
+"kSettingEvent" = "NOTIFICA-MA CAND APAR EVENIMENTE IN ZONA";
+
+// Tags
+"Fashion" = "Moda";
+"Landscape" = "Peisaje";
+"Door" = "Usi";
+"Urban" = "Urban";
+"Nature" = "Natura";
+"Portrait" = "Portret";
+"Cityscape" = "Oras";
+"Architecture" = "Arhitectura";
+"Stars" = "Stele";
+"Night" = "Noapte";
+"Water" = "Apa";
+"Snow" = "Zapada";
+"Wild animals" = "Animale salbatice";
+"Wedding" = "Nunta";
+"For tourists" = "Turistic";
+"Studio" = "Studio";
+"Cemetery" = "Cimitir";
+"Medieval" = "Medieval";
+"Grafitty" = "Desene pe pereti";
+"Ruins" = "Ruine";
+
+// Activities
+"kStringDirections" = "Direcții";
+"kStringGoogleMaps" = "Deschide in Google Maps";
+"kStringAppleMaps" = "Deschide in Maps";
+
+// Buttons
+"kButtonPost" = "POSTEAZA";
+"kButtonPostDisabled" = "Poza are nevoie de coordonate GPS!";
+"SHARE" = "SHARE";
+"kButtonCancel" = "Renunță";
+"kButtonEdit" = "Editează informații";
+"kButtonRemove" = "Șterge din listă";
+"kButtonDelete" = "Șterge permanent";
+"kButtonOk" = "OK";
+
+// Home
+"kTutorialTakePhoto" = "NU AI NICIO POZA INCA.\nGLISEAZA PENTRU A VEDEA LOCURI DIN ZONA TA.";
+"kTutorialCalendar" = "TAP THE BUTTON BELOW TO\nPLAN YOUR FIRST PHOTO TRIP";
+"kLoadMore" = "Incarca mai mult!";
+
+// Add
+"kEnableLocation" = "Locatie necunoscuta, serviciul de localizare trebuie activat din Configurari/Intimitate/Servicii de localizare/Spoto";
+"kRequestingAddress" = "Obtinem adresa...";
+"kErrorUnknownLocation" = "Aceasta imagine nu poate fi folosita pentru ca nu are coordonate GPS";
+
+// Explore
+"kNoPhotos" = "NU SUNT POZE IN ZONA";

@@ -1,0 +1,40 @@
+"kNotesDefaultText" = "Describe the place, the light, or what are your plans with this location";
+"kStringLikes" = "LIKES";
+"kStringError" = "ERROR";
+
+// Menu
+"kStringCopyright" = "© 2015 SPOTO. ALL RIGHTS RESERVED.";
+"kAppstoreLabel" = "WRITE A REVIEW ON";
+"kEmailLabel" = "OR SEND US AN E-MAIL";
+"kAppstoreButton" = "APPSTORE";
+"kEmailButton" = "SEND E-MAIL";
+"kAttentionLabel" = "WE PAY ATTENTION";
+"kSettingPhoto" = "NOTIFY WHEN A PHOTO IS POSTED NEAR ME";
+"kSettingEvent" = "NOTIFY ABOUT NEARBY PHOTOGRAPHY EVENTS";
+
+// Activities
+"kStringDirections" = "Directions";
+"kStringGoogleMaps" = "Open in Google Maps";
+"kStringAppleMaps" = "Open in Apple Maps";
+
+// Home
+"kTutorialTakePhoto" = "YOU HAVEN’T TAKEN ANY PHOTOS YET.\nSWIPE TO SEE NEARBY PHOTOS.";
+"kTutorialCalendar" = "TAP THE BUTTON BELOW TO\nPLAN YOUR FIRST PHOTO TRIP";
+"kLoadMore" = "Load more!";
+
+// Add
+"kEnableLocation" = "Unknown location, please enable location services!";
+"kErrorUnknownLocation" = "This photo can't be used because the GPS coordinates can't be determined";
+"kRequestingAddress" = "Requesting address...";
+
+// Explore
+"kNoPhotos" = "NO PHOTOS IN THE AREA";
+
+// Buttons
+"kButtonPost" = "POST PHOTO";
+"kButtonPostDisabled" = "Can't post a photo with unknown location!";
+"kButtonCancel" = "Cancel";
+"kButtonEdit" = "Edit information";
+"kButtonRemove" = "Remove from list";
+"kButtonDelete" = "Delete permanently";
+"kButtonOk" = "OK";

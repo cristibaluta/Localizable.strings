@@ -11,27 +11,27 @@ import Cocoa
 class ViewController: NSViewController {
 
 	@IBOutlet var segmentedControl: NSSegmentedControl?
-	@IBOutlet var keysTableView: NSTableView?
+	@IBOutlet var termsTableView: NSTableView?
 	@IBOutlet var translationsTableView: NSTableView?
 	
-	var keysTableDataSource: KeysTableDataSource?
+	var termsTableDataSource: TermsTableDataSource?
 	var translationsTableDataSource: TranslationsTableDataSource?
-	var languages = [String: LocalizationFile]()
+	var files = [String: LocalizationFile]()
 	var url: NSURL?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		keysTableView?.backgroundColor = NSColor.clearColor()
+		termsTableView?.backgroundColor = NSColor.clearColor()
 		
-		keysTableDataSource = KeysTableDataSource(tableView: keysTableView!)
+		termsTableDataSource = TermsTableDataSource(tableView: termsTableView!)
 		translationsTableDataSource = TranslationsTableDataSource(tableView: translationsTableView!)
 		
-		keysTableDataSource?.onRowPressed = { (rowNumber: Int, key: KeyData) -> Void in
+		termsTableDataSource?.onDidSelectRow = { (rowNumber: Int, key: TermData) -> Void in
 			
 			var translations = [TranslationData]()
 			
-			for (lang, localizationFile) in self.languages {
+			for (lang, localizationFile) in self.files {
 				
 				translations.append(
 					(value: localizationFile.translationForTerm(key.value),
@@ -47,11 +47,16 @@ class ViewController: NSViewController {
 		translationsTableDataSource?.onEditTranslation = { (translation) -> Void in
 			
 			// A translation was changed, change also the key object
-			self.keysTableDataSource?.data[self.keysTableView!.selectedRow].translationChanged = true
-			RCLog(translation)
-			RCLog(self.translationsTableDataSource?.data)
+			let termData = self.termsTableDataSource?.data[self.termsTableView!.selectedRow]
+			self.termsTableDataSource?.data[self.termsTableView!.selectedRow].translationChanged = true
 			
-			self.keysTableView?.reloadDataForRowIndexes(NSIndexSet(index: self.keysTableView!.selectedRow),
+			// If there are changes in the translation
+			if let newValue = translation.newValue {
+				let file = self.files[translation.countryCode]
+				file?.updateTranslationForTerm(termData!.value, newValue: newValue)
+			}
+			
+			self.termsTableView?.reloadDataForRowIndexes(NSIndexSet(index: self.termsTableView!.selectedRow),
 				columnIndexes: NSIndexSet(index: 0))
 		}
     }
@@ -59,8 +64,10 @@ class ViewController: NSViewController {
     func scanDirectoryForLocalizationFiles() {
         
         _ = SearchIOSLocalizations().searchInDirectory(url!) { (localizationsDict) -> Void in
-            RCLogO(localizationsDict)
-            self.segmentedControl!.segmentCount = localizationsDict.count
+			
+            RCLog(localizationsDict)
+			
+			self.segmentedControl!.segmentCount = localizationsDict.count
             var i = 0
             for (key, url) in localizationsDict {
 				self.loadLocalizationFile(url, forKey: key)
@@ -71,31 +78,31 @@ class ViewController: NSViewController {
     }
     
 	func loadLocalizationFile(url: NSURL, forKey key: String) {
-        self.languages[key] = IOSLocalizationFile(url: url)
+        files[key] = IOSLocalizationFile(url: url)
     }
 	
 	func showBaseLanguage() {
 		
 		var keys = [String]()
-		if let file = languages["Base"] {
+		if let file = files["Base"] {
 			keys = file.allTerms()
 		}
-		else if let file = languages["en"] {
+		else if let file = files["en"] {
 			keys = file.allTerms()
 		}
 		
-		// Build KeyData from Strings
+		// Build TermData from Strings
 		showKeys(keys)
 	}
 	
 	func showKeys(keys: [String]) {
 		
-		var keysData = [KeyData]()
+		var keysData = [TermData]()
 		for key in keys {
-			keysData.append((value: key, newValue: nil, translationChanged: false) as KeyData)
+			keysData.append((value: key, newValue: nil, translationChanged: false) as TermData)
 		}
 		
-		keysTableDataSource?.data = keysData
-		keysTableView?.reloadData()
+		termsTableDataSource?.data = keysData
+		termsTableView?.reloadData()
 	}
 }

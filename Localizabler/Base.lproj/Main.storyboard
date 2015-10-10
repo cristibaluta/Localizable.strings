@@ -126,7 +126,7 @@
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="5be-rW-6d4"/>
                                 <toolbarItem implicitItemIdentifier="5952D534-AB21-4511-8793-C92738AFFDAF" label="Custom View" paletteLabel="Custom View" id="g6s-QX-XCk">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="200" height="22"/>
+                                    <size key="minSize" width="96" height="22"/>
                                     <size key="maxSize" width="300" height="22"/>
                                     <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" id="tYn-Je-5x6">
                                         <rect key="frame" x="0.0" y="14" width="96" height="22"/>
@@ -177,7 +177,7 @@
                                 <toolbarItem implicitItemIdentifier="88928E9E-9178-4C01-9DF2-F3A956DE3526" label="Custom View" paletteLabel="Custom View" id="Jos-Mb-0Uu">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="50" height="25"/>
-                                    <size key="maxSize" width="50" height="25"/>
+                                    <size key="maxSize" width="127" height="25"/>
                                     <button key="view" verticalHuggingPriority="750" id="I82-Qs-9zS">
                                         <rect key="frame" x="0.0" y="14" width="127" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -186,6 +186,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="saveButtonClicked:" target="B8D-0N-5wS" id="3eg-Zx-V43"/>
+                                        </connections>
                                     </button>
                                 </toolbarItem>
                             </allowedToolbarItems>
@@ -201,6 +204,7 @@
                     </window>
                     <connections>
                         <outlet property="butBrowse" destination="OYt-O5-x0O" id="gyr-7L-7p7"/>
+                        <outlet property="butSave" destination="I82-Qs-9zS" id="6Xf-Xf-fmI"/>
                         <outlet property="pathControl" destination="ZNY-vb-5IC" id="cM8-gr-e6D"/>
                         <outlet property="searchField" destination="tYn-Je-5x6" id="cg2-eE-5hS"/>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
@@ -271,7 +275,7 @@
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="245" id="Qfs-f9-6I6"/>
                                                 </constraints>
                                                 <animations/>
-                                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="zyE-ei-IxT">
+                                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="zyE-ei-IxT">
                                                     <rect key="frame" x="0.0" y="478" width="245" height="16"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
@@ -373,7 +377,7 @@
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" id="BEq-kp-ayp"/>
                                                 </constraints>
                                                 <animations/>
-                                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="hYf-H3-mqD">
+                                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="hYf-H3-mqD">
                                                     <rect key="frame" x="0.0" y="513" width="745" height="16"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <animations/>
@@ -410,8 +414,8 @@
                         <animations/>
                     </view>
                     <connections>
-                        <outlet property="keysTableView" destination="jaQ-J7-unX" id="7uq-Uc-q09"/>
                         <outlet property="segmentedControl" destination="Pnd-0m-jPC" id="gIN-Ra-TF6"/>
+                        <outlet property="termsTableView" destination="jaQ-J7-unX" id="4Iq-b0-Jba"/>
                         <outlet property="translationsTableView" destination="akn-lw-stZ" id="DqF-z8-6Lg"/>
                     </connections>
                 </viewController>

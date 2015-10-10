@@ -10,14 +10,17 @@ import Foundation
 
 class IOSLocalizationFile: NSObject, LocalizationFile {
 	
-	private var url: NSURL?
+	var url: NSURL?
+	var hasChanges: Bool = false
 	private var terms = [String]()
 	private var lines = [Line]()
 	private var translations = [String: String]()
 	
     required init(url: NSURL) {
 		super.init()
+		
 		self.url = url
+		
 		if url.path != nil {
 			let data = NSData(contentsOfURL: url)
 			if let fileContent = NSString(data: data!, encoding: NSUTF8StringEncoding) as? String {
@@ -48,7 +51,29 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
     
     func updateTranslationForTerm(term: String, newValue: String) {
         translations[term] = newValue
+		hasChanges = true
     }
+	
+	func content() -> String {
+		
+		var string = ""
+		
+		// Iterate over lines and put them back in the string with the new translations
+		for line in lines {
+			if line.isComment {
+				string += line.value
+			}
+			else {
+				string += "\"\(line.key)\" = \"\(translationForTerm(line.key))\";"
+			}
+			string += "\n"
+		}
+		
+		return string
+	}
+	
+	
+	// MARK: Helpers
 	
 	private func parseContent(content: String) {
 		
@@ -58,17 +83,17 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 		}
 	}
 	
-	private func parseFile(url: NSURL) {
-		
-		if let path = url.path {
-			if let aStreamReader = StreamReader(path: path) {
-				while let line = aStreamReader.nextLine() {
-					parseLine(line)
-				}
-				aStreamReader.close()
-			}
-		}
-	}
+//	private func parseFile(url: NSURL) {
+//		
+//		if let path = url.path {
+//			if let aStreamReader = StreamReader(path: path) {
+//				while let line = aStreamReader.nextLine() {
+//					parseLine(line)
+//				}
+//				aStreamReader.close()
+//			}
+//		}
+//	}
 	
 	@inline(__always) func parseLine(lineContent: String) {
 		

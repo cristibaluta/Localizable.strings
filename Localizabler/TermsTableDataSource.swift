@@ -1,5 +1,5 @@
 //
-//  KeysTableDataSource.swift
+//  TermsTableDataSource.swift
 //  Localizabler
 //
 //  Created by Baluta Cristian on 06/10/15.
@@ -8,10 +8,10 @@
 
 import Cocoa
 
-class KeysTableDataSource: NSObject {
+class TermsTableDataSource: NSObject {
 	
-	var data = [KeyData]()
-	var onRowPressed: ((rowNumber: Int, key: KeyData) -> Void)?
+	var data = [TermData]()
+	var onDidSelectRow: ((rowNumber: Int, key: TermData) -> Void)?
 	
 	init(tableView: NSTableView) {
 		
@@ -22,7 +22,7 @@ class KeysTableDataSource: NSObject {
 	}
 }
 
-extension KeysTableDataSource: NSTableViewDataSource, NSTableViewDelegate {
+extension TermsTableDataSource: NSTableViewDataSource, NSTableViewDelegate {
 	
 	func numberOfRowsInTableView(aTableView: NSTableView) -> Int {
 		return data.count
@@ -31,7 +31,7 @@ extension KeysTableDataSource: NSTableViewDataSource, NSTableViewDelegate {
 	func tableView(tableView: NSTableView,
 		objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
 			
-			let theData: KeyData = data[row]
+			let theData: TermData = data[row]
 			
 			if (tableColumn?.identifier == "key") {
 				return theData.value
@@ -47,7 +47,7 @@ extension KeysTableDataSource: NSTableViewDataSource, NSTableViewDelegate {
 	func tableViewSelectionDidChange(aNotification: NSNotification) {
 		
 		if let rowView: AnyObject = aNotification.object {
-			onRowPressed?(rowNumber: rowView.selectedRow, key: self.data[rowView.selectedRow])
+			onDidSelectRow?(rowNumber: rowView.selectedRow, key: self.data[rowView.selectedRow])
 		}
 	}
 	

@@ -13,7 +13,9 @@ class Countries: NSObject {
 	static var countries = [
 		"Base": "United States of America",
 		"en": "England",
-		"ro": "Romania"
+		"ro": "Romania",
+		"fr": "France",
+		"nl": "Netherlands"
 	]
 	
 	class func countryNameForCode(countryCode: String) -> String {
@@ -21,6 +23,7 @@ class Countries: NSObject {
 		if let countryName = countries[countryCode] {
 			return countryName
 		} else {
+			RCLog("Country code \(countryCode) was not found in the dictionary, please add it")
 			return ""
 		}
 	}

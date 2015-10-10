@@ -7,5 +7,5 @@
 //
 
 typealias Line = (key: String, value: String, isComment: Bool)
-typealias KeyData = (value: String, newValue: String?, translationChanged: Bool)
+typealias TermData = (value: String, newValue: String?, translationChanged: Bool)
 typealias TranslationData = (value: String, newValue: String?, countryCode: String)

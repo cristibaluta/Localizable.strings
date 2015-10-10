@@ -18,17 +18,19 @@ class WindowController: NSWindowController {
 	@IBOutlet var searchField: NSSearchField?
 	@IBOutlet var pathControl: NSPathControl?
 	@IBOutlet var butBrowse: NSButton?
+	@IBOutlet var butSave: NSButton?
 	
 	override func windowDidLoad() {
 		super.windowDidLoad()
 		
-		self.window?.titlebarAppearsTransparent = true
-		self.window?.titleVisibility = NSWindowTitleVisibility.Hidden;
+		window?.titlebarAppearsTransparent = true
+		window?.titleVisibility = NSWindowTitleVisibility.Hidden;
+//		butSave?.enabled = false
 		
-		loadLastProject()
+		loadLastOpenedProject()
 	}
 	
-	func loadLastProject() {
+	func loadLastOpenedProject() {
 		if let dir = NSUserDefaults.standardUserDefaults().objectForKey("localizationsDirectory") {
 			if let url = NSURL(string: dir as! String) {
 				self.loadProjectAtUrl(url)
@@ -42,6 +44,7 @@ class WindowController: NSWindowController {
 		viewController.scanDirectoryForLocalizationFiles()
 		viewController.showBaseLanguage()
 	}
+	
 	
 	// MARK: Actions
 	
@@ -60,6 +63,11 @@ class WindowController: NSWindowController {
 				self.loadProjectAtUrl(panel.URLs.first!)
 			}
 		}
+	}
+	
+	@IBAction func saveButtonClicked(sender: NSButton) {
+		
+		_ = Save(files: viewController.files)
 	}
 }
 
