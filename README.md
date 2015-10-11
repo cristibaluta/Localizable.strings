@@ -1,6 +1,6 @@
 # Localizabler
 
-![](http://ralcr.com/localizabler.png)
+![](http://ralcr.com/localizabler2.png)
 
 Mac app to deal with Xcode localization files from messy or small projects that do not use specialized websites to localize it. And honestly an app is better and faster.
 
