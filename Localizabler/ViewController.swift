@@ -9,7 +9,7 @@
 import Cocoa
 
 class ViewController: NSViewController {
-
+	
 	@IBOutlet var segmentedControl: NSSegmentedControl?
 	@IBOutlet var termsTableView: NSTableView?
 	@IBOutlet var translationsTableView: NSTableView?
@@ -65,7 +65,7 @@ class ViewController: NSViewController {
         
         _ = SearchIOSLocalizations().searchInDirectory(url!) { (localizationsDict) -> Void in
 			
-            RCLog(localizationsDict)
+            RCLogO(localizationsDict)
 			
 			self.segmentedControl!.segmentCount = localizationsDict.count
             var i = 0
@@ -75,7 +75,7 @@ class ViewController: NSViewController {
                 i++
             }
         }
-    }
+	}
     
 	func loadLocalizationFile(url: NSURL, forKey key: String) {
         files[key] = IOSLocalizationFile(url: url)
@@ -86,9 +86,11 @@ class ViewController: NSViewController {
 		var keys = [String]()
 		if let file = files["Base"] {
 			keys = file.allTerms()
+			segmentedControl!.selectSegmentWithLabel("Base")
 		}
 		else if let file = files["en"] {
 			keys = file.allTerms()
+			segmentedControl!.selectSegmentWithLabel("en")
 		}
 		
 		// Build TermData from Strings
@@ -104,5 +106,14 @@ class ViewController: NSViewController {
 		
 		termsTableDataSource?.data = keysData
 		termsTableView?.reloadData()
+	}
+	
+	
+	// MARK: Actions
+	
+	@IBAction func segmentDidChange(sender: NSSegmentedControl) {
+		
+		let file = files[sender.labelForSegment(sender.selectedSegment)!]
+		showKeys(file!.allTerms())
 	}
 }

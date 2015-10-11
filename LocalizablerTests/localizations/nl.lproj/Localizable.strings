@@ -51,7 +51,7 @@
 "kButtonEdit" = "Editează informații";
 "kButtonRemove" = "Șterge din listă";
 "kButtonDelete" = "Șterge permanent";
-"kButtonOk" = "OK";
+"kButtonOk" = "Goed";
 
 // Home
 "kTutorialTakePhoto" = "NU AI NICIO POZA INCA.\nGLISEAZA PENTRU A VEDEA LOCURI DIN ZONA TA.";
@@ -65,3 +65,4 @@
 
 // Explore
 "kNoPhotos" = "NU SUNT POZE IN ZONA";
+

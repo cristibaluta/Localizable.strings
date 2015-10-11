@@ -46,7 +46,7 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
     }
     
     func translationForTerm(term: String) -> String {
-        return translations[term]!
+        return translations[term] ?? ""
     }
     
     func updateTranslationForTerm(term: String, newValue: String) {

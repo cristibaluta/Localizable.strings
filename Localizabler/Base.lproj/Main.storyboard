@@ -302,6 +302,9 @@
                                                         </segment>
                                                     </segments>
                                                 </segmentedCell>
+                                                <connections>
+                                                    <action selector="segmentDidChange:" target="XfG-lQ-9wD" id="Xbg-1a-uYU"/>
+                                                </connections>
                                             </segmentedControl>
                                         </subviews>
                                         <constraints>
@@ -417,11 +420,53 @@
                         <outlet property="segmentedControl" destination="Pnd-0m-jPC" id="gIN-Ra-TF6"/>
                         <outlet property="termsTableView" destination="jaQ-J7-unX" id="4Iq-b0-Jba"/>
                         <outlet property="translationsTableView" destination="akn-lw-stZ" id="DqF-z8-6Lg"/>
+                        <segue destination="u48-59-0ab" kind="show" identifier="NoProjectSegue" id="msd-x8-wha"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="335" y="1107.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="L54-RQ-8wz">
+            <objects>
+                <viewController id="u48-59-0ab" sceneMemberID="viewController">
+                    <view key="view" id="JWN-C8-2kz">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1r1-KA-gZL">
+                                <rect key="frame" x="202" y="137" width="47" height="25"/>
+                                <animations/>
+                                <buttonCell key="cell" type="roundTextured" title="Open" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="njs-5Y-8El">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ty3-hM-FhG">
+                                <rect key="frame" x="18" y="169" width="414" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="UuR-ke-qcy"/>
+                                </constraints>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Open your first project and start localizing with style!" id="f2D-yt-Li2">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Ty3-hM-FhG" firstAttribute="centerX" secondItem="JWN-C8-2kz" secondAttribute="centerX" id="iNx-r6-pVA"/>
+                            <constraint firstAttribute="trailing" secondItem="Ty3-hM-FhG" secondAttribute="trailing" constant="20" id="zIB-pW-YEK"/>
+                            <constraint firstItem="Ty3-hM-FhG" firstAttribute="leading" secondItem="JWN-C8-2kz" secondAttribute="leading" constant="20" id="zYg-YX-PJp"/>
+                        </constraints>
+                        <animations/>
+                    </view>
+                </viewController>
+                <customObject id="gBf-1j-CJa" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="182" y="1638"/>
         </scene>
     </scenes>
     <resources>
