@@ -231,11 +231,11 @@
                                         <subviews>
                                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adJ-Db-AC5">
                                                 <rect key="frame" x="0.0" y="35" width="245" height="494"/>
-                                                <clipView key="contentView" id="E8M-wp-6nc">
+                                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="E8M-wp-6nc">
                                                     <rect key="frame" x="0.0" y="0.0" width="245" height="494"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" id="jaQ-J7-unX">
+                                                        <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" id="jaQ-J7-unX">
                                                             <rect key="frame" x="0.0" y="0.0" width="245" height="19"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <animations/>
@@ -249,7 +249,7 @@
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                     </tableHeaderCell>
-                                                                    <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusUnavailable" id="lRI-SK-hL1"/>
+                                                                    <imageCell key="dataCell" alignment="left" imageScaling="proportionallyDown" image="NSStatusUnavailable" id="lRI-SK-hL1"/>
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 </tableColumn>
                                                                 <tableColumn identifier="key" width="221" minWidth="40" maxWidth="1000" id="Qfe-Av-a78">
@@ -269,7 +269,7 @@
                                                         </tableView>
                                                     </subviews>
                                                     <animations/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </clipView>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="245" id="Qfs-f9-6I6"/>
@@ -324,7 +324,7 @@
                                         <subviews>
                                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNU-sS-CQA">
                                                 <rect key="frame" x="0.0" y="0.0" width="745" height="529"/>
-                                                <clipView key="contentView" id="WaW-7T-uu4">
+                                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="WaW-7T-uu4">
                                                     <rect key="frame" x="0.0" y="0.0" width="745" height="529"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
@@ -333,7 +333,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <animations/>
                                                             <size key="intercellSpacing" width="3" height="2"/>
-                                                            <color key="backgroundColor" red="0.98568706818922502" green="0.99919462203979492" blue="0.91836629291312644" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                             <tableColumns>
                                                                 <tableColumn identifier="" width="742" minWidth="40" maxWidth="1000" id="oAd-dW-eoT">
@@ -420,7 +420,6 @@
                         <outlet property="segmentedControl" destination="Pnd-0m-jPC" id="gIN-Ra-TF6"/>
                         <outlet property="termsTableView" destination="jaQ-J7-unX" id="4Iq-b0-Jba"/>
                         <outlet property="translationsTableView" destination="akn-lw-stZ" id="DqF-z8-6Lg"/>
-                        <segue destination="u48-59-0ab" kind="show" identifier="NoProjectSegue" id="msd-x8-wha"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
