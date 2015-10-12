@@ -15,7 +15,22 @@ class Countries: NSObject {
 		"en": "England",
 		"ro": "Romania",
 		"fr": "France",
-		"nl": "Netherlands"
+		"nl": "Netherlands",
+		"fi": "Finland",
+		"nn": "Norway",
+		"no": "Norway",
+		"es": "Spain",
+		"pt": "Portugal",
+		"de": "Germany",
+		"zh": "China",
+		"zh-Hans": "China",
+		"zh-Hant": "China",
+		"it": "Italy",
+		"ko": "South Korea",
+		"da": "Denmark",
+		"ja": "Japan",
+		"tr": "Turkey",
+		"ms": "Japan"
 	]
 	
 	class func countryNameForCode(countryCode: String) -> String {
