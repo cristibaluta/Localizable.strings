@@ -47,12 +47,13 @@ extension TermsTableDataSource: NSTableViewDataSource, NSTableViewDelegate {
 	func tableViewSelectionDidChange(aNotification: NSNotification) {
 		
 		if let rowView: AnyObject = aNotification.object {
-			onDidSelectRow?(rowNumber: rowView.selectedRow, key: self.data[rowView.selectedRow])
+			if rowView.selectedRow >= 0 {
+				onDidSelectRow?(rowNumber: rowView.selectedRow, key: self.data[rowView.selectedRow])
+			}
 		}
 	}
 	
 	func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 		return 20
 	}
-
 }

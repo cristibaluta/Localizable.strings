@@ -10,7 +10,7 @@ import Cocoa
 
 class ViewController: NSViewController {
 	
-	@IBOutlet var segmentedControl: NSSegmentedControl?
+	@IBOutlet var languagesPopup: NSPopUpButton?
 	@IBOutlet var termsTableView: NSTableView?
 	@IBOutlet var translationsTableView: NSTableView?
 	
@@ -66,13 +66,11 @@ class ViewController: NSViewController {
         _ = SearchIOSLocalizations().searchInDirectory(url!) { (localizationsDict) -> Void in
 			
             RCLogO(localizationsDict)
+			self.languagesPopup?.removeAllItems()
 			
-			self.segmentedControl!.segmentCount = localizationsDict.count
-            var i = 0
             for (key, url) in localizationsDict {
 				self.loadLocalizationFile(url, forKey: key)
-                self.segmentedControl?.setLabel(key, forSegment: i)
-                i++
+                self.languagesPopup?.addItemWithTitle(key)
             }
         }
 	}
@@ -83,37 +81,45 @@ class ViewController: NSViewController {
 	
 	func showBaseLanguage() {
 		
-		var keys = [String]()
+		var terms = [String]()
 		if let file = files["Base"] {
-			keys = file.allTerms()
-			segmentedControl!.selectSegmentWithLabel("Base")
+			terms = file.allTerms()
+			languagesPopup?.selectItemWithTitle("Base")
 		}
 		else if let file = files["en"] {
-			keys = file.allTerms()
-			segmentedControl!.selectSegmentWithLabel("en")
+			terms = file.allTerms()
+			languagesPopup?.selectItemWithTitle("en")
 		}
 		
 		// Build TermData from Strings
-		showKeys(keys)
+		showTerms(terms)
 	}
 	
-	func showKeys(keys: [String]) {
+	func showTerms(terms: [String]) {
 		
-		var keysData = [TermData]()
-		for key in keys {
-			keysData.append((value: key, newValue: nil, translationChanged: false) as TermData)
+		clear()
+		
+		var termsData = [TermData]()
+		for term in terms {
+			termsData.append((value: term, newValue: nil, translationChanged: false) as TermData)
 		}
 		
-		termsTableDataSource?.data = keysData
+		termsTableDataSource?.data = termsData
 		termsTableView?.reloadData()
+	}
+	
+	func clear() {
+		termsTableView?.deselectRow(termsTableView!.selectedRow)
+		translationsTableDataSource?.data = []
+		translationsTableView?.reloadData()
 	}
 	
 	
 	// MARK: Actions
 	
-	@IBAction func segmentDidChange(sender: NSSegmentedControl) {
+	@IBAction func languageDidChange(sender: NSPopUpButton) {
 		
-		let file = files[sender.labelForSegment(sender.selectedSegment)!]
-		showKeys(file!.allTerms())
+		let file = files[sender.titleOfSelectedItem!]
+		showTerms(file!.allTerms())
 	}
 }

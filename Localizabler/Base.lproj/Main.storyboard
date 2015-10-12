@@ -286,34 +286,35 @@
                                                     <animations/>
                                                 </scroller>
                                             </scrollView>
-                                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pnd-0m-jPC">
-                                                <rect key="frame" x="2" y="4" width="240" height="24"/>
+                                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dUE-ZI-jlH">
+                                                <rect key="frame" x="18" y="3" width="211" height="26"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="21" id="zkr-HI-Kia"/>
+                                                    <constraint firstAttribute="height" constant="21" id="lVO-vH-pUR"/>
                                                 </constraints>
                                                 <animations/>
-                                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="lwj-JN-WJ0">
-                                                    <font key="font" metaFont="system"/>
-                                                    <segments>
-                                                        <segment width="60"/>
-                                                        <segment width="58" selected="YES" tag="1"/>
-                                                        <segment width="56">
-                                                            <nil key="label"/>
-                                                        </segment>
-                                                    </segments>
-                                                </segmentedCell>
+                                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="hUD-tJ-GtE" id="vPJ-2K-7Dq">
+                                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="menu"/>
+                                                    <menu key="menu" id="4pS-YO-lBU">
+                                                        <items>
+                                                            <menuItem title="Item 1" state="on" id="hUD-tJ-GtE"/>
+                                                            <menuItem title="Item 2" id="qha-VP-JzR"/>
+                                                            <menuItem title="Item 3" id="RHb-4R-XI4"/>
+                                                        </items>
+                                                    </menu>
+                                                </popUpButtonCell>
                                                 <connections>
-                                                    <action selector="segmentDidChange:" target="XfG-lQ-9wD" id="Xbg-1a-uYU"/>
+                                                    <action selector="languageDidChange:" target="XfG-lQ-9wD" id="zh7-OI-4xA"/>
                                                 </connections>
-                                            </segmentedControl>
+                                            </popUpButton>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="dUE-ZI-jlH" firstAttribute="leading" secondItem="Seo-kw-KIc" secondAttribute="leading" constant="20" id="5kJ-HH-hCA"/>
                                             <constraint firstItem="adJ-Db-AC5" firstAttribute="leading" secondItem="Seo-kw-KIc" secondAttribute="leading" id="FCY-XT-nbR"/>
-                                            <constraint firstAttribute="bottom" secondItem="Pnd-0m-jPC" secondAttribute="bottom" constant="6" id="PuE-We-tD2"/>
-                                            <constraint firstItem="Pnd-0m-jPC" firstAttribute="leading" secondItem="Seo-kw-KIc" secondAttribute="leading" constant="4" id="YY2-x9-Auj"/>
+                                            <constraint firstAttribute="bottom" secondItem="dUE-ZI-jlH" secondAttribute="bottom" constant="6" id="aIB-qk-SsA"/>
                                             <constraint firstItem="adJ-Db-AC5" firstAttribute="top" secondItem="Seo-kw-KIc" secondAttribute="top" id="eI9-Tj-hXx"/>
                                             <constraint firstAttribute="bottom" secondItem="adJ-Db-AC5" secondAttribute="bottom" constant="35" id="kWA-1x-94d"/>
-                                            <constraint firstAttribute="trailing" secondItem="Pnd-0m-jPC" secondAttribute="trailing" constant="6" id="kZs-xk-Ona"/>
+                                            <constraint firstAttribute="trailing" secondItem="dUE-ZI-jlH" secondAttribute="trailing" constant="20" id="myR-Xn-mt7"/>
                                             <constraint firstAttribute="trailing" secondItem="adJ-Db-AC5" secondAttribute="trailing" constant="1" id="u4l-hr-IsQ"/>
                                         </constraints>
                                         <animations/>
@@ -417,7 +418,7 @@
                         <animations/>
                     </view>
                     <connections>
-                        <outlet property="segmentedControl" destination="Pnd-0m-jPC" id="gIN-Ra-TF6"/>
+                        <outlet property="languagesPopup" destination="dUE-ZI-jlH" id="exo-K7-6qb"/>
                         <outlet property="termsTableView" destination="jaQ-J7-unX" id="4Iq-b0-Jba"/>
                         <outlet property="translationsTableView" destination="akn-lw-stZ" id="DqF-z8-6Lg"/>
                     </connections>
