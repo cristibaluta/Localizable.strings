@@ -30,7 +30,8 @@ class Countries: NSObject {
 		"da": "Denmark",
 		"ja": "Japan",
 		"tr": "Turkey",
-		"ms": "Japan"
+        "ms": "Japan",
+        "sv": "Sweden"
 	]
 	
 	class func countryNameForCode(countryCode: String) -> String {
