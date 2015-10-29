@@ -19,6 +19,8 @@ class ViewController: NSViewController {
 	var files = [String: LocalizationFile]()
 	var url: NSURL?
 	
+	var onEditTranslation: ((TranslationData) -> Void)?
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -27,11 +29,15 @@ class ViewController: NSViewController {
 		termsTableDataSource = TermsTableDataSource(tableView: termsTableView!)
 		translationsTableDataSource = TranslationsTableDataSource(tableView: translationsTableView!)
 		
-		termsTableDataSource?.onDidSelectRow = { (rowNumber: Int, key: TermData) -> Void in
+		termsTableDataSource?.onDidSelectRow = { [weak self] (rowNumber: Int, key: TermData) -> Void in
+			
+			guard let wself = self else {
+				return
+			}
 			
 			var translations = [TranslationData]()
 			
-			for (lang, localizationFile) in self.files {
+			for (lang, localizationFile) in wself.files {
 				
 				translations.append(
 					(value: localizationFile.translationForTerm(key.value),
@@ -40,37 +46,47 @@ class ViewController: NSViewController {
 					) as TranslationData
 				)
 			}
-			self.translationsTableDataSource?.data = translations
-			self.translationsTableView?.reloadData()
+			wself.translationsTableDataSource?.data = translations
+			wself.translationsTableView?.reloadData()
 		}
 		
-		translationsTableDataSource?.onEditTranslation = { (translation) -> Void in
+		translationsTableDataSource?.onEditTranslation = { [weak self] (translation) -> Void in
+			
+			guard let wself = self else {
+				return
+			}
 			
 			// A translation was changed, change also the key object
-			let termData = self.termsTableDataSource?.data[self.termsTableView!.selectedRow]
-			self.termsTableDataSource?.data[self.termsTableView!.selectedRow].translationChanged = true
+			let termData = wself.termsTableDataSource?.data[wself.termsTableView!.selectedRow]
+			wself.termsTableDataSource?.data[wself.termsTableView!.selectedRow].translationChanged = true
 			
 			// If there are changes in the translation
 			if let newValue = translation.newValue {
-				let file = self.files[translation.countryCode]
+				let file = wself.files[translation.countryCode]
 				file?.updateTranslationForTerm(termData!.value, newValue: newValue)
 			}
 			
-			self.termsTableView?.reloadDataForRowIndexes(NSIndexSet(index: self.termsTableView!.selectedRow),
+			wself.termsTableView?.reloadDataForRowIndexes(NSIndexSet(index: wself.termsTableView!.selectedRow),
 				columnIndexes: NSIndexSet(index: 0))
+			
+			wself.onEditTranslation?(translation)
 		}
     }
     
     func scanDirectoryForLocalizationFiles() {
         
-        _ = SearchIOSLocalizations().searchInDirectory(url!) { (localizationsDict) -> Void in
+        _ = SearchIOSLocalizations().searchInDirectory(url!) { [weak self] (localizationsDict) -> Void in
+			
+			guard let wself = self else {
+				return
+			}
 			
             RCLogO(localizationsDict)
-			self.languagesPopup?.removeAllItems()
+			wself.languagesPopup?.removeAllItems()
 			
             for (key, url) in localizationsDict {
-				self.loadLocalizationFile(url, forKey: key)
-                self.languagesPopup?.addItemWithTitle(key)
+				wself.loadLocalizationFile(url, forKey: key)
+                wself.languagesPopup?.addItemWithTitle(key)
             }
         }
 	}
@@ -112,6 +128,13 @@ class ViewController: NSViewController {
 		termsTableView?.deselectRow(termsTableView!.selectedRow)
 		translationsTableDataSource?.data = []
 		translationsTableView?.reloadData()
+	}
+	
+	func markFilesAsSaved() {
+		for i in 0...self.termsTableDataSource!.data.count-1 {
+			termsTableDataSource?.data[i].translationChanged = false
+		}
+		termsTableView?.reloadData()
 	}
 	
 	

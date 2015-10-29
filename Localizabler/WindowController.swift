@@ -25,7 +25,7 @@ class WindowController: NSWindowController {
 		
 		window?.titlebarAppearsTransparent = true
 		window?.titleVisibility = NSWindowTitleVisibility.Hidden;
-//		butSave?.enabled = false
+		butSave?.enabled = false
 		
 		loadLastOpenedProject()
 	}
@@ -43,6 +43,9 @@ class WindowController: NSWindowController {
 		viewController.url = url
 		viewController.scanDirectoryForLocalizationFiles()
 		viewController.showBaseLanguage()
+		viewController.onEditTranslation = { [weak self] (translationData) -> Void in
+			self?.butSave?.enabled = true
+		}
 	}
 	
 	
@@ -67,7 +70,10 @@ class WindowController: NSWindowController {
 	
 	@IBAction func saveButtonClicked(sender: NSButton) {
 		
-		_ = Save(files: viewController.files)
+		if Save(files: viewController.files).execute() {
+			viewController.markFilesAsSaved()
+			butSave?.enabled = false
+		}
 	}
 }
 

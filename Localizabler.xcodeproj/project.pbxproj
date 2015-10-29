@@ -632,6 +632,7 @@
 				6D1E1AA11BBE686600BE29EE /* SearchLocalizations.swift */,
 				6D1E1AA41BBE6CBD00BE29EE /* SearchIOSLocalizations.swift */,
 				6D1E1AA71BBE939400BE29EE /* LocalizationFile.swift */,
+				6D1E1AAA1BBE93AB00BE29EE /* IOSLocalizationFile.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -945,7 +946,6 @@
 		28DB60A01BCDC075003FDE96 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				6D1E1AAA1BBE93AB00BE29EE /* IOSLocalizationFile.swift */,
 			);
 			name = Interactor;
 			sourceTree = "<group>";

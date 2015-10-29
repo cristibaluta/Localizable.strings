@@ -10,14 +10,20 @@ import Foundation
 
 class Save: NSObject {
 	
+	var files: [String: LocalizationFile]?
+	
 	required init(files: [String: LocalizationFile]) {
 		super.init()
-		
-		saveToDisk(files)
-//		showToConsole(files)
+		self.files = files
 	}
 	
-	func saveToDisk(files: [String: LocalizationFile]) {
+	func execute() -> Bool {
+		saveToDisk(files!)
+		//		showToConsole(files!)
+		return true
+	}
+	
+	private func saveToDisk(files: [String: LocalizationFile]) {
 		
 		for (_, file) in files {
 			if file.hasChanges {
@@ -26,7 +32,7 @@ class Save: NSObject {
 		}
 	}
 	
-	func showToConsole(files: [String: LocalizationFile]) {
+	private func showToConsole(files: [String: LocalizationFile]) {
 		
 		for (_, file) in files {
 			if file.hasChanges {
