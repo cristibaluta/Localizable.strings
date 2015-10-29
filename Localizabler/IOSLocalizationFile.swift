@@ -22,12 +22,15 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 		self.url = url
 		
 		if url.path != nil {
-			let data = NSData(contentsOfURL: url)
-			if let fileContent = NSString(data: data!, encoding: NSUTF8StringEncoding) as? String {
-				self.parseContent(fileContent)
-			}
-			else if let fileContent = NSString(data: data!, encoding: NSUnicodeStringEncoding) as? String {
-				self.parseContent(fileContent)
+			if let data = NSData(contentsOfURL: url) {
+				if let fileContent = NSString(data: data, encoding: NSUTF8StringEncoding) as? String {
+					self.parseContent(fileContent)
+				}
+				else if let fileContent = NSString(data: data, encoding: NSUnicodeStringEncoding) as? String {
+					self.parseContent(fileContent)
+				}
+			} else {
+				RCLog("Can't open this file \(url.path)")
 			}
 		}
     }
