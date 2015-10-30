@@ -18,6 +18,8 @@ class ViewController: NSViewController {
 	var translationsTableDataSource: TranslationsTableDataSource?
 	var files = [String: LocalizationFile]()
 	var url: NSURL?
+	var allTerms = [TermData]()
+	var allTranslations = [TranslationData]()
 	
 	var onEditTranslation: ((TranslationData) -> Void)?
 	
@@ -35,18 +37,17 @@ class ViewController: NSViewController {
 				return
 			}
 			
-			var translations = [TranslationData]()
+			wself.allTranslations = [TranslationData]()
 			
 			for (lang, localizationFile) in wself.files {
-				
-				translations.append(
+				wself.allTranslations.append(
 					(value: localizationFile.translationForTerm(key.value),
 					newValue: nil,
 					countryCode: lang
 					) as TranslationData
 				)
 			}
-			wself.translationsTableDataSource?.data = translations
+			wself.translationsTableDataSource?.data = wself.allTranslations
 			wself.translationsTableView?.reloadData()
 		}
 		
@@ -115,12 +116,12 @@ class ViewController: NSViewController {
 		
 		clear()
 		
-		var termsData = [TermData]()
+		allTerms = [TermData]()
 		for term in terms {
-			termsData.append((value: term, newValue: nil, translationChanged: false) as TermData)
+			allTerms.append((value: term, newValue: nil, translationChanged: false) as TermData)
 		}
 		
-		termsTableDataSource?.data = termsData
+		termsTableDataSource?.data = allTerms
 		termsTableView?.reloadData()
 	}
 	
@@ -144,5 +145,18 @@ class ViewController: NSViewController {
 		
 		let file = files[sender.titleOfSelectedItem!]
 		showTerms(file!.allTerms())
+	}
+	
+	func search(searchString: String) {
+		
+		clear();
+		
+		let search = Search(files: files)
+		//
+		termsTableDataSource?.data = search.searchInTerms(searchString)
+		termsTableView?.reloadData()
+		//
+		translationsTableDataSource?.data = search.searchInTranslations(searchString)
+		translationsTableView?.reloadData()
 	}
 }

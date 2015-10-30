@@ -11,7 +11,7 @@ import Foundation
 protocol LocalizationFile {
 	
 	var url: NSURL? {get}
-	/// Whenever a translation changes a hasChanges flag is set
+	/// Whenever a term or translation changes a hasChanges flag is set
 	var hasChanges: Bool {get}
 	
 	init(url: NSURL)
@@ -29,6 +29,6 @@ protocol LocalizationFile {
 	/// Updates the translation for the specified term. You need to call  save for saving to the original file
     func updateTranslationForTerm(term: String, newValue: String)
 	
-	/// This will convert dictionaries back to string and save to the original file
+	/// This will convert dictionaries back to string in order to save to the original file
 	func content() -> String
 }

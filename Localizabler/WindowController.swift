@@ -80,6 +80,11 @@ class WindowController: NSWindowController {
 extension WindowController: NSTextFieldDelegate {
 	
 	override func controlTextDidChange(obj: NSNotification) {
-		RCLogO(obj.object?.stringValue)
+		
+		guard let searchString = obj.object?.stringValue else {
+			return
+		}
+		RCLogO(searchString)
+		viewController.search(searchString)
 	}
 }
