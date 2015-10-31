@@ -289,6 +289,7 @@
 		28DB609E1BCDC048003FDE96 /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DB609C1BCDC048003FDE96 /* Wireframe.swift */; };
 		28E57AB21BE49F7C00B803E6 /* LastProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57AB11BE49F7C00B803E6 /* LastProject.swift */; };
 		28E57AB31BE49F7C00B803E6 /* LastProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57AB11BE49F7C00B803E6 /* LastProject.swift */; };
+		28E57AB51BE4A0A400B803E6 /* LastProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57AB41BE4A0A400B803E6 /* LastProjectTests.swift */; };
 		28EF6A2E1BC38A4700F8E725 /* test.strings in Resources */ = {isa = PBXBuildFile; fileRef = 28EF6A2D1BC38A4700F8E725 /* test.strings */; };
 		28EF6A311BC38E6C00F8E725 /* StringExtenssion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */; };
 		28EF6A321BC38E7100F8E725 /* StringExtenssion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */; };
@@ -590,6 +591,7 @@
 		28DB608E1BCA4057003FDE96 /* Localizabler.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = Localizabler.iconset; sourceTree = "<group>"; };
 		28DB609C1BCDC048003FDE96 /* Wireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wireframe.swift; sourceTree = "<group>"; };
 		28E57AB11BE49F7C00B803E6 /* LastProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastProject.swift; sourceTree = "<group>"; };
+		28E57AB41BE4A0A400B803E6 /* LastProjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastProjectTests.swift; sourceTree = "<group>"; };
 		28EF6A2D1BC38A4700F8E725 /* test.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = test.strings; sourceTree = "<group>"; };
 		28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtenssion.swift; sourceTree = "<group>"; };
 		28EF6A331BC44D4900F8E725 /* typedefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = typedefs.swift; sourceTree = "<group>"; };
@@ -1002,6 +1004,7 @@
 				28EF6A361BC45A6D00F8E725 /* StringExtensionTests.swift */,
 				28778A621BBF1DBB003E4880 /* IOSLocalizationFileTests.swift */,
 				289558D41BC8C57D00FA08E8 /* CountriesTests.swift */,
+				28E57AB41BE4A0A400B803E6 /* LastProjectTests.swift */,
 				28EF6A2D1BC38A4700F8E725 /* test.strings */,
 				6D1E1A891BBD5C6C00BE29EE /* Info.plist */,
 			);
@@ -1437,6 +1440,7 @@
 				28DB60871BC9A43A003FDE96 /* ConsoleOutput.swift in Sources */,
 				28E57AB31BE49F7C00B803E6 /* LastProject.swift in Sources */,
 				28EF6A3C1BC4613B00F8E725 /* TermsTableDataSource.swift in Sources */,
+				28E57AB51BE4A0A400B803E6 /* LastProjectTests.swift in Sources */,
 				289558D31BC8C44100FA08E8 /* Countries.swift in Sources */,
 				6D1E1AA31BBE686600BE29EE /* SearchLocalizations.swift in Sources */,
 			);
