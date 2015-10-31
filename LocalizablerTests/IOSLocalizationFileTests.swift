@@ -14,8 +14,8 @@ class IOSLocalizationFileTests: XCTestCase {
     func testKeyValueSeparation() {
 		let file = IOSLocalizationFile(url: NSURL())
 		let comps = file.splitLine("\"key1\" = \"value 1\";")
-		XCTAssert(comps.key == "key1", "Key is wrong")
-		XCTAssert(comps.value == "value 1", "Translation is wrong")
+		XCTAssert(comps.term == "key1", "Key is wrong")
+		XCTAssert(comps.translation == "value 1", "Translation is wrong")
     }
 	
 	func testKeysExtraction() {

@@ -28,7 +28,7 @@ class Search: NSObject {
 		
 		var matchedTerms = [TermData]()
 		for term in terms {
-			if term.lowercaseString.rangeOfString(searchString.lowercaseString) != nil {
+			if term.lowercaseString.rangeOfString(searchString.lowercaseString) != nil || searchString == "" {
 				matchedTerms.append((value: term, newValue: nil, translationChanged: false) as TermData)
 			}
 		}
@@ -39,13 +39,22 @@ class Search: NSObject {
 		
 		var matchedTranslations = [TranslationData]()
 		
+		guard searchString != "" else {
+			return matchedTranslations
+		}
+		let lowercaseSearchString = searchString.lowercaseString
+		
 		for (lang, localizationFile) in files! {
 			for line in localizationFile.allLines() {
-				matchedTranslations.append(
-					(value: localizationFile.translationForTerm(line.key),
+				if line.translation != "" && line.translation.lowercaseString.rangeOfString(lowercaseSearchString) != nil {
+					
+					matchedTranslations.append(
+						(value: line.translation,
 						newValue: nil,
 						countryCode: lang
-						) as TranslationData)
+						) as TranslationData
+					)
+				}
 			}
 		}
 		return matchedTranslations

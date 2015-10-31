@@ -64,10 +64,10 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 		// Iterate over lines and put them back in the string with the new translations
 		for line in lines {
 			if line.isComment {
-				string += line.value
+				string += line.translation
 			}
 			else {
-				string += "\"\(line.key)\" = \"\(translationForTerm(line.key))\";"
+				string += "\"\(line.term)\" = \"\(translationForTerm(line.term))\";"
 			}
 			string += "\n"
 		}
@@ -103,10 +103,10 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 		if isValidLine(lineContent) {
 			let line = splitLine(lineContent)
 			lines.append(line)
-			terms.append(line.key)
-			translations[line.key] = line.value
+			terms.append(line.term)
+			translations[line.term] = line.translation
 		} else {
-			lines.append((key: "", value: lineContent, isComment: true))
+			lines.append((term: "", translation: lineContent, isComment: true))
 		}
 	}
 	
@@ -118,8 +118,8 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 		
 		let comps = lineContent.componentsSeparatedByString("=")
 		
-		return (key: String(comps.first!.trim().characters.dropFirst().dropLast()),
-				value: String(comps.last!.trim().characters.dropFirst().dropLast().dropLast()),
+		return (term: String(comps.first!.trim().characters.dropFirst().dropLast()),
+				translation: String(comps.last!.trim().characters.dropFirst().dropLast().dropLast()),
 				isComment: false)
 	}
 }

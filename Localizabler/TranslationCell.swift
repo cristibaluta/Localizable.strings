@@ -14,13 +14,8 @@ class TranslationCell: NSView {
 	@IBOutlet var countryName: NSTextField?
 	@IBOutlet var textView: NSTextField?
 	
-	var didEditCell: ((cell: TranslationCell, newValue: String) -> Void)?
+	var translationDidChangeInCell: ((cell: TranslationCell, newValue: String) -> Void)?
 	
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
-
-        // Drawing code here.
-    }
 }
 
 extension TranslationCell: NSTextFieldDelegate {
@@ -30,7 +25,7 @@ extension TranslationCell: NSTextFieldDelegate {
 	}
 	
 	override func controlTextDidChange(obj: NSNotification) {
-		self.didEditCell?(cell: self, newValue: obj.object!.stringValue)
+		self.translationDidChangeInCell?(cell: self, newValue: obj.object!.stringValue)
 	}
 	
 	override func controlTextDidEndEditing(obj: NSNotification) {

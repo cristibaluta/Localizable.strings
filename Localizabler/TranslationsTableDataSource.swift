@@ -50,16 +50,16 @@ extension TranslationsTableDataSource: NSTableViewDataSource, NSTableViewDelegat
 	func tableView(tableView: NSTableView,
 		viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
 			
-			let theData: TranslationData = data[row]
-			let countryName = Countries.countryNameForCode(theData.countryCode)
+			let translationData: TranslationData = data[row]
+			let countryName = Countries.countryNameForCode(translationData.countryCode)
 			let cell = tableView.makeViewWithIdentifier(kTranslationCellIdentifier, owner: self) as? TranslationCell
 			assert(cell != nil, "Cell can't be nil, check the identifier")
 			
 			cell?.flagImage!.image = NSImage(named: countryName)
-			cell?.countryName?.stringValue = countryName
-			cell?.textView?.stringValue = theData.value
+			cell?.countryName?.stringValue = "\(translationData.countryCode)\n\(countryName)"
+			cell?.textView?.stringValue = translationData.value
 			
-			cell?.didEditCell = { [weak self] (cell: TranslationCell, newValue: String) in
+			cell?.translationDidChangeInCell = { [weak self] (cell: TranslationCell, newValue: String) in
 				
 				if let strongSelf = self {
 					strongSelf.data[row].newValue = newValue
