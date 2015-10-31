@@ -31,8 +31,8 @@ class WindowController: NSWindowController {
 	}
 	
 	func loadLastOpenedProject() {
-		if let dir = NSUserDefaults.standardUserDefaults().objectForKey("localizationsDirectory") {
-			if let url = NSURL(string: dir as! String) {
+		if let dir = LastProject().get() {
+			if let url = NSURL(string: dir) {
 				self.loadProjectAtUrl(url)
 			}
 		}
@@ -61,8 +61,7 @@ class WindowController: NSWindowController {
 			
 			if result == NSFileHandlingPanelOKButton {
 				self.pathControl!.URL = panel.URLs.first
-				NSUserDefaults.standardUserDefaults().setObject(panel.URLs.first?.absoluteString, forKey: "localizationsDirectory")
-				NSUserDefaults.standardUserDefaults().synchronize()
+				LastProject().set(panel.URLs.first?.absoluteString)
 				self.loadProjectAtUrl(panel.URLs.first!)
 			}
 		}

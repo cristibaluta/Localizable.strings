@@ -11,6 +11,7 @@ import Cocoa
 class TranslationsTableDataSource: NSObject {
 	
 	let kTranslationCellIdentifier = "TranslationCell"
+	let kCellHeight = CGFloat(88)
 	var data = [TranslationData]()
 	var translationDidChange: ((TranslationData) -> Void)?
 	
@@ -44,7 +45,7 @@ extension TranslationsTableDataSource: NSTableViewDataSource, NSTableViewDelegat
 	}
 	
 	func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-		return 88
+		return kCellHeight
 	}
 	
 	func tableView(tableView: NSTableView,
