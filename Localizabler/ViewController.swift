@@ -21,7 +21,7 @@ class ViewController: NSViewController {
 	var allTerms = [TermData]()
 	var allTranslations = [TranslationData]()
 	
-	var onEditTranslation: ((TranslationData) -> Void)?
+	var translationDidChange: ((TranslationData) -> Void)?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -51,26 +51,28 @@ class ViewController: NSViewController {
 			wself.translationsTableView?.reloadData()
 		}
 		
-		translationsTableDataSource?.onEditTranslation = { [weak self] (translation) -> Void in
+		translationsTableDataSource?.translationDidChange = { [weak self] (translation) -> Void in
 			
 			guard let wself = self else {
 				return
 			}
 			
 			// A translation was changed, change also the key object
-			let termData = wself.termsTableDataSource?.data[wself.termsTableView!.selectedRow]
-			wself.termsTableDataSource?.data[wself.termsTableView!.selectedRow].translationChanged = true
-			
-			// If there are changes in the translation
-			if let newValue = translation.newValue {
-				let file = wself.files[translation.countryCode]
-				file?.updateTranslationForTerm(termData!.value, newValue: newValue)
+			if let selectedRow = wself.termsTableView?.selectedRow where selectedRow >= 0 {
+				let termData = wself.termsTableDataSource?.data[selectedRow]
+				wself.termsTableDataSource?.data[selectedRow].translationChanged = true
+				
+				// If there are changes in the translation
+				if let newValue = translation.newValue {
+					let file = wself.files[translation.countryCode]
+					file?.updateTranslationForTerm(termData!.value, newValue: newValue)
+				}
+				
+				wself.termsTableView?.reloadDataForRowIndexes(NSIndexSet(index: wself.termsTableView!.selectedRow),
+					columnIndexes: NSIndexSet(index: 0))
+				
+				wself.translationDidChange?(translation)
 			}
-			
-			wself.termsTableView?.reloadDataForRowIndexes(NSIndexSet(index: wself.termsTableView!.selectedRow),
-				columnIndexes: NSIndexSet(index: 0))
-			
-			wself.onEditTranslation?(translation)
 		}
     }
     
@@ -149,7 +151,7 @@ class ViewController: NSViewController {
 	
 	func search(searchString: String) {
 		
-		clear();
+		termsTableView?.deselectRow(termsTableView!.selectedRow)
 		
 		let search = Search(files: files)
 		//

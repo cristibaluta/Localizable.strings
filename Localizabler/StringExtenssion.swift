@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
 	
-	func trim() -> String {
+	@inline(__always) func trim() -> String {
 		return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
 	}
 }

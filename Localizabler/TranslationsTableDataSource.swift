@@ -12,7 +12,7 @@ class TranslationsTableDataSource: NSObject {
 	
 	let kTranslationCellIdentifier = "TranslationCell"
 	var data = [TranslationData]()
-	var onEditTranslation: ((TranslationData) -> Void)?
+	var translationDidChange: ((TranslationData) -> Void)?
 	
 	init(tableView: NSTableView) {
 		
@@ -63,7 +63,7 @@ extension TranslationsTableDataSource: NSTableViewDataSource, NSTableViewDelegat
 				
 				if let strongSelf = self {
 					strongSelf.data[row].newValue = newValue
-					strongSelf.onEditTranslation?(strongSelf.data[row])
+					strongSelf.translationDidChange?(strongSelf.data[row])
 				}
 			}
 			

@@ -43,7 +43,7 @@ class WindowController: NSWindowController {
 		viewController.url = url
 		viewController.scanDirectoryForLocalizationFiles()
 		viewController.showBaseLanguage()
-		viewController.onEditTranslation = { [weak self] (translationData) -> Void in
+		viewController.translationDidChange = { [weak self] (translationData) -> Void in
 			self?.butSave?.enabled = true
 		}
 	}
