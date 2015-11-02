@@ -1,0 +1,43 @@
+//
+//  Countries.swift
+//  Localizabler
+//
+//  Created by Baluta Cristian on 10/10/15.
+//  Copyright © 2015 Cristian Baluta. All rights reserved.
+//
+
+import Foundation
+
+class CountryName: NSObject {
+	
+	class func countryNameForLanguageCode(localeIdentifier: String) -> String {
+		
+		RCLog(localeIdentifier)
+		
+		// init an english NSLocale to get the english name of all NSLocale-Objects
+		let englishLocale : NSLocale = NSLocale.init(localeIdentifier :  "en_US")
+		
+		var theEnglishName = englishLocale.displayNameForKey(NSLocaleIdentifier, value: localeIdentifier)
+		RCLog(theEnglishName)
+		
+//		let locale = NSLocale(localeIdentifier: localeIdentifier)
+//		let displayName = locale.displayNameForKey(NSLocaleIdentifier, value: "en_US")
+//		RCLog(displayName)
+//		
+//		let localeDisplayName = locale.displayNameForKey(NSLocaleIdentifier, value: localeIdentifier)
+//		RCLog(localeDisplayName)
+//		
+//		let currentLocale = NSLocale(localeIdentifier: localeIdentifier)
+//		let countryCode = currentLocale.objectForKey(NSLocaleCountryCode)
+//		let usLocale = NSLocale(localeIdentifier: "en_US")
+//		let country = usLocale.displayNameForKey(NSLocaleCountryCode, value: countryCode ?? "")
+//		RCLog("\(countryCode) \(country)")
+		
+//		NSLocale *locale = [NSLocale currentLocale];
+//		NSString *countryCode = [locale objectForKey: NSLocaleCountryCode];
+//		NSLocale *usLocale = [[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease];
+//		NSString *country = [usLocale displayNameForKey: NSLocaleCountryCode value: countryCode];
+		
+		return theEnglishName ?? ""
+	}
+}

@@ -11,6 +11,7 @@ import Cocoa
 class ViewController: NSViewController {
 	
 	@IBOutlet var languagesPopup: NSPopUpButton?
+	@IBOutlet var splitView: NSSplitView?
 	@IBOutlet var termsTableView: NSTableView?
 	@IBOutlet var translationsTableView: NSTableView?
 	
@@ -43,7 +44,7 @@ class ViewController: NSViewController {
 				wself.allTranslations.append(
 					(value: localizationFile.translationForTerm(key.value),
 					newValue: nil,
-					countryCode: lang
+					languageCode: lang
 					) as TranslationData
 				)
 			}
@@ -64,7 +65,7 @@ class ViewController: NSViewController {
 				
 				// If there are changes in the translation
 				if let newValue = translation.newValue {
-					let file = wself.files[translation.countryCode]
+					let file = wself.files[translation.languageCode]
 					file?.updateTranslationForTerm(termData!.value, newValue: newValue)
 				}
 				
@@ -78,16 +79,16 @@ class ViewController: NSViewController {
     
     func scanDirectoryForLocalizationFiles() {
         
-        _ = SearchIOSLocalizations().searchInDirectory(url!) { [weak self] (localizationsDict) -> Void in
+		_ = SearchIOSLocalizations().searchInDirectory(url!) { [weak self] (files: [String: NSURL]) -> Void in
 			
 			guard let wself = self else {
 				return
 			}
 			
-            RCLogO(localizationsDict)
+            RCLogO(files)
 			wself.languagesPopup?.removeAllItems()
 			
-            for (key, url) in localizationsDict {
+            for (key, url) in files {
 				wself.loadLocalizationFile(url, forKey: key)
                 wself.languagesPopup?.addItemWithTitle(key)
             }
@@ -100,18 +101,10 @@ class ViewController: NSViewController {
 	
 	func showBaseLanguage() {
 		
-		var terms = [String]()
-		if let file = files["Base"] {
-			terms = file.allTerms()
-			languagesPopup?.selectItemWithTitle("Base")
-		}
-		else if let file = files["en"] {
-			terms = file.allTerms()
-			languagesPopup?.selectItemWithTitle("en")
-		}
-		
-		// Build TermData from Strings
-		showTerms(terms)
+		let baseLanguage = BaseLanguage(files: files)
+		let result = baseLanguage.get()
+		languagesPopup?.selectItemWithTitle(result.language)
+		showTerms(result.terms)
 	}
 	
 	func showTerms(terms: [String]) {

@@ -638,6 +638,7 @@
                     </view>
                     <connections>
                         <outlet property="languagesPopup" destination="dUE-ZI-jlH" id="exo-K7-6qb"/>
+                        <outlet property="splitView" destination="Nke-YZ-shb" id="Ylx-6L-Lbp"/>
                         <outlet property="termsTableView" destination="jaQ-J7-unX" id="4Iq-b0-Jba"/>
                         <outlet property="translationsTableView" destination="akn-lw-stZ" id="DqF-z8-6Lg"/>
                     </connections>
@@ -646,48 +647,66 @@
             </objects>
             <point key="canvasLocation" x="335" y="1107.5"/>
         </scene>
-        <!--View Controller-->
+        <!--No Project View Controller-->
         <scene sceneID="L54-RQ-8wz">
             <objects>
-                <viewController id="u48-59-0ab" sceneMemberID="viewController">
-                    <view key="view" id="JWN-C8-2kz">
+                <viewController storyboardIdentifier="NoProjectViewController" id="u48-59-0ab" customClass="NoProjectViewController" customModule="Localizabler" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" misplaced="YES" id="JWN-C8-2kz">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1r1-KA-gZL">
-                                <rect key="frame" x="202" y="137" width="47" height="25"/>
+                            <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1r1-KA-gZL">
+                                <rect key="frame" x="202" y="77" width="47" height="25"/>
                                 <animations/>
                                 <buttonCell key="cell" type="roundTextured" title="Open" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="njs-5Y-8El">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="browseButtonClicked:" target="u48-59-0ab" id="5N3-jh-Hn5"/>
+                                </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ty3-hM-FhG">
-                                <rect key="frame" x="18" y="169" width="414" height="17"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ty3-hM-FhG">
+                                <rect key="frame" x="18" y="126" width="414" height="48"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="UuR-ke-qcy"/>
+                                    <constraint firstAttribute="height" constant="48" id="YYh-vz-fGT"/>
                                 </constraints>
                                 <animations/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Open your first project and start localizing with style!" id="f2D-yt-Li2">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Open your first project and start localizing in style! Point us to the directory where localizations can be found." id="f2D-yt-Li2">
                                     <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QFz-3J-Q9P">
+                                <rect key="frame" x="18" y="182" width="414" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="CmS-Hd-S9y"/>
+                                </constraints>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="No Project!" id="dFj-9L-vMF">
+                                    <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Ty3-hM-FhG" firstAttribute="centerY" secondItem="JWN-C8-2kz" secondAttribute="centerY" constant="-27.5" id="Bqh-h8-pfD"/>
-                            <constraint firstItem="1r1-KA-gZL" firstAttribute="centerY" secondItem="JWN-C8-2kz" secondAttribute="centerY" id="ZRT-Kp-33a"/>
-                            <constraint firstItem="1r1-KA-gZL" firstAttribute="centerX" secondItem="JWN-C8-2kz" secondAttribute="centerX" id="vie-n6-cUV"/>
-                            <constraint firstAttribute="trailing" secondItem="Ty3-hM-FhG" secondAttribute="trailing" constant="20" id="zIB-pW-YEK"/>
-                            <constraint firstItem="Ty3-hM-FhG" firstAttribute="leading" secondItem="JWN-C8-2kz" secondAttribute="leading" constant="20" id="zYg-YX-PJp"/>
+                            <constraint firstItem="Ty3-hM-FhG" firstAttribute="top" secondItem="QFz-3J-Q9P" secondAttribute="bottom" constant="8" id="EPG-cx-XUS"/>
+                            <constraint firstItem="Ty3-hM-FhG" firstAttribute="leading" secondItem="JWN-C8-2kz" secondAttribute="leading" constant="20" id="IfP-SC-Eg6"/>
+                            <constraint firstItem="QFz-3J-Q9P" firstAttribute="leading" secondItem="JWN-C8-2kz" secondAttribute="leading" constant="20" id="LVG-ie-EZt"/>
+                            <constraint firstAttribute="trailing" secondItem="QFz-3J-Q9P" secondAttribute="trailing" constant="20" id="SAt-qN-RfM"/>
+                            <constraint firstAttribute="trailing" secondItem="Ty3-hM-FhG" secondAttribute="trailing" constant="20" id="V6X-NI-QG8"/>
+                            <constraint firstItem="Ty3-hM-FhG" firstAttribute="centerY" secondItem="JWN-C8-2kz" secondAttribute="centerY" id="ePI-qI-XlM"/>
+                            <constraint firstItem="1r1-KA-gZL" firstAttribute="top" secondItem="Ty3-hM-FhG" secondAttribute="bottom" constant="25" id="hft-Eg-TbS"/>
+                            <constraint firstItem="1r1-KA-gZL" firstAttribute="centerX" secondItem="JWN-C8-2kz" secondAttribute="centerX" id="pGR-Qs-Qx5"/>
                         </constraints>
                         <animations/>
                     </view>
                 </viewController>
                 <customObject id="gBf-1j-CJa" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="182" y="1638"/>
+            <point key="canvasLocation" x="64" y="1651"/>
         </scene>
     </scenes>
     <resources>

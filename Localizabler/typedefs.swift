@@ -8,4 +8,4 @@
 
 typealias Line = (term: String, translation: String, isComment: Bool)
 typealias TermData = (value: String, newValue: String?, translationChanged: Bool)
-typealias TranslationData = (value: String, newValue: String?, countryCode: String)
+typealias TranslationData = (value: String, newValue: String?, languageCode: String)

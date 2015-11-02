@@ -51,7 +51,7 @@ class Search: NSObject {
 					matchedTranslations.append(
 						(value: line.translation,
 						newValue: nil,
-						countryCode: lang
+						languageCode: lang
 						) as TranslationData
 					)
 				}

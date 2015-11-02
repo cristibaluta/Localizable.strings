@@ -15,6 +15,7 @@ class WindowController: NSWindowController {
 			return self.window!.contentViewController! as! ViewController
 		}
 	}
+	var noProjectViewController: NoProjectViewController?
 	@IBOutlet var searchField: NSSearchField?
 	@IBOutlet var pathControl: NSPathControl?
 	@IBOutlet var butBrowse: NSButton?
@@ -31,10 +32,13 @@ class WindowController: NSWindowController {
 	}
 	
 	func loadLastOpenedProject() {
-		if let dir = LastProject().get() {
+//		History().setLastProjectDir(nil)
+		if let dir = History().getLastProjectDir() {
 			if let url = NSURL(string: dir) {
 				self.loadProjectAtUrl(url)
 			}
+		} else {
+			showNoProjectVC()
 		}
 	}
 	
@@ -48,23 +52,25 @@ class WindowController: NSWindowController {
 		}
 	}
 	
+	func showNoProjectVC() {
+		noProjectViewController = NoProjectViewController.instanceFromStoryboard()
+		noProjectViewController?.browseButtonClicked = {
+			self.browseFiles()
+		}
+		Wireframe.presentNoProjectsController(noProjectViewController!, overController: viewController)
+		viewController.splitView?.hidden = true
+	}
+	
+	func removeNoProjectVC() {
+		Wireframe.removeNoProjectsController(noProjectViewController!)
+		viewController.splitView?.hidden = false
+	}
+	
 	
 	// MARK: Actions
 	
 	@IBAction func browseButtonClicked(sender: NSButton) {
-		
-		let panel = NSOpenPanel()
-		panel.canChooseFiles = false
-		panel.canChooseDirectories = true
-		panel.allowsMultipleSelection = false;
-		panel.beginWithCompletionHandler { (result) -> Void in
-			
-			if result == NSFileHandlingPanelOKButton {
-				self.pathControl!.URL = panel.URLs.first
-				LastProject().set(panel.URLs.first?.absoluteString)
-				self.loadProjectAtUrl(panel.URLs.first!)
-			}
-		}
+		browseFiles()
 	}
 	
 	@IBAction func saveButtonClicked(sender: NSButton) {
@@ -72,6 +78,25 @@ class WindowController: NSWindowController {
 		if Save(files: viewController.files).execute() {
 			viewController.markFilesAsSaved()
 			butSave?.enabled = false
+		}
+	}
+	
+	func browseFiles() {
+		
+		let panel = NSOpenPanel()
+		panel.canChooseFiles = false
+		panel.canChooseDirectories = true
+		panel.allowsMultipleSelection = false;
+		panel.beginWithCompletionHandler { [weak self] (result) -> Void in
+			
+			if result == NSFileHandlingPanelOKButton {
+				if let url = panel.URLs.first {
+					self?.removeNoProjectVC()
+					self?.pathControl!.URL = url
+					self?.loadProjectAtUrl(url)
+					History().setLastProjectDir(url.absoluteString)
+				}
+			}
 		}
 	}
 }
