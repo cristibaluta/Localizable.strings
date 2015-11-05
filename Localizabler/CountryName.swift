@@ -12,13 +12,10 @@ class CountryName: NSObject {
 	
 	class func countryNameForLanguageCode(localeIdentifier: String) -> String {
 		
-		RCLog(localeIdentifier)
-		
 		// init an english NSLocale to get the english name of all NSLocale-Objects
 		let englishLocale : NSLocale = NSLocale.init(localeIdentifier :  "en_US")
 		
 		var theEnglishName = englishLocale.displayNameForKey(NSLocaleIdentifier, value: localeIdentifier)
-		RCLog(theEnglishName)
 		
 //		let locale = NSLocale(localeIdentifier: localeIdentifier)
 //		let displayName = locale.displayNameForKey(NSLocaleIdentifier, value: "en_US")

@@ -15,7 +15,8 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 	private var terms = [String]()
 	private var lines = [Line]()
 	private var translations = [String: String]()
-	private let regex = try? NSRegularExpression(pattern: "^(\"|[ ]*\")([^\"]+)\"(^|[ ]*)=(^|[ ]*)\"(.*?)\"(;|;[ ]*)$", options: NSRegularExpressionOptions())
+	private let regex = try? NSRegularExpression(pattern: "^(\"|[ ]*\")([^\"]+)\"(^|[ ]*)=(^|[ ]*)\"(.*?)\"(;|;[ ]*)$",
+												 options: NSRegularExpressionOptions())
 	
     required init(url: NSURL) {
 		super.init()
@@ -91,18 +92,6 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 		}
 	}
 	
-//	private func parseFile(url: NSURL) {
-//		
-//		if let path = url.path {
-//			if let aStreamReader = StreamReader(path: path) {
-//				while let line = aStreamReader.nextLine() {
-//					parseLine(line)
-//				}
-//				aStreamReader.close()
-//			}
-//		}
-//	}
-	
 	@inline(__always) func parseLine(lineContent: String) {
 		
 		if isValidLine(lineContent) {
@@ -116,11 +105,13 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 	}
 	
 	@inline(__always) func isValidLine(lineContent: String) -> Bool {
-		return regex!.matchesInString(lineContent, options: NSMatchingOptions(), range: NSMakeRange(0, lineContent.characters.count)).count == 1
+		return regex!.matchesInString(lineContent, options: NSMatchingOptions(),
+			range: NSMakeRange(0, lineContent.characters.count)).count == 1
 	}
 	
 	@inline(__always) func splitLine(lineContent: String) -> Line {
 		
+		// TODO: split with regex
 		let comps = lineContent.componentsSeparatedByString("=")
 		
 		return (term:			String(comps.first!.trim().characters.dropFirst().dropLast()),
