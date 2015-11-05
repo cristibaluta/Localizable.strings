@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class TranslationCell: NSView {
+class TranslationCell: NSTableRowView {
 
 	@IBOutlet var flagImage: NSImageView?
 	@IBOutlet var countryName: NSTextField?
@@ -16,6 +16,9 @@ class TranslationCell: NSView {
 	
 	var translationDidChangeInCell: ((cell: TranslationCell, newValue: String) -> Void)?
 	
+	override func mouseDown(theEvent: NSEvent) {
+		self.window?.makeFirstResponder(textView)
+	}
 }
 
 extension TranslationCell: NSTextFieldDelegate {
