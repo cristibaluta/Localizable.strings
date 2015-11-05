@@ -26,6 +26,7 @@ class WindowController: NSWindowController {
 		
 		window?.titlebarAppearsTransparent = true
 		window?.titleVisibility = NSWindowTitleVisibility.Hidden;
+		window?.title = "Localizabler"
 		butSave?.enabled = false
 		
 		loadLastOpenedProject()
