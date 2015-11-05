@@ -15,7 +15,7 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 	private var terms = [String]()
 	private var lines = [Line]()
 	private var translations = [String: String]()
-	private let regex = try? NSRegularExpression(pattern: "\"([^\"]+)\"(^|[ ]*)=(^|[ ]*)\"(.*?)\";", options: NSRegularExpressionOptions())
+	private let regex = try? NSRegularExpression(pattern: "^(\"|[ ]*\")([^\"]+)\"(^|[ ]*)=(^|[ ]*)\"(.*?)\"(;|;[ ]*)$", options: NSRegularExpressionOptions())
 	
     required init(url: NSURL) {
 		super.init()

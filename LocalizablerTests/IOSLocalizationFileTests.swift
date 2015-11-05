@@ -36,6 +36,8 @@ class IOSLocalizationFileTests: XCTestCase {
 		XCTAssertFalse(file.isValidLine("\";"), "")
 		XCTAssertFalse(file.isValidLine("\"\"=\"\";"), "")
 		XCTAssertTrue(file.isValidLine("\"key\"=\"\";"), "")
+		XCTAssertTrue(file.isValidLine("   \"key\"=\"\";"), "")
+		XCTAssertTrue(file.isValidLine("   \"key\"=\"\";   "), "")
 		XCTAssertTrue(file.isValidLine("\"key\" =    \"value\";"), "")
 		XCTAssertTrue(file.isValidLine("\"key key\" =    \"value value value value \";"), "")
 	}
