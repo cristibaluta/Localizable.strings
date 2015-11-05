@@ -63,6 +63,7 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 		var string = ""
 		
 		// Iterate over lines and put them back in the string with the new translations
+        var i = 0
 		for line in lines {
 			if line.isComment {
 				string += line.translation
@@ -70,7 +71,10 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 			else {
 				string += "\"\(line.term)\" = \"\(translationForTerm(line.term))\";"
 			}
-			string += "\n"
+            i++
+            if i < lines.count {
+                string += "\n"
+            }
 		}
 		
 		return string
