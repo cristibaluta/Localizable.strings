@@ -15,6 +15,7 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 	private var terms = [String]()
 	private var lines = [Line]()
 	private var translations = [String: String]()
+	private let regex = try? NSRegularExpression(pattern: "\"([^\"]+)\"(^|[ ]*)=(^|[ ]*)\"(.*?)\";", options: NSRegularExpressionOptions())
 	
     required init(url: NSURL) {
 		super.init()
@@ -111,15 +112,15 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 	}
 	
 	@inline(__always) func isValidLine(lineContent: String) -> Bool {
-		return lineContent.hasPrefix("\"") && lineContent.hasSuffix("\";")
+		return regex!.matchesInString(lineContent, options: NSMatchingOptions(), range: NSMakeRange(0, lineContent.characters.count)).count == 1
 	}
 	
 	@inline(__always) func splitLine(lineContent: String) -> Line {
 		
 		let comps = lineContent.componentsSeparatedByString("=")
 		
-		return (term: String(comps.first!.trim().characters.dropFirst().dropLast()),
-				translation: String(comps.last!.trim().characters.dropFirst().dropLast().dropLast()),
-				isComment: false)
+		return (term:			String(comps.first!.trim().characters.dropFirst().dropLast()),
+				translation:	String(comps.last!.trim().characters.dropFirst().dropLast().dropLast()),
+				isComment:		false)
 	}
 }

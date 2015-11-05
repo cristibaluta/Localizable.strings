@@ -12,20 +12,20 @@ class LastProjectTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        LastProject().set(nil)
+        History().setLastProjectDir(nil)
     }
     
     override func tearDown() {
-		LastProject().set(nil)
+		History().setLastProjectDir(nil)
         super.tearDown()
     }
     
-    func testExample() {
-        let lastProject = LastProject()
-		XCTAssert(lastProject.get() == nil, "Initially should be no value")
+    func testLastProject() {
 		
-		lastProject.set("some/dir")
-		XCTAssert(lastProject.get() == "some/dir", "Value should be some/dir")
+        let lastProject = History()
+		XCTAssert(lastProject.getLastProjectDir() == nil, "Initially should be no value")
+		
+		lastProject.setLastProjectDir("some/dir")
+		XCTAssert(lastProject.getLastProjectDir() == "some/dir", "Value should be some/dir")
     }
-    
 }

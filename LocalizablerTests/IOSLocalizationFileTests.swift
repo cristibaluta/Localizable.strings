@@ -27,4 +27,16 @@ class IOSLocalizationFileTests: XCTestCase {
 		XCTAssert(file.translationForTerm("key2") == "value 2", "Wrong dictionary")
 		XCTAssert(file.translationForTerm("key3") == "value 3", "Wrong dictionary")
 	}
+	
+	func testValidLines() {
+		let file = IOSLocalizationFile(url: NSURL())
+		XCTAssertFalse(file.isValidLine(""), "")
+		XCTAssertFalse(file.isValidLine("// Comment"), "")
+		XCTAssertFalse(file.isValidLine("\"\"=\"\""), "")
+		XCTAssertFalse(file.isValidLine("\";"), "")
+		XCTAssertFalse(file.isValidLine("\"\"=\"\";"), "")
+		XCTAssertTrue(file.isValidLine("\"key\"=\"\";"), "")
+		XCTAssertTrue(file.isValidLine("\"key\" =    \"value\";"), "")
+		XCTAssertTrue(file.isValidLine("\"key key\" =    \"value value value value \";"), "")
+	}
 }
