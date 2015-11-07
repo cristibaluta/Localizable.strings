@@ -10,6 +10,7 @@ import Foundation
 
 class Search: NSObject {
 	
+	let kMinCharactersToSearch = 2
 	var files: [String: LocalizationFile]?
 	
 	required init(files: [String: LocalizationFile]) {
@@ -19,16 +20,13 @@ class Search: NSObject {
 	
 	func searchInTerms(searchString: String) -> [TermData] {
 		
-		var terms = [String]()
-		if let file = files!["Base"] {
-			terms = file.allTerms()
-		} else if let file = files!["en"] {
-			terms = file.allTerms()
-		}
-		
+		let base = BaseLanguage(files: files!).get()
 		var matchedTerms = [TermData]()
-		for term in terms {
-			if term.lowercaseString.rangeOfString(searchString.lowercaseString) != nil || searchString == "" {
+		for term in base.terms {
+			if term.lowercaseString.rangeOfString(searchString.lowercaseString) != nil ||
+				searchString == "" ||
+				searchString.characters.count < kMinCharactersToSearch
+			{
 				matchedTerms.append((value: term, newValue: nil, translationChanged: false) as TermData)
 			}
 		}
@@ -39,7 +37,7 @@ class Search: NSObject {
 		
 		var matchedTranslations = [TranslationData]()
 		
-		guard searchString != "" else {
+		guard (searchString != "" && searchString.characters.count >= kMinCharactersToSearch) else {
 			return matchedTranslations
 		}
 		let lowercaseSearchString = searchString.lowercaseString

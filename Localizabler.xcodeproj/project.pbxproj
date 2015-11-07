@@ -296,6 +296,8 @@
 		28E57ABE1BE4B09200B803E6 /* NSViewAutolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57ABC1BE4B09200B803E6 /* NSViewAutolayout.swift */; };
 		28E57AC01BE4B6E800B803E6 /* BaseLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57ABF1BE4B6E800B803E6 /* BaseLanguage.swift */; };
 		28E57AC11BE4B6E800B803E6 /* BaseLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57ABF1BE4B6E800B803E6 /* BaseLanguage.swift */; };
+		28E57AC51BEDEC8100B803E6 /* SearchAndroidLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57AC41BEDEC8100B803E6 /* SearchAndroidLocalizations.swift */; };
+		28E57AC61BEDEC8100B803E6 /* SearchAndroidLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57AC41BEDEC8100B803E6 /* SearchAndroidLocalizations.swift */; };
 		28EF6A2E1BC38A4700F8E725 /* test.strings in Resources */ = {isa = PBXBuildFile; fileRef = 28EF6A2D1BC38A4700F8E725 /* test.strings */; };
 		28EF6A311BC38E6C00F8E725 /* StringExtenssion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */; };
 		28EF6A321BC38E7100F8E725 /* StringExtenssion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */; };
@@ -601,6 +603,7 @@
 		28E57AB61BE4A36600B803E6 /* NoProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoProjectViewController.swift; sourceTree = "<group>"; };
 		28E57ABC1BE4B09200B803E6 /* NSViewAutolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSViewAutolayout.swift; sourceTree = "<group>"; };
 		28E57ABF1BE4B6E800B803E6 /* BaseLanguage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLanguage.swift; sourceTree = "<group>"; };
+		28E57AC41BEDEC8100B803E6 /* SearchAndroidLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAndroidLocalizations.swift; sourceTree = "<group>"; };
 		28EF6A2D1BC38A4700F8E725 /* test.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = test.strings; sourceTree = "<group>"; };
 		28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtenssion.swift; sourceTree = "<group>"; };
 		28EF6A331BC44D4900F8E725 /* typedefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = typedefs.swift; sourceTree = "<group>"; };
@@ -1022,6 +1025,7 @@
 			children = (
 				6D1E1AA11BBE686600BE29EE /* SearchLocalizations.swift */,
 				6D1E1AA41BBE6CBD00BE29EE /* SearchIOSLocalizations.swift */,
+				28E57AC41BEDEC8100B803E6 /* SearchAndroidLocalizations.swift */,
 				6D1E1AA71BBE939400BE29EE /* LocalizationFile.swift */,
 				6D1E1AAA1BBE93AB00BE29EE /* IOSLocalizationFile.swift */,
 				289556D41BC717DA00FA08E8 /* Search.swift */,
@@ -1404,6 +1408,7 @@
 				28E57AC01BE4B6E800B803E6 /* BaseLanguage.swift in Sources */,
 				28DB60891BC9DB54003FDE96 /* NSSegmentedControl.swift in Sources */,
 				289556DC1BC71BDC00FA08E8 /* Open.swift in Sources */,
+				28E57AC51BEDEC8100B803E6 /* SearchAndroidLocalizations.swift in Sources */,
 				28DB60801BC9A314003FDE96 /* Output.swift in Sources */,
 				6D1E1A781BBD5C6C00BE29EE /* ViewController.swift in Sources */,
 				6D1E1AAE1BBEB94E00BE29EE /* StreamReader.swift in Sources */,
@@ -1430,6 +1435,7 @@
 			files = (
 				289556D01BC6365000FA08E8 /* TranslationsTableDataSource.swift in Sources */,
 				289556D91BC7189F00FA08E8 /* Save.swift in Sources */,
+				28E57AC61BEDEC8100B803E6 /* SearchAndroidLocalizations.swift in Sources */,
 				28EF6A391BC45D5100F8E725 /* AppDelegate.swift in Sources */,
 				28DB608A1BC9DB54003FDE96 /* NSSegmentedControl.swift in Sources */,
 				289558DB1BC8E47100FA08E8 /* GenerateTypesafeLocalizationStrings.swift in Sources */,
