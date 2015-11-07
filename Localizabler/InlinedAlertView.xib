@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe" customClass="InlinedAlertView" customModule="Localizabler" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KRY-Fu-5f0">
+                    <rect key="frame" x="-2" y="128" width="484" height="17"/>
+                    <animations/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="iXX-rH-Czj">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="KRY-Fu-5f0" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="HkQ-Ti-oaM"/>
+                <constraint firstItem="KRY-Fu-5f0" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="qIG-A1-CMp"/>
+                <constraint firstAttribute="trailing" secondItem="KRY-Fu-5f0" secondAttribute="trailing" id="v7z-LU-4vk"/>
+            </constraints>
+            <animations/>
+            <connections>
+                <outlet property="textField" destination="KRY-Fu-5f0" id="HC3-Md-4N2"/>
+            </connections>
+        </customView>
+    </objects>
+</document>

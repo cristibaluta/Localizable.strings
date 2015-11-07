@@ -15,10 +15,12 @@ class ViewController: NSViewController {
 	@IBOutlet var termsTableView: NSTableView?
 	@IBOutlet var translationsTableView: NSTableView?
 	
+	var termsTableAlert: InlinedAlertView?
+	var translationsTableAlert: InlinedAlertView?
 	var termsTableDataSource: TermsTableDataSource?
 	var translationsTableDataSource: TranslationsTableDataSource?
-	var files = [String: LocalizationFile]()
 	var url: NSURL?
+	var files = [String: LocalizationFile]()
 	var allTerms = [TermData]()
 	var allTranslations = [TranslationData]()
 	
@@ -50,6 +52,7 @@ class ViewController: NSViewController {
 			}
 			wself.translationsTableDataSource?.data = wself.allTranslations
 			wself.translationsTableView?.reloadData()
+			wself.updateAlerts()
 		}
 		
 		translationsTableDataSource?.translationDidChange = { [weak self] (translation) -> Void in
@@ -118,6 +121,7 @@ class ViewController: NSViewController {
 		
 		termsTableDataSource?.data = allTerms
 		termsTableView?.reloadData()
+		updateAlerts()
 	}
 	
 	func clear() {
@@ -153,5 +157,36 @@ class ViewController: NSViewController {
 		//
 		translationsTableDataSource?.data = search.searchInTranslations(searchString)
 		translationsTableView?.reloadData()
+		
+		// Add Placeholders if no matches found
+		updateAlerts()
+	}
+	
+	
+	// MARK: Alerts
+	
+	private func updateAlerts() {
+		translationsAlert().hidden = translationsTableDataSource?.data.count > 0
+		termsAlert().hidden = termsTableDataSource?.data.count > 0
+	}
+	
+	private func translationsAlert() -> InlinedAlertView {
+		if translationsTableAlert == nil {
+			translationsTableAlert = InlinedAlertView.instanceFromNib()
+			translationsTableView?.addSubview(translationsTableAlert!)
+			translationsTableAlert?.constrainToSuperview()
+			translationsTableAlert?.message = "No matches"
+		}
+		return translationsTableAlert!
+	}
+	
+	private func termsAlert() -> InlinedAlertView {
+		if termsTableAlert == nil {
+			termsTableAlert = InlinedAlertView.instanceFromNib()
+			termsTableView?.addSubview(termsTableAlert!)
+			termsTableAlert?.constrainToSuperview()
+			termsTableAlert?.message = "No matches"
+		}
+		return termsTableAlert!
 	}
 }

@@ -14,6 +14,12 @@ extension NSView {
 		self.translatesAutoresizingMaskIntoConstraints = false
 	}
 	
+	func constrainToSuperview() {
+		self.removeAutoresizing()
+		self.constrainToSuperviewWidth()
+		self.constrainToSuperviewHeight()
+	}
+	
 	func constrainToSuperviewWidth() {
 		self.removeAutoresizing()
 		let viewsDictionary = ["view": self]
