@@ -52,7 +52,7 @@ class ViewController: NSViewController {
 			}
 			wself.translationsTableDataSource?.data = wself.allTranslations
 			wself.translationsTableView?.reloadData()
-			wself.updateAlerts()
+			wself.updateAlerts("No selection")
 		}
 		
 		translationsTableDataSource?.translationDidChange = { [weak self] (translation) -> Void in
@@ -121,7 +121,7 @@ class ViewController: NSViewController {
 		
 		termsTableDataSource?.data = allTerms
 		termsTableView?.reloadData()
-		updateAlerts()
+		updateAlerts("No selection")
 	}
 	
 	func clear() {
@@ -159,34 +159,34 @@ class ViewController: NSViewController {
 		translationsTableView?.reloadData()
 		
 		// Add Placeholders if no matches found
-		updateAlerts()
+		updateAlerts("No matches")
 	}
 	
 	
 	// MARK: Alerts
 	
-	private func updateAlerts() {
-		translationsAlert().hidden = translationsTableDataSource?.data.count > 0
-		termsAlert().hidden = termsTableDataSource?.data.count > 0
+	private func updateAlerts(message: String) {
+		translationsAlert(message).hidden = translationsTableDataSource?.data.count > 0
+		termsAlert(message).hidden = termsTableDataSource?.data.count > 0
 	}
 	
-	private func translationsAlert() -> InlinedAlertView {
+	private func translationsAlert(message: String) -> InlinedAlertView {
 		if translationsTableAlert == nil {
 			translationsTableAlert = InlinedAlertView.instanceFromNib()
 			translationsTableView?.addSubview(translationsTableAlert!)
 			translationsTableAlert?.constrainToSuperview()
-			translationsTableAlert?.message = "No matches"
 		}
+		translationsTableAlert?.message = message
 		return translationsTableAlert!
 	}
 	
-	private func termsAlert() -> InlinedAlertView {
+	private func termsAlert(message: String) -> InlinedAlertView {
 		if termsTableAlert == nil {
 			termsTableAlert = InlinedAlertView.instanceFromNib()
 			termsTableView?.addSubview(termsTableAlert!)
 			termsTableAlert?.constrainToSuperview()
-			termsTableAlert?.message = "No matches"
 		}
+		termsTableAlert?.message = message
 		return termsTableAlert!
 	}
 }
