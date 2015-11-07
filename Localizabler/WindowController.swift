@@ -36,7 +36,7 @@ class WindowController: NSWindowController {
 //		History().setLastProjectDir(nil)
 		if let dir = History().getLastProjectDir() {
 			if let url = NSURL(string: dir) {
-				self.loadProjectAtUrl(url)
+				loadProjectAtUrl(url)
 			}
 		} else {
 			showNoProjectVC()
@@ -55,8 +55,8 @@ class WindowController: NSWindowController {
 	
 	func showNoProjectVC() {
 		noProjectViewController = NoProjectViewController.instanceFromStoryboard()
-		noProjectViewController?.browseButtonClicked = {
-			self.browseFiles()
+		noProjectViewController?.browseButtonClicked = { [weak self] in
+			self?.browseFiles()
 		}
 		Wireframe.presentNoProjectsController(noProjectViewController!, overController: viewController)
 		viewController.splitView?.hidden = true
@@ -109,7 +109,6 @@ extension WindowController: NSTextFieldDelegate {
 		guard let searchString = obj.object?.stringValue else {
 			return
 		}
-		RCLogO(searchString)
 		viewController.search(searchString)
 	}
 }
