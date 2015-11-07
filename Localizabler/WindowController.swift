@@ -48,7 +48,7 @@ class WindowController: NSWindowController {
 		viewController.url = url
 		viewController.scanDirectoryForLocalizationFiles()
 		viewController.showBaseLanguage()
-		viewController.translationDidChange = { [weak self] (translationData) -> Void in
+		viewController.contentDidChange = { [weak self] in
 			self?.butSave?.enabled = true
 		}
 	}
@@ -63,7 +63,7 @@ class WindowController: NSWindowController {
 	}
 	
 	func removeNoProjectVC() {
-		Wireframe.removeNoProjectsController(noProjectViewController!)
+		Wireframe.removeNoProjectsController(noProjectViewController)
 		viewController.splitView?.hidden = false
 	}
 	
@@ -80,6 +80,14 @@ class WindowController: NSWindowController {
 			viewController.markFilesAsSaved()
 			butSave?.enabled = false
 		}
+	}
+	
+	@IBAction func addButtonClicked(sender: NSButton) {
+		
+	}
+	
+	@IBAction func removeButtonClicked(sender: NSButton) {
+		
 	}
 	
 	func browseFiles() {

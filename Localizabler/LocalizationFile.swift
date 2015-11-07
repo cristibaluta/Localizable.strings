@@ -8,13 +8,17 @@
 
 import Foundation
 
+enum LocalizationFileError: ErrorType {
+	case FileNotFound(url: NSURL)
+}
+
 protocol LocalizationFile {
 	
 	var url: NSURL? {get}
 	/// Whenever a term or translation changes a hasChanges flag is set
 	var hasChanges: Bool {get}
 	
-	init(url: NSURL)
+	init(url: NSURL) throws
 	init(content: String)
 	
 	/// Returns all lines found in the file in their order, comments and blank lines including
@@ -25,6 +29,9 @@ protocol LocalizationFile {
 	
 	/// Returns the translation for the specified term
     func translationForTerm(term: String) -> String
+	
+	/// Updates the term with a new value
+	func updateTerm(term: String, newValue: String)
 	
 	/// Updates the translation for the specified term. You need to call  save for saving to the original file
     func updateTranslationForTerm(term: String, newValue: String)

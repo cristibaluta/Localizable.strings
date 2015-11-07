@@ -12,6 +12,7 @@ class TermsTableDataSource: NSObject {
 	
 	var data = [TermData]()
 	var onDidSelectRow: ((rowNumber: Int, key: TermData) -> Void)?
+	var termDidChange: ((TermData) -> Void)?
 	
 	init(tableView: NSTableView) {
 		
@@ -34,10 +35,13 @@ extension TermsTableDataSource: NSTableViewDataSource, NSTableViewDelegate {
 			let theData: TermData = data[row]
 			
 			if (tableColumn?.identifier == "key") {
+				if theData.newValue != nil {
+					return theData.newValue
+				}
 				return theData.value
 			}
 			else if (tableColumn?.identifier == "status") {
-				return NSImage(named: theData.translationChanged
+				return NSImage(named: theData.translationChanged || theData.newValue != nil
 					? NSImageNameStatusPartiallyAvailable
 					: NSImageNameStatusAvailable)
 			}
@@ -55,5 +59,10 @@ extension TermsTableDataSource: NSTableViewDataSource, NSTableViewDelegate {
 	
 	func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 		return 20
+	}
+	
+	func tableView(tableView: NSTableView, setObjectValue object: AnyObject?, forTableColumn tableColumn: NSTableColumn?, row: Int) {
+		data[row].newValue = object as? String
+		termDidChange?(data[row])
 	}
 }

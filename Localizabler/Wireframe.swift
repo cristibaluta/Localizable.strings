@@ -19,9 +19,11 @@ class Wireframe: NSObject {
 		childController.view.constrainToSuperviewHeight()
 	}
 	
-	class func removeNoProjectsController(controller: NSViewController) {
+	class func removeNoProjectsController(controller: NSViewController?) {
 		
-		controller.view.removeFromSuperview()
-		controller.removeFromParentViewController()
+		if let c = controller {
+			c.view.removeFromSuperview()
+			c.removeFromParentViewController()
+		}
 	}
 }

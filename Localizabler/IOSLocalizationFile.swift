@@ -12,17 +12,15 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 	
 	var url: NSURL?
 	var hasChanges: Bool = false
-	private var terms = [String]()
 	private var lines = [Line]()
+	private var terms = [String: String]()
 	private var translations = [String: String]()
 	private let regex = try? NSRegularExpression(pattern: "^(\"|[ ]*\")([^\"]+)\"(^|[ ]*)=(^|[ ]*)\"(.*?)\"(;|;[ ]*)$",
 												 options: NSRegularExpressionOptions())
 	
-    required init(url: NSURL) {
+    required init(url: NSURL) throws {
 		super.init()
-		
 		self.url = url
-		
 		if url.path != nil {
 			if let data = NSData(contentsOfURL: url) {
 				if let fileContent = NSString(data: data, encoding: NSUTF8StringEncoding) as? String {
@@ -32,7 +30,7 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 					self.parseContent(fileContent)
 				}
 			} else {
-				RCLog("Can't open this file \(url.path)")
+				throw(LocalizationFileError.FileNotFound(url: url))
 			}
 		}
     }
@@ -47,12 +45,17 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 	}
 	
     func allTerms() -> [String] {
-        return terms
+        return Array(terms.keys)
     }
     
     func translationForTerm(term: String) -> String {
         return translations[term] ?? ""
     }
+	
+	func updateTerm(term: String, newValue: String) {
+		terms[term] = newValue
+		hasChanges = true
+	}
     
     func updateTranslationForTerm(term: String, newValue: String) {
         translations[term] = newValue
@@ -70,7 +73,7 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 				string += line.translation
 			}
 			else {
-				string += "\"\(line.term)\" = \"\(translationForTerm(line.term))\";"
+				string += "\"\(terms[line.term]!)\" = \"\(translationForTerm(line.term))\";"
 			}
             i++
             if i < lines.count {
@@ -97,7 +100,7 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 		if isValidLine(lineContent) {
 			let line = splitLine(lineContent)
 			lines.append(line)
-			terms.append(line.term)
+			terms[line.term] = line.term
 			translations[line.term] = line.translation
 		} else {
 			lines.append((term: "", translation: lineContent, isComment: true))

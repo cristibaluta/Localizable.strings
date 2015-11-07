@@ -24,7 +24,7 @@ class ViewController: NSViewController {
 	var allTerms = [TermData]()
 	var allTranslations = [TranslationData]()
 	
-	var translationDidChange: ((TranslationData) -> Void)?
+	var contentDidChange: (() -> Void)?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -54,14 +54,28 @@ class ViewController: NSViewController {
 			wself.translationsTableView?.reloadData()
 			wself.updateAlerts("No selection")
 		}
-		
-		translationsTableDataSource?.translationDidChange = { [weak self] (translation) -> Void in
+		termsTableDataSource?.termDidChange = { [weak self] (term: TermData) -> Void in
 			
 			guard let wself = self else {
 				return
 			}
 			
-			// A translation was changed, change also the key object
+			// A term was changed, update the value
+			if let newValue = term.newValue {
+				for file in wself.files.values {
+					file.updateTerm(term.value, newValue: newValue)
+				}
+				wself.contentDidChange?()
+			}
+		}
+		
+		translationsTableDataSource?.translationDidChange = { [weak self] (translation: TranslationData) -> Void in
+			
+			guard let wself = self else {
+				return
+			}
+			
+			// A translation was changed, update the term object so it knows about the change
 			if let selectedRow = wself.termsTableView?.selectedRow where selectedRow >= 0 {
 				let termData = wself.termsTableDataSource?.data[selectedRow]
 				wself.termsTableDataSource?.data[selectedRow].translationChanged = true
@@ -75,7 +89,7 @@ class ViewController: NSViewController {
 				wself.termsTableView?.reloadDataForRowIndexes(NSIndexSet(index: wself.termsTableView!.selectedRow),
 					columnIndexes: NSIndexSet(index: 0))
 				
-				wself.translationDidChange?(translation)
+				wself.contentDidChange?()
 			}
 		}
     }
@@ -90,6 +104,7 @@ class ViewController: NSViewController {
 			
             RCLogO(files)
 			wself.languagesPopup?.removeAllItems()
+			wself.files.removeAll()
 			
             for (key, url) in files {
 				wself.loadLocalizationFile(url, forKey: key)
@@ -99,7 +114,14 @@ class ViewController: NSViewController {
 	}
     
 	func loadLocalizationFile(url: NSURL, forKey key: String) {
-        files[key] = IOSLocalizationFile(url: url)
+		do {
+			files[key] = try IOSLocalizationFile(url: url)
+		}
+		catch LocalizationFileError.FileNotFound(url) {
+			RCLog("Can't open file \(url)")
+		} catch {
+			RCLog("Unknown error")
+		}
     }
 	
 	func showBaseLanguage() {

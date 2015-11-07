@@ -506,7 +506,7 @@
                                                 </scroller>
                                             </scrollView>
                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dUE-ZI-jlH">
-                                                <rect key="frame" x="18" y="3" width="211" height="26"/>
+                                                <rect key="frame" x="80" y="3" width="149" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="lVO-vH-pUR"/>
                                                 </constraints>
@@ -526,13 +526,41 @@
                                                     <action selector="languageDidChange:" target="XfG-lQ-9wD" id="zh7-OI-4xA"/>
                                                 </connections>
                                             </popUpButton>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fKU-eM-B9J">
+                                                <rect key="frame" x="22" y="6" width="20" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="gwT-kB-bIZ"/>
+                                                    <constraint firstAttribute="height" constant="21" id="leo-Wd-hJi"/>
+                                                </constraints>
+                                                <animations/>
+                                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="pt1-KT-5es">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="E6B-1E-aaJ">
+                                                <rect key="frame" x="48" y="6" width="20" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="fyU-BB-cic"/>
+                                                    <constraint firstAttribute="width" constant="20" id="spt-hU-MZq"/>
+                                                </constraints>
+                                                <animations/>
+                                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="iyb-G1-xMx">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                            </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="dUE-ZI-jlH" firstAttribute="leading" secondItem="Seo-kw-KIc" secondAttribute="leading" constant="20" id="5kJ-HH-hCA"/>
+                                            <constraint firstItem="dUE-ZI-jlH" firstAttribute="leading" secondItem="Seo-kw-KIc" secondAttribute="leading" constant="82" id="5kJ-HH-hCA"/>
                                             <constraint firstItem="adJ-Db-AC5" firstAttribute="leading" secondItem="Seo-kw-KIc" secondAttribute="leading" id="FCY-XT-nbR"/>
+                                            <constraint firstItem="E6B-1E-aaJ" firstAttribute="leading" secondItem="fKU-eM-B9J" secondAttribute="trailing" constant="6" id="Gcd-KG-c3a"/>
+                                            <constraint firstAttribute="bottom" secondItem="fKU-eM-B9J" secondAttribute="bottom" constant="6" id="X86-qp-kAQ"/>
                                             <constraint firstAttribute="bottom" secondItem="dUE-ZI-jlH" secondAttribute="bottom" constant="6" id="aIB-qk-SsA"/>
+                                            <constraint firstAttribute="bottom" secondItem="E6B-1E-aaJ" secondAttribute="bottom" constant="6" id="cwv-ap-YVi"/>
                                             <constraint firstItem="adJ-Db-AC5" firstAttribute="top" secondItem="Seo-kw-KIc" secondAttribute="top" id="eI9-Tj-hXx"/>
                                             <constraint firstAttribute="bottom" secondItem="adJ-Db-AC5" secondAttribute="bottom" constant="35" id="kWA-1x-94d"/>
+                                            <constraint firstItem="fKU-eM-B9J" firstAttribute="leading" secondItem="Seo-kw-KIc" secondAttribute="leading" constant="22" id="mps-N8-Cbg"/>
                                             <constraint firstAttribute="trailing" secondItem="dUE-ZI-jlH" secondAttribute="trailing" constant="20" id="myR-Xn-mt7"/>
                                             <constraint firstAttribute="trailing" secondItem="adJ-Db-AC5" secondAttribute="trailing" constant="1" id="u4l-hr-IsQ"/>
                                         </constraints>
@@ -710,6 +738,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="NSStatusUnavailable" width="16" height="16"/>
     </resources>
 </document>
