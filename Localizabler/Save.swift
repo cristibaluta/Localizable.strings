@@ -27,7 +27,8 @@ class Save: NSObject {
 		
 		for (_, file) in files {
 			if file.hasChanges {
-				_ = FileOutput(url: file.url!).write(file.content())
+				let output = FileOutput(url: file.url!)
+					output.write(file.content())
 			}
 		}
 	}

@@ -12,7 +12,7 @@ import XCTest
 class IOSLocalizationFileTests: XCTestCase {
 	
     func testKeyValueSeparation() {
-		let file = IOSLocalizationFile(url: NSURL())
+		let file = try! IOSLocalizationFile(url: NSURL())
 		let comps = file.splitLine("\"key1\" = \"value 1\";")
 		XCTAssert(comps.term == "key1", "Key is wrong")
 		XCTAssert(comps.translation == "value 1", "Translation is wrong")
@@ -20,7 +20,7 @@ class IOSLocalizationFileTests: XCTestCase {
 	
 	func testKeysExtraction() {
 		let url = NSBundle(forClass: self.dynamicType).URLForResource("test", withExtension: "strings")
-		let file = IOSLocalizationFile(url: url!)
+		let file = try! IOSLocalizationFile(url: url!)
 		XCTAssert(file.allLines().count == 7, "Wrong number of lines, check parsing")
 		XCTAssert(file.allTerms().count == 3, "Wrong number of keys, check parsing")
 		XCTAssert(file.translationForTerm("key1") == "value 1", "Wrong dictionary")
@@ -29,16 +29,17 @@ class IOSLocalizationFileTests: XCTestCase {
 	}
 	
 	func testValidLines() {
-		let file = IOSLocalizationFile(url: NSURL())
-		XCTAssertFalse(file.isValidLine(""), "")
-		XCTAssertFalse(file.isValidLine("// Comment"), "")
-		XCTAssertFalse(file.isValidLine("\"\"=\"\""), "")
-		XCTAssertFalse(file.isValidLine("\";"), "")
-		XCTAssertFalse(file.isValidLine("\"\"=\"\";"), "")
-		XCTAssertTrue(file.isValidLine("\"key\"=\"\";"), "")
-		XCTAssertTrue(file.isValidLine("   \"key\"=\"\";"), "")
-		XCTAssertTrue(file.isValidLine("   \"key\"=\"\";   "), "")
-		XCTAssertTrue(file.isValidLine("\"key\" =    \"value\";"), "")
-		XCTAssertTrue(file.isValidLine("\"key key\" =    \"value value value value \";"), "")
+		let file = try? IOSLocalizationFile(url: NSURL())
+		XCTAssertFalse(file!.isValidLine(""), "")
+		XCTAssertFalse(file!.isValidLine("// Comment"), "")
+		XCTAssertFalse(file!.isValidLine("\"\"=\"\""), "")
+		XCTAssertFalse(file!.isValidLine("\";"), "")
+		XCTAssertFalse(file!.isValidLine("\"\"=\"\";"), "")
+		XCTAssertTrue(file!.isValidLine("\"key\"=\"\";"), "")
+		XCTAssertTrue(file!.isValidLine("   \"key\"=\"\";"), "")
+		XCTAssertTrue(file!.isValidLine("   \"key\"=\"\";   "), "")
+		XCTAssertTrue(file!.isValidLine("\"key\" =    \"value\";"), "")
+		XCTAssertTrue(file!.isValidLine("\"key key\" =    \"value value value value \";"), "")
+		XCTAssertTrue(file!.isValidLine("\"The key combination \"%@\" can't be used because %@.\" = \"The key combination \"%@\" can't be used because %@.\";"), "")
 	}
 }

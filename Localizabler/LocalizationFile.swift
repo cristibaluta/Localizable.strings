@@ -36,6 +36,8 @@ protocol LocalizationFile {
 	/// Updates the translation for the specified term. You need to call  save for saving to the original file
     func updateTranslationForTerm(term: String, newValue: String)
 	
+	func addLine(line: Line)
+	
 	/// This will convert dictionaries back to string in order to save to the original file
 	func content() -> String
 }

@@ -16,8 +16,6 @@
 		289556D61BC717DA00FA08E8 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289556D41BC717DA00FA08E8 /* Search.swift */; };
 		289556D81BC7189F00FA08E8 /* Save.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289556D71BC7189F00FA08E8 /* Save.swift */; };
 		289556D91BC7189F00FA08E8 /* Save.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289556D71BC7189F00FA08E8 /* Save.swift */; };
-		289556DC1BC71BDC00FA08E8 /* Open.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289556DB1BC71BDC00FA08E8 /* Open.swift */; };
-		289556DD1BC71BDC00FA08E8 /* Open.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289556DB1BC71BDC00FA08E8 /* Open.swift */; };
 		289556DF1BC8389D00FA08E8 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289556DE1BC8389D00FA08E8 /* WindowController.swift */; };
 		289556E01BC8389D00FA08E8 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289556DE1BC8389D00FA08E8 /* WindowController.swift */; };
 		289556E21BC8BF4D00FA08E8 /* TranslationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289556E11BC8BF4D00FA08E8 /* TranslationCell.swift */; };
@@ -281,8 +279,6 @@
 		28DB60841BC9A392003FDE96 /* FileOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DB60821BC9A392003FDE96 /* FileOutput.swift */; };
 		28DB60861BC9A43A003FDE96 /* ConsoleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DB60851BC9A43A003FDE96 /* ConsoleOutput.swift */; };
 		28DB60871BC9A43A003FDE96 /* ConsoleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DB60851BC9A43A003FDE96 /* ConsoleOutput.swift */; };
-		28DB60891BC9DB54003FDE96 /* NSSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DB60881BC9DB54003FDE96 /* NSSegmentedControl.swift */; };
-		28DB608A1BC9DB54003FDE96 /* NSSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DB60881BC9DB54003FDE96 /* NSSegmentedControl.swift */; };
 		28DB608F1BCA4057003FDE96 /* Localizabler.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 28DB608E1BCA4057003FDE96 /* Localizabler.iconset */; };
 		28DB60901BCA4057003FDE96 /* Localizabler.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 28DB608E1BCA4057003FDE96 /* Localizabler.iconset */; };
 		28DB609D1BCDC048003FDE96 /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DB609C1BCDC048003FDE96 /* Wireframe.swift */; };
@@ -302,6 +298,7 @@
 		28E57AC91BEDF00A00B803E6 /* InlinedAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57AC71BEDF00A00B803E6 /* InlinedAlertView.swift */; };
 		28E57ACB1BEDF01F00B803E6 /* InlinedAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28E57ACA1BEDF01F00B803E6 /* InlinedAlertView.xib */; };
 		28E57ACC1BEDF01F00B803E6 /* InlinedAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28E57ACA1BEDF01F00B803E6 /* InlinedAlertView.xib */; };
+		28E57ACE1BEEBA1700B803E6 /* InlinedAlertViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57ACD1BEEBA1700B803E6 /* InlinedAlertViewTests.swift */; };
 		28EF6A2E1BC38A4700F8E725 /* test.strings in Resources */ = {isa = PBXBuildFile; fileRef = 28EF6A2D1BC38A4700F8E725 /* test.strings */; };
 		28EF6A311BC38E6C00F8E725 /* StringExtenssion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */; };
 		28EF6A321BC38E7100F8E725 /* StringExtenssion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */; };
@@ -344,7 +341,6 @@
 		289556CE1BC6365000FA08E8 /* TranslationsTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationsTableDataSource.swift; sourceTree = "<group>"; };
 		289556D41BC717DA00FA08E8 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		289556D71BC7189F00FA08E8 /* Save.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Save.swift; sourceTree = "<group>"; };
-		289556DB1BC71BDC00FA08E8 /* Open.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Open.swift; sourceTree = "<group>"; };
 		289556DE1BC8389D00FA08E8 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		289556E11BC8BF4D00FA08E8 /* TranslationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationCell.swift; sourceTree = "<group>"; };
 		289556E41BC8BF6A00FA08E8 /* TranslationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TranslationCell.xib; sourceTree = "<group>"; };
@@ -599,7 +595,6 @@
 		28DB607F1BC9A314003FDE96 /* Output.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Output.swift; sourceTree = "<group>"; };
 		28DB60821BC9A392003FDE96 /* FileOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileOutput.swift; sourceTree = "<group>"; };
 		28DB60851BC9A43A003FDE96 /* ConsoleOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleOutput.swift; sourceTree = "<group>"; };
-		28DB60881BC9DB54003FDE96 /* NSSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSSegmentedControl.swift; sourceTree = "<group>"; };
 		28DB608E1BCA4057003FDE96 /* Localizabler.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = Localizabler.iconset; sourceTree = "<group>"; };
 		28DB609C1BCDC048003FDE96 /* Wireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wireframe.swift; sourceTree = "<group>"; };
 		28E57AB11BE49F7C00B803E6 /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
@@ -610,6 +605,7 @@
 		28E57AC41BEDEC8100B803E6 /* SearchAndroidLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAndroidLocalizations.swift; sourceTree = "<group>"; };
 		28E57AC71BEDF00A00B803E6 /* InlinedAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InlinedAlertView.swift; sourceTree = "<group>"; };
 		28E57ACA1BEDF01F00B803E6 /* InlinedAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InlinedAlertView.xib; sourceTree = "<group>"; };
+		28E57ACD1BEEBA1700B803E6 /* InlinedAlertViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InlinedAlertViewTests.swift; sourceTree = "<group>"; };
 		28EF6A2D1BC38A4700F8E725 /* test.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = test.strings; sourceTree = "<group>"; };
 		28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtenssion.swift; sourceTree = "<group>"; };
 		28EF6A331BC44D4900F8E725 /* typedefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = typedefs.swift; sourceTree = "<group>"; };
@@ -975,7 +971,6 @@
 			isa = PBXGroup;
 			children = (
 				28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */,
-				28DB60881BC9DB54003FDE96 /* NSSegmentedControl.swift */,
 				28E57ABC1BE4B09200B803E6 /* NSViewAutolayout.swift */,
 			);
 			name = Extensions;
@@ -1022,6 +1017,7 @@
 				28778A621BBF1DBB003E4880 /* IOSLocalizationFileTests.swift */,
 				289558D41BC8C57D00FA08E8 /* CountriesTests.swift */,
 				28E57AB41BE4A0A400B803E6 /* LastProjectTests.swift */,
+				28E57ACD1BEEBA1700B803E6 /* InlinedAlertViewTests.swift */,
 				28EF6A2D1BC38A4700F8E725 /* test.strings */,
 				6D1E1A891BBD5C6C00BE29EE /* Info.plist */,
 			);
@@ -1038,7 +1034,6 @@
 				6D1E1AAA1BBE93AB00BE29EE /* IOSLocalizationFile.swift */,
 				289556D41BC717DA00FA08E8 /* Search.swift */,
 				289556D71BC7189F00FA08E8 /* Save.swift */,
-				289556DB1BC71BDC00FA08E8 /* Open.swift */,
 				289558D61BC8E3B700FA08E8 /* GenerateXcodeLocalizations.swift */,
 				289558D91BC8E47100FA08E8 /* GenerateTypesafeLocalizationStrings.swift */,
 				28E57AB11BE49F7C00B803E6 /* History.swift */,
@@ -1416,8 +1411,6 @@
 				289558DA1BC8E47100FA08E8 /* GenerateTypesafeLocalizationStrings.swift in Sources */,
 				6D1E1AA51BBE6CBD00BE29EE /* SearchIOSLocalizations.swift in Sources */,
 				28E57AC01BE4B6E800B803E6 /* BaseLanguage.swift in Sources */,
-				28DB60891BC9DB54003FDE96 /* NSSegmentedControl.swift in Sources */,
-				289556DC1BC71BDC00FA08E8 /* Open.swift in Sources */,
 				28E57AC51BEDEC8100B803E6 /* SearchAndroidLocalizations.swift in Sources */,
 				28DB60801BC9A314003FDE96 /* Output.swift in Sources */,
 				6D1E1A781BBD5C6C00BE29EE /* ViewController.swift in Sources */,
@@ -1448,7 +1441,6 @@
 				289556D91BC7189F00FA08E8 /* Save.swift in Sources */,
 				28E57AC61BEDEC8100B803E6 /* SearchAndroidLocalizations.swift in Sources */,
 				28EF6A391BC45D5100F8E725 /* AppDelegate.swift in Sources */,
-				28DB608A1BC9DB54003FDE96 /* NSSegmentedControl.swift in Sources */,
 				289558DB1BC8E47100FA08E8 /* GenerateTypesafeLocalizationStrings.swift in Sources */,
 				28EF6A381BC45D4900F8E725 /* ViewController.swift in Sources */,
 				28DB60841BC9A392003FDE96 /* FileOutput.swift in Sources */,
@@ -1456,7 +1448,6 @@
 				28DB609E1BCDC048003FDE96 /* Wireframe.swift in Sources */,
 				28E57AB81BE4A36600B803E6 /* NoProjectViewController.swift in Sources */,
 				28EF6A321BC38E7100F8E725 /* StringExtenssion.swift in Sources */,
-				289556DD1BC71BDC00FA08E8 /* Open.swift in Sources */,
 				28E57AC91BEDF00A00B803E6 /* InlinedAlertView.swift in Sources */,
 				6D1E1AAF1BBEB94E00BE29EE /* StreamReader.swift in Sources */,
 				28EF6A371BC45A6D00F8E725 /* StringExtensionTests.swift in Sources */,
@@ -1473,6 +1464,7 @@
 				28EF6A351BC44D4900F8E725 /* typedefs.swift in Sources */,
 				6D1E1AA91BBE939400BE29EE /* LocalizationFile.swift in Sources */,
 				289556D61BC717DA00FA08E8 /* Search.swift in Sources */,
+				28E57ACE1BEEBA1700B803E6 /* InlinedAlertViewTests.swift in Sources */,
 				28DB60871BC9A43A003FDE96 /* ConsoleOutput.swift in Sources */,
 				28E57AB31BE49F7C00B803E6 /* History.swift in Sources */,
 				28EF6A3C1BC4613B00F8E725 /* TermsTableDataSource.swift in Sources */,

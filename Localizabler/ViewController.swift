@@ -159,6 +159,19 @@ class ViewController: NSViewController {
 		termsTableView?.reloadData()
 	}
 	
+	func createNewLine() {
+		let term = "term \(random())"
+		let line = (term: term, translation: "", isComment: false)
+		for (_, localizationFile) in files {
+			localizationFile.addLine(line)
+		}
+		// Insert it to the datasource
+		termsTableDataSource?.data.append((value: line.term, newValue: nil, translationChanged: false))
+		termsTableView?.beginUpdates()
+		termsTableView?.insertRowsAtIndexes(NSIndexSet(index: termsTableDataSource!.data.count-1), withAnimation: NSTableViewAnimationOptions.EffectFade)
+		termsTableView?.endUpdates()
+	}
+	
 	
 	// MARK: Actions
 	
@@ -166,6 +179,14 @@ class ViewController: NSViewController {
 		
 		let file = files[sender.titleOfSelectedItem!]
 		showTerms(file!.allTerms())
+	}
+	
+	@IBAction func addButtonClicked(sender: NSButton) {
+		createNewLine()
+	}
+	
+	@IBAction func removeButtonClicked(sender: NSButton) {
+		
 	}
 	
 	func search(searchString: String) {

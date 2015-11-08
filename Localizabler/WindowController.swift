@@ -82,14 +82,6 @@ class WindowController: NSWindowController {
 		}
 	}
 	
-	@IBAction func addButtonClicked(sender: NSButton) {
-		
-	}
-	
-	@IBAction func removeButtonClicked(sender: NSButton) {
-		
-	}
-	
 	func browseFiles() {
 		
 		let panel = NSOpenPanel()

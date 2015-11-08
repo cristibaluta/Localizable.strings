@@ -40,18 +40,7 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 		self.parseContent(content)
 	}
 	
-	func allLines() -> [Line] {
-		return lines
-	}
-	
-    func allTerms() -> [String] {
-        return Array(terms.keys)
-    }
-    
-    func translationForTerm(term: String) -> String {
-        return translations[term] ?? ""
-    }
-	
+	// Set
 	func updateTerm(term: String, newValue: String) {
 		terms[term] = newValue
 		hasChanges = true
@@ -61,6 +50,25 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
         translations[term] = newValue
 		hasChanges = true
     }
+	
+	func addLine(line: Line) {
+		lines.append(line)
+		terms[line.term] = line.term
+		translations[line.term] = line.translation
+	}
+	
+	// Get
+	func allLines() -> [Line] {
+		return lines
+	}
+	
+	func allTerms() -> [String] {
+		return Array(terms.keys)
+	}
+	
+	func translationForTerm(term: String) -> String {
+		return translations[term] ?? ""
+	}
 	
 	func content() -> String {
 		
@@ -98,10 +106,7 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 	@inline(__always) func parseLine(lineContent: String) {
 		
 		if isValidLine(lineContent) {
-			let line = splitLine(lineContent)
-			lines.append(line)
-			terms[line.term] = line.term
-			translations[line.term] = line.translation
+			addLine(splitLine(lineContent))
 		} else {
 			lines.append((term: "", translation: lineContent, isComment: true))
 		}
