@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import Localizabler
 
 class LastProjectTests: XCTestCase {
     

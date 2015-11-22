@@ -14,8 +14,7 @@ class TermsTableDataSource: NSObject {
 	var onDidSelectRow: ((rowNumber: Int, key: TermData) -> Void)?
 	var termDidChange: ((TermData) -> Void)?
 	
-	init(tableView: NSTableView) {
-		
+	init (tableView: NSTableView) {
 		super.init()
 		
 		tableView.setDataSource(self)
@@ -25,11 +24,11 @@ class TermsTableDataSource: NSObject {
 
 extension TermsTableDataSource: NSTableViewDataSource, NSTableViewDelegate {
 	
-	func numberOfRowsInTableView(aTableView: NSTableView) -> Int {
+	func numberOfRowsInTableView (aTableView: NSTableView) -> Int {
 		return data.count
 	}
 	
-	func tableView(tableView: NSTableView,
+	func tableView (tableView: NSTableView,
 		objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
 			
 			let theData: TermData = data[row]
@@ -48,7 +47,7 @@ extension TermsTableDataSource: NSTableViewDataSource, NSTableViewDelegate {
 			return nil
 	}
 	
-	func tableViewSelectionDidChange(aNotification: NSNotification) {
+	func tableViewSelectionDidChange (aNotification: NSNotification) {
 		
 		if let rowView: AnyObject = aNotification.object {
 			if rowView.selectedRow >= 0 {
@@ -57,11 +56,11 @@ extension TermsTableDataSource: NSTableViewDataSource, NSTableViewDelegate {
 		}
 	}
 	
-	func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+	func tableView (tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 		return 20
 	}
 	
-	func tableView(tableView: NSTableView, setObjectValue object: AnyObject?, forTableColumn tableColumn: NSTableColumn?, row: Int) {
+	func tableView (tableView: NSTableView, setObjectValue object: AnyObject?, forTableColumn tableColumn: NSTableColumn?, row: Int) {
 		data[row].newValue = object as? String
 		termDidChange?(data[row])
 	}

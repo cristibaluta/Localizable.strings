@@ -10,17 +10,17 @@ import Foundation
 
 class SearchAndroidLocalizations: NSObject, SearchLocalizations {
 
-	func searchInDirectory(dir: NSURL, result: [String: NSURL] -> Void) {
+	func searchInDirectory (dir: NSURL, result: [String: NSURL] -> Void) {
 		
-		let fileManager = NSFileManager.defaultManager()
+//		let fileManager = NSFileManager.defaultManager()
 		do {
-			let files = try fileManager.contentsOfDirectoryAtURL(dir, includingPropertiesForKeys: nil,
-				options: NSDirectoryEnumerationOptions.SkipsSubdirectoryDescendants)
-			var resultDict = [String: NSURL]()
+//			let files = try fileManager.contentsOfDirectoryAtURL(dir, includingPropertiesForKeys: nil,
+//				options: NSDirectoryEnumerationOptions.SkipsSubdirectoryDescendants)
+//			var resultDict = [String: NSURL]()
 			//...
-			result(resultDict)
+//			result(resultDict)
 		} catch {
-			RCLogO("some error while reading files")
+//			RCLogO("some error while reading files")
 		}
 	}
 }

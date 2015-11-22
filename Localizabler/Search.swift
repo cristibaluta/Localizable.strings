@@ -13,12 +13,12 @@ class Search: NSObject {
 	let kMinCharactersToSearch = 2
 	var files: [String: LocalizationFile]?
 	
-	required init(files: [String: LocalizationFile]) {
+	required init (files: [String: LocalizationFile]) {
 		super.init()
 		self.files = files
 	}
 	
-	func searchInTerms(searchString: String) -> [TermData] {
+	func searchInTerms (searchString: String) -> [TermData] {
 		
 		let base = BaseLanguage(files: files!).get()
 		var matchedTerms = [TermData]()
@@ -33,7 +33,7 @@ class Search: NSObject {
 		return matchedTerms
 	}
 	
-	func searchInTranslations(searchString: String) -> [TranslationData] {
+	func searchInTranslations (searchString: String) -> [TranslationData] {
 		
 		var matchedTranslations = [TranslationData]()
 		

@@ -15,8 +15,7 @@ class TranslationsTableDataSource: NSObject {
 	var data = [TranslationData]()
 	var translationDidChange: ((TranslationData) -> Void)?
 	
-	init(tableView: NSTableView) {
-		
+	init (tableView: NSTableView) {
 		super.init()
 		
 		tableView.setDataSource(self)
@@ -33,22 +32,22 @@ class TranslationsTableDataSource: NSObject {
 
 extension TranslationsTableDataSource: NSTableViewDataSource, NSTableViewDelegate {
 	
-	func numberOfRowsInTableView(aTableView: NSTableView) -> Int {
+	func numberOfRowsInTableView (aTableView: NSTableView) -> Int {
 		return data.count
 	}
 	
-	func tableViewSelectionDidChange(aNotification: NSNotification) {
+	func tableViewSelectionDidChange (aNotification: NSNotification) {
 		
 		if let _: AnyObject = aNotification.object {
 			
 		}
 	}
 	
-	func tableView(tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+	func tableView (tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 		return kCellHeight
 	}
 	
-	func tableView(tableView: NSTableView,
+	func tableView (tableView: NSTableView,
 		viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
 			
 			let translationData: TranslationData = data[row]

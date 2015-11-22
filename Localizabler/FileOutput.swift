@@ -12,12 +12,12 @@ class FileOutput: NSObject, Output {
 
 	private var url: NSURL?
 	
-	required init(url: NSURL) {
+	required init (url: NSURL) {
 		super.init()
 		self.url = url
 	}
 	
-	func write(string: String) {
+	func write (string: String) {
 		do {
 			try string.writeToURL(url!, atomically: true, encoding: NSUTF8StringEncoding)
 		}

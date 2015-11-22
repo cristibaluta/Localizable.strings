@@ -12,7 +12,7 @@ class BaseLanguage: NSObject {
 
 	var files = [String: LocalizationFile]()
 	
-	required convenience init(files: [String: LocalizationFile]) {
+	required convenience init (files: [String: LocalizationFile]) {
 		self.init()
 		self.files = files
 	}

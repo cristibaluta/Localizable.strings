@@ -18,7 +18,7 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 	private let regex = try? NSRegularExpression(pattern: "^(\"|[ ]*\")([^\"]+)\"(^|[ ]*)=(^|[ ]*)\"(.*?)\"(;|;[ ]*)$",
 												 options: NSRegularExpressionOptions())
 	
-    required init(url: NSURL) throws {
+    required init (url: NSURL) throws {
 		super.init()
 		self.url = url
 		if url.path != nil {
@@ -35,23 +35,23 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 		}
     }
 	
-	required init(content: String) {
+	required init (content: String) {
 		super.init()
 		self.parseContent(content)
 	}
 	
 	// Set
-	func updateTerm(term: String, newValue: String) {
+	func updateTerm (term: String, newValue: String) {
 		terms[term] = newValue
 		hasChanges = true
 	}
     
-    func updateTranslationForTerm(term: String, newValue: String) {
+    func updateTranslationForTerm (term: String, newValue: String) {
         translations[term] = newValue
 		hasChanges = true
     }
 	
-	func addLine(line: Line) {
+	func addLine (line: Line) {
 		lines.append(line)
 		terms[line.term] = line.term
 		translations[line.term] = line.translation
@@ -66,7 +66,7 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 		return Array(terms.keys)
 	}
 	
-	func translationForTerm(term: String) -> String {
+	func translationForTerm (term: String) -> String {
 		return translations[term] ?? ""
 	}
 	
@@ -95,7 +95,7 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 	
 	// MARK: Helpers
 	
-	private func parseContent(content: String) {
+	private func parseContent (content: String) {
 		
 		let lines = content.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
 		for line in lines {
@@ -103,7 +103,7 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 		}
 	}
 	
-	@inline(__always) func parseLine(lineContent: String) {
+	@inline(__always) func parseLine (lineContent: String) {
 		
 		if isValidLine(lineContent) {
 			addLine(splitLine(lineContent))
@@ -112,12 +112,12 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 		}
 	}
 	
-	@inline(__always) func isValidLine(lineContent: String) -> Bool {
+	@inline(__always) func isValidLine (lineContent: String) -> Bool {
 		return regex!.matchesInString(lineContent, options: NSMatchingOptions(),
 			range: NSMakeRange(0, lineContent.characters.count)).count == 1
 	}
 	
-	@inline(__always) func splitLine(lineContent: String) -> Line {
+	@inline(__always) func splitLine (lineContent: String) -> Line {
 		
 		// TODO: split with regex
 		let comps = lineContent.componentsSeparatedByString("=")

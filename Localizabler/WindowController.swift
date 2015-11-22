@@ -76,7 +76,7 @@ class WindowController: NSWindowController {
 	
 	@IBAction func saveButtonClicked(sender: NSButton) {
 		
-		if Save(files: viewController.files).execute() {
+		if SaveChangesInteractor(files: viewController.files).execute() {
 			viewController.markFilesAsSaved()
 			butSave?.enabled = false
 		}

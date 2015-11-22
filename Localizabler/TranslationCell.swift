@@ -16,22 +16,22 @@ class TranslationCell: NSTableRowView {
 	
 	var translationDidChangeInCell: ((cell: TranslationCell, newValue: String) -> Void)?
 	
-	override func mouseDown(theEvent: NSEvent) {
+	override func mouseDown (theEvent: NSEvent) {
 		self.window?.makeFirstResponder(textView)
 	}
 }
 
 extension TranslationCell: NSTextFieldDelegate {
 	
-	override func controlTextDidBeginEditing(obj: NSNotification) {
+	override func controlTextDidBeginEditing (obj: NSNotification) {
 		
 	}
 	
-	override func controlTextDidChange(obj: NSNotification) {
+	override func controlTextDidChange (obj: NSNotification) {
 		self.translationDidChangeInCell?(cell: self, newValue: obj.object!.stringValue)
 	}
 	
-	override func controlTextDidEndEditing(obj: NSNotification) {
+	override func controlTextDidEndEditing (obj: NSNotification) {
 		
 	}
 }
