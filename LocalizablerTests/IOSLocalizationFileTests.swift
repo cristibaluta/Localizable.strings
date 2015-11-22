@@ -11,9 +11,10 @@ import XCTest
 
 class IOSLocalizationFileTests: XCTestCase {
 	
+	let file = try! IOSLocalizationFile(url: NSURL())
+	
     func testKeyValueSeparation() {
 		
-		let file = try! IOSLocalizationFile(url: NSURL())
 		let comps = file.splitLine("\"key1\" = \"value 1\";")
 		XCTAssert(comps.term == "key1", "Key is wrong")
 		XCTAssert(comps.translation == "value 1", "Translation is wrong")
@@ -32,17 +33,18 @@ class IOSLocalizationFileTests: XCTestCase {
 	
 	func testValidLines() {
 		
-		let file = try? IOSLocalizationFile(url: NSURL())
-		XCTAssertFalse(file!.isValidLine(""), "")
-		XCTAssertFalse(file!.isValidLine("// Comment"), "")
-		XCTAssertFalse(file!.isValidLine("\"\"=\"\""), "")
-		XCTAssertFalse(file!.isValidLine("\";"), "")
-		XCTAssertFalse(file!.isValidLine("\"\"=\"\";"), "")
-		XCTAssertTrue(file!.isValidLine("\"key\"=\"\";"), "")
-		XCTAssertTrue(file!.isValidLine("   \"key\"=\"\";"), "")
-		XCTAssertTrue(file!.isValidLine("   \"key\"=\"\";   "), "")
-		XCTAssertTrue(file!.isValidLine("\"key\" =    \"value\";"), "")
-		XCTAssertTrue(file!.isValidLine("\"key key\" =    \"value value value value \";"), "")
-		XCTAssertTrue(file!.isValidLine("\"The key \"%@\" can't %@.\" = \"The key \"%@\" can't be used because %@.\";"), "")
+		XCTAssertFalse(file.isValidLine(""), "")
+		XCTAssertFalse(file.isValidLine("// Comment"), "")
+		XCTAssertFalse(file.isValidLine("\"\"=\"\""), "Missing termination character ;")
+		XCTAssertFalse(file.isValidLine("\";"), "Missing equal is not allowed")
+		XCTAssertFalse(file.isValidLine("\"\"=\"\";"), "Missing keys are not allowed")
+		
+		XCTAssertTrue(file.isValidLine("\"key\"=\"\";"), "Missing spaces are allowed")
+		XCTAssertTrue(file.isValidLine("   \"key\"=\"\";"), "Spaces at the beginning are allowed")
+		XCTAssertTrue(file.isValidLine("   \"key\"=\"\";   "), "Spaces at the beginning and end are allowed")
+		XCTAssertTrue(file.isValidLine("\"key\" =    \"value\";"), "Spaces around = sign are allowed")
+		XCTAssertTrue(file.isValidLine("\"key key\" =    \"value value value value \";"), "")
+		XCTAssertTrue(file.isValidLine("\"The key \"%@\" can't.\" = \"The key \"%@\" can't be used <html> \"; %@.\";"),
+			"Html in the right side allowed. This includes termination character ;")
 	}
 }
