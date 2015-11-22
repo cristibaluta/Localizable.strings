@@ -113,7 +113,7 @@ class ViewController: NSViewController {
         }
 	}
     
-	func loadLocalizationFile(url: NSURL, forKey key: String) {
+	func loadLocalizationFile (url: NSURL, forKey key: String) {
 		do {
 			files[key] = try IOSLocalizationFile(url: url)
 		}
@@ -132,7 +132,7 @@ class ViewController: NSViewController {
 		showTerms(result.terms)
 	}
 	
-	func showTerms(terms: [String]) {
+	func showTerms (terms: [String]) {
 		
 		clear()
 		
@@ -175,21 +175,21 @@ class ViewController: NSViewController {
 	
 	// MARK: Actions
 	
-	@IBAction func languageDidChange(sender: NSPopUpButton) {
+	@IBAction func languageDidChange (sender: NSPopUpButton) {
 		
 		let file = files[sender.titleOfSelectedItem!]
 		showTerms(file!.allTerms())
 	}
 	
-	@IBAction func addButtonClicked(sender: NSButton) {
+	@IBAction func addButtonClicked (sender: NSButton) {
 		createNewLine()
 	}
 	
-	@IBAction func removeButtonClicked(sender: NSButton) {
+	@IBAction func removeButtonClicked (sender: NSButton) {
 		
 	}
 	
-	func search(searchString: String) {
+	func search (searchString: String) {
 		
 		termsTableView?.deselectRow(termsTableView!.selectedRow)
 		
@@ -208,12 +208,12 @@ class ViewController: NSViewController {
 	
 	// MARK: Alerts
 	
-	private func updateAlerts(message: String) {
+	private func updateAlerts (message: String) {
 		translationsAlert(message).hidden = translationsTableDataSource?.data.count > 0
 		termsAlert(message).hidden = termsTableDataSource?.data.count > 0
 	}
 	
-	private func translationsAlert(message: String) -> InlinedAlertView {
+	private func translationsAlert (message: String) -> InlinedAlertView {
 		if translationsTableAlert == nil {
 			translationsTableAlert = InlinedAlertView.instanceFromNib()
 			translationsTableView?.addSubview(translationsTableAlert!)
@@ -223,7 +223,7 @@ class ViewController: NSViewController {
 		return translationsTableAlert!
 	}
 	
-	private func termsAlert(message: String) -> InlinedAlertView {
+	private func termsAlert (message: String) -> InlinedAlertView {
 		if termsTableAlert == nil {
 			termsTableAlert = InlinedAlertView.instanceFromNib()
 			termsTableView?.addSubview(termsTableAlert!)

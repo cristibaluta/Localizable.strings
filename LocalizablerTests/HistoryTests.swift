@@ -9,7 +9,7 @@
 import XCTest
 @testable import Localizabler
 
-class LastProjectTests: XCTestCase {
+class HistoryTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -21,11 +21,15 @@ class LastProjectTests: XCTestCase {
         super.tearDown()
     }
     
-    func testLastProject() {
+    func testNoLastProject() {
 		
         let lastProject = History()
-		XCTAssert(lastProject.getLastProjectDir() == nil, "Initially should be no value")
+		XCTAssert(lastProject.getLastProjectDir() == nil, "Initially history is empty")
+	}
+	
+	func testLastProject() {
 		
+		let lastProject = History()
 		lastProject.setLastProjectDir("some/dir")
 		XCTAssert(lastProject.getLastProjectDir() == "some/dir", "Value should be some/dir")
     }

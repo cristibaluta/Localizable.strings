@@ -13,7 +13,7 @@ class SearchIOSLocalizations: NSObject, SearchLocalizations {
 	let suffix = ".lproj/"
 	let localizationFile = "Localizable.strings"
 
-    func searchInDirectory(dir: NSURL, result: [String: NSURL] -> Void) {
+    func searchInDirectory (dir: NSURL, result: [String: NSURL] -> Void) {
         
         let fileManager = NSFileManager.defaultManager()
         do {

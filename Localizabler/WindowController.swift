@@ -43,7 +43,7 @@ class WindowController: NSWindowController {
 		}
 	}
 	
-	func loadProjectAtUrl(url: NSURL) {
+	func loadProjectAtUrl (url: NSURL) {
 		pathControl?.URL = url
 		viewController.url = url
 		viewController.scanDirectoryForLocalizationFiles()
@@ -70,11 +70,11 @@ class WindowController: NSWindowController {
 	
 	// MARK: Actions
 	
-	@IBAction func browseButtonClicked(sender: NSButton) {
+	@IBAction func browseButtonClicked (sender: NSButton) {
 		browseFiles()
 	}
 	
-	@IBAction func saveButtonClicked(sender: NSButton) {
+	@IBAction func saveButtonClicked (sender: NSButton) {
 		
 		if SaveChangesInteractor(files: viewController.files).execute() {
 			viewController.markFilesAsSaved()
@@ -104,7 +104,7 @@ class WindowController: NSWindowController {
 
 extension WindowController: NSTextFieldDelegate {
 	
-	override func controlTextDidChange(obj: NSNotification) {
+	override func controlTextDidChange (obj: NSNotification) {
 		
 		guard let searchString = obj.object?.stringValue else {
 			return

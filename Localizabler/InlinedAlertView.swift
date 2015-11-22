@@ -22,6 +22,7 @@ class InlinedAlertView: NSView {
 	}
 	
 	class func instanceFromNib() -> InlinedAlertView {
+		
 		var viewArray: NSArray?
 		_ = NSBundle.mainBundle().loadNibNamed("InlinedAlertView", owner: self, topLevelObjects: &viewArray)
 		if let view = viewArray?.objectAtIndex(0) as? InlinedAlertView {

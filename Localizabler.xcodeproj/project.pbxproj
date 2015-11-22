@@ -268,7 +268,7 @@
 		28DB60901BCA4057003FDE96 /* Localizabler.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 28DB608E1BCA4057003FDE96 /* Localizabler.iconset */; };
 		28DB609D1BCDC048003FDE96 /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DB609C1BCDC048003FDE96 /* Wireframe.swift */; };
 		28E57AB21BE49F7C00B803E6 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57AB11BE49F7C00B803E6 /* History.swift */; };
-		28E57AB51BE4A0A400B803E6 /* LastProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57AB41BE4A0A400B803E6 /* LastProjectTests.swift */; };
+		28E57AB51BE4A0A400B803E6 /* HistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57AB41BE4A0A400B803E6 /* HistoryTests.swift */; };
 		28E57AB71BE4A36600B803E6 /* NoProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57AB61BE4A36600B803E6 /* NoProjectViewController.swift */; };
 		28E57ABD1BE4B09200B803E6 /* NSViewAutolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57ABC1BE4B09200B803E6 /* NSViewAutolayout.swift */; };
 		28E57AC01BE4B6E800B803E6 /* BaseLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57ABF1BE4B6E800B803E6 /* BaseLanguage.swift */; };
@@ -302,7 +302,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		28778A621BBF1DBB003E4880 /* IOSLocalizationFileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOSLocalizationFileTests.swift; sourceTree = "<group>"; };
+		28778A621BBF1DBB003E4880 /* IOSLocalizationFileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IOSLocalizationFileTests.swift; path = LocalizablerTests/IOSLocalizationFileTests.swift; sourceTree = SOURCE_ROOT; };
 		289556CB1BC61A9600FA08E8 /* RCLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCLog.swift; sourceTree = "<group>"; };
 		289556CE1BC6365000FA08E8 /* TranslationsTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationsTableDataSource.swift; sourceTree = "<group>"; };
 		289556D41BC717DA00FA08E8 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
@@ -555,25 +555,25 @@
 		289557DB1BC8C07700FA08E8 /* Zimbabwe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Zimbabwe.png; sourceTree = "<group>"; };
 		289557DC1BC8C07700FA08E8 /* ReadMe.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = ReadMe.rtf; sourceTree = "<group>"; };
 		289558D11BC8C44100FA08E8 /* CountryName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryName.swift; sourceTree = "<group>"; };
-		289558D41BC8C57D00FA08E8 /* CountriesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountriesTests.swift; sourceTree = "<group>"; };
+		289558D41BC8C57D00FA08E8 /* CountriesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CountriesTests.swift; path = LocalizablerTests/CountriesTests.swift; sourceTree = SOURCE_ROOT; };
 		28DB607F1BC9A314003FDE96 /* Output.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Output.swift; sourceTree = "<group>"; };
 		28DB60821BC9A392003FDE96 /* FileOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileOutput.swift; sourceTree = "<group>"; };
 		28DB60851BC9A43A003FDE96 /* ConsoleOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleOutput.swift; sourceTree = "<group>"; };
 		28DB608E1BCA4057003FDE96 /* Localizabler.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = Localizabler.iconset; sourceTree = "<group>"; };
 		28DB609C1BCDC048003FDE96 /* Wireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wireframe.swift; sourceTree = "<group>"; };
 		28E57AB11BE49F7C00B803E6 /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
-		28E57AB41BE4A0A400B803E6 /* LastProjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastProjectTests.swift; sourceTree = "<group>"; };
+		28E57AB41BE4A0A400B803E6 /* HistoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryTests.swift; path = LocalizablerTests/HistoryTests.swift; sourceTree = SOURCE_ROOT; };
 		28E57AB61BE4A36600B803E6 /* NoProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoProjectViewController.swift; sourceTree = "<group>"; };
 		28E57ABC1BE4B09200B803E6 /* NSViewAutolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSViewAutolayout.swift; sourceTree = "<group>"; };
 		28E57ABF1BE4B6E800B803E6 /* BaseLanguage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLanguage.swift; sourceTree = "<group>"; };
 		28E57AC41BEDEC8100B803E6 /* SearchAndroidLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAndroidLocalizations.swift; sourceTree = "<group>"; };
 		28E57AC71BEDF00A00B803E6 /* InlinedAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InlinedAlertView.swift; sourceTree = "<group>"; };
 		28E57ACA1BEDF01F00B803E6 /* InlinedAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InlinedAlertView.xib; sourceTree = "<group>"; };
-		28E57ACD1BEEBA1700B803E6 /* InlinedAlertViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InlinedAlertViewTests.swift; sourceTree = "<group>"; };
+		28E57ACD1BEEBA1700B803E6 /* InlinedAlertViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InlinedAlertViewTests.swift; path = LocalizablerTests/InlinedAlertViewTests.swift; sourceTree = SOURCE_ROOT; };
 		28EF6A2D1BC38A4700F8E725 /* test.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = test.strings; sourceTree = "<group>"; };
 		28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtenssion.swift; sourceTree = "<group>"; };
 		28EF6A331BC44D4900F8E725 /* typedefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = typedefs.swift; sourceTree = "<group>"; };
-		28EF6A361BC45A6D00F8E725 /* StringExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
+		28EF6A361BC45A6D00F8E725 /* StringExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensionTests.swift; path = LocalizablerTests/StringExtensionTests.swift; sourceTree = SOURCE_ROOT; };
 		28EF6A3A1BC4613B00F8E725 /* TermsTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsTableDataSource.swift; sourceTree = "<group>"; };
 		6D1E1A721BBD5C6C00BE29EE /* Localizabler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Localizabler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D1E1A751BBD5C6C00BE29EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -643,12 +643,11 @@
 				289556DE1BC8389D00FA08E8 /* WindowController.swift */,
 				6D1E1A771BBD5C6C00BE29EE /* ViewController.swift */,
 				28E57AB61BE4A36600B803E6 /* NoProjectViewController.swift */,
-				28EF6A3A1BC4613B00F8E725 /* TermsTableDataSource.swift */,
-				289556CE1BC6365000FA08E8 /* TranslationsTableDataSource.swift */,
-				289556E11BC8BF4D00FA08E8 /* TranslationCell.swift */,
-				289556E41BC8BF6A00FA08E8 /* TranslationCell.xib */,
+				28C02FA31C01F92200B65478 /* Terms table */,
+				28C02FA21C01F90900B65478 /* Translations table */,
 				28E57AC71BEDF00A00B803E6 /* InlinedAlertView.swift */,
 				28E57ACA1BEDF01F00B803E6 /* InlinedAlertView.xib */,
+				28E57ACD1BEEBA1700B803E6 /* InlinedAlertViewTests.swift */,
 				28DB608E1BCA4057003FDE96 /* Localizabler.iconset */,
 				6D1E1A791BBD5C6C00BE29EE /* Assets.xcassets */,
 				6D1E1A7E1BBD5C6C00BE29EE /* Info.plist */,
@@ -949,14 +948,34 @@
 			children = (
 				6D1E1AA71BBE939400BE29EE /* LocalizationFile.swift */,
 				6D1E1AAA1BBE93AB00BE29EE /* IOSLocalizationFile.swift */,
+				28778A621BBF1DBB003E4880 /* IOSLocalizationFileTests.swift */,
 			);
 			name = "Localization file";
+			sourceTree = "<group>";
+		};
+		28C02FA21C01F90900B65478 /* Translations table */ = {
+			isa = PBXGroup;
+			children = (
+				289556CE1BC6365000FA08E8 /* TranslationsTableDataSource.swift */,
+				289556E11BC8BF4D00FA08E8 /* TranslationCell.swift */,
+				289556E41BC8BF6A00FA08E8 /* TranslationCell.xib */,
+			);
+			name = "Translations table";
+			sourceTree = "<group>";
+		};
+		28C02FA31C01F92200B65478 /* Terms table */ = {
+			isa = PBXGroup;
+			children = (
+				28EF6A3A1BC4613B00F8E725 /* TermsTableDataSource.swift */,
+			);
+			name = "Terms table";
 			sourceTree = "<group>";
 		};
 		28EF6A2F1BC38E3200F8E725 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */,
+				28EF6A361BC45A6D00F8E725 /* StringExtensionTests.swift */,
 				28E57ABC1BE4B09200B803E6 /* NSViewAutolayout.swift */,
 			);
 			name = Extensions;
@@ -994,11 +1013,6 @@
 		6D1E1A861BBD5C6C00BE29EE /* LocalizablerTests */ = {
 			isa = PBXGroup;
 			children = (
-				28EF6A361BC45A6D00F8E725 /* StringExtensionTests.swift */,
-				28778A621BBF1DBB003E4880 /* IOSLocalizationFileTests.swift */,
-				289558D41BC8C57D00FA08E8 /* CountriesTests.swift */,
-				28E57AB41BE4A0A400B803E6 /* LastProjectTests.swift */,
-				28E57ACD1BEEBA1700B803E6 /* InlinedAlertViewTests.swift */,
 				28EF6A2D1BC38A4700F8E725 /* test.strings */,
 				6D1E1A891BBD5C6C00BE29EE /* Info.plist */,
 			);
@@ -1012,8 +1026,10 @@
 				28C02FA11C01F1F100B65478 /* Localization file */,
 				289556D71BC7189F00FA08E8 /* SaveChangesInteractor.swift */,
 				28E57AB11BE49F7C00B803E6 /* History.swift */,
+				28E57AB41BE4A0A400B803E6 /* HistoryTests.swift */,
 				28E57ABF1BE4B6E800B803E6 /* BaseLanguage.swift */,
 				289558D11BC8C44100FA08E8 /* CountryName.swift */,
+				289558D41BC8C57D00FA08E8 /* CountriesTests.swift */,
 			);
 			name = UseCases;
 			sourceTree = "<group>";
@@ -1412,7 +1428,7 @@
 				28778A631BBF1DBB003E4880 /* IOSLocalizationFileTests.swift in Sources */,
 				289558D51BC8C57D00FA08E8 /* CountriesTests.swift in Sources */,
 				28E57ACE1BEEBA1700B803E6 /* InlinedAlertViewTests.swift in Sources */,
-				28E57AB51BE4A0A400B803E6 /* LastProjectTests.swift in Sources */,
+				28E57AB51BE4A0A400B803E6 /* HistoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

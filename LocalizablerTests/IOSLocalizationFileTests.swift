@@ -12,6 +12,7 @@ import XCTest
 class IOSLocalizationFileTests: XCTestCase {
 	
     func testKeyValueSeparation() {
+		
 		let file = try! IOSLocalizationFile(url: NSURL())
 		let comps = file.splitLine("\"key1\" = \"value 1\";")
 		XCTAssert(comps.term == "key1", "Key is wrong")
@@ -19,6 +20,7 @@ class IOSLocalizationFileTests: XCTestCase {
     }
 	
 	func testKeysExtraction() {
+		
 		let url = NSBundle(forClass: self.dynamicType).URLForResource("test", withExtension: "strings")
 		let file = try! IOSLocalizationFile(url: url!)
 		XCTAssert(file.allLines().count == 7, "Wrong number of lines, check parsing")
@@ -29,6 +31,7 @@ class IOSLocalizationFileTests: XCTestCase {
 	}
 	
 	func testValidLines() {
+		
 		let file = try? IOSLocalizationFile(url: NSURL())
 		XCTAssertFalse(file!.isValidLine(""), "")
 		XCTAssertFalse(file!.isValidLine("// Comment"), "")
@@ -40,6 +43,6 @@ class IOSLocalizationFileTests: XCTestCase {
 		XCTAssertTrue(file!.isValidLine("   \"key\"=\"\";   "), "")
 		XCTAssertTrue(file!.isValidLine("\"key\" =    \"value\";"), "")
 		XCTAssertTrue(file!.isValidLine("\"key key\" =    \"value value value value \";"), "")
-		XCTAssertTrue(file!.isValidLine("\"The key combination \"%@\" can't be used because %@.\" = \"The key combination \"%@\" can't be used because %@.\";"), "")
+		XCTAssertTrue(file!.isValidLine("\"The key \"%@\" can't %@.\" = \"The key \"%@\" can't be used because %@.\";"), "")
 	}
 }
