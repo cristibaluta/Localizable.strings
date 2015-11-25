@@ -281,6 +281,9 @@
 		28EF6A341BC44D4900F8E725 /* typedefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A331BC44D4900F8E725 /* typedefs.swift */; };
 		28EF6A371BC45A6D00F8E725 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A361BC45A6D00F8E725 /* StringExtensionTests.swift */; };
 		28EF6A3B1BC4613B00F8E725 /* TermsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A3A1BC4613B00F8E725 /* TermsTableDataSource.swift */; };
+		56F890161C061FED00DC3807 /* LocalizablerXcodePlugin.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = 56F890151C061FED00DC3807 /* LocalizablerXcodePlugin.xcscheme */; };
+		56F890181C061FED00DC3807 /* LocalizablerXcodePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F890171C061FED00DC3807 /* LocalizablerXcodePlugin.swift */; };
+		56F8901A1C061FED00DC3807 /* NSObject_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F890191C061FED00DC3807 /* NSObject_Extension.swift */; };
 		6D1E1A761BBD5C6C00BE29EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1A751BBD5C6C00BE29EE /* AppDelegate.swift */; };
 		6D1E1A781BBD5C6C00BE29EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1E1A771BBD5C6C00BE29EE /* ViewController.swift */; };
 		6D1E1A7A1BBD5C6C00BE29EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D1E1A791BBD5C6C00BE29EE /* Assets.xcassets */; };
@@ -575,6 +578,13 @@
 		28EF6A331BC44D4900F8E725 /* typedefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = typedefs.swift; sourceTree = "<group>"; };
 		28EF6A361BC45A6D00F8E725 /* StringExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensionTests.swift; path = LocalizablerTests/StringExtensionTests.swift; sourceTree = SOURCE_ROOT; };
 		28EF6A3A1BC4613B00F8E725 /* TermsTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsTableDataSource.swift; sourceTree = "<group>"; };
+		56F88FFD1C061F8900DC3807 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		56F88FFF1C061F8900DC3807 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		56F890121C061FED00DC3807 /* LocalizablerXcodePlugin.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalizablerXcodePlugin.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		56F890151C061FED00DC3807 /* LocalizablerXcodePlugin.xcscheme */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = LocalizablerXcodePlugin.xcscheme; path = LocalizablerXcodePlugin.xcodeproj/xcshareddata/xcschemes/LocalizablerXcodePlugin.xcscheme; sourceTree = SOURCE_ROOT; };
+		56F890171C061FED00DC3807 /* LocalizablerXcodePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizablerXcodePlugin.swift; sourceTree = "<group>"; };
+		56F890191C061FED00DC3807 /* NSObject_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObject_Extension.swift; sourceTree = "<group>"; };
+		56F8901B1C061FED00DC3807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D1E1A721BBD5C6C00BE29EE /* Localizabler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Localizabler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D1E1A751BBD5C6C00BE29EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D1E1A771BBD5C6C00BE29EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -925,13 +935,6 @@
 			name = App;
 			sourceTree = "<group>";
 		};
-		28C02F9F1C01EFF800B65478 /* Xcode plugin */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Xcode plugin";
-			sourceTree = "<group>";
-		};
 		28C02FA01C01F0EB00B65478 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -981,6 +984,35 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		56F88FFC1C061F8900DC3807 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				56F88FFD1C061F8900DC3807 /* AppKit.framework */,
+				56F88FFF1C061F8900DC3807 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		56F890131C061FED00DC3807 /* Xcode Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				56F890171C061FED00DC3807 /* LocalizablerXcodePlugin.swift */,
+				56F890191C061FED00DC3807 /* NSObject_Extension.swift */,
+				56F8901B1C061FED00DC3807 /* Info.plist */,
+				56F890141C061FED00DC3807 /* Supporting Files */,
+			);
+			name = "Xcode Plugin";
+			path = LocalizablerXcodePlugin;
+			sourceTree = SOURCE_ROOT;
+		};
+		56F890141C061FED00DC3807 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				56F890151C061FED00DC3807 /* LocalizablerXcodePlugin.xcscheme */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		6D1E1A691BBD5C6B00BE29EE = {
 			isa = PBXGroup;
 			children = (
@@ -988,6 +1020,7 @@
 				6D1E1A861BBD5C6C00BE29EE /* LocalizablerTests */,
 				289556E71BC8C07600FA08E8 /* Resources */,
 				289556CA1BC61A9600FA08E8 /* Vendor */,
+				56F88FFC1C061F8900DC3807 /* Frameworks */,
 				6D1E1A731BBD5C6C00BE29EE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -997,6 +1030,7 @@
 			children = (
 				6D1E1A721BBD5C6C00BE29EE /* Localizabler.app */,
 				6D1E1A831BBD5C6C00BE29EE /* LocalizablerTests.xctest */,
+				56F890121C061FED00DC3807 /* LocalizablerXcodePlugin.xcplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1038,7 +1072,7 @@
 			isa = PBXGroup;
 			children = (
 				289556DA1BC71B8500FA08E8 /* Mac app */,
-				28C02F9F1C01EFF800B65478 /* Xcode plugin */,
+				56F890131C061FED00DC3807 /* Xcode Plugin */,
 			);
 			name = Delivery;
 			sourceTree = "<group>";
@@ -1046,6 +1080,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		56F890111C061FED00DC3807 /* LocalizablerXcodePlugin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56F8901C1C061FED00DC3807 /* Build configuration list for PBXNativeTarget "LocalizablerXcodePlugin" */;
+			buildPhases = (
+				56F8900F1C061FED00DC3807 /* Sources */,
+				56F890101C061FED00DC3807 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LocalizablerXcodePlugin;
+			productName = LocalizablerXcodePlugin;
+			productReference = 56F890121C061FED00DC3807 /* LocalizablerXcodePlugin.xcplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
 		6D1E1A711BBD5C6C00BE29EE /* Localizabler */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6D1E1A971BBD5C6C00BE29EE /* Build configuration list for PBXNativeTarget "Localizabler" */;
@@ -1087,9 +1137,13 @@
 		6D1E1A6A1BBD5C6C00BE29EE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Cristian Baluta";
 				TargetAttributes = {
+					56F890111C061FED00DC3807 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
 					6D1E1A711BBD5C6C00BE29EE = {
 						CreatedOnToolsVersion = 7.0.1;
 					};
@@ -1114,11 +1168,20 @@
 			targets = (
 				6D1E1A711BBD5C6C00BE29EE /* Localizabler */,
 				6D1E1A821BBD5C6C00BE29EE /* LocalizablerTests */,
+				56F890111C061FED00DC3807 /* LocalizablerXcodePlugin */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		56F890101C061FED00DC3807 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56F890161C061FED00DC3807 /* LocalizablerXcodePlugin.xcscheme in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6D1E1A701BBD5C6C00BE29EE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1387,6 +1450,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		56F8900F1C061FED00DC3807 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56F890181C061FED00DC3807 /* LocalizablerXcodePlugin.swift in Sources */,
+				56F8901A1C061FED00DC3807 /* NSObject_Extension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6D1E1A6E1BBD5C6C00BE29EE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1454,6 +1526,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		56F8901D1C061FED00DC3807 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = LocalizablerXcodePlugin/Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				LD_RUNPATH_SEARCH_PATHS = "$(DT_TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ralcr.LocalizablerXcodePlugin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Debug;
+		};
+		56F8901E1C061FED00DC3807 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = LocalizablerXcodePlugin/Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				LD_RUNPATH_SEARCH_PATHS = "$(DT_TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ralcr.LocalizablerXcodePlugin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Release;
+		};
 		6D1E1A951BBD5C6C00BE29EE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1587,6 +1693,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		56F8901C1C061FED00DC3807 /* Build configuration list for PBXNativeTarget "LocalizablerXcodePlugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56F8901D1C061FED00DC3807 /* Debug */,
+				56F8901E1C061FED00DC3807 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		6D1E1A6D1BBD5C6C00BE29EE /* Build configuration list for PBXProject "Localizabler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
