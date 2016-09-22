@@ -18,41 +18,41 @@ class TranslationsTableDataSource: NSObject {
 	init (tableView: NSTableView) {
 		super.init()
 		
-		tableView.setDataSource(self)
-		tableView.setDelegate(self)
+		tableView.dataSource = self
+		tableView.delegate = self
 		
 		// Translations table uses view based cells, they need to be loaded from nib and registered
-		assert(NSNib(nibNamed: kTranslationCellIdentifier, bundle: NSBundle.mainBundle()) != nil, "err")
+		assert(NSNib(nibNamed: kTranslationCellIdentifier, bundle: Bundle.main) != nil, "err")
 		
-		if let nib = NSNib(nibNamed: kTranslationCellIdentifier, bundle: NSBundle.mainBundle()) {
-			tableView.registerNib( nib, forIdentifier: kTranslationCellIdentifier)
+		if let nib = NSNib(nibNamed: kTranslationCellIdentifier, bundle: Bundle.main) {
+			tableView.register( nib, forIdentifier: kTranslationCellIdentifier)
 		}
 	}
 }
 
 extension TranslationsTableDataSource: NSTableViewDataSource, NSTableViewDelegate {
 	
-	func numberOfRowsInTableView (aTableView: NSTableView) -> Int {
+	func numberOfRows (in aTableView: NSTableView) -> Int {
 		return data.count
 	}
 	
-	func tableViewSelectionDidChange (aNotification: NSNotification) {
+	func tableViewSelectionDidChange (_ aNotification: Notification) {
 		
-		if let _: AnyObject = aNotification.object {
+		if let _: AnyObject = aNotification.object as AnyObject? {
 			
 		}
 	}
 	
-	func tableView (tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+	func tableView (_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 		return kCellHeight
 	}
 	
-	func tableView (tableView: NSTableView,
-		viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
+	func tableView (_ tableView: NSTableView,
+		viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 			
 			let translationData: TranslationData = data[row]
 			let countryName = CountryName.countryNameForLanguageCode(translationData.languageCode)
-			let cell = tableView.makeViewWithIdentifier(kTranslationCellIdentifier, owner: self) as? TranslationCell
+			let cell = tableView.make(withIdentifier: kTranslationCellIdentifier, owner: self) as? TranslationCell
 			assert(cell != nil, "Cell can't be nil, check the identifier")
 			
 			cell?.flagImage!.image = NSImage(named: countryName)

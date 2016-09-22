@@ -13,11 +13,11 @@ class History: NSObject {
 	let kLastProjectDir = "kLastProjectDir"
 	
 	func getLastProjectDir() -> String? {
-		return NSUserDefaults.standardUserDefaults().objectForKey(kLastProjectDir) as? String
+		return UserDefaults.standard.object(forKey: kLastProjectDir) as? String
 	}
 	
-	func setLastProjectDir (dir: String?) {
-		NSUserDefaults.standardUserDefaults().setObject(dir, forKey: kLastProjectDir)
-		NSUserDefaults.standardUserDefaults().synchronize()
+	func setLastProjectDir (_ dir: String?) {
+		UserDefaults.standard.set(dir, forKey: kLastProjectDir)
+		UserDefaults.standard.synchronize()
 	}
 }

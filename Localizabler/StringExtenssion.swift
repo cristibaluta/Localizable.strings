@@ -11,6 +11,6 @@ import Foundation
 extension String {
 	
 	@inline(__always) func trim() -> String {
-		return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+		return self.trimmingCharacters(in: CharacterSet.whitespaces)
 	}
 }

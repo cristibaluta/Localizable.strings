@@ -10,7 +10,7 @@ import Foundation
 
 class SearchAndroidLocalizations: NSObject, SearchLocalizations {
 
-	func searchInDirectory (dir: NSURL, result: [String: NSURL] -> Void) {
+	func searchInDirectory (_ dir: URL, result: ([String: URL]) -> Void) {
 		
 //		let fileManager = NSFileManager.defaultManager()
 		do {

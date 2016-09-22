@@ -11,25 +11,25 @@ import Cocoa
 class TermsTableDataSource: NSObject {
 	
 	var data = [TermData]()
-	var onDidSelectRow: ((rowNumber: Int, key: TermData) -> Void)?
+	var onDidSelectRow: ((_ rowNumber: Int, _ key: TermData) -> Void)?
 	var termDidChange: ((TermData) -> Void)?
 	
 	init (tableView: NSTableView) {
 		super.init()
 		
-		tableView.setDataSource(self)
-		tableView.setDelegate(self)
+		tableView.dataSource = self
+		tableView.delegate = self
 	}
 }
 
 extension TermsTableDataSource: NSTableViewDataSource, NSTableViewDelegate {
 	
-	func numberOfRowsInTableView (aTableView: NSTableView) -> Int {
+	func numberOfRows (in aTableView: NSTableView) -> Int {
 		return data.count
 	}
 	
-	func tableView (tableView: NSTableView,
-		objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
+	func tableView (_ tableView: NSTableView,
+		objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
 			
 			let theData: TermData = data[row]
 			
@@ -47,20 +47,20 @@ extension TermsTableDataSource: NSTableViewDataSource, NSTableViewDelegate {
 			return nil
 	}
 	
-	func tableViewSelectionDidChange (aNotification: NSNotification) {
+	func tableViewSelectionDidChange (_ aNotification: Notification) {
 		
-		if let rowView: AnyObject = aNotification.object {
+		if let rowView: AnyObject = aNotification.object as AnyObject? {
 			if rowView.selectedRow >= 0 {
-				onDidSelectRow?(rowNumber: rowView.selectedRow, key: self.data[rowView.selectedRow])
+				onDidSelectRow?(rowView.selectedRow, self.data[rowView.selectedRow])
 			}
 		}
 	}
 	
-	func tableView (tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+	func tableView (_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 		return 20
 	}
 	
-	func tableView (tableView: NSTableView, setObjectValue object: AnyObject?, forTableColumn tableColumn: NSTableColumn?, row: Int) {
+	func tableView (_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
 		data[row].newValue = object as? String
 		termDidChange?(data[row])
 	}

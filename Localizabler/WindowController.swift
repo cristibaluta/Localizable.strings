@@ -25,9 +25,9 @@ class WindowController: NSWindowController {
 		super.windowDidLoad()
 		
 		window?.titlebarAppearsTransparent = true
-		window?.titleVisibility = NSWindowTitleVisibility.Hidden;
+		window?.titleVisibility = NSWindowTitleVisibility.hidden;
 		window?.title = "Localizabler"
-		butSave?.enabled = false
+		butSave?.isEnabled = false
 		
 		loadLastOpenedProject()
 	}
@@ -35,7 +35,7 @@ class WindowController: NSWindowController {
 	func loadLastOpenedProject() {
 //		History().setLastProjectDir(nil)
 		if let dir = History().getLastProjectDir() {
-			if let url = NSURL(string: dir) {
+			if let url = URL(string: dir) {
 				loadProjectAtUrl(url)
 			}
 		} else {
@@ -43,13 +43,13 @@ class WindowController: NSWindowController {
 		}
 	}
 	
-	func loadProjectAtUrl (url: NSURL) {
-		pathControl?.URL = url
+	func loadProjectAtUrl (_ url: URL) {
+		pathControl?.url = url
 		viewController.url = url
 		viewController.scanDirectoryForLocalizationFiles()
 		viewController.showBaseLanguage()
 		viewController.contentDidChange = { [weak self] in
-			self?.butSave?.enabled = true
+			self?.butSave?.isEnabled = true
 		}
 	}
 	
@@ -59,26 +59,26 @@ class WindowController: NSWindowController {
 			self?.browseFiles()
 		}
 		Wireframe.presentNoProjectsController(noProjectViewController!, overController: viewController)
-		viewController.splitView?.hidden = true
+		viewController.splitView?.isHidden = true
 	}
 	
 	func removeNoProjectVC() {
 		Wireframe.removeNoProjectsController(noProjectViewController)
-		viewController.splitView?.hidden = false
+		viewController.splitView?.isHidden = false
 	}
 	
 	
 	// MARK: Actions
 	
-	@IBAction func browseButtonClicked (sender: NSButton) {
+	@IBAction func browseButtonClicked (_ sender: NSButton) {
 		browseFiles()
 	}
 	
-	@IBAction func saveButtonClicked (sender: NSButton) {
+	@IBAction func saveButtonClicked (_ sender: NSButton) {
 		
 		if SaveChangesInteractor(files: viewController.files).execute() {
 			viewController.markFilesAsSaved()
-			butSave?.enabled = false
+			butSave?.isEnabled = false
 		}
 	}
 	
@@ -88,12 +88,12 @@ class WindowController: NSWindowController {
 		panel.canChooseFiles = false
 		panel.canChooseDirectories = true
 		panel.allowsMultipleSelection = false;
-		panel.beginWithCompletionHandler { [weak self] (result) -> Void in
+		panel.begin { [weak self] (result) -> Void in
 			
 			if result == NSFileHandlingPanelOKButton {
-				if let url = panel.URLs.first {
+				if let url = panel.urls.first {
 					self?.removeNoProjectVC()
-					self?.pathControl!.URL = url
+					self?.pathControl!.url = url
 					self?.loadProjectAtUrl(url)
 					History().setLastProjectDir(url.absoluteString)
 				}
@@ -104,11 +104,12 @@ class WindowController: NSWindowController {
 
 extension WindowController: NSTextFieldDelegate {
 	
-	override func controlTextDidChange (obj: NSNotification) {
+	override func controlTextDidChange (_ obj: Notification) {
 		
-		guard let searchString = obj.object?.stringValue else {
-			return
-		}
+        guard let textField = obj.object as? NSTextField else {
+            return
+        }
+		let searchString = textField.stringValue
 		viewController.search(searchString)
 	}
 }

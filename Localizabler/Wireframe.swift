@@ -10,7 +10,7 @@ import Cocoa
 
 class Wireframe: NSObject {
 
-	class func presentNoProjectsController (childController: NSViewController, overController parentController: NSViewController) {
+	class func presentNoProjectsController (_ childController: NSViewController, overController parentController: NSViewController) {
 		
 		parentController.addChildViewController(childController)
 		parentController.view.addSubview(childController.view)
@@ -19,7 +19,7 @@ class Wireframe: NSObject {
 		childController.view.constrainToSuperviewHeight()
 	}
 	
-	class func removeNoProjectsController (controller: NSViewController?) {
+	class func removeNoProjectsController (_ controller: NSViewController?) {
 		
 		if let c = controller {
 			c.view.removeFromSuperview()

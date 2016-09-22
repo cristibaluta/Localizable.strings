@@ -10,5 +10,5 @@ import Foundation
 
 protocol SearchLocalizations {
     
-    func searchInDirectory (dir: NSURL, result: [String: NSURL] -> Void)
+    func searchInDirectory (_ dir: URL, result: ([String: URL]) -> Void)
 }

@@ -11,7 +11,7 @@ import XCTest
 
 class IOSLocalizationFileTests: XCTestCase {
 	
-	let file = try! IOSLocalizationFile(url: NSURL())
+	let file = try! IOSLocalizationFile(url: URL())
 	
     func testKeyValueSeparation() {
 		
@@ -22,7 +22,7 @@ class IOSLocalizationFileTests: XCTestCase {
 	
 	func testKeysExtraction() {
 		
-		let url = NSBundle(forClass: self.dynamicType).URLForResource("test", withExtension: "strings")
+		let url = Bundle(for: type(of: self)).url(forResource: "test", withExtension: "strings")
 		let file = try! IOSLocalizationFile(url: url!)
 		XCTAssert(file.allLines().count == 7, "Wrong number of lines, check parsing")
 		XCTAssert(file.allTerms().count == 3, "Wrong number of keys, check parsing")

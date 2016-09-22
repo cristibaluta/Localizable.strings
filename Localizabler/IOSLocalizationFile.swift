@@ -10,29 +10,27 @@ import Foundation
 
 class IOSLocalizationFile: NSObject, LocalizationFile {
 	
-	var url: NSURL?
+	var url: URL?
 	var hasChanges: Bool = false
-	private var lines = [Line]()
-	private var terms = [String: String]()
-	private var translations = [String: String]()
-	private let regex = try? NSRegularExpression(pattern: "^(\"|[ ]*\")(.+?)\"(^|[ ]*)=(^|[ ]*)\"(.*?)\"(;|;[ ]*)$",
-												 options: NSRegularExpressionOptions())
+	fileprivate var lines = [Line]()
+	fileprivate var terms = [String: String]()
+	fileprivate var translations = [String: String]()
+	fileprivate let regex = try? NSRegularExpression(pattern: "^(\"|[ ]*\")(.+?)\"(^|[ ]*)=(^|[ ]*)\"(.*?)\"(;|;[ ]*)$",
+												 options: NSRegularExpression.Options())
 	
-    required init (url: NSURL) throws {
+    required init (url: URL) throws {
 		super.init()
 		self.url = url
-		if url.path != nil {
-			if let data = NSData(contentsOfURL: url) {
-				if let fileContent = NSString(data: data, encoding: NSUTF8StringEncoding) as? String {
-					self.parseContent(fileContent)
-				}
-				else if let fileContent = NSString(data: data, encoding: NSUnicodeStringEncoding) as? String {
-					self.parseContent(fileContent)
-				}
-			} else {
-				throw(LocalizationFileError.FileNotFound(url: url))
-			}
-		}
+        if let data = try? Data(contentsOf: url) {
+            if let fileContent = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String {
+                self.parseContent(fileContent)
+            }
+            else if let fileContent = NSString(data: data, encoding: String.Encoding.unicode.rawValue) as? String {
+                self.parseContent(fileContent)
+            }
+        } else {
+            throw(LocalizationFileError.fileNotFound(url: url))
+        }
     }
 	
 	required init (content: String) {
@@ -41,17 +39,17 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 	}
 	
 	// Set
-	func updateTerm (term: String, newValue: String) {
+	func updateTerm (_ term: String, newValue: String) {
 		terms[term] = newValue
 		hasChanges = true
 	}
     
-    func updateTranslationForTerm (term: String, newValue: String) {
+    func updateTranslationForTerm (_ term: String, newValue: String) {
         translations[term] = newValue
 		hasChanges = true
     }
 	
-	func addLine (line: Line) {
+	func addLine (_ line: Line) {
 		lines.append(line)
 		terms[line.term] = line.term
 		translations[line.term] = line.translation
@@ -66,7 +64,7 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 		return Array(terms.keys)
 	}
 	
-	func translationForTerm (term: String) -> String {
+	func translationForTerm (_ term: String) -> String {
 		return translations[term] ?? ""
 	}
 	
@@ -83,7 +81,7 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 			else {
 				string += "\"\(terms[line.term]!)\" = \"\(translationForTerm(line.term))\";"
 			}
-            i++
+            i += 1
             if i < lines.count {
                 string += "\n"
             }
@@ -95,15 +93,15 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 	
 	// MARK: Helpers
 	
-	private func parseContent (content: String) {
+	fileprivate func parseContent (_ content: String) {
 		
-		let lines = content.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
+		let lines = content.components(separatedBy: CharacterSet.newlines)
 		for line in lines {
 			parseLine(line)
 		}
 	}
 	
-	@inline(__always) func parseLine (lineContent: String) {
+	@inline(__always) func parseLine (_ lineContent: String) {
 		
 		if isValidLine(lineContent) {
 			addLine(splitLine(lineContent))
@@ -112,15 +110,15 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 		}
 	}
 	
-	@inline(__always) func isValidLine (lineContent: String) -> Bool {
-		return regex!.matchesInString(lineContent, options: NSMatchingOptions(),
+	@inline(__always) func isValidLine (_ lineContent: String) -> Bool {
+		return regex!.matches(in: lineContent, options: NSRegularExpression.MatchingOptions(),
 			range: NSMakeRange(0, lineContent.characters.count)).count == 1
 	}
 	
-	@inline(__always) func splitLine (lineContent: String) -> Line {
+	@inline(__always) func splitLine (_ lineContent: String) -> Line {
 		
 		// TODO: split with regex
-		let comps = lineContent.componentsSeparatedByString("=")
+		let comps = lineContent.components(separatedBy: "=")
 		
 		return (term:			String(comps.first!.trim().characters.dropFirst().dropLast()),
 				translation:	String(comps.last!.trim().characters.dropFirst().dropLast().dropLast()),

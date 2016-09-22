@@ -13,23 +13,23 @@ class SearchIOSLocalizations: NSObject, SearchLocalizations {
 	let suffix = ".lproj/"
 	let localizationFile = "Localizable.strings"
 
-    func searchInDirectory (dir: NSURL, result: [String: NSURL] -> Void) {
+    func searchInDirectory (_ dir: URL, result: ([String: URL]) -> Void) {
         
-        let fileManager = NSFileManager.defaultManager()
+        let fileManager = FileManager.default
         do {
-            let files = try fileManager.contentsOfDirectoryAtURL(dir, includingPropertiesForKeys: nil,
-                options: NSDirectoryEnumerationOptions.SkipsSubdirectoryDescendants)
-            var resultDict = [String: NSURL]()
+            let files = try fileManager.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil,
+                options: FileManager.DirectoryEnumerationOptions.skipsSubdirectoryDescendants)
+            var resultDict = [String: URL]()
             for file in files {
                 if file.absoluteString.hasSuffix(suffix) {
-                    let comps = file.absoluteString.componentsSeparatedByString(suffix)
-                    let comps2 = comps.first!.componentsSeparatedByString("/")
-                    resultDict[comps2.last!] = file.URLByAppendingPathComponent(localizationFile)
+                    let comps = file.absoluteString.components(separatedBy: suffix)
+                    let comps2 = comps.first!.components(separatedBy: "/")
+                    resultDict[comps2.last!] = file.appendingPathComponent(localizationFile)
                 }
             }
             result(resultDict)
         } catch {
-            RCLogO("some error while reading files")
+            RCLog("some error while reading files")
         }
     }
 }

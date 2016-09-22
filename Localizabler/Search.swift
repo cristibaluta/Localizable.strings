@@ -18,12 +18,12 @@ class Search: NSObject {
 		self.files = files
 	}
 	
-	func searchInTerms (searchString: String) -> [TermData] {
+	func searchInTerms (_ searchString: String) -> [TermData] {
 		
 		let base = BaseLanguage(files: files!).get()
 		var matchedTerms = [TermData]()
 		for term in base.terms {
-			if term.lowercaseString.rangeOfString(searchString.lowercaseString) != nil ||
+			if term.lowercased().range(of: searchString.lowercased()) != nil ||
 				searchString == "" ||
 				searchString.characters.count < kMinCharactersToSearch
 			{
@@ -33,18 +33,18 @@ class Search: NSObject {
 		return matchedTerms
 	}
 	
-	func searchInTranslations (searchString: String) -> [TranslationData] {
+	func searchInTranslations (_ searchString: String) -> [TranslationData] {
 		
 		var matchedTranslations = [TranslationData]()
 		
 		guard (searchString != "" && searchString.characters.count >= kMinCharactersToSearch) else {
 			return matchedTranslations
 		}
-		let lowercaseSearchString = searchString.lowercaseString
+		let lowercaseSearchString = searchString.lowercased()
 		
 		for (lang, localizationFile) in files! {
 			for line in localizationFile.allLines() {
-				if line.translation != "" && line.translation.lowercaseString.rangeOfString(lowercaseSearchString) != nil {
+				if line.translation != "" && line.translation.lowercased().range(of: lowercaseSearchString) != nil {
 					
 					matchedTranslations.append(
 						(value: line.translation,

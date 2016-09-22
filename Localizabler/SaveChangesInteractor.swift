@@ -23,7 +23,7 @@ class SaveChangesInteractor: NSObject {
 		return true
 	}
 	
-	private func saveToDisk (files: [String: LocalizationFile]) {
+	fileprivate func saveToDisk (_ files: [String: LocalizationFile]) {
 		
 		for (_, file) in files {
 			if file.hasChanges {
@@ -33,7 +33,7 @@ class SaveChangesInteractor: NSObject {
 		}
 	}
 	
-	private func showToConsole (files: [String: LocalizationFile]) {
+	fileprivate func showToConsole (_ files: [String: LocalizationFile]) {
 		
 		for (_, file) in files {
 			if file.hasChanges {

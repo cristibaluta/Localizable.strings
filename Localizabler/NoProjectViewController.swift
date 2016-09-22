@@ -14,7 +14,7 @@ class NoProjectViewController: NSViewController {
 	
 	class func instanceFromStoryboard() -> NoProjectViewController {
 		let storyBoard = NSStoryboard(name: "Main", bundle: nil)
-		return storyBoard.instantiateControllerWithIdentifier("NoProjectViewController") as! NoProjectViewController
+		return storyBoard.instantiateController(withIdentifier: "NoProjectViewController") as! NoProjectViewController
 	}
 	
 	override func viewDidLoad() {
@@ -22,7 +22,7 @@ class NoProjectViewController: NSViewController {
 		
 	}
 	
-	@IBAction func browseButtonClicked(sender: NSButton) {
+	@IBAction func browseButtonClicked(_ sender: NSButton) {
 		browseButtonClicked?()
 	}
 }

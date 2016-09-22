@@ -11,5 +11,5 @@ import Foundation
 protocol Output {
 	
 	/// The string to be writen to the output
-	func write (string: String)
+	func write (_ string: String)
 }

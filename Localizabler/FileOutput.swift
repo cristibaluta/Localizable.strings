@@ -10,16 +10,16 @@ import Foundation
 
 class FileOutput: NSObject, Output {
 
-	private var url: NSURL?
+	fileprivate var url: URL?
 	
-	required init (url: NSURL) {
+	required init (url: URL) {
 		super.init()
 		self.url = url
 	}
 	
-	func write (string: String) {
+	func write (_ string: String) {
 		do {
-			try string.writeToURL(url!, atomically: true, encoding: NSUTF8StringEncoding)
+			try string.write(to: url!, atomically: true, encoding: String.Encoding.utf8)
 		}
 		catch let error as NSError {
 			print(error.localizedDescription)

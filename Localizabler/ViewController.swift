@@ -7,6 +7,26 @@
 //
 
 import Cocoa
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class ViewController: NSViewController {
 	
@@ -19,7 +39,7 @@ class ViewController: NSViewController {
 	var translationsTableAlert: InlinedAlertView?
 	var termsTableDataSource: TermsTableDataSource?
 	var translationsTableDataSource: TranslationsTableDataSource?
-	var url: NSURL?
+	var url: URL?
 	var files = [String: LocalizationFile]()
 	var allTerms = [TermData]()
 	var allTranslations = [TranslationData]()
@@ -29,7 +49,7 @@ class ViewController: NSViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		termsTableView?.backgroundColor = NSColor.clearColor()
+		termsTableView?.backgroundColor = NSColor.clear
 		
 		termsTableDataSource = TermsTableDataSource(tableView: termsTableView!)
 		translationsTableDataSource = TranslationsTableDataSource(tableView: translationsTableView!)
@@ -76,7 +96,7 @@ class ViewController: NSViewController {
 			}
 			
 			// A translation was changed, update the term object so it knows about the change
-			if let selectedRow = wself.termsTableView?.selectedRow where selectedRow >= 0 {
+			if let selectedRow = wself.termsTableView?.selectedRow , selectedRow >= 0 {
 				let termData = wself.termsTableDataSource?.data[selectedRow]
 				wself.termsTableDataSource?.data[selectedRow].translationChanged = true
 				
@@ -86,8 +106,8 @@ class ViewController: NSViewController {
 					file?.updateTranslationForTerm(termData!.value, newValue: newValue)
 				}
 				
-				wself.termsTableView?.reloadDataForRowIndexes(NSIndexSet(index: wself.termsTableView!.selectedRow),
-					columnIndexes: NSIndexSet(index: 0))
+				wself.termsTableView?.reloadData(forRowIndexes: IndexSet(integer: wself.termsTableView!.selectedRow),
+					columnIndexes: IndexSet(integer: 0))
 				
 				wself.contentDidChange?()
 			}
@@ -96,28 +116,28 @@ class ViewController: NSViewController {
     
     func scanDirectoryForLocalizationFiles() {
         
-		_ = SearchIOSLocalizations().searchInDirectory(url!) { [weak self] (files: [String: NSURL]) -> Void in
+		_ = SearchIOSLocalizations().searchInDirectory(url!) { [weak self] (files: [String: URL]) -> Void in
 			
 			guard let wself = self else {
 				return
 			}
 			
-            RCLogO(files)
+            RCLog(files)
 			wself.languagesPopup?.removeAllItems()
 			wself.files.removeAll()
 			
             for (key, url) in files {
 				wself.loadLocalizationFile(url, forKey: key)
-                wself.languagesPopup?.addItemWithTitle(key)
+                wself.languagesPopup?.addItem(withTitle: key)
             }
         }
 	}
     
-	func loadLocalizationFile (url: NSURL, forKey key: String) {
+	func loadLocalizationFile (_ url: URL, forKey key: String) {
 		do {
 			files[key] = try IOSLocalizationFile(url: url)
 		}
-		catch LocalizationFileError.FileNotFound(url) {
+		catch LocalizationFileError.fileNotFound(url) {
 			RCLog("Can't open file \(url)")
 		} catch {
 			RCLog("Unknown error")
@@ -128,11 +148,11 @@ class ViewController: NSViewController {
 		
 		let baseLanguage = BaseLanguage(files: files)
 		let result = baseLanguage.get()
-		languagesPopup?.selectItemWithTitle(result.language)
+		languagesPopup?.selectItem(withTitle: result.language)
 		showTerms(result.terms)
 	}
 	
-	func showTerms (terms: [String]) {
+	func showTerms (_ terms: [String]) {
 		
 		clear()
 		
@@ -160,7 +180,7 @@ class ViewController: NSViewController {
 	}
 	
 	func createNewLine() {
-		let term = "term \(random())"
+		let term = "term \(arc4random())"
 		let line = (term: term, translation: "", isComment: false)
 		for (_, localizationFile) in files {
 			localizationFile.addLine(line)
@@ -168,28 +188,28 @@ class ViewController: NSViewController {
 		// Insert it to the datasource
 		termsTableDataSource?.data.append((value: line.term, newValue: nil, translationChanged: false))
 		termsTableView?.beginUpdates()
-		termsTableView?.insertRowsAtIndexes(NSIndexSet(index: termsTableDataSource!.data.count-1), withAnimation: NSTableViewAnimationOptions.EffectFade)
+		termsTableView?.insertRows(at: IndexSet(integer: termsTableDataSource!.data.count-1), withAnimation: NSTableViewAnimationOptions.effectFade)
 		termsTableView?.endUpdates()
 	}
 	
 	
 	// MARK: Actions
 	
-	@IBAction func languageDidChange (sender: NSPopUpButton) {
+	@IBAction func languageDidChange (_ sender: NSPopUpButton) {
 		
 		let file = files[sender.titleOfSelectedItem!]
 		showTerms(file!.allTerms())
 	}
 	
-	@IBAction func addButtonClicked (sender: NSButton) {
+	@IBAction func addButtonClicked (_ sender: NSButton) {
 		createNewLine()
 	}
 	
-	@IBAction func removeButtonClicked (sender: NSButton) {
+	@IBAction func removeButtonClicked (_ sender: NSButton) {
 		
 	}
 	
-	func search (searchString: String) {
+	func search (_ searchString: String) {
 		
 		termsTableView?.deselectRow(termsTableView!.selectedRow)
 		
@@ -208,12 +228,12 @@ class ViewController: NSViewController {
 	
 	// MARK: Alerts
 	
-	private func updateAlerts (message: String) {
-		translationsAlert(message).hidden = translationsTableDataSource?.data.count > 0
-		termsAlert(message).hidden = termsTableDataSource?.data.count > 0
+	fileprivate func updateAlerts (_ message: String) {
+		translationsAlert(message).isHidden = translationsTableDataSource?.data.count > 0
+		termsAlert(message).isHidden = termsTableDataSource?.data.count > 0
 	}
 	
-	private func translationsAlert (message: String) -> InlinedAlertView {
+	fileprivate func translationsAlert (_ message: String) -> InlinedAlertView {
 		if translationsTableAlert == nil {
 			translationsTableAlert = InlinedAlertView.instanceFromNib()
 			translationsTableView?.addSubview(translationsTableAlert!)
@@ -223,7 +243,7 @@ class ViewController: NSViewController {
 		return translationsTableAlert!
 	}
 	
-	private func termsAlert (message: String) -> InlinedAlertView {
+	fileprivate func termsAlert (_ message: String) -> InlinedAlertView {
 		if termsTableAlert == nil {
 			termsTableAlert = InlinedAlertView.instanceFromNib()
 			termsTableView?.addSubview(termsTableAlert!)

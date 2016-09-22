@@ -10,7 +10,7 @@ import Foundation
 
 class ConsoleOutput: NSObject, Output {
 	
-	func write (string: String) {
+	func write (_ string: String) {
 		RCLog("File content after changes is:")
 		print(string)
 	}
