@@ -15,6 +15,7 @@ class IOSLocalizationFile: LocalizationFile {
 	fileprivate var lines = [Line]()
 	fileprivate var terms = [String: String]()
 	fileprivate var translations = [String: String]()
+    // Regex to validate a line containing term and translation
 	fileprivate let regex = try? NSRegularExpression(pattern: "^(\"|[ ]*\")(.+?)\"(^|[ ]*)=(^|[ ]*)\"(.*?)\"(;|;[ ]*)$",
 												 options: NSRegularExpression.Options())
 	
@@ -87,9 +88,9 @@ class IOSLocalizationFile: LocalizationFile {
 		
 		return string
 	}
-	
-	
-	// MARK: Helpers
+}
+
+extension IOSLocalizationFile {
 	
 	fileprivate func parseContent (_ content: String) {
 		
