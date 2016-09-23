@@ -8,12 +8,11 @@
 
 import Foundation
 
-class SaveChangesInteractor: NSObject {
+class SaveChangesInteractor {
 	
 	var files: [String: LocalizationFile]?
 	
 	required init (files: [String: LocalizationFile]) {
-		super.init()
 		self.files = files
 	}
 	
@@ -22,8 +21,11 @@ class SaveChangesInteractor: NSObject {
 		//		showToConsole(files!)
 		return true
 	}
-	
-	fileprivate func saveToDisk (_ files: [String: LocalizationFile]) {
+}
+
+extension SaveChangesInteractor {
+
+    fileprivate func saveToDisk (_ files: [String: LocalizationFile]) {
 		
 		for (_, file) in files {
 			if file.hasChanges {

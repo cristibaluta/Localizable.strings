@@ -87,7 +87,7 @@ class WindowController: NSWindowController {
 		let panel = NSOpenPanel()
 		panel.canChooseFiles = false
 		panel.canChooseDirectories = true
-		panel.allowsMultipleSelection = false;
+		panel.allowsMultipleSelection = false
 		panel.begin { [weak self] (result) -> Void in
 			
 			if result == NSFileHandlingPanelOKButton {

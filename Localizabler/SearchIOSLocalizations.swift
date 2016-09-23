@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SearchIOSLocalizations: NSObject, SearchLocalizations {
+class SearchIOSLocalizations: SearchLocalizations {
 	
 	let suffix = ".lproj/"
 	let localizationFile = "Localizable.strings"
@@ -24,6 +24,7 @@ class SearchIOSLocalizations: NSObject, SearchLocalizations {
                 if file.absoluteString.hasSuffix(suffix) {
                     let comps = file.absoluteString.components(separatedBy: suffix)
                     let comps2 = comps.first!.components(separatedBy: "/")
+                    // DOTO: Search for .strings extensions, it's name is not always Localizable.strings
                     resultDict[comps2.last!] = file.appendingPathComponent(localizationFile)
                 }
             }

@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
@@ -63,12 +64,10 @@ class ViewController: NSViewController {
 			wself.allTranslations = [TranslationData]()
 			
 			for (lang, localizationFile) in wself.files {
-				wself.allTranslations.append(
-					(value: localizationFile.translationForTerm(key.value),
-					newValue: nil,
-					languageCode: lang
-					) as TranslationData
-				)
+                let data: TranslationData = (value: localizationFile.translationForTerm(key.value),
+                                             newValue: nil,
+                                             languageCode: lang)
+				wself.allTranslations.append(data)
 			}
 			wself.translationsTableDataSource?.data = wself.allTranslations
 			wself.translationsTableView?.reloadData()
@@ -96,7 +95,7 @@ class ViewController: NSViewController {
 			}
 			
 			// A translation was changed, update the term object so it knows about the change
-			if let selectedRow = wself.termsTableView?.selectedRow , selectedRow >= 0 {
+			if let selectedRow = wself.termsTableView?.selectedRow, selectedRow >= 0 {
 				let termData = wself.termsTableDataSource?.data[selectedRow]
 				wself.termsTableDataSource?.data[selectedRow].translationChanged = true
 				

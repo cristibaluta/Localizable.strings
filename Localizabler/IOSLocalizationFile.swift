@@ -8,7 +8,7 @@
 
 import Foundation
 
-class IOSLocalizationFile: NSObject, LocalizationFile {
+class IOSLocalizationFile: LocalizationFile {
 	
 	var url: URL?
 	var hasChanges: Bool = false
@@ -19,7 +19,6 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
 												 options: NSRegularExpression.Options())
 	
     required init (url: URL) throws {
-		super.init()
 		self.url = url
         if let data = try? Data(contentsOf: url) {
             if let fileContent = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String {
@@ -34,7 +33,6 @@ class IOSLocalizationFile: NSObject, LocalizationFile {
     }
 	
 	required init (content: String) {
-		super.init()
 		self.parseContent(content)
 	}
 	

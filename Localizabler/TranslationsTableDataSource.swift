@@ -53,7 +53,7 @@ extension TranslationsTableDataSource: NSTableViewDataSource, NSTableViewDelegat
 			let translationData: TranslationData = data[row]
 			let countryName = CountryName.countryNameForLanguageCode(translationData.languageCode)
 			let cell = tableView.make(withIdentifier: kTranslationCellIdentifier, owner: self) as? TranslationCell
-			assert(cell != nil, "Cell can't be nil, check the identifier")
+			assert(cell != nil, "Cell can't be nil, check TranslationCell for identifier")
 			
 			cell?.flagImage!.image = NSImage(named: countryName)
 			cell?.countryName?.stringValue = "\(translationData.languageCode)\n\(countryName)"

@@ -22,7 +22,7 @@ class NoProjectViewController: NSViewController {
 		
 	}
 	
-	@IBAction func browseButtonClicked(_ sender: NSButton) {
+	@IBAction func browseButtonClicked (_ sender: NSButton) {
 		browseButtonClicked?()
 	}
 }

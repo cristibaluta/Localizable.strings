@@ -8,13 +8,12 @@
 
 import Foundation
 
-class Search: NSObject {
+class Search {
 	
 	let kMinCharactersToSearch = 2
 	var files: [String: LocalizationFile]?
 	
 	required init (files: [String: LocalizationFile]) {
-		super.init()
 		self.files = files
 	}
 	
@@ -46,12 +45,8 @@ class Search: NSObject {
 			for line in localizationFile.allLines() {
 				if line.translation != "" && line.translation.lowercased().range(of: lowercaseSearchString) != nil {
 					
-					matchedTranslations.append(
-						(value: line.translation,
-						newValue: nil,
-						languageCode: lang
-						) as TranslationData
-					)
+                    let data: TranslationData = (value: line.translation, newValue: nil, languageCode: lang)
+					matchedTranslations.append(data)
 				}
 			}
 		}

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BaseLanguage: NSObject {
+class BaseLanguage {
 
 	var files = [String: LocalizationFile]()
 	

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CountryName: NSObject {
+class CountryName {
 	
 	class func countryNameForLanguageCode (_ localeIdentifier: String) -> String {
 		

@@ -8,16 +8,16 @@
 
 import Foundation
 
-class History: NSObject {
+class History {
 	
-	let kLastProjectDir = "kLastProjectDir"
+	let lastProjectDir = "LastProjectDir"
 	
 	func getLastProjectDir() -> String? {
-		return UserDefaults.standard.object(forKey: kLastProjectDir) as? String
+		return UserDefaults.standard.object(forKey: lastProjectDir) as? String
 	}
 	
 	func setLastProjectDir (_ dir: String?) {
-		UserDefaults.standard.set(dir, forKey: kLastProjectDir)
+		UserDefaults.standard.set(dir, forKey: lastProjectDir)
 		UserDefaults.standard.synchronize()
 	}
 }

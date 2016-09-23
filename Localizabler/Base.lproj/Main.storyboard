@@ -685,7 +685,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="YYh-vz-fGT"/>
                                 </constraints>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Open your first project and start localizing! Point us to the directory where localizations can be found." id="f2D-yt-Li2">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Open your first project and start localizing! Point us to the directory where .lproj subdirectories can be found." id="f2D-yt-Li2">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

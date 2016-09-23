@@ -8,12 +8,11 @@
 
 import Foundation
 
-class FileOutput: NSObject, Output {
+class FileOutput: Output {
 
 	fileprivate var url: URL?
 	
 	required init (url: URL) {
-		super.init()
 		self.url = url
 	}
 	

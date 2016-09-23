@@ -8,19 +8,19 @@
 
 import Foundation
 
-class SearchAndroidLocalizations: NSObject, SearchLocalizations {
+class SearchAndroidLocalizations: SearchLocalizations {
 
 	func searchInDirectory (_ dir: URL, result: ([String: URL]) -> Void) {
 		
 //		let fileManager = NSFileManager.defaultManager()
-		do {
+//		do {
 //			let files = try fileManager.contentsOfDirectoryAtURL(dir, includingPropertiesForKeys: nil,
 //				options: NSDirectoryEnumerationOptions.SkipsSubdirectoryDescendants)
 //			var resultDict = [String: NSURL]()
 			//...
 //			result(resultDict)
-		} catch {
+//		} catch {
 //			RCLogO("some error while reading files")
-		}
+//		}
 	}
 }
