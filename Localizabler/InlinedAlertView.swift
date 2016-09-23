@@ -23,11 +23,11 @@ class InlinedAlertView: NSView {
 	
 	class func instanceFromNib() -> InlinedAlertView {
 		
-		var viewArray: NSArray?
-		_ = Bundle.main.loadNibNamed("InlinedAlertView", owner: self, topLevelObjects: &viewArray!)
-		if let view = viewArray?.object(at: 0) as? InlinedAlertView {
+		var viewArray: NSArray = []
+		_ = Bundle.main.loadNibNamed("InlinedAlertView", owner: self, topLevelObjects: &viewArray)
+		if let view = viewArray[0] as? InlinedAlertView {
 			return view
-		} else if let view = viewArray?.object(at: 1) as? InlinedAlertView {
+		} else if let view = viewArray[1] as? InlinedAlertView {
 			return view
 		}
 		return InlinedAlertView()
