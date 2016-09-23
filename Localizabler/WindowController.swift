@@ -33,7 +33,7 @@ class WindowController: NSWindowController {
 	}
 	
 	func loadLastOpenedProject() {
-//		History().setLastProjectDir(nil)
+		History().setLastProjectDir(nil)
 		if let dir = History().getLastProjectDir() {
 			if let url = URL(string: dir) {
 				loadProjectAtUrl(url)

@@ -328,7 +328,7 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Localizabler" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-43.5" y="-27"/>
+            <point key="canvasLocation" x="-22" y="-80"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -362,12 +362,12 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="EA9A38BE-2E2D-49DC-BF7B-47523AC57874" label="Custom View" paletteLabel="Custom View" id="LA9-IZ-Gv5">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="82" height="32"/>
+                                    <size key="minSize" width="63" height="32"/>
                                     <size key="maxSize" width="99" height="43"/>
                                     <button key="view" verticalHuggingPriority="750" id="OYt-O5-x0O">
-                                        <rect key="frame" x="0.0" y="14" width="99" height="43"/>
+                                        <rect key="frame" x="7" y="14" width="63" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="push" title="Browse" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Dcy-dc-rVb">
+                                        <buttonCell key="cell" type="push" title="Open" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Dcy-dc-rVb">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -392,10 +392,10 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="88928E9E-9178-4C01-9DF2-F3A956DE3526" label="Custom View" paletteLabel="Custom View" id="Jos-Mb-0Uu">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="50" height="25"/>
+                                    <size key="minSize" width="41" height="25"/>
                                     <size key="maxSize" width="127" height="25"/>
                                     <button key="view" verticalHuggingPriority="750" id="I82-Qs-9zS">
-                                        <rect key="frame" x="0.0" y="14" width="127" height="25"/>
+                                        <rect key="frame" x="13" y="14" width="51" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="roundTextured" title="Save" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uIN-aK-8VQ">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -667,7 +667,11 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1r1-KA-gZL">
-                                <rect key="frame" x="202" y="77" width="47" height="25"/>
+                                <rect key="frame" x="194" y="77" width="62" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="3Am-42-TFt"/>
+                                    <constraint firstAttribute="width" constant="62" id="Shu-LP-BUD"/>
+                                </constraints>
                                 <buttonCell key="cell" type="roundTextured" title="Open" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="njs-5Y-8El">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
