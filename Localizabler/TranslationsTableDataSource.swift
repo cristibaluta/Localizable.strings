@@ -51,12 +51,12 @@ extension TranslationsTableDataSource: NSTableViewDataSource, NSTableViewDelegat
 		viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 			
 			let translationData: TranslationData = data[row]
-			let countryName = CountryName.countryNameForLanguageCode(translationData.languageCode)
+			let localeData = CountryName.fromLanguageCode(translationData.languageCode)
 			let cell = tableView.make(withIdentifier: kTranslationCellIdentifier, owner: self) as? TranslationCell
 			assert(cell != nil, "Cell can't be nil, check TranslationCell for identifier")
 			
-			cell?.flagImage!.image = NSImage(named: countryName)
-			cell?.countryName?.stringValue = "\(translationData.languageCode)\n\(countryName)"
+			cell?.flagImage!.image = NSImage(named: localeData.countryName)
+			cell?.countryName?.stringValue = "\(translationData.languageCode)\n\(localeData.languageName)\n\(localeData.countryName)"
 			cell?.textView?.stringValue = translationData.value
 			
 			cell?.translationDidChangeInCell = { [weak self] (cell: TranslationCell, newValue: String) in

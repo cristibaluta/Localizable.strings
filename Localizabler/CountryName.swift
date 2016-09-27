@@ -10,31 +10,14 @@ import Foundation
 
 class CountryName {
 	
-	class func countryNameForLanguageCode (_ localeIdentifier: String) -> String {
+    class func fromLanguageCode (_ languageCode: String) -> (languageName: String, countryName: String) {
 		
 		// init an english NSLocale to get the english name of all NSLocale-Objects
-		let englishLocale : Locale = Locale.init(identifier :  "en_US")
+		let englishLocale = Locale.init(identifier :  "en_US")
 		
-		let theEnglishName = (englishLocale as NSLocale).displayName(forKey: NSLocale.Key.identifier, value: localeIdentifier)
-		
-//		let locale = NSLocale(localeIdentifier: localeIdentifier)
-//		let displayName = locale.displayNameForKey(NSLocaleIdentifier, value: "en_US")
-//		RCLog(displayName)
-//		
-//		let localeDisplayName = locale.displayNameForKey(NSLocaleIdentifier, value: localeIdentifier)
-//		RCLog(localeDisplayName)
-//		
-//		let currentLocale = NSLocale(localeIdentifier: localeIdentifier)
-//		let countryCode = currentLocale.objectForKey(NSLocaleCountryCode)
-//		let usLocale = NSLocale(localeIdentifier: "en_US")
-//		let country = usLocale.displayNameForKey(NSLocaleCountryCode, value: countryCode ?? "")
-//		RCLog("\(countryCode) \(country)")
-		
-//		NSLocale *locale = [NSLocale currentLocale];
-//		NSString *countryCode = [locale objectForKey: NSLocaleCountryCode];
-//		NSLocale *usLocale = [[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"] autorelease];
-//		NSString *country = [usLocale displayNameForKey: NSLocaleCountryCode value: countryCode];
-		
-		return theEnglishName ?? ""
+        let englishLanguageName = (englishLocale as NSLocale).displayName(forKey: NSLocale.Key.languageCode, value: languageCode)
+        let englishCountryName = (englishLocale as NSLocale).displayName(forKey: NSLocale.Key.countryCode, value: languageCode)
+        
+		return (languageName: englishLanguageName ?? "", countryName: englishCountryName ?? "")
 	}
 }
