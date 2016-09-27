@@ -16,8 +16,10 @@ class IOSLocalizationFile: LocalizationFile {
 	fileprivate var terms = [String: String]()
 	fileprivate var translations = [String: String]()
     // Regex to validate a line containing term and translation
-	fileprivate let regex = try? NSRegularExpression(pattern: "^(\"|[ ]*\")(.+?)\"(^|[ ]*)=(^|[ ]*)\"(.*?)\"(;|;[ ]*)$",
-												 options: NSRegularExpression.Options())
+	fileprivate let lineRegex = try? NSRegularExpression(pattern: "^(\"|[ ]*\")(.+?)\"(^|[ ]*)=(^|[ ]*)\"(.*?)\"(;|;[ ]*)$",
+	                                                     options: NSRegularExpression.Options())
+    fileprivate let separatorRegex = try? NSRegularExpression(pattern: "\"(^|[ ]*)=(^|[ ]*)\"",
+                                                              options: NSRegularExpression.Options())
 	
     required init (url: URL) throws {
 		self.url = url
@@ -110,17 +112,24 @@ extension IOSLocalizationFile {
 	}
 	
 	@inline(__always) func isValidLine (_ lineContent: String) -> Bool {
-		return regex!.matches(in: lineContent, options: NSRegularExpression.MatchingOptions(),
-			range: NSMakeRange(0, lineContent.characters.count)).count == 1
+        
+		return lineRegex!.numberOfMatches(in: lineContent,
+		                                  options: NSRegularExpression.MatchingOptions(),
+		                                  range: NSMakeRange(0, lineContent.characters.count)) == 1
 	}
 	
 	@inline(__always) func splitLine (_ lineContent: String) -> Line {
 		
-		// TODO: split with regex
-		let comps = lineContent.components(separatedBy: "=")
+		// TODO: Better splitting
+        let separator = separatorRegex!.firstMatch(in: lineContent,
+                                                   options: NSRegularExpression.MatchingOptions(),
+                                                   range: NSMakeRange(0, lineContent.characters.count))
+        let nsString = lineContent as NSString?
+        let newLineContent = nsString?.replacingCharacters(in: separator!.range, with: "::separator::")
+		let comps = newLineContent!.components(separatedBy: "::separator::")
 		
-		return (term:			String(comps.first!.trim().characters.dropFirst().dropLast()),
-				translation:	String(comps.last!.trim().characters.dropFirst().dropLast().dropLast()),
+		return (term:			String(comps.first!.trim().characters.dropFirst()),
+				translation:	String(comps.last!.trim().characters.dropLast().dropLast()),
 				isComment:		false)
 	}
 }

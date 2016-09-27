@@ -11,10 +11,10 @@ import XCTest
 
 class IOSLocalizationFileTests: XCTestCase {
 	
-	let file = try! IOSLocalizationFile(url: URL())
-	
     func testKeyValueSeparation() {
-		
+        
+        let url = Bundle(for: type(of: self)).url(forResource: "test", withExtension: "strings")
+        let file = try! IOSLocalizationFile(url: url!)
 		let comps = file.splitLine("\"key1\" = \"value 1\";")
 		XCTAssert(comps.term == "key1", "Key is wrong")
 		XCTAssert(comps.translation == "value 1", "Translation is wrong")
@@ -24,15 +24,19 @@ class IOSLocalizationFileTests: XCTestCase {
 		
 		let url = Bundle(for: type(of: self)).url(forResource: "test", withExtension: "strings")
 		let file = try! IOSLocalizationFile(url: url!)
-		XCTAssert(file.allLines().count == 7, "Wrong number of lines, check parsing")
-		XCTAssert(file.allTerms().count == 3, "Wrong number of keys, check parsing")
+		XCTAssert(file.allLines().count == 9, "Wrong number of lines, check parsing")
+		XCTAssert(file.allTerms().count == 4, "Wrong number of keys, check parsing")
 		XCTAssert(file.translationForTerm("key1") == "value 1", "Wrong dictionary")
 		XCTAssert(file.translationForTerm("key2") == "value 2", "Wrong dictionary")
-		XCTAssert(file.translationForTerm("key3") == "value 3", "Wrong dictionary")
+        XCTAssert(file.translationForTerm("key3") == "value 3", "Wrong dictionary")
+        XCTAssert(file.translationForTerm("key4").hasPrefix("<html><head>"), "Splitting of line failed")
+        XCTAssert(file.translationForTerm("key4").hasSuffix("</body></html>"), "Splitting of line failed")
 	}
 	
 	func testValidLines() {
-		
+        
+        let url = Bundle(for: type(of: self)).url(forResource: "test", withExtension: "strings")
+        let file = try! IOSLocalizationFile(url: url!)
 		XCTAssertFalse(file.isValidLine(""), "")
 		XCTAssertFalse(file.isValidLine("// Comment"), "")
 		XCTAssertFalse(file.isValidLine("\"\"=\"\""), "Missing termination character ;")
