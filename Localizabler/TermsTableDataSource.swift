@@ -22,7 +22,7 @@ class TermsTableDataSource: NSObject {
 	}
 }
 
-extension TermsTableDataSource: NSTableViewDataSource, NSTableViewDelegate {
+extension TermsTableDataSource: NSTableViewDataSource {
 	
 	func numberOfRows (in aTableView: NSTableView) -> Int {
 		return data.count
@@ -46,6 +46,14 @@ extension TermsTableDataSource: NSTableViewDataSource, NSTableViewDelegate {
 			}
 			return nil
 	}
+    
+    func tableView (_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
+        data[row].newValue = object as? String
+        termDidChange?(data[row])
+    }
+}
+
+extension TermsTableDataSource: NSTableViewDelegate {
 	
 	func tableViewSelectionDidChange (_ aNotification: Notification) {
 		
@@ -58,10 +66,5 @@ extension TermsTableDataSource: NSTableViewDataSource, NSTableViewDelegate {
 	
 	func tableView (_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 		return 20
-	}
-	
-	func tableView (_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
-		data[row].newValue = object as? String
-		termDidChange?(data[row])
 	}
 }

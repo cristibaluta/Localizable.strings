@@ -29,21 +29,21 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 }
 
 
-class ViewController: NSViewController {
+class AppViewController: NSViewController {
 	
-	@IBOutlet var languagesPopup: NSPopUpButton?
+	@IBOutlet fileprivate var languagesPopup: NSPopUpButton?
 	@IBOutlet var splitView: NSSplitView?
-	@IBOutlet var termsTableView: NSTableView?
-	@IBOutlet var translationsTableView: NSTableView?
+	@IBOutlet fileprivate var termsTableView: NSTableView?
+	@IBOutlet fileprivate var translationsTableView: NSTableView?
 	
-	var termsTableAlert: InlinedAlertView?
-	var translationsTableAlert: InlinedAlertView?
-	var termsTableDataSource: TermsTableDataSource?
-	var translationsTableDataSource: TranslationsTableDataSource?
+	fileprivate var termsTableAlert: InlinedAlertView?
+	fileprivate var translationsTableAlert: InlinedAlertView?
+	fileprivate var termsTableDataSource: TermsTableDataSource?
+	fileprivate var translationsTableDataSource: TranslationsTableDataSource?
 	var url: URL?
 	var files = [String: LocalizationFile]()
-	var allTerms = [TermData]()
-	var allTranslations = [TranslationData]()
+	fileprivate var allTerms = [TermData]()
+	fileprivate var allTranslations = [TranslationData]()
 	
 	var contentDidChange: (() -> Void)?
 	
@@ -165,31 +165,47 @@ class ViewController: NSViewController {
 		updateAlerts("No selection")
 	}
 	
-	func clear() {
+	fileprivate func clear() {
 		termsTableView?.deselectRow(termsTableView!.selectedRow)
 		translationsTableDataSource?.data = []
 		translationsTableView?.reloadData()
 	}
 	
 	func markFilesAsSaved() {
-		for i in 0...self.termsTableDataSource!.data.count-1 {
+		for i in 0..<self.termsTableDataSource!.data.count {
 			termsTableDataSource?.data[i].translationChanged = false
 		}
 		termsTableView?.reloadData()
 	}
 	
-	func createNewLine() {
+	fileprivate func createNewTerm() {
 		let term = "term \(arc4random())"
-		let line = (term: term, translation: "", isComment: false)
+        let line: Line = (term: term, translation: "", isComment: false)
 		for (_, localizationFile) in files {
 			localizationFile.addLine(line)
 		}
 		// Insert it to the datasource
-		termsTableDataSource?.data.append((value: line.term, newValue: nil, translationChanged: false))
+        let termData: TermData = (value: line.term, newValue: nil, translationChanged: false)
+		termsTableDataSource?.data.append(termData)
 		termsTableView?.beginUpdates()
-		termsTableView?.insertRows(at: IndexSet(integer: termsTableDataSource!.data.count-1), withAnimation: NSTableViewAnimationOptions.effectFade)
+		termsTableView?.insertRows(at: IndexSet(integer: termsTableDataSource!.data.count-1), withAnimation: .effectFade)
 		termsTableView?.endUpdates()
 	}
+    
+    fileprivate func removeTermAtIndex (row: Int) {
+        let term: TermData = termsTableDataSource!.data[row]
+        print(term)
+        for (_, localizationFile) in files {
+            localizationFile.removeTerm(term)
+        }
+        // Remove from the datasource
+        termsTableView?.beginUpdates()
+        termsTableView?.removeRows(at: IndexSet(integer: row), withAnimation: .effectFade)
+        termsTableView?.endUpdates()
+        termsTableDataSource?.data.remove(at: row)
+        
+        contentDidChange?()
+    }
 	
 	
 	// MARK: Actions
@@ -201,11 +217,13 @@ class ViewController: NSViewController {
 	}
 	
 	@IBAction func addButtonClicked (_ sender: NSButton) {
-		createNewLine()
+		createNewTerm()
 	}
 	
 	@IBAction func removeButtonClicked (_ sender: NSButton) {
-		
+        if let index = termsTableView?.selectedRow {
+            removeTermAtIndex(row: index)
+        }
 	}
 	
 	func search (_ searchString: String) {

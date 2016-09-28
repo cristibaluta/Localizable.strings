@@ -10,9 +10,9 @@ import Cocoa
 
 class WindowController: NSWindowController {
 	
-	var viewController: ViewController {
+	var viewController: AppViewController {
 		get {
-			return self.window!.contentViewController! as! ViewController
+			return self.window!.contentViewController! as! AppViewController
 		}
 	}
 	var noProjectViewController: NoProjectViewController?

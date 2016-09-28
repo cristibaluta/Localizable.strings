@@ -13,8 +13,8 @@ class IOSLocalizationFile: LocalizationFile {
 	var url: URL?
 	var hasChanges: Bool = false
 	fileprivate var lines = [Line]()
-	fileprivate var terms = [String: String]()
-	fileprivate var translations = [String: String]()
+	fileprivate var terms = [String: String]()// term: value
+	fileprivate var translations = [String: String]()// term: translation
     // Regex to validate a line containing term and translation
 	fileprivate let lineRegex = try? NSRegularExpression(pattern: "^(\"|[ ]*\")(.+?)\"(^|[ ]*)=(^|[ ]*)\"(.*?)\"(;|;[ ]*)$",
 	                                                     options: NSRegularExpression.Options())
@@ -53,8 +53,23 @@ class IOSLocalizationFile: LocalizationFile {
 	func addLine (_ line: Line) {
 		lines.append(line)
 		terms[line.term] = line.term
-		translations[line.term] = line.translation
+        translations[line.term] = line.translation
+        hasChanges = true
 	}
+    
+    func removeTerm(_ term: TermData) {
+        if let lineIndex = lines.index( where: { $0.term == term.value || $0.term == term.newValue } ) {
+            print(lines[lineIndex])
+            lines.remove(at: lineIndex)
+        }
+        terms.removeValue(forKey: term.value)
+        translations.removeValue(forKey: term.value)
+        if let newValue = term.newValue {
+            terms.removeValue(forKey: newValue)
+            translations.removeValue(forKey: newValue)
+        }
+        hasChanges = true
+    }
 	
 	// Get
 	func allLines() -> [Line] {

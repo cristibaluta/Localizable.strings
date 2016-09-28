@@ -429,10 +429,10 @@
             </objects>
             <point key="canvasLocation" x="335.5" y="396.5"/>
         </scene>
-        <!--View Controller-->
+        <!--App View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Localizabler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="AppViewController" customModule="Localizabler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="992" height="529"/>
                         <autoresizingMask key="autoresizingMask"/>
