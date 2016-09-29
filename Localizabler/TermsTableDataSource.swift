@@ -11,6 +11,7 @@ import Cocoa
 class TermsTableDataSource: NSObject {
 	
 	var data = [TermData]()
+    var highlightedRow = -1
 	var onDidSelectRow: ((_ rowNumber: Int, _ key: TermData) -> Void)?
 	var termDidChange: ((TermData) -> Void)?
 	
@@ -50,6 +51,25 @@ extension TermsTableDataSource: NSTableViewDataSource {
     func tableView (_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {
         data[row].newValue = object as? String
         termDidChange?(data[row])
+    }
+    
+    @objc(tableView:willDisplayCell:forTableColumn:row:)
+    func tableView(_ tableView: NSTableView, willDisplayCell cell: Any, for tableColumn: NSTableColumn?, row: Int) {
+
+        if let textFieldCell = cell as? NSTextFieldCell {
+            
+            let selectedRowIndexes = tableView.selectedRowIndexes
+            if selectedRowIndexes.contains(row) {
+//                textFieldCell.textColor = NSColor.cyan
+            } else {
+                textFieldCell.textColor = highlightedRow == row ? NSColor.blue : NSColor.black
+            }
+////                textFieldCell.setFont(NSFont.boldSystemFont(ofSize: 12))
+//            } else {
+//                textFieldCell.textColor = NSColor.black
+////                textFieldCell.setFont(NSFont.systemFont(ofSize: 12))
+//            }
+        }
     }
 }
 

@@ -33,7 +33,7 @@
                         <constraint firstAttribute="width" constant="1" id="NTy-m2-d01"/>
                     </constraints>
                 </box>
-                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JxZ-4F-Clq">
+                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JxZ-4F-Clq" customClass="TranslationTextField" customModule="Localizabler" customModuleProvider="target">
                     <rect key="frame" x="107" y="8" width="366" height="60"/>
                     <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" placeholderString="No translation yet!" id="58n-6Q-FeE">
                         <font key="font" size="18" name=".HelveticaNeueDeskInterface-Regular"/>
@@ -50,6 +50,7 @@
                 <constraint firstItem="JxZ-4F-Clq" firstAttribute="leading" secondItem="izO-OL-66T" secondAttribute="trailing" constant="8" id="2Qm-I6-bUP"/>
                 <constraint firstItem="izO-OL-66T" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="9g3-z5-ark"/>
                 <constraint firstItem="izO-OL-66T" firstAttribute="leading" secondItem="Mzp-cg-QbA" secondAttribute="trailing" constant="8" id="A1u-xq-jKM"/>
+                <constraint firstItem="izO-OL-66T" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="100" id="LqL-C2-EOL"/>
                 <constraint firstAttribute="trailing" secondItem="JxZ-4F-Clq" secondAttribute="trailing" constant="9" id="R43-0f-ep3"/>
                 <constraint firstItem="JxZ-4F-Clq" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" id="TXA-fI-rgX"/>
                 <constraint firstAttribute="bottom" secondItem="JxZ-4F-Clq" secondAttribute="bottom" constant="8" id="Ttw-mL-qS9"/>
@@ -62,7 +63,7 @@
             <connections>
                 <outlet property="countryName" destination="Mzp-cg-QbA" id="Yro-zM-zYr"/>
                 <outlet property="flagImage" destination="7Mi-lB-zbD" id="czq-nK-iEw"/>
-                <outlet property="textView" destination="JxZ-4F-Clq" id="cse-VE-jTK"/>
+                <outlet property="textField" destination="JxZ-4F-Clq" id="6CI-g0-0sx"/>
             </connections>
             <point key="canvasLocation" x="340" y="225"/>
         </customView>

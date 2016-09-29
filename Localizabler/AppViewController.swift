@@ -111,6 +111,30 @@ class AppViewController: NSViewController {
 				wself.contentDidChange?()
 			}
 		}
+        translationsTableDataSource?.translationDidBecomeFirstResponder = { (value: String) -> Void in
+            RCLog(value)
+            let search = Search(files: self.files)
+            if let line: Line = search.lineMatchingTranslation(translation: value) {
+                RCLog(line)
+                let displayedTerms: [TermData] = self.termsTableDataSource!.data
+                var i = 0
+                var found = false
+                for term in displayedTerms {
+                    if term.value == line.term {
+                        found = true
+                        break
+                    }
+                    i += 1
+                }
+                self.termsTableDataSource?.highlightedRow = i
+                if !found {
+                    self.termsTableDataSource?.data.append((value: line.term, newValue: nil, translationChanged: false) as TermData)
+                }
+                self.termsTableView?.reloadData()
+//                let lastIndex = IndexSet([i])
+//                self.termsTableView?.selectRowIndexes(lastIndex, byExtendingSelection: false)
+            }
+        }
     }
     
     func scanDirectoryForLocalizationFiles() {
@@ -165,19 +189,38 @@ class AppViewController: NSViewController {
 		updateAlerts("No selection")
 	}
 	
-	fileprivate func clear() {
-		termsTableView?.deselectRow(termsTableView!.selectedRow)
-		translationsTableDataSource?.data = []
-		translationsTableView?.reloadData()
-	}
-	
 	func markFilesAsSaved() {
 		for i in 0..<self.termsTableDataSource!.data.count {
 			termsTableDataSource?.data[i].translationChanged = false
 		}
 		termsTableView?.reloadData()
-	}
-	
+    }
+    
+    func search (_ searchString: String) {
+        
+        termsTableView?.deselectRow(termsTableView!.selectedRow)
+        
+        let search = Search(files: files)
+        //
+        termsTableDataSource?.data = search.searchInTerms(searchString)
+        termsTableView?.reloadData()
+        //
+        translationsTableDataSource?.data = search.searchInTranslations(searchString)
+        translationsTableView?.reloadData()
+        
+        // Add Placeholders if no matches found
+        updateAlerts("No matches")
+    }
+}
+
+extension AppViewController {
+    
+    fileprivate func clear() {
+        termsTableView?.deselectRow(termsTableView!.selectedRow)
+        translationsTableDataSource?.data = []
+        translationsTableView?.reloadData()
+    }
+    
 	fileprivate func createNewTerm() {
 		let term = "term \(arc4random())"
         let line: Line = (term: term, translation: "", isComment: false)
@@ -194,7 +237,6 @@ class AppViewController: NSViewController {
     
     fileprivate func removeTermAtIndex (row: Int) {
         let term: TermData = termsTableDataSource!.data[row]
-        print(term)
         for (_, localizationFile) in files {
             localizationFile.removeTerm(term)
         }
@@ -206,14 +248,14 @@ class AppViewController: NSViewController {
         
         contentDidChange?()
     }
-	
-	
-	// MARK: Actions
+}
+
+extension AppViewController {
 	
 	@IBAction func languageDidChange (_ sender: NSPopUpButton) {
-		
-		let file = files[sender.titleOfSelectedItem!]
-		showTerms(file!.allTerms())
+        if let file = files[sender.titleOfSelectedItem!] {
+            showTerms(file.allTerms())
+        }
 	}
 	
 	@IBAction func addButtonClicked (_ sender: NSButton) {
@@ -225,25 +267,9 @@ class AppViewController: NSViewController {
             removeTermAtIndex(row: index)
         }
 	}
-	
-	func search (_ searchString: String) {
-		
-		termsTableView?.deselectRow(termsTableView!.selectedRow)
-		
-		let search = Search(files: files)
-		//
-		termsTableDataSource?.data = search.searchInTerms(searchString)
-		termsTableView?.reloadData()
-		//
-		translationsTableDataSource?.data = search.searchInTranslations(searchString)
-		translationsTableView?.reloadData()
-		
-		// Add Placeholders if no matches found
-		updateAlerts("No matches")
-	}
-	
-	
-	// MARK: Alerts
+}
+
+extension AppViewController {
 	
 	fileprivate func updateAlerts (_ message: String) {
 		translationsAlert(message).isHidden = translationsTableDataSource?.data.count > 0

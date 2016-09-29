@@ -12,13 +12,23 @@ class TranslationCell: NSTableRowView {
 
 	@IBOutlet var flagImage: NSImageView?
 	@IBOutlet var countryName: NSTextField?
-	@IBOutlet var textView: NSTextField?
+	@IBOutlet var textField: TranslationTextField?
 	
-	var translationDidChangeInCell: ((_ cell: TranslationCell, _ newValue: String) -> Void)?
+	var translationDidChange: ((_ cell: TranslationCell, _ newValue: String) -> Void)?
+    var didSelect: ((_ cell: TranslationCell, _ value: String) -> Void)?
 	
 	override func mouseDown (with theEvent: NSEvent) {
-		self.window?.makeFirstResponder(textView)
+		self.window?.makeFirstResponder(textField)
 	}
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        textField?.didBecomeFirstResponder = { [weak self] in
+            if let strongSelf = self {
+                strongSelf.didSelect?(strongSelf, strongSelf.textField!.stringValue)
+            }
+        }
+    }
 }
 
 extension TranslationCell: NSTextFieldDelegate {
@@ -28,7 +38,7 @@ extension TranslationCell: NSTextFieldDelegate {
 	}
 	
 	override func controlTextDidChange (_ obj: Notification) {
-		self.translationDidChangeInCell?(self, (obj.object! as AnyObject).stringValue)
+        self.translationDidChange?(self, (obj.object! as AnyObject).stringValue)
 	}
 	
 	override func controlTextDidEndEditing (_ obj: Notification) {

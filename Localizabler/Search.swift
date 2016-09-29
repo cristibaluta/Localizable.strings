@@ -52,4 +52,16 @@ class Search {
 		}
 		return matchedTranslations
 	}
+    
+    func lineMatchingTranslation (translation: String) -> Line? {
+        
+        for (_, localizationFile) in files! {
+            for line in localizationFile.allLines() {
+                if line.translation == translation {
+                    return line
+                }
+            }
+        }
+        return nil
+    }
 }

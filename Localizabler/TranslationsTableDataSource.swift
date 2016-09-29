@@ -10,10 +10,11 @@ import Cocoa
 
 class TranslationsTableDataSource: NSObject {
 	
-	let kTranslationCellIdentifier = "TranslationCell"
-	let kCellHeight = CGFloat(88)
+	fileprivate let kTranslationCellIdentifier = "TranslationCell"
+	fileprivate let kCellHeight = CGFloat(88)
 	var data = [TranslationData]()
-	var translationDidChange: ((TranslationData) -> Void)?
+    var translationDidChange: ((TranslationData) -> Void)?
+    var translationDidBecomeFirstResponder: ((String) -> Void)?
 	
 	init (tableView: NSTableView) {
 		super.init()
@@ -60,14 +61,20 @@ extension TranslationsTableDataSource: NSTableViewDelegate {
         }
         
         cell.flagImage!.image = NSImage(named: localeData.countryName)
-        cell.countryName?.stringValue = "\(translationData.languageCode)\n\(localeData.languageName)\n\(localeData.countryName)"
-        cell.textView?.stringValue = translationData.value
+        cell.countryName!.stringValue = "\(translationData.languageCode)\n\(localeData.languageName)\n\(localeData.countryName)"
+        cell.textField!.stringValue = translationData.value
         
-        cell.translationDidChangeInCell = { [weak self] (cell: TranslationCell, newValue: String) in
+        cell.translationDidChange = { [weak self] (cell: TranslationCell, newValue: String) in
             
             if let strongSelf = self {
                 strongSelf.data[row].newValue = newValue
                 strongSelf.translationDidChange?(strongSelf.data[row])
+            }
+        }
+        cell.didSelect = { [weak self] (cell: TranslationCell, value: String) in
+            
+            if let strongSelf = self {
+                strongSelf.translationDidBecomeFirstResponder?(value)
             }
         }
         
