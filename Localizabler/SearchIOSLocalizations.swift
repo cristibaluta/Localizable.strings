@@ -8,12 +8,12 @@
 
 import Foundation
 
-class SearchIOSLocalizations: SearchLocalizations {
+class SearchIOSLocalizations: SearchLocalizationFiles {
 	
 	let suffix = ".lproj/"
 	let localizationFile = "Localizable.strings"
 
-    func searchInDirectory (_ dir: URL, result: ([String: URL]) -> Void) {
+    func searchInDirectory (_ dir: URL) -> [String: URL] {
         
         let fileManager = FileManager.default
         do {
@@ -28,9 +28,10 @@ class SearchIOSLocalizations: SearchLocalizations {
                     resultDict[comps2.last!] = file.appendingPathComponent(localizationFile)
                 }
             }
-            result(resultDict)
+            return resultDict
         } catch {
             RCLog("some error while reading files")
+            return [:]
         }
     }
 }

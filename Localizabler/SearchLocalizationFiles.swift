@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol SearchLocalizations {
+protocol SearchLocalizationFiles {
     
-    func searchInDirectory (_ dir: URL, result: ([String: URL]) -> Void)
+    func searchInDirectory (_ dir: URL) -> [String: URL]
 }

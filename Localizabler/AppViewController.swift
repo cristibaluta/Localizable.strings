@@ -139,29 +139,26 @@ class AppViewController: NSViewController {
     
     func scanDirectoryForLocalizationFiles() {
         
-		_ = SearchIOSLocalizations().searchInDirectory(url!) { [weak self] (files: [String: URL]) -> Void in
-			
-			guard let wself = self else {
-				return
-			}
-			
-            RCLog(files)
-			wself.languagesPopup?.removeAllItems()
-			wself.files.removeAll()
-			
-            for (key, url) in files {
-				wself.loadLocalizationFile(url, forKey: key)
-                wself.languagesPopup?.addItem(withTitle: key)
-            }
+        // Remove current files
+        languagesPopup?.removeAllItems()
+        files.removeAll()
+        
+        // Load new files
+		let filesUrls = SearchIOSLocalizations().searchInDirectory(url!)
+        RCLog(filesUrls)
+        
+        for (countryCode, url) in filesUrls {
+            loadLocalizationFile(url, countryCode: countryCode)
+            languagesPopup?.addItem(withTitle: countryCode)
         }
 	}
     
-	func loadLocalizationFile (_ url: URL, forKey key: String) {
+	func loadLocalizationFile (_ url: URL, countryCode: String) {
 		do {
-			files[key] = try IOSLocalizationFile(url: url)
+			files[countryCode] = try IOSLocalizationFile(url: url)
 		}
 		catch LocalizationFileError.fileNotFound(url) {
-			RCLog("Can't open file \(url)")
+			RCLog("File not found \(url)")
 		} catch {
 			RCLog("Unknown error")
 		}

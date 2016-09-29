@@ -8,10 +8,11 @@
 
 import Foundation
 
-class SearchAndroidLocalizations: SearchLocalizations {
+class SearchAndroidLocalizations: SearchLocalizationFiles {
 
-	func searchInDirectory (_ dir: URL, result: ([String: URL]) -> Void) {
+	func searchInDirectory (_ dir: URL) -> [String: URL] {
 		
+        return [:]
 //		let fileManager = NSFileManager.defaultManager()
 //		do {
 //			let files = try fileManager.contentsOfDirectoryAtURL(dir, includingPropertiesForKeys: nil,
