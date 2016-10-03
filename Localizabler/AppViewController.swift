@@ -112,10 +112,10 @@ class AppViewController: NSViewController {
 			}
 		}
         translationsTableDataSource?.translationDidBecomeFirstResponder = { (value: String) -> Void in
-            RCLog(value)
+            
             let search = Search(files: self.files)
             if let line: Line = search.lineMatchingTranslation(translation: value) {
-                RCLog(line)
+                
                 let displayedTerms: [TermData] = self.termsTableDataSource!.data
                 var i = 0
                 var found = false
@@ -145,7 +145,6 @@ class AppViewController: NSViewController {
         
         // Load new files
 		let filesUrls = SearchIOSLocalizations().searchInDirectory(url!)
-        RCLog(filesUrls)
         
         for (countryCode, url) in filesUrls {
             loadLocalizationFile(url, countryCode: countryCode)

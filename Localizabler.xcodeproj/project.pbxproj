@@ -579,6 +579,7 @@
 		28EF6A331BC44D4900F8E725 /* typedefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = typedefs.swift; sourceTree = "<group>"; };
 		28EF6A361BC45A6D00F8E725 /* StringExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensionTests.swift; path = LocalizablerTests/StringExtensionTests.swift; sourceTree = SOURCE_ROOT; };
 		28EF6A3A1BC4613B00F8E725 /* TermsTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsTableDataSource.swift; sourceTree = "<group>"; };
+		407524F01D9DA675007AF3E1 /* Localizabler.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Localizabler.entitlements; sourceTree = "<group>"; };
 		409E3AB61D9C51850037DE35 /* TranslationTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationTextField.swift; sourceTree = "<group>"; };
 		56F88FFD1C061F8900DC3807 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		56F88FFF1C061F8900DC3807 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -1051,6 +1052,7 @@
 		6D1E1A741BBD5C6C00BE29EE /* Localizabler */ = {
 			isa = PBXGroup;
 			children = (
+				407524F01D9DA675007AF3E1 /* Localizabler.entitlements */,
 				28C02F9E1C01EFEB00B65478 /* App */,
 				6D1E1AB31BBED4DF00BE29EE /* Delivery */,
 			);
@@ -1157,7 +1159,14 @@
 					};
 					6D1E1A711BBD5C6C00BE29EE = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = 5NHDC5EV44;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 					6D1E1A821BBD5C6C00BE29EE = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -1663,7 +1672,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Localizabler/Localizabler.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 5NHDC5EV44;
 				INFOPLIST_FILE = Localizabler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ralcr.Localizabler;
@@ -1676,7 +1688,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Localizabler/Localizabler.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 5NHDC5EV44;
 				INFOPLIST_FILE = Localizabler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ralcr.Localizabler;

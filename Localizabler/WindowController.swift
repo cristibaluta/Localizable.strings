@@ -34,13 +34,13 @@ class WindowController: NSWindowController {
 	
 	func loadLastOpenedProject() {
 //		History().setLastProjectDir(nil)
-		if let dir = History().getLastProjectDir() {
-			if let url = URL(string: dir) {
-				loadProjectAtUrl(url)
-			}
-		} else {
+//		if let dir = History().getLastProjectDir() {
+//			if let url = URL(string: dir) {
+//				loadProjectAtUrl(url)
+//			}
+//		} else {
 			showNoProjectVC()
-		}
+//		}
 	}
 	
 	func loadProjectAtUrl (_ url: URL) {
