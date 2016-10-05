@@ -25,7 +25,6 @@ class BaseLanguage {
 		else if let file = files["en"] {
 			return (language: "en", terms: file.allTerms())
 		}
-		assert(true, "No base language found")
 		
 		return (language: "", terms: [])
 	}

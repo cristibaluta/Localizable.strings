@@ -41,7 +41,8 @@ class AppViewController: NSViewController {
 	fileprivate var termsTableDataSource: TermsTableDataSource?
 	fileprivate var translationsTableDataSource: TranslationsTableDataSource?
 	var url: URL?
-	var files = [String: LocalizationFile]()
+    fileprivate var files = [String: [String: LocalizationFile]]()// [filename: [language: File]]
+    var selectedFiles = [String: LocalizationFile]()
 	fileprivate var allTerms = [TermData]()
 	fileprivate var allTranslations = [TranslationData]()
 	
@@ -63,7 +64,7 @@ class AppViewController: NSViewController {
 			
 			wself.allTranslations = [TranslationData]()
 			
-			for (lang, localizationFile) in wself.files {
+			for (lang, localizationFile) in wself.selectedFiles {
                 let data: TranslationData = (value: localizationFile.translationForTerm(key.value),
                                              newValue: nil,
                                              languageCode: lang)
@@ -81,7 +82,7 @@ class AppViewController: NSViewController {
 			
 			// A term was changed, update the value
 			if let newValue = term.newValue {
-				for file in wself.files.values {
+				for file in wself.selectedFiles.values {
 					file.updateTerm(term.value, newValue: newValue)
 				}
 				wself.contentDidChange?()
@@ -101,7 +102,7 @@ class AppViewController: NSViewController {
 				
 				// If there are changes in the translation
 				if let newValue = translation.newValue {
-					let file = wself.files[translation.languageCode]
+					let file = wself.selectedFiles[translation.languageCode]
 					file?.updateTranslationForTerm(termData!.value, newValue: newValue)
 				}
 				
@@ -113,7 +114,7 @@ class AppViewController: NSViewController {
 		}
         translationsTableDataSource?.translationDidBecomeFirstResponder = { (value: String) -> Void in
             
-            let search = Search(files: self.files)
+            let search = Search(files: self.selectedFiles)
             if let line: Line = search.lineMatchingTranslation(translation: value) {
                 
                 let displayedTerms: [TermData] = self.termsTableDataSource!.data
@@ -144,17 +145,26 @@ class AppViewController: NSViewController {
         files.removeAll()
         
         // Load new files
-		let filesUrls = SearchIOSLocalizations().searchInDirectory(url!)
+        let filesResult: FilesResult = SearchIOSLocalizations().searchInDirectory(url!)
         
-        for (countryCode, url) in filesUrls {
-            loadLocalizationFile(url, countryCode: countryCode)
-            languagesPopup?.addItem(withTitle: countryCode)
+        for (fileName, file) in filesResult {
+            languagesPopup?.addItem(withTitle: fileName)
+            for (countryCode, url) in file {
+                loadLocalizationFile(url, countryCode: countryCode, fileName: fileName)
+            }
         }
+        showFirstFile()
 	}
     
-	func loadLocalizationFile (_ url: URL, countryCode: String) {
+    func loadLocalizationFile (_ url: URL, countryCode: String, fileName: String) {
+        
+        var file: [String: LocalizationFile]? = files[fileName]
+        if file == nil {
+            file = [String: LocalizationFile]()
+        }
 		do {
-			files[countryCode] = try IOSLocalizationFile(url: url)
+			file![countryCode] = try IOSLocalizationFile(url: url)
+            files[fileName] = file!
 		}
 		catch LocalizationFileError.fileNotFound(url) {
 			RCLog("File not found \(url)")
@@ -163,11 +173,25 @@ class AppViewController: NSViewController {
 		}
     }
 	
+    func showFirstFile() {
+        
+        if let (fileName, _) = files.first {
+            languagesPopup?.selectItem(withTitle: fileName)
+            selectedFiles = files[fileName]!
+            showBaseLanguage()
+        }
+    }
+    
 	func showBaseLanguage() {
 		
-		let baseLanguage = BaseLanguage(files: files)
-		let result = baseLanguage.get()
-		languagesPopup?.selectItem(withTitle: result.language)
+		let baseLanguage = BaseLanguage(files: selectedFiles)
+		var result = baseLanguage.get()
+        if result.language == "" {
+            if let (countryCode, file) = selectedFiles.first {
+                result = (language: countryCode, terms: file.allTerms())
+            }
+        }
+//		languagesPopup?.selectItem(withTitle: result.language)
 		showTerms(result.terms)
 	}
 	
@@ -196,7 +220,7 @@ class AppViewController: NSViewController {
         
         termsTableView?.deselectRow(termsTableView!.selectedRow)
         
-        let search = Search(files: files)
+        let search = Search(files: selectedFiles)
         //
         termsTableDataSource?.data = search.searchInTerms(searchString)
         termsTableView?.reloadData()
@@ -220,7 +244,7 @@ extension AppViewController {
 	fileprivate func createNewTerm() {
 		let term = "term \(arc4random())"
         let line: Line = (term: term, translation: "", isComment: false)
-		for (_, localizationFile) in files {
+		for (_, localizationFile) in selectedFiles {
 			localizationFile.addLine(line)
 		}
 		// Insert it to the datasource
@@ -233,7 +257,7 @@ extension AppViewController {
     
     fileprivate func removeTermAtIndex (row: Int) {
         let term: TermData = termsTableDataSource!.data[row]
-        for (_, localizationFile) in files {
+        for (_, localizationFile) in selectedFiles {
             localizationFile.removeTerm(term)
         }
         // Remove from the datasource
@@ -247,13 +271,19 @@ extension AppViewController {
 }
 
 extension AppViewController {
-	
-	@IBAction func languageDidChange (_ sender: NSPopUpButton) {
-        if let file = files[sender.titleOfSelectedItem!] {
-            showTerms(file.allTerms())
-        }
-	}
-	
+    
+    @IBAction func fileNameDidChange (_ sender: NSPopUpButton) {
+        
+        selectedFiles = files[sender.titleOfSelectedItem!]!
+        showBaseLanguage()
+    }
+    
+//	@IBAction func languageDidChange (_ sender: NSPopUpButton) {
+//        if let file = selectedFiles[sender.titleOfSelectedItem!] {
+//            showTerms(file.allTerms())
+//        }
+//	}
+    
 	@IBAction func addButtonClicked (_ sender: NSButton) {
 		createNewTerm()
 	}

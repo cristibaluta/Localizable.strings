@@ -20,6 +20,7 @@ class WindowController: NSWindowController {
 	@IBOutlet var pathControl: NSPathControl?
 	@IBOutlet var butBrowse: NSButton?
 	@IBOutlet var butSave: NSButton?
+    private var appWireframe = AppWireframe()
 	
 	override func windowDidLoad() {
 		super.windowDidLoad()
@@ -33,14 +34,14 @@ class WindowController: NSWindowController {
 	}
 	
 	func loadLastOpenedProject() {
-//		History().setLastProjectDir(nil)
-//		if let dir = History().getLastProjectDir() {
-//			if let url = URL(string: dir) {
-//				loadProjectAtUrl(url)
-//			}
-//		} else {
+		History().setLastProjectDir(nil)
+		if let dir = History().getLastProjectDir() {
+			if let url = URL(string: dir) {
+				loadProjectAtUrl(url)
+			}
+		} else {
 			showNoProjectVC()
-//		}
+		}
 	}
 	
 	func loadProjectAtUrl (_ url: URL) {
@@ -58,12 +59,12 @@ class WindowController: NSWindowController {
 		noProjectViewController?.browseButtonClicked = { [weak self] in
 			self?.browseFiles()
 		}
-		Wireframe.presentNoProjectsController(noProjectViewController!, overController: viewController)
+		appWireframe.presentNoProjectsController(noProjectViewController!, overController: viewController)
 		viewController.splitView?.isHidden = true
 	}
 	
 	func removeNoProjectVC() {
-		Wireframe.removeNoProjectsController(noProjectViewController)
+		appWireframe.removeNoProjectsController(noProjectViewController)
 		viewController.splitView?.isHidden = false
 	}
 	
@@ -76,7 +77,7 @@ class WindowController: NSWindowController {
 	
 	@IBAction func saveButtonClicked (_ sender: NSButton) {
 		
-		if SaveChangesInteractor(files: viewController.files).execute() {
+		if SaveChangesInteractor(files: viewController.selectedFiles).execute() {
 			viewController.markFilesAsSaved()
 			butSave?.isEnabled = false
 		}

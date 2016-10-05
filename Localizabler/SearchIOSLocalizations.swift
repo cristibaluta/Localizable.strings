@@ -10,28 +10,51 @@ import Foundation
 
 class SearchIOSLocalizations: SearchLocalizationFiles {
 	
-	let suffix = ".lproj/"
-	let localizationFile = "Localizable.strings"
-
-    func searchInDirectory (_ dir: URL) -> [String: URL] {
+	private let lproj = ".lproj/"
+	private let strings = ".strings"
+    
+    func searchInDirectory (_ dir: URL) -> FilesResult {
         
         let fileManager = FileManager.default
-        do {
-            let files = try fileManager.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil,
-                options: FileManager.DirectoryEnumerationOptions.skipsSubdirectoryDescendants)
-            var resultDict = [String: URL]()
-            for file in files {
-                if file.absoluteString.hasSuffix(suffix) {
-                    let comps = file.absoluteString.components(separatedBy: suffix)
-                    let comps2 = comps.first!.components(separatedBy: "/")
-                    // DOTO: Search for .strings extensions, it's name is not always Localizable.strings
-                    resultDict[comps2.last!] = file.appendingPathComponent(localizationFile)
+        let resourceKeys = [URLResourceKey.nameKey, URLResourceKey.isDirectoryKey]
+        let directoryEnumerator = fileManager.enumerator(at: dir,
+                                                         includingPropertiesForKeys: resourceKeys,
+                                                         options: [.skipsHiddenFiles],
+                                                         errorHandler: nil)!
+ 
+        var files = [String: [String: URL]]()
+        
+        for case let fileURL as NSURL in directoryEnumerator {
+            guard let resourceValues = try? fileURL.resourceValues(forKeys: resourceKeys),
+                let isDirectory = resourceValues[URLResourceKey.isDirectoryKey] as? Bool,
+                let name = resourceValues[URLResourceKey.nameKey] as? String
+                else {
+                    continue
+            }
+            
+            if isDirectory {
+                if name.hasSuffix("xcodeproj") {
+                    directoryEnumerator.skipDescendants()
+                }
+            } else {
+                if fileURL.absoluteString!.contains(lproj) && name.hasSuffix(strings) {
+                    var file: [String: URL]? = files[name]
+                    if file == nil {
+                        file = [String: URL]()
+                    }
+                    let language = languageOfPath(path: fileURL.absoluteString!)
+                    file![language] = fileURL as URL
+                    files[name] = file!
                 }
             }
-            return resultDict
-        } catch {
-            RCLog("some error while reading files")
-            return [:]
         }
+        RCLog(files)
+        return files
+    }
+    
+    @inline(__always) private func languageOfPath (path: String) -> String {
+        let comps = path.components(separatedBy: lproj)
+        let comps2 = comps.first!.components(separatedBy: "/")
+        return comps2.last!
     }
 }

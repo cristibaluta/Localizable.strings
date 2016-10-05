@@ -8,7 +8,9 @@
 
 import Foundation
 
+typealias FilesResult = [String: [String: URL]]// [filename: [language: url]]
+
 protocol SearchLocalizationFiles {
     
-    func searchInDirectory (_ dir: URL) -> [String: URL]
+    func searchInDirectory (_ dir: URL) -> FilesResult
 }

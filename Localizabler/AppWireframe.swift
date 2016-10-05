@@ -8,18 +8,16 @@
 
 import Cocoa
 
-class Wireframe: NSObject {
+class AppWireframe: NSObject {
 
-	class func presentNoProjectsController (_ childController: NSViewController, overController parentController: NSViewController) {
+	func presentNoProjectsController (_ childController: NSViewController, overController parentController: NSViewController) {
 		
 		parentController.addChildViewController(childController)
 		parentController.view.addSubview(childController.view)
-		childController.view.removeAutoresizing()
-		childController.view.constrainToSuperviewWidth()
-		childController.view.constrainToSuperviewHeight()
+		childController.view.constrainToSuperview()
 	}
 	
-	class func removeNoProjectsController (_ controller: NSViewController?) {
+	func removeNoProjectsController (_ controller: NSViewController?) {
 		
 		if let c = controller {
 			c.view.removeFromSuperview()
