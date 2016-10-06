@@ -8,9 +8,17 @@
 
 import Cocoa
 
-class AppWireframe: NSObject {
+class AppWireframe {
 
-	func presentNoProjectsController (_ childController: NSViewController, overController parentController: NSViewController) {
+    private var windowController: WindowController?
+    
+    convenience init(windowController: WindowController) {
+        self.init()
+        self.windowController = windowController
+    }
+    
+	func presentNoProjectsController (_ childController: NSViewController,
+	                                  overController parentController: NSViewController) {
 		
 		parentController.addChildViewController(childController)
 		parentController.view.addSubview(childController.view)

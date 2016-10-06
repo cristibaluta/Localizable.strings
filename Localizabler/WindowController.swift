@@ -16,24 +16,28 @@ class WindowController: NSWindowController {
 		}
 	}
 	var noProjectViewController: NoProjectViewController?
+    
 	@IBOutlet var searchField: NSSearchField?
-	@IBOutlet var pathControl: NSPathControl?
-	@IBOutlet var butBrowse: NSButton?
-	@IBOutlet var butSave: NSButton?
-    private var appWireframe = AppWireframe()
+    @IBOutlet var filePopup: NSPopUpButton?
+    @IBOutlet var languagePopup: NSPopUpButton?
+	@IBOutlet var butOpen: NSButton?
+    private var appWireframe: AppWireframe?
 	
 	override func windowDidLoad() {
 		super.windowDidLoad()
 		
 		window?.titlebarAppearsTransparent = true
-		window?.titleVisibility = NSWindowTitleVisibility.hidden;
+		window?.titleVisibility = NSWindowTitleVisibility.visible;
 		window?.title = "Localizabler"
-		butSave?.isEnabled = false
+        filePopup?.isEnabled = false
+        
+        appWireframe = AppWireframe()
 		
 		loadLastOpenedProject()
 	}
 	
 	func loadLastOpenedProject() {
+        
 		History().setLastProjectDir(nil)
 		if let dir = History().getLastProjectDir() {
 			if let url = URL(string: dir) {
@@ -45,13 +49,12 @@ class WindowController: NSWindowController {
 	}
 	
 	func loadProjectAtUrl (_ url: URL) {
-		pathControl?.url = url
+        
+		window?.title = url.absoluteString
+        
 		viewController.url = url
 		viewController.scanDirectoryForLocalizationFiles()
 		viewController.showBaseLanguage()
-		viewController.contentDidChange = { [weak self] in
-			self?.butSave?.isEnabled = true
-		}
 	}
 	
 	func showNoProjectVC() {
@@ -59,29 +62,37 @@ class WindowController: NSWindowController {
 		noProjectViewController?.browseButtonClicked = { [weak self] in
 			self?.browseFiles()
 		}
-		appWireframe.presentNoProjectsController(noProjectViewController!, overController: viewController)
+		appWireframe!.presentNoProjectsController(noProjectViewController!, overController: viewController)
 		viewController.splitView?.isHidden = true
 	}
 	
 	func removeNoProjectVC() {
-		appWireframe.removeNoProjectsController(noProjectViewController)
+		appWireframe!.removeNoProjectsController(noProjectViewController)
 		viewController.splitView?.isHidden = false
 	}
+}
+
+extension WindowController {
 	
-	
-	// MARK: Actions
-	
-	@IBAction func browseButtonClicked (_ sender: NSButton) {
+	@IBAction func handleOpenButton (_ sender: NSButton) {
 		browseFiles()
 	}
-	
-	@IBAction func saveButtonClicked (_ sender: NSButton) {
-		
-		if SaveChangesInteractor(files: viewController.selectedFiles).execute() {
-			viewController.markFilesAsSaved()
-			butSave?.isEnabled = false
-		}
-	}
+    
+    @IBAction func handleFilePopupValueChange (_ sender: NSPopUpButton) {
+        viewController.selectFileNamed(sender.titleOfSelectedItem!)
+    }
+    
+    @IBAction func handleLanguagePopupValueChange (_ sender: NSPopUpButton) {
+//        viewController.selectFileNamed(sender.titleOfSelectedItem!)
+    }
+    
+//	@IBAction func handleSaveButton (_ sender: NSButton) {
+//		
+//		if SaveChangesInteractor(files: viewController.selectedFiles).execute() {
+//			viewController.markFilesAsSaved()
+//			butSave?.isEnabled = false
+//		}
+//	}
 	
 	func browseFiles() {
 		
@@ -94,7 +105,7 @@ class WindowController: NSWindowController {
 			if result == NSFileHandlingPanelOKButton {
 				if let url = panel.urls.first {
 					self?.removeNoProjectVC()
-					self?.pathControl!.url = url
+					self?.window?.title = url.absoluteString
 					self?.loadProjectAtUrl(url)
 					History().setLastProjectDir(url.absoluteString)
 				}

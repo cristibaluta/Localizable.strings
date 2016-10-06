@@ -35,6 +35,7 @@ class AppViewController: NSViewController {
 	@IBOutlet var splitView: NSSplitView?
 	@IBOutlet fileprivate var termsTableView: NSTableView?
 	@IBOutlet fileprivate var translationsTableView: NSTableView?
+    @IBOutlet fileprivate var butSave: NSButton?
 	
 	fileprivate var termsTableAlert: InlinedAlertView?
 	fileprivate var translationsTableAlert: InlinedAlertView?
@@ -46,12 +47,11 @@ class AppViewController: NSViewController {
 	fileprivate var allTerms = [TermData]()
 	fileprivate var allTranslations = [TranslationData]()
 	
-	var contentDidChange: (() -> Void)?
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		termsTableView?.backgroundColor = NSColor.clear
+        termsTableView?.backgroundColor = NSColor.clear
+        butSave?.isEnabled = false
 		
 		termsTableDataSource = TermsTableDataSource(tableView: termsTableView!)
 		translationsTableDataSource = TranslationsTableDataSource(tableView: translationsTableView!)
@@ -85,7 +85,7 @@ class AppViewController: NSViewController {
 				for file in wself.selectedFiles.values {
 					file.updateTerm(term.value, newValue: newValue)
 				}
-				wself.contentDidChange?()
+				wself.butSave?.isEnabled = true
 			}
 		}
 		
@@ -109,7 +109,7 @@ class AppViewController: NSViewController {
 				wself.termsTableView?.reloadData(forRowIndexes: IndexSet(integer: wself.termsTableView!.selectedRow),
 					columnIndexes: IndexSet(integer: 0))
 				
-				wself.contentDidChange?()
+				wself.butSave?.isEnabled = true
 			}
 		}
         translationsTableDataSource?.translationDidBecomeFirstResponder = { (value: String) -> Void in
@@ -216,6 +216,12 @@ class AppViewController: NSViewController {
 		termsTableView?.reloadData()
     }
     
+    func selectFileNamed (_ fileName: String) {
+        
+        selectedFiles = files[fileName]!
+        showBaseLanguage()
+    }
+    
     func search (_ searchString: String) {
         
         termsTableView?.deselectRow(termsTableView!.selectedRow)
@@ -266,7 +272,7 @@ extension AppViewController {
         termsTableView?.endUpdates()
         termsTableDataSource?.data.remove(at: row)
         
-        contentDidChange?()
+        butSave?.isEnabled = true
     }
 }
 
