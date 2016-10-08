@@ -10,6 +10,7 @@ import Cocoa
 
 class TermsTableDataSource: NSObject {
 	
+    private var tableView: NSTableView!
 	var data = [TermData]()
     var highlightedRow = -1
 	var onDidSelectRow: ((_ rowNumber: Int, _ key: TermData) -> Void)?
@@ -19,8 +20,13 @@ class TermsTableDataSource: NSObject {
 		super.init()
 		
 		tableView.dataSource = self
-		tableView.delegate = self
+        tableView.delegate = self
+        self.tableView = tableView
 	}
+    
+    func reloadData() {
+        tableView?.reloadData()
+    }
 }
 
 extension TermsTableDataSource: NSTableViewDataSource {

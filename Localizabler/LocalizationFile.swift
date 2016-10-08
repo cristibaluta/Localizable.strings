@@ -38,6 +38,7 @@ protocol LocalizationFile {
 	
     /// Adds a new term and translation
 	func addLine(_ line: Line)
+    func addLine(_ line: Line, belowLine: Line)
     
     /// Removes a term and it's translation. Both the old term and new term are taken into consideration
     func removeTerm(_ term: TermData)

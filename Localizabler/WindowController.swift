@@ -10,108 +10,97 @@ import Cocoa
 
 class WindowController: NSWindowController {
 	
-	var viewController: AppViewController {
-		get {
-			return self.window!.contentViewController! as! AppViewController
-		}
-	}
-	var noProjectViewController: NoProjectViewController?
+	@IBOutlet fileprivate var searchField: NSSearchField?
+    @IBOutlet fileprivate var filenamePopup: NSPopUpButton?
+    @IBOutlet fileprivate var languagePopup: NSPopUpButton?
+	@IBOutlet fileprivate var butOpen: NSButton?
     
-	@IBOutlet var searchField: NSSearchField?
-    @IBOutlet var filePopup: NSPopUpButton?
-    @IBOutlet var languagePopup: NSPopUpButton?
-	@IBOutlet var butOpen: NSButton?
-    private var appWireframe: AppWireframe?
+    fileprivate var appWireframe: AppWireframe?
+    var presenter: WindowPresenterInput?
+    var localizationsPresenter: LocalizationsPresenterInput?
 	
 	override func windowDidLoad() {
 		super.windowDidLoad()
 		
 		window?.titlebarAppearsTransparent = true
-		window?.titleVisibility = NSWindowTitleVisibility.visible;
-		window?.title = "Localizabler"
-        filePopup?.isEnabled = false
+		window?.titleVisibility = NSWindowTitleVisibility.visible
+		setWindowTitle("Localizable.strings")
+        filenamePopup?.isEnabled = false
+        languagePopup?.isEnabled = false
+        setFilenamesPopup([])
+        setLanguagesPopup([])
         
-        appWireframe = AppWireframe()
-		
-		loadLastOpenedProject()
-	}
-	
-	func loadLastOpenedProject() {
+        let presenter = WindowPresenter()
+        let interactor = WindowInteractor()
+        presenter.userInterface = self
+        presenter.interactor = interactor
+        self.presenter = presenter
         
-		History().setLastProjectDir(nil)
-		if let dir = History().getLastProjectDir() {
-			if let url = URL(string: dir) {
-				loadProjectAtUrl(url)
-			}
-		} else {
-			showNoProjectVC()
-		}
-	}
-	
-	func loadProjectAtUrl (_ url: URL) {
+        appWireframe = AppWireframe(windowController: self)
         
-		window?.title = url.absoluteString
-        
-		viewController.url = url
-		viewController.scanDirectoryForLocalizationFiles()
-		viewController.showBaseLanguage()
-	}
-	
-	func showNoProjectVC() {
-		noProjectViewController = NoProjectViewController.instanceFromStoryboard()
-		noProjectViewController?.browseButtonClicked = { [weak self] in
-			self?.browseFiles()
-		}
-		appWireframe!.presentNoProjectsController(noProjectViewController!, overController: viewController)
-		viewController.splitView?.isHidden = true
-	}
-	
-	func removeNoProjectVC() {
-		appWireframe!.removeNoProjectsController(noProjectViewController)
-		viewController.splitView?.isHidden = false
+		presenter.loadLastOpenedProject()
 	}
 }
 
 extension WindowController {
 	
 	@IBAction func handleOpenButton (_ sender: NSButton) {
-		browseFiles()
+		presenter!.browseFiles()
 	}
     
     @IBAction func handleFilePopupValueChange (_ sender: NSPopUpButton) {
-        viewController.selectFileNamed(sender.titleOfSelectedItem!)
+        presenter!.selectFileNamed(sender.titleOfSelectedItem!)
     }
     
     @IBAction func handleLanguagePopupValueChange (_ sender: NSPopUpButton) {
-//        viewController.selectFileNamed(sender.titleOfSelectedItem!)
+        localizationsPresenter!.selectLanguageNamed(sender.titleOfSelectedItem!)
+    }
+}
+
+extension WindowController: WindowPresenterOutput {
+    
+    func setWindowTitle (_ title: String) {
+        window?.title = title
     }
     
-//	@IBAction func handleSaveButton (_ sender: NSButton) {
-//		
-//		if SaveChangesInteractor(files: viewController.selectedFiles).execute() {
-//			viewController.markFilesAsSaved()
-//			butSave?.isEnabled = false
-//		}
-//	}
-	
-	func browseFiles() {
-		
-		let panel = NSOpenPanel()
-		panel.canChooseFiles = false
-		panel.canChooseDirectories = true
-		panel.allowsMultipleSelection = false
-		panel.begin { [weak self] (result) -> Void in
-			
-			if result == NSFileHandlingPanelOKButton {
-				if let url = panel.urls.first {
-					self?.removeNoProjectVC()
-					self?.window?.title = url.absoluteString
-					self?.loadProjectAtUrl(url)
-					History().setLastProjectDir(url.absoluteString)
-				}
-			}
-		}
-	}
+    func setFilenamesPopup (_ filenames: [String]) {
+        
+        if filenames.count == 0 {
+            filenamePopup?.removeAllItems()
+        } else {
+            filenamePopup!.addItems(withTitles: filenames)
+            filenamePopup!.isEnabled = true
+        }
+    }
+    
+    func setLanguagesPopup (_ languages: [String]) {
+        
+        if languages.count == 0 {
+            languagePopup?.removeAllItems()
+        } else {
+            languagePopup!.addItems(withTitles: languages)
+            languagePopup!.isEnabled = true
+        }
+    }
+    
+    func selectLanguageNamed (_ language: String) {
+        languagePopup!.selectItem(withTitle: language)
+    }
+    
+    func showNoProjectInterface() {
+        
+        let noProjectsController = appWireframe!.presentNoProjectsInterface()
+        noProjectsController.onOpenButtonClicked = handleOpenButton
+    }
+    
+    func showLocalizationsInterface (withUrls urls: [String: URL]) {
+        
+        let localizationsController = appWireframe!.presentLocalizationsInterface()
+        localizationsController.windowPresenter = presenter
+        localizationsPresenter = localizationsController.presenter
+        // Load urls after the module is setup
+        localizationsController.presenter!.loadUrls(urls)
+    }
 }
 
 extension WindowController: NSTextFieldDelegate {
@@ -122,6 +111,6 @@ extension WindowController: NSTextFieldDelegate {
             return
         }
 		let searchString = textField.stringValue
-		viewController.search(searchString)
+		localizationsPresenter!.search(searchString)
 	}
 }

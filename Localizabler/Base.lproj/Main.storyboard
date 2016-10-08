@@ -434,20 +434,19 @@
                     </window>
                     <connections>
                         <outlet property="butOpen" destination="I82-Qs-9zS" id="fyl-Qe-faO"/>
-                        <outlet property="filePopup" destination="pIG-JL-n4j" id="9kQ-5I-bn4"/>
+                        <outlet property="filenamePopup" destination="pIG-JL-n4j" id="twb-9s-Vzb"/>
                         <outlet property="languagePopup" destination="A9E-vX-ePx" id="O7G-gE-1zN"/>
                         <outlet property="searchField" destination="tYn-Je-5x6" id="cg2-eE-5hS"/>
-                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
                     </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="335.5" y="396.5"/>
         </scene>
-        <!--App View Controller-->
+        <!--Localizations View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="AppViewController" customModule="Localizabler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LocalizationsViewController" id="XfG-lQ-9wD" customClass="LocalizationsViewController" customModule="Localizabler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="992" height="529"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -521,7 +520,7 @@
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <action selector="addButtonClicked:" target="XfG-lQ-9wD" id="od7-wN-9VD"/>
+                                                    <action selector="handleAddButtonClicked:" target="XfG-lQ-9wD" id="Ah0-I4-I46"/>
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="E6B-1E-aaJ">
@@ -535,7 +534,21 @@
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <action selector="removeButtonClicked:" target="XfG-lQ-9wD" id="7sh-wT-sC6"/>
+                                                    <action selector="handleRemoveButtonClicked:" target="XfG-lQ-9wD" id="D31-10-ary"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Mu-qS-WV3">
+                                                <rect key="frame" x="151" y="-1" width="81" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="69" id="CAB-AD-Qf3"/>
+                                                    <constraint firstAttribute="height" constant="21" id="M64-ha-ZCI"/>
+                                                </constraints>
+                                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vjb-PF-XOU">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="handleSaveButtonClicked:" target="XfG-lQ-9wD" id="k2C-cl-CWG"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -543,11 +556,13 @@
                                             <constraint firstItem="adJ-Db-AC5" firstAttribute="leading" secondItem="Seo-kw-KIc" secondAttribute="leading" id="FCY-XT-nbR"/>
                                             <constraint firstItem="E6B-1E-aaJ" firstAttribute="leading" secondItem="fKU-eM-B9J" secondAttribute="trailing" constant="6" id="Gcd-KG-c3a"/>
                                             <constraint firstAttribute="bottom" secondItem="fKU-eM-B9J" secondAttribute="bottom" constant="7" id="X86-qp-kAQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="2Mu-qS-WV3" secondAttribute="trailing" constant="20" id="b6r-sh-gec"/>
                                             <constraint firstAttribute="bottom" secondItem="E6B-1E-aaJ" secondAttribute="bottom" constant="7" id="cwv-ap-YVi"/>
                                             <constraint firstItem="adJ-Db-AC5" firstAttribute="top" secondItem="Seo-kw-KIc" secondAttribute="top" id="eI9-Tj-hXx"/>
                                             <constraint firstAttribute="bottom" secondItem="adJ-Db-AC5" secondAttribute="bottom" constant="35" id="kWA-1x-94d"/>
                                             <constraint firstItem="fKU-eM-B9J" firstAttribute="leading" secondItem="Seo-kw-KIc" secondAttribute="leading" constant="22" id="mps-N8-Cbg"/>
                                             <constraint firstAttribute="trailing" secondItem="adJ-Db-AC5" secondAttribute="trailing" constant="1" id="u4l-hr-IsQ"/>
+                                            <constraint firstAttribute="bottom" secondItem="2Mu-qS-WV3" secondAttribute="bottom" constant="6" id="xr9-Id-YdN"/>
                                         </constraints>
                                     </customView>
                                     <customView id="IqV-4s-3p9">
@@ -640,6 +655,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="butSave" destination="2Mu-qS-WV3" id="4py-5T-dcg"/>
                         <outlet property="splitView" destination="Nke-YZ-shb" id="Ylx-6L-Lbp"/>
                         <outlet property="termsTableView" destination="jaQ-J7-unX" id="4Iq-b0-Jba"/>
                         <outlet property="translationsTableView" destination="akn-lw-stZ" id="DqF-z8-6Lg"/>

@@ -23,6 +23,7 @@ class IOSLocalizationFile: LocalizationFile {
 	
     required init (url: URL) throws {
 		self.url = url
+        
         if let data = try? Data(contentsOf: url) {
             if let fileContent = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String {
                 self.parseContent(fileContent)
@@ -51,11 +52,19 @@ class IOSLocalizationFile: LocalizationFile {
     }
 	
 	func addLine (_ line: Line) {
-		lines.append(line)
-		terms[line.term] = line.term
+        lines.append(line)
+        terms[line.term] = line.term
+        translations[line.term] = line.translation
+	}
+    
+    func addLine(_ line: Line, belowLine: Line) {
+        
+        let index = indexOf(line: belowLine)
+        lines.insert(line, at: index)
+        terms[line.term] = line.term
         translations[line.term] = line.translation
         hasChanges = true
-	}
+    }
     
     func removeTerm(_ term: TermData) {
         if let lineIndex = lines.index( where: { $0.term == term.value || $0.term == term.newValue } ) {
@@ -109,6 +118,17 @@ class IOSLocalizationFile: LocalizationFile {
 
 extension IOSLocalizationFile {
 	
+    fileprivate func indexOf (line: Line) -> Int {
+        var index = 0
+        for line_ in lines {
+            if line.term == line_.term {
+                break
+            }
+            index += 1
+        }
+        return index
+    }
+    
 	fileprivate func parseContent (_ content: String) {
 		
 		let lines = content.components(separatedBy: CharacterSet.newlines)

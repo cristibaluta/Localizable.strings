@@ -11,7 +11,9 @@ import Cocoa
 class TranslationsTableDataSource: NSObject {
 	
 	fileprivate let kTranslationCellIdentifier = "TranslationCell"
-	fileprivate let kCellHeight = CGFloat(88)
+    fileprivate let kCellHeight = CGFloat(88)
+    
+    private var tableView: NSTableView!
 	var data = [TranslationData]()
     var translationDidChange: ((TranslationData) -> Void)?
     var translationDidBecomeFirstResponder: ((String) -> Void)?
@@ -20,7 +22,8 @@ class TranslationsTableDataSource: NSObject {
 		super.init()
 		
 		tableView.dataSource = self
-		tableView.delegate = self
+        tableView.delegate = self
+        self.tableView = tableView
 		
 		// Translations table uses view based cells, they need to be loaded from nib and registered
 		assert(NSNib(nibNamed: kTranslationCellIdentifier, bundle: Bundle.main) != nil, "err")
@@ -29,6 +32,10 @@ class TranslationsTableDataSource: NSObject {
 			tableView.register(nib, forIdentifier: kTranslationCellIdentifier)
 		}
 	}
+    
+    func reloadData() {
+        tableView?.reloadData()
+    }
 }
 
 extension TranslationsTableDataSource: NSTableViewDataSource {

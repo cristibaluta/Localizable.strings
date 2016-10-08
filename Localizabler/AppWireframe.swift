@@ -10,26 +10,44 @@ import Cocoa
 
 class AppWireframe {
 
-    private var windowController: WindowController?
+    private var windowController: WindowController!
+    private var _appViewController: LocalizationsViewController?
     
-    convenience init(windowController: WindowController) {
+    convenience init (windowController: WindowController) {
         self.init()
         self.windowController = windowController
     }
     
-	func presentNoProjectsController (_ childController: NSViewController,
-	                                  overController parentController: NSViewController) {
-		
-		parentController.addChildViewController(childController)
-		parentController.view.addSubview(childController.view)
-		childController.view.constrainToSuperview()
-	}
-	
-	func removeNoProjectsController (_ controller: NSViewController?) {
-		
-		if let c = controller {
-			c.view.removeFromSuperview()
-			c.removeFromParentViewController()
-		}
+    fileprivate var localizationsViewController: LocalizationsViewController {
+        get {
+            if _appViewController != nil {
+                return _appViewController!
+            }
+            _appViewController = LocalizationsViewController.instanceFromStoryboard()
+            let presenter = LocalizationsPresenter()
+            let interactor = LocalizationsInteractor()
+            interactor.presenter = presenter
+            presenter.userInterface = _appViewController
+            presenter.interactor = interactor
+            _appViewController!.presenter = presenter
+            _appViewController!.wireframe = self
+            
+            return _appViewController!
+        }
+    }
+    
+    func presentLocalizationsInterface() -> LocalizationsViewController {
+        
+        self.windowController.contentViewController = localizationsViewController
+        
+        return localizationsViewController
+    }
+    
+	func presentNoProjectsInterface() -> NoProjectViewController {
+        
+        let controller = NoProjectViewController.instanceFromStoryboard()
+        self.windowController.contentViewController = controller
+        
+        return controller
 	}
 }

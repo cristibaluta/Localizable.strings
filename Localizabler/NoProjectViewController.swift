@@ -10,19 +10,14 @@ import Cocoa
 
 class NoProjectViewController: NSViewController {
 
-	var browseButtonClicked: (() -> ())?
+	var onOpenButtonClicked: ((_ sender: NSButton) -> ())?
 	
 	class func instanceFromStoryboard() -> NoProjectViewController {
 		let storyBoard = NSStoryboard(name: "Main", bundle: nil)
 		return storyBoard.instantiateController(withIdentifier: "NoProjectViewController") as! NoProjectViewController
 	}
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		
-	}
-	
 	@IBAction func browseButtonClicked (_ sender: NSButton) {
-		browseButtonClicked?()
+		onOpenButtonClicked?(sender)
 	}
 }
