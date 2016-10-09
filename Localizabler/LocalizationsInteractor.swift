@@ -15,12 +15,14 @@ protocol LocalizationsInteractorInput {
     func updateTerm (_ term: String, newTerm: String)
     func updateTranslation (_ translation: String, forTerm term: String, inLanguage language: String)
     func removeTerm (_ term: TermData)
+    func insertNewTerm (afterIndex index: Int) -> Line
     func selectedTermRow (forTranslation translation: String) -> Int?
     func search (_ searchString: String) -> (terms: [TermData], translations: [TranslationData])
     func saveChanges() -> Bool
     func languages() -> [String]
     func baseLanguage() -> String
     func termsForLanguage(_ language: String) -> [String]
+    func lineMatchingTranslation (_ translation: String) -> Line?
 }
 
 protocol LocalizationsInteractorOutput: class {
@@ -36,6 +38,7 @@ class LocalizationsInteractor {
     fileprivate var terms = [TermData]()
     fileprivate var translations = [TranslationData]()
     fileprivate var search: Search?
+    fileprivate var activeLanguage: String = ""
     
     fileprivate func loadLocalizationFile (_ url: URL, countryCode: String) {
         
@@ -124,7 +127,7 @@ extension LocalizationsInteractor: LocalizationsInteractorInput {
     }
     
     func languages() -> [String] {
-        return Array(files.keys)
+        return Array(files.keys).sorted()
     }
     
     func baseLanguage() -> String {
@@ -140,6 +143,24 @@ extension LocalizationsInteractor: LocalizationsInteractorInput {
     }
     
     func termsForLanguage(_ language: String) -> [String] {
+        activeLanguage = language
         return files[language]!.allTerms()
     }
+    
+    func lineMatchingTranslation (_ translation: String) -> Line? {
+        let search = Search(files: files)
+        return search.lineMatchingTranslation(translation: translation)
+    }
+    
+    func insertNewTerm (afterIndex index: Int) -> Line {
+        
+        let currentLine = files[activeLanguage]!.allLines()[index]
+        let newTerm = "term \(arc4random())"
+        let newLine: Line = (term: newTerm, translation: "", isComment: false)
+        for (_, localizationFile) in files {
+            localizationFile.addLine(newLine, belowLine: currentLine)
+        }
+        return newLine
+    }
+    
 }

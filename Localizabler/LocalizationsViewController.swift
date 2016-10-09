@@ -19,8 +19,8 @@ class LocalizationsViewController: NSViewController {
 	@IBOutlet weak fileprivate var translationsTableView: NSTableView?
     @IBOutlet weak fileprivate var butSave: NSButton?
 	
-	fileprivate var termsTableAlert: InlinedAlertView?
-	fileprivate var translationsTableAlert: InlinedAlertView?
+	fileprivate var termsTableAlert: PlaceholderView?
+	fileprivate var translationsTableAlert: PlaceholderView?
     
     class func instanceFromStoryboard() -> LocalizationsViewController {
         let storyBoard = NSStoryboard(name: "Main", bundle: nil)
@@ -71,10 +71,10 @@ extension LocalizationsViewController {
 
 extension LocalizationsViewController {
 	
-	fileprivate func translationsAlert (_ message: String) -> InlinedAlertView {
+	fileprivate func translationsAlert (_ message: String) -> PlaceholderView {
         
 		if translationsTableAlert == nil {
-			translationsTableAlert = InlinedAlertView.instanceFromNib()
+			translationsTableAlert = PlaceholderView.instanceFromNib()
 			translationsTableView?.addSubview(translationsTableAlert!)
 			translationsTableAlert?.constrainToSuperview()
 		}
@@ -83,10 +83,10 @@ extension LocalizationsViewController {
 		return translationsTableAlert!
 	}
 	
-	fileprivate func termsAlert (_ message: String) -> InlinedAlertView {
+	fileprivate func termsAlert (_ message: String) -> PlaceholderView {
         
 		if termsTableAlert == nil {
-			termsTableAlert = InlinedAlertView.instanceFromNib()
+			termsTableAlert = PlaceholderView.instanceFromNib()
 			termsTableView?.addSubview(termsTableAlert!)
 			termsTableAlert?.constrainToSuperview()
 		}
@@ -112,8 +112,8 @@ extension LocalizationsViewController: LocalizationsPresenterOutput {
         butSave?.isEnabled = true
     }
     
-    func deselectTerm() {
-        termsTableView?.deselectRow(termsTableView!.selectedRow)
+    func disableSaving() {
+        butSave?.isEnabled = false
     }
     
     func insertNewTerm (atIndex index: Int) {
@@ -136,8 +136,17 @@ extension LocalizationsViewController: LocalizationsPresenterOutput {
                                    columnIndexes: IndexSet(integer: 0))
     }
     
-    func selectedRow() -> Int? {
+    func selectedTermRow() -> Int? {
         return termsTableView?.selectedRow
+    }
+    
+    func selectTerm (atRow row: Int) {
+        let lastIndex = IndexSet([row])
+        self.termsTableView?.selectRowIndexes(lastIndex, byExtendingSelection: false)
+    }
+    
+    func deselectActiveTerm() {
+        termsTableView?.deselectRow(termsTableView!.selectedRow)
     }
     
     func showLanguagesPopup (_ languages: [String]) {

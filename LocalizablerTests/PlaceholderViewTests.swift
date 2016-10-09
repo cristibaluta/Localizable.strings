@@ -9,10 +9,10 @@
 import XCTest
 @testable import Localizabler
 
-class InlinedAlertViewTests: XCTestCase {
+class PlaceholderViewTests: XCTestCase {
 	
     func testLabel() {
-       let alert = InlinedAlertView.instanceFromNib()
+       let alert = PlaceholderView.instanceFromNib()
 //		alert.message = "abc"
 //		XCTAssert(alert.message == "abc", "")
 	}

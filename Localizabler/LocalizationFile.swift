@@ -40,6 +40,9 @@ protocol LocalizationFile {
 	func addLine(_ line: Line)
     func addLine(_ line: Line, belowLine: Line)
     
+    // Return the line matching a specific term
+    func lineForTerm (_ term: String) -> Line?
+    
     /// Removes a term and it's translation. Both the old term and new term are taken into consideration
     func removeTerm(_ term: TermData)
     

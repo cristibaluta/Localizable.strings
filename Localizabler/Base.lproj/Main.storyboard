@@ -437,6 +437,7 @@
                         <outlet property="filenamePopup" destination="pIG-JL-n4j" id="twb-9s-Vzb"/>
                         <outlet property="languagePopup" destination="A9E-vX-ePx" id="O7G-gE-1zN"/>
                         <outlet property="searchField" destination="tYn-Je-5x6" id="cg2-eE-5hS"/>
+                        <segue destination="u48-59-0ab" kind="relationship" relationship="window.shadowedContentViewController" id="VsJ-Rk-ncQ"/>
                     </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -663,7 +664,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="335" y="1107.5"/>
+            <point key="canvasLocation" x="331" y="1538"/>
         </scene>
         <!--No Project View Controller-->
         <scene sceneID="L54-RQ-8wz">
@@ -724,7 +725,7 @@
                 </viewController>
                 <customObject id="gBf-1j-CJa" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="208" y="1633"/>
+            <point key="canvasLocation" x="204" y="1005"/>
         </scene>
     </scenes>
     <resources>

@@ -59,7 +59,7 @@ class IOSLocalizationFile: LocalizationFile {
     
     func addLine(_ line: Line, belowLine: Line) {
         
-        let index = indexOf(line: belowLine)
+        let index = indexOf(line: belowLine) + 1
         lines.insert(line, at: index)
         terms[line.term] = line.term
         translations[line.term] = line.translation
@@ -67,6 +67,7 @@ class IOSLocalizationFile: LocalizationFile {
     }
     
     func removeTerm(_ term: TermData) {
+        
         if let lineIndex = lines.index( where: { $0.term == term.value || $0.term == term.newValue } ) {
             print(lines[lineIndex])
             lines.remove(at: lineIndex)
@@ -86,9 +87,22 @@ class IOSLocalizationFile: LocalizationFile {
 	}
 	
 	func allTerms() -> [String] {
-		return Array(terms.keys)
+        var terms = [String]()
+        for line in lines {
+            terms.append(line.term)
+        }
+		return terms
 	}
-	
+    
+    func lineForTerm (_ term: String) -> Line? {
+        for line in lines {
+            if line.term == term {
+                return line
+            }
+        }
+        return nil
+    }
+    
 	func translationForTerm (_ term: String) -> String {
 		return translations[term] ?? ""
 	}

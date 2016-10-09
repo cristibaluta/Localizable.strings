@@ -273,9 +273,9 @@
 		28E57ABD1BE4B09200B803E6 /* NSViewAutolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57ABC1BE4B09200B803E6 /* NSViewAutolayout.swift */; };
 		28E57AC01BE4B6E800B803E6 /* BaseLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57ABF1BE4B6E800B803E6 /* BaseLanguage.swift */; };
 		28E57AC51BEDEC8100B803E6 /* SearchAndroidLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57AC41BEDEC8100B803E6 /* SearchAndroidLocalizations.swift */; };
-		28E57AC81BEDF00A00B803E6 /* InlinedAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57AC71BEDF00A00B803E6 /* InlinedAlertView.swift */; };
-		28E57ACB1BEDF01F00B803E6 /* InlinedAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28E57ACA1BEDF01F00B803E6 /* InlinedAlertView.xib */; };
-		28E57ACE1BEEBA1700B803E6 /* InlinedAlertViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57ACD1BEEBA1700B803E6 /* InlinedAlertViewTests.swift */; };
+		28E57AC81BEDF00A00B803E6 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57AC71BEDF00A00B803E6 /* PlaceholderView.swift */; };
+		28E57ACB1BEDF01F00B803E6 /* PlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28E57ACA1BEDF01F00B803E6 /* PlaceholderView.xib */; };
+		28E57ACE1BEEBA1700B803E6 /* PlaceholderViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E57ACD1BEEBA1700B803E6 /* PlaceholderViewTests.swift */; };
 		28EF6A2E1BC38A4700F8E725 /* test.strings in Resources */ = {isa = PBXBuildFile; fileRef = 28EF6A2D1BC38A4700F8E725 /* test.strings */; };
 		28EF6A311BC38E6C00F8E725 /* StringExtenssion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */; };
 		28EF6A341BC44D4900F8E725 /* typedefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A331BC44D4900F8E725 /* typedefs.swift */; };
@@ -575,9 +575,9 @@
 		28E57ABC1BE4B09200B803E6 /* NSViewAutolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSViewAutolayout.swift; sourceTree = "<group>"; };
 		28E57ABF1BE4B6E800B803E6 /* BaseLanguage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLanguage.swift; sourceTree = "<group>"; };
 		28E57AC41BEDEC8100B803E6 /* SearchAndroidLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAndroidLocalizations.swift; sourceTree = "<group>"; };
-		28E57AC71BEDF00A00B803E6 /* InlinedAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InlinedAlertView.swift; sourceTree = "<group>"; };
-		28E57ACA1BEDF01F00B803E6 /* InlinedAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InlinedAlertView.xib; sourceTree = "<group>"; };
-		28E57ACD1BEEBA1700B803E6 /* InlinedAlertViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InlinedAlertViewTests.swift; path = LocalizablerTests/InlinedAlertViewTests.swift; sourceTree = SOURCE_ROOT; };
+		28E57AC71BEDF00A00B803E6 /* PlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
+		28E57ACA1BEDF01F00B803E6 /* PlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceholderView.xib; sourceTree = "<group>"; };
+		28E57ACD1BEEBA1700B803E6 /* PlaceholderViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaceholderViewTests.swift; path = LocalizablerTests/PlaceholderViewTests.swift; sourceTree = SOURCE_ROOT; };
 		28EF6A2D1BC38A4700F8E725 /* test.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = test.strings; sourceTree = "<group>"; };
 		28EF6A301BC38E6C00F8E725 /* StringExtenssion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtenssion.swift; sourceTree = "<group>"; };
 		28EF6A331BC44D4900F8E725 /* typedefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = typedefs.swift; sourceTree = "<group>"; };
@@ -1019,9 +1019,9 @@
 		409E3AB51D9B90490037DE35 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
-				28E57AC71BEDF00A00B803E6 /* InlinedAlertView.swift */,
-				28E57ACA1BEDF01F00B803E6 /* InlinedAlertView.xib */,
-				28E57ACD1BEEBA1700B803E6 /* InlinedAlertViewTests.swift */,
+				28E57AC71BEDF00A00B803E6 /* PlaceholderView.swift */,
+				28E57ACA1BEDF01F00B803E6 /* PlaceholderView.xib */,
+				28E57ACD1BEEBA1700B803E6 /* PlaceholderViewTests.swift */,
 			);
 			name = Alert;
 			sourceTree = "<group>";
@@ -1269,7 +1269,7 @@
 				289558731BC8C07700FA08E8 /* Nepal.png in Resources */,
 				289558621BC8C07700FA08E8 /* Marshall Islands.png in Resources */,
 				289558A71BC8C07700FA08E8 /* St Kitts & Nevis.png in Resources */,
-				28E57ACB1BEDF01F00B803E6 /* InlinedAlertView.xib in Resources */,
+				28E57ACB1BEDF01F00B803E6 /* PlaceholderView.xib in Resources */,
 				289558371BC8C07700FA08E8 /* Guinea.png in Resources */,
 				2895582E1BC8C07700FA08E8 /* Gibraltar.png in Resources */,
 				2895585D1BC8C07700FA08E8 /* Malawi.png in Resources */,
@@ -1543,7 +1543,7 @@
 				28E57AB71BE4A36600B803E6 /* NoProjectViewController.swift in Sources */,
 				28E57AB21BE49F7C00B803E6 /* History.swift in Sources */,
 				404349CE1DA8F385004CA70A /* WindowPresenter.swift in Sources */,
-				28E57AC81BEDF00A00B803E6 /* InlinedAlertView.swift in Sources */,
+				28E57AC81BEDF00A00B803E6 /* PlaceholderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1554,7 +1554,7 @@
 				28EF6A371BC45A6D00F8E725 /* StringExtensionTests.swift in Sources */,
 				28778A631BBF1DBB003E4880 /* IOSLocalizationFileTests.swift in Sources */,
 				289558D51BC8C57D00FA08E8 /* CountriesTests.swift in Sources */,
-				28E57ACE1BEEBA1700B803E6 /* InlinedAlertViewTests.swift in Sources */,
+				28E57ACE1BEEBA1700B803E6 /* PlaceholderViewTests.swift in Sources */,
 				28E57AB51BE4A0A400B803E6 /* HistoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

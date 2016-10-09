@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class InlinedAlertView: NSView {
+class PlaceholderView: NSView {
 	
 	@IBOutlet var textField: NSTextField?
 	
@@ -21,15 +21,15 @@ class InlinedAlertView: NSView {
 		}
 	}
 	
-	class func instanceFromNib() -> InlinedAlertView {
+	class func instanceFromNib() -> PlaceholderView {
 		
 		var viewArray: NSArray = []
-		_ = Bundle.main.loadNibNamed("InlinedAlertView", owner: self, topLevelObjects: &viewArray)
-		if let view = viewArray[0] as? InlinedAlertView {
+		_ = Bundle.main.loadNibNamed("PlaceholderView", owner: self, topLevelObjects: &viewArray)
+		if let view = viewArray[0] as? PlaceholderView {
 			return view
-		} else if let view = viewArray[1] as? InlinedAlertView {
+		} else if let view = viewArray[1] as? PlaceholderView {
 			return view
 		}
-		return InlinedAlertView()
+		return PlaceholderView()
 	}
 }

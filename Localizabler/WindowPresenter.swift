@@ -47,6 +47,8 @@ extension WindowPresenter: WindowPresenterInput {
             if result == NSFileHandlingPanelOKButton {
                 if let url = panel.urls.first {
                     self?.userInterface!.setWindowTitle(url.absoluteString)
+                    self?.userInterface!.setFilenamesPopup([])
+                    self?.userInterface!.setLanguagesPopup([])
                     self?.openProjectAtUrl(url)
                     History().setLastProjectDir(url.absoluteString)
                 }

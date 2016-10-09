@@ -14,7 +14,6 @@ protocol LocalizationsPresenterInput {
     func loadUrls (_ urls: [String: URL])
     func insertNewTerm (afterIndex index: Int)
     func removeTerm (atIndex index: Int)
-//    func selectLanguageNamed (_ fileName: String)
     func search (_ searchString: String)
     func saveChanges()
     func selectLanguageNamed (_ fileName: String)
@@ -25,13 +24,15 @@ protocol LocalizationsPresenterOutput: class {
     func updatePlaceholders (message: String, hideTerms: Bool, hideTranslations: Bool)
     func showNoProjectInterface()
     func enableSaving()
-    func deselectTerm()
+    func disableSaving()
     func insertNewTerm (atIndex index: Int)
     func removeTerm (atIndex index: Int)
     func reloadTerm (atIndex index: Int)
-    func selectedRow() -> Int?
+    func selectedTermRow() -> Int?
     func showLanguagesPopup (_ languages: [String])
     func selectLanguage (_ language: String)
+    func selectTerm (atRow row: Int)
+    func deselectActiveTerm()
 }
 
 class LocalizationsPresenter {
@@ -68,7 +69,7 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
             let translations = wself.interactor!.translationsForTerm(key.value)
             wself.translationsTableDataSource?.data = translations
             wself.translationsTableDataSource?.reloadData()
-            wself.updatePlaceholders()
+            wself.updatePlaceholders(withMessage: "No selection")
         }
         termsTableDataSource?.termDidChange = { [weak self] (term: TermData) -> Void in
             
@@ -90,7 +91,7 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
             }
             
             // A translation was changed, update the term object so it knows about the change
-            if let selectedRow = wself.userInterface!.selectedRow(), selectedRow >= 0 {
+            if let selectedRow = wself.userInterface!.selectedTermRow(), selectedRow >= 0 {
                 let termData = wself.termsTableDataSource?.data[selectedRow]
                 wself.termsTableDataSource?.data[selectedRow].translationChanged = true
                 
@@ -111,27 +112,25 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
                 return
             }
             
-//            let search = Search(files: files)
-//            if let line: Line = search.lineMatchingTranslation(translation: value) {
+            if let line: Line = wself.interactor!.lineMatchingTranslation(value) {
             
-//                let displayedTerms: [TermData] = wself.termsTableDataSource!.data
-//                var i = 0
-//                var found = false
-//                for term in displayedTerms {
-//                    if term.value == line.term {
-//                        found = true
-//                        break
-//                    }
-//                    i += 1
-//                }
-//                wself.termsTableDataSource!.highlightedRow = i
-//                if !found {
-//                    wself.termsTableDataSource?.data.append((value: line.term, newValue: nil, translationChanged: false) as TermData)
-//                }
-//                wself.termsTableDataSource?.reloadData()
-                //                let lastIndex = IndexSet([i])
-                //                self.termsTableView?.selectRowIndexes(lastIndex, byExtendingSelection: false)
-//            }
+                let displayedTerms: [TermData] = wself.termsTableDataSource!.data
+                var i = 0
+                var found = false
+                for term in displayedTerms {
+                    if term.value == line.term {
+                        found = true
+                        break
+                    }
+                    i += 1
+                }
+                wself.termsTableDataSource!.highlightedRow = i
+                if !found {
+                    wself.termsTableDataSource?.data.append((value: line.term, newValue: nil, translationChanged: false) as TermData)
+                }
+                wself.termsTableDataSource?.reloadData()
+                wself.userInterface!.selectTerm(atRow: i)
+            }
         }
     }
     
@@ -144,9 +143,14 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
     }
     
     func insertNewTerm (afterIndex index: Int) {
-//        let line =
-//        let termData: TermData = (value: line.term, newValue: nil, translationChanged: false)
-//        termsTableDataSource?.data.append(termData)
+        
+        let newRow = index + 1
+        let line = interactor!.insertNewTerm(afterIndex: index)
+        userInterface!.enableSaving()
+        let termData: TermData = (value: line.term, newValue: nil, translationChanged: false)
+        termsTableDataSource!.data.insert(termData, at: newRow)
+        termsTableDataSource!.reloadData()
+        userInterface!.selectTerm(atRow: newRow)
     }
     
     func removeTerm (atIndex index: Int) {
@@ -161,7 +165,7 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
     
     fileprivate func clear() {
         
-        userInterface!.deselectTerm()
+        userInterface!.deselectActiveTerm()
         translationsTableDataSource?.data = []
         translationsTableDataSource?.reloadData()
     }
@@ -177,12 +181,12 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
         
         termsTableDataSource?.data = termsData
         termsTableDataSource?.reloadData()
-        updatePlaceholders()
+        updatePlaceholders(withMessage: "No selection")
     }
     
     func search (_ searchString: String) {
         
-        userInterface!.deselectTerm()
+        userInterface!.deselectActiveTerm()
         let results = interactor!.search(searchString)
         //
         termsTableDataSource?.data = results.terms
@@ -192,22 +196,21 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
         translationsTableDataSource?.reloadData()
         
         // Add Placeholders if no matches found
-        updatePlaceholders()
+        updatePlaceholders(withMessage: "No matches")
     }
     
     func showBaseLanguage() {
         
         let baseLanguage = interactor!.baseLanguage()
         userInterface!.selectLanguage(baseLanguage)
-        let terms = interactor!.termsForLanguage(baseLanguage)
-        showTerms(terms)
+        selectLanguageNamed(baseLanguage)
     }
     
     func saveChanges() {
         
         if interactor!.saveChanges() {
             markFilesAsSaved()
-            userInterface!.enableSaving()
+            userInterface!.disableSaving()
         }
     }
     
@@ -219,19 +222,9 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
 
 extension LocalizationsPresenter {
     
-    fileprivate func insertNewTerm (belowLine line: Line) {
+    fileprivate func updatePlaceholders(withMessage message: String) {
         
-        let newTerm = "term \(arc4random())"
-        let newLine: Line = (term: newTerm, translation: "", isComment: false)
-//        for (_, localizationFile) in files {
-//            localizationFile.addLine(newLine)
-//        }
-        userInterface!.enableSaving()
-    }
-    
-    fileprivate func updatePlaceholders() {
-        
-        userInterface!.updatePlaceholders(message: "No matches",
+        userInterface!.updatePlaceholders(message: message,
                                           hideTerms: translationsTableDataSource!.data.count > 0,
                                           hideTranslations: termsTableDataSource!.data.count > 0)
     }
