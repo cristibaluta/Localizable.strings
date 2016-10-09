@@ -52,9 +52,11 @@ class IOSLocalizationFile: LocalizationFile {
     }
 	
 	func addLine (_ line: Line) {
+        
         lines.append(line)
         terms[line.term] = line.term
         translations[line.term] = line.translation
+        hasChanges = true
 	}
     
     func addLine(_ line: Line, belowLine: Line) {

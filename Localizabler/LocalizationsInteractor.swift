@@ -162,14 +162,17 @@ extension LocalizationsInteractor: LocalizationsInteractorInput {
     func insertNewTerm (afterIndex index: Int) -> (line: Line, row: Int) {
         
         var row = index
+        let allTerms = files[activeLanguage]!.allTerms()
         if row == -1 {
-            row = files[activeLanguage]!.allLines().count - 1
+            row = allTerms.count - 1
         }
-        let currentLine = files[activeLanguage]!.allLines()[row]
+        let currentTerm = allTerms[row]
+        let currentLine = files[activeLanguage]!.lineForTerm(currentTerm)
+        
         let newTerm = "term \(arc4random())"
         let newLine: Line = (term: newTerm, translation: "", isComment: false)
         for (_, localizationFile) in files {
-            localizationFile.addLine(newLine, belowLine: currentLine)
+            localizationFile.addLine(newLine, belowLine: currentLine!)
         }
         return (line: newLine, row: row)
     }
