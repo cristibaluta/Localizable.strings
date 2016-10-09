@@ -16,7 +16,6 @@ protocol LocalizationsInteractorInput {
     func updateTranslation (_ translation: String, forTerm term: String, inLanguage language: String)
     func removeTerm (_ term: TermData)
     func insertNewTerm (afterIndex index: Int) -> (line: Line, row: Int)
-    func selectedTermRow (forTranslation translation: String) -> Int?
     func search (_ searchString: String) -> (terms: [TermData], translations: [TranslationData])
     func saveChanges() -> Bool
     func languages() -> [String]
@@ -102,8 +101,8 @@ extension LocalizationsInteractor: LocalizationsInteractorInput {
         }
     }
     
-    func selectedTermRow (forTranslation translation: String) -> Int? {
-        
+//    func selectedTermRow (forTranslation translation: String) -> Int? {
+    
 //        if let line: Line = search!.lineMatchingTranslation(translation: translation) {
 //            
 //            let displayedTerms: [TermData] = self.termsTableDataSource!.data
@@ -118,8 +117,8 @@ extension LocalizationsInteractor: LocalizationsInteractorInput {
 //            }
 //            return i
 //        }
-        return nil
-    }
+//        return nil
+//    }
     
     func search (_ searchString: String) -> (terms: [TermData], translations: [TranslationData]) {
         

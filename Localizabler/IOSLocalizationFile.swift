@@ -74,7 +74,6 @@ class IOSLocalizationFile: LocalizationFile {
     func removeTerm(_ term: TermData) {
         
         if let lineIndex = lines.index( where: { $0.term == term.value || $0.term == term.newValue } ) {
-            print(lines[lineIndex])
             lines.remove(at: lineIndex)
         }
         terms.removeValue(forKey: term.value)
