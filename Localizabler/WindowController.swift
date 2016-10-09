@@ -65,9 +65,8 @@ extension WindowController: WindowPresenterOutput {
     
     func setFilenamesPopup (_ filenames: [String]) {
         
-        if filenames.count == 0 {
-            filenamePopup?.removeAllItems()
-        } else {
+        filenamePopup?.removeAllItems()
+        if filenames.count > 0 {
             filenamePopup!.addItems(withTitles: filenames)
             filenamePopup!.isEnabled = true
         }
@@ -75,9 +74,8 @@ extension WindowController: WindowPresenterOutput {
     
     func setLanguagesPopup (_ languages: [String]) {
         
-        if languages.count == 0 {
-            languagePopup?.removeAllItems()
-        } else {
+        languagePopup?.removeAllItems()
+        if languages.count > 0 {
             languagePopup!.addItems(withTitles: languages)
             languagePopup!.isEnabled = true
         }
