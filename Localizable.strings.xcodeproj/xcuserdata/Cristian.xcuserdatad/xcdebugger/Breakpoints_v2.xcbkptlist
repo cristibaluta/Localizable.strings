@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LocalizablerTests/HistoryTests.swift"
+            timestampString = "497743039.711928"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "testLastProject()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Localizable_stringsTests.HistoryTests.testLastProject () -&gt; ()"
+                  moduleName = "Localizable.stringsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cristian/Documents/Localizabler/LocalizablerTests/HistoryTests.swift"
+                  timestampString = "497743080.424381"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "181">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Localizable_stringsTests.HistoryTests.(testLastProject () -&gt; ()).(implicit closure #1)"
+                  moduleName = "Localizable.stringsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cristian/Documents/Localizabler/LocalizablerTests/HistoryTests.swift"
+                  timestampString = "497743080.426911"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "19">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Localizable_stringsTests.HistoryTests.(testLastProject () -&gt; ()).(implicit closure #2)"
+                  moduleName = "Localizable.stringsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cristian/Documents/Localizabler/LocalizablerTests/HistoryTests.swift"
+                  timestampString = "497743080.429355"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Localizabler/History.swift"
+            timestampString = "497743074.548546"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "getLastProjectDir()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Localizable_strings.History.getLastProjectDir () -&gt; Swift.Optional&lt;Foundation.URL&gt;"
+                  moduleName = "Localizable.strings"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cristian/Documents/Localizabler/Localizabler/History.swift"
+                  timestampString = "497743079.956464"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Localizable_strings.History.getLastProjectDir () -&gt; Swift.Optional&lt;Foundation.URL&gt;"
+                  moduleName = "Localizable.strings"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Cristian/Documents/Localizabler/Localizabler/History.swift"
+                  timestampString = "497743079.958797"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "871">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

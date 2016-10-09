@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Localizabler
+@testable import Localizable_strings
 
 class CountriesTests: XCTestCase {
 

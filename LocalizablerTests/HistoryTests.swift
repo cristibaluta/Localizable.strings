@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Localizabler
+@testable import Localizable_strings
 
 class HistoryTests: XCTestCase {
     
@@ -30,7 +30,7 @@ class HistoryTests: XCTestCase {
 	func testLastProject() {
 		
 		let lastProject = History()
-		lastProject.setLastProjectDir("some/dir")
-		XCTAssert(lastProject.getLastProjectDir() == "some/dir", "Value should be some/dir")
+        lastProject.setLastProjectDir(URL(string: "http://google.ro")!)
+		XCTAssert(lastProject.getLastProjectDir()?.absoluteString == "http://google.ro", "Value should be some/dir")
     }
 }
