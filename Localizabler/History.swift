@@ -10,14 +10,27 @@ import Foundation
 
 class History {
 	
-	let lastProjectDir = "LastProjectDir"
+	let bookmarkKey = "bookmarkKey"
 	
-	func getLastProjectDir() -> String? {
-		return UserDefaults.standard.object(forKey: lastProjectDir) as? String
+	func getLastProjectDir() -> URL? {
+        
+        if let bookmark = UserDefaults.standard.object(forKey: bookmarkKey) as? NSData as? Data {
+            var stale = false
+            if let url = try? URL(resolvingBookmarkData: bookmark, options: URL.BookmarkResolutionOptions.withSecurityScope,
+                                  relativeTo: nil,
+                                  bookmarkDataIsStale: &stale) {
+                return url
+            }
+        }
+		return nil
 	}
 	
-	func setLastProjectDir (_ dir: String?) {
-		UserDefaults.standard.set(dir, forKey: lastProjectDir)
-		UserDefaults.standard.synchronize()
+	func setLastProjectDir (_ url: URL?) {
+        
+        let bookmark = try? url?.bookmarkData(options: URL.BookmarkCreationOptions.withSecurityScope,
+                                              includingResourceValuesForKeys: nil,
+                                              relativeTo: nil)
+        UserDefaults.standard.set(bookmark as? NSData, forKey: bookmarkKey)
+        UserDefaults.standard.synchronize()
 	}
 }

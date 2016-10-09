@@ -57,11 +57,18 @@ extension LocalizationsInteractor: LocalizationsInteractorInput {
     
     func loadUrls (_ urls: [String: URL]) {
         
-        files.removeAll()
-        for (countryCode, url) in urls {
-            loadLocalizationFile(url, countryCode: countryCode)
+        if let url = History().getLastProjectDir() {
+            let _ = url.startAccessingSecurityScopedResource()
+            
+            files.removeAll()
+            for (countryCode, url) in urls {
+                loadLocalizationFile(url, countryCode: countryCode)
+            }
+            search = Search(files: files)
+            
+            
+            url.stopAccessingSecurityScopedResource()
         }
-        search = Search(files: files)
     }
     
     func translationsForTerm (_ term: String) -> [TranslationData] {

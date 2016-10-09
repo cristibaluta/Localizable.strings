@@ -10,7 +10,7 @@ import Foundation
 
 class FileOutput: Output {
 
-	fileprivate var url: URL?
+	fileprivate var url: URL
 	
 	required init (url: URL) {
 		self.url = url
@@ -18,7 +18,7 @@ class FileOutput: Output {
 	
 	func write (_ string: String) {
 		do {
-			try string.write(to: url!, atomically: true, encoding: String.Encoding.utf8)
+			try string.write(to: url, atomically: true, encoding: String.Encoding.utf8)
 		}
 		catch let error as NSError {
 			print(error.localizedDescription)

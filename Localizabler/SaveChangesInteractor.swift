@@ -17,9 +17,16 @@ class SaveChangesInteractor {
 	}
 	
 	func execute() -> Bool {
-		saveToDisk(files!)
+        
+        if let url = History().getLastProjectDir() {
+            let _ = url.startAccessingSecurityScopedResource()
+            saveToDisk(files!)
+            url.stopAccessingSecurityScopedResource()
+            return true
+        }
+		
 		//		showToConsole(files!)
-		return true
+		return false
 	}
 }
 

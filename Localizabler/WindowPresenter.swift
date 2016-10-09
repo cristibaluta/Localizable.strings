@@ -50,7 +50,7 @@ extension WindowPresenter: WindowPresenterInput {
                     self?.userInterface!.setFilenamesPopup([])
                     self?.userInterface!.setLanguagesPopup([])
                     self?.openProjectAtUrl(url)
-                    History().setLastProjectDir(url.absoluteString)
+                    History().setLastProjectDir(url)
                 }
             }
         }
@@ -58,11 +58,12 @@ extension WindowPresenter: WindowPresenterInput {
     
     func loadLastOpenedProject() {
         
-        History().setLastProjectDir(nil)
-        if let dir = History().getLastProjectDir() {
-            if let url = URL(string: dir) {
-//                appPresenter!.loadProjectAtUrl(url)
-            }
+//        History().setLastProjectDir(nil)
+        
+        if let url = History().getLastProjectDir() {
+            let _ = url.startAccessingSecurityScopedResource()
+            openProjectAtUrl(url)
+            url.stopAccessingSecurityScopedResource()
         } else {
             userInterface!.showNoProjectInterface()
         }
