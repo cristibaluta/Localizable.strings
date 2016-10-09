@@ -22,7 +22,6 @@ protocol LocalizationsPresenterInput {
 protocol LocalizationsPresenterOutput: class {
     
     func updatePlaceholders (message: String, hideTerms: Bool, hideTranslations: Bool)
-    func showNoProjectInterface()
     func enableSaving()
     func disableSaving()
     func insertNewTerm (atIndex index: Int)

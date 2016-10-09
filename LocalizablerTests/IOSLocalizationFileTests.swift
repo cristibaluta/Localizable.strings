@@ -42,7 +42,8 @@ class IOSLocalizationFileTests: XCTestCase {
 		XCTAssertFalse(file.isValidLine("\"\"=\"\""), "Missing termination character ;")
 		XCTAssertFalse(file.isValidLine("\";"), "Missing equal is not allowed")
 		XCTAssertFalse(file.isValidLine("\"\"=\"\";"), "Missing keys are not allowed")
-		
+        
+        XCTAssertTrue(file.isValidLine("\"key\"=\"ใช้คีย์ลัดเดิม\";"), "Thai chars not matched, probably the string range is using string.characters.length instead string.utf16.length")
 		XCTAssertTrue(file.isValidLine("\"key\"=\"\";"), "Missing spaces are allowed")
 		XCTAssertTrue(file.isValidLine("   \"key\"=\"\";"), "Spaces at the beginning are allowed")
 		XCTAssertTrue(file.isValidLine("   \"key\"=\"\";   "), "Spaces at the beginning and end are allowed")

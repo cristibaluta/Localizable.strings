@@ -92,7 +92,9 @@ class IOSLocalizationFile: LocalizationFile {
 	func allTerms() -> [String] {
         var terms = [String]()
         for line in lines {
-            terms.append(line.term)
+            if !line.isComment {
+                terms.append(line.term)
+            }
         }
 		return terms
 	}
@@ -167,7 +169,7 @@ extension IOSLocalizationFile {
         
 		return lineRegex!.numberOfMatches(in: lineContent,
 		                                  options: NSRegularExpression.MatchingOptions(),
-		                                  range: NSMakeRange(0, lineContent.characters.count)) == 1
+		                                  range: NSMakeRange(0, lineContent.utf16.count)) == 1
 	}
 	
 	@inline(__always) func splitLine (_ lineContent: String) -> Line {
@@ -175,7 +177,7 @@ extension IOSLocalizationFile {
 		// TODO: Better splitting
         let separator = separatorRegex!.firstMatch(in: lineContent,
                                                    options: NSRegularExpression.MatchingOptions(),
-                                                   range: NSMakeRange(0, lineContent.characters.count))
+                                                   range: NSMakeRange(0, lineContent.utf16.count))
         let nsString = lineContent as NSString?
         let newLineContent = nsString?.replacingCharacters(in: separator!.range, with: "::separator::")
 		let comps = newLineContent!.components(separatedBy: "::separator::")

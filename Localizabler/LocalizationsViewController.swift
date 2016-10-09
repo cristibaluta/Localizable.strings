@@ -104,10 +104,6 @@ extension LocalizationsViewController: LocalizationsPresenterOutput {
         termsAlert(message).isHidden = hideTranslations
     }
     
-    func showNoProjectInterface() {
-        
-    }
-    
     func enableSaving() {
         butSave?.isEnabled = true
     }
