@@ -62,8 +62,8 @@ class IOSLocalizationFile: LocalizationFile {
     func addLine(_ line: Line, belowLine: Line) {
         
         var index = indexOf(line: belowLine) + 1
-        if index > terms.count {
-            index = terms.count
+        if index > lines.count {
+            index = lines.count
         }
         lines.insert(line, at: index)
         terms[line.term] = line.term

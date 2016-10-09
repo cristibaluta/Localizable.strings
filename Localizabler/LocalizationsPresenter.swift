@@ -144,7 +144,7 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
     func insertNewTerm (afterIndex index: Int) {
         
         let data = interactor!.insertNewTerm(afterIndex: index)
-        let termData: TermData = (value: data.line.term, newValue: nil, translationChanged: false)
+        let termData: TermData = (value: data.line.term, newValue: nil, translationChanged: true)
         termsTableDataSource!.data.insert(termData, at: data.row + 1)
         termsTableDataSource!.reloadData()
         userInterface!.selectTerm(atRow: data.row + 1)
