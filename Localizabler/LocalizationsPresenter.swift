@@ -144,13 +144,12 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
     
     func insertNewTerm (afterIndex index: Int) {
         
-        let newRow = index + 1
-        let line = interactor!.insertNewTerm(afterIndex: index)
-        userInterface!.enableSaving()
-        let termData: TermData = (value: line.term, newValue: nil, translationChanged: false)
-        termsTableDataSource!.data.insert(termData, at: newRow)
+        let data = interactor!.insertNewTerm(afterIndex: index)
+        let termData: TermData = (value: data.line.term, newValue: nil, translationChanged: false)
+        termsTableDataSource!.data.insert(termData, at: data.row + 1)
         termsTableDataSource!.reloadData()
-        userInterface!.selectTerm(atRow: newRow)
+        userInterface!.selectTerm(atRow: data.row + 1)
+        userInterface!.enableSaving()
     }
     
     func removeTerm (atIndex index: Int) {
@@ -160,6 +159,7 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
         interactor!.removeTerm(term)
         // Remove from datasource
         termsTableDataSource?.data.remove(at: index)
+        termsTableDataSource!.reloadData()
         userInterface!.enableSaving()
     }
     

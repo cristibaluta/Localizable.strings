@@ -664,18 +664,18 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="331" y="1538"/>
+            <point key="canvasLocation" x="1437" y="1119"/>
         </scene>
         <!--No Project View Controller-->
         <scene sceneID="L54-RQ-8wz">
             <objects>
                 <viewController storyboardIdentifier="NoProjectViewController" id="u48-59-0ab" customClass="NoProjectViewController" customModule="Localizabler" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="JWN-C8-2kz">
-                        <rect key="frame" x="0.0" y="0.0" width="738" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="992" height="529"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1r1-KA-gZL">
-                                <rect key="frame" x="338" y="90" width="62" height="31"/>
+                                <rect key="frame" x="465" y="205" width="62" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="3Am-42-TFt"/>
                                     <constraint firstAttribute="width" constant="62" id="Shu-LP-BUD"/>
@@ -689,7 +689,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ty3-hM-FhG">
-                                <rect key="frame" x="18" y="126" width="702" height="48"/>
+                                <rect key="frame" x="18" y="241" width="956" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="YYh-vz-fGT"/>
                                 </constraints>
@@ -700,7 +700,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QFz-3J-Q9P">
-                                <rect key="frame" x="18" y="182" width="702" height="24"/>
+                                <rect key="frame" x="18" y="297" width="956" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="CmS-Hd-S9y"/>
                                 </constraints>
@@ -725,7 +725,7 @@
                 </viewController>
                 <customObject id="gBf-1j-CJa" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="204" y="1005"/>
+            <point key="canvasLocation" x="335" y="1118.5"/>
         </scene>
     </scenes>
     <resources>

@@ -15,7 +15,7 @@ protocol LocalizationsInteractorInput {
     func updateTerm (_ term: String, newTerm: String)
     func updateTranslation (_ translation: String, forTerm term: String, inLanguage language: String)
     func removeTerm (_ term: TermData)
-    func insertNewTerm (afterIndex index: Int) -> Line
+    func insertNewTerm (afterIndex index: Int) -> (line: Line, row: Int)
     func selectedTermRow (forTranslation translation: String) -> Int?
     func search (_ searchString: String) -> (terms: [TermData], translations: [TranslationData])
     func saveChanges() -> Bool
@@ -152,15 +152,19 @@ extension LocalizationsInteractor: LocalizationsInteractorInput {
         return search.lineMatchingTranslation(translation: translation)
     }
     
-    func insertNewTerm (afterIndex index: Int) -> Line {
+    func insertNewTerm (afterIndex index: Int) -> (line: Line, row: Int) {
         
-        let currentLine = files[activeLanguage]!.allLines()[index]
+        var row = index
+        if row == -1 {
+            row = files[activeLanguage]!.allLines().count - 1
+        }
+        let currentLine = files[activeLanguage]!.allLines()[row]
         let newTerm = "term \(arc4random())"
         let newLine: Line = (term: newTerm, translation: "", isComment: false)
         for (_, localizationFile) in files {
             localizationFile.addLine(newLine, belowLine: currentLine)
         }
-        return newLine
+        return (line: newLine, row: row)
     }
     
 }
