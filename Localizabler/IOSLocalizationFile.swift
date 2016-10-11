@@ -18,7 +18,7 @@ class IOSLocalizationFile: LocalizationFile {
     // Regex to validate a line containing term and translation
 	fileprivate let lineRegex = try? NSRegularExpression(pattern: "^(\"|[ ]*\")(.+?)\"(^|[ ]*)=(^|[ ]*)\"(.*?)((\";[ ]*$)|(\";[ ]*/(.*)$))",
 	                                                     options: NSRegularExpression.Options())
-    fileprivate let inlineCommentRegex = try? NSRegularExpression(pattern: "([ ]+$)|([ ]*/%*(.*)$)",
+    fileprivate let inlineCommentRegex = try? NSRegularExpression(pattern: "([ ]*//(.*)(?<!\")$)|([ ]*/%*(.*)%*/[ ]*$)",
                                                                   options: NSRegularExpression.Options())
     fileprivate let separatorRegex = try? NSRegularExpression(pattern: "\"(^|[ ]*)=(^|[ ]*)\"",
                                                               options: NSRegularExpression.Options())
@@ -178,7 +178,7 @@ extension IOSLocalizationFile {
 	
 	@inline(__always) func splitLine (_ lineContent: String) -> Line {
 		
-		// TODO: Better splitting
+		// TODO: Better/faster splitting?
 //        let translationMatch = lineRegex!.firstMatch(in: lineContent,
 //                                                     options: NSRegularExpression.MatchingOptions(),
 //                                                     range: NSMakeRange(0, lineContent.utf16.count))
@@ -190,13 +190,15 @@ extension IOSLocalizationFile {
 //            (translationMatch!.range.length < lineContent.utf16.count)
 //        ? (lineContent as NSString?)!.substring(with: NSMakeRange(translationMatch!.range.length, lineContent.utf16.count-translationMatch2!.range.length))
 //        : nil
+        RCLog(theComment)
         let theTranslation = commentMatch != nil
             ? (lineContent as NSString?)!.substring(with: NSMakeRange(0, commentMatch!.range.location))
             : lineContent
+        RCLog(theTranslation)
         let separator = separatorRegex!.firstMatch(in: theTranslation,
                                                    options: NSRegularExpression.MatchingOptions(),
                                                    range: NSMakeRange(0, theTranslation.utf16.count))
-        let nsString = theTranslation as! NSString
+        let nsString = theTranslation as NSString
         let newLineContent = nsString.replacingCharacters(in: separator!.range, with: "::separator::")
         let c = newLineContent.components(separatedBy: theTranslation)
 		let comps = c.last!.components(separatedBy: "::separator::")

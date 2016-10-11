@@ -3,6 +3,6 @@
 
 // Comment
 "key2" = "value 2"; /* Inline comment 1 */
-"key3" = "value 3"; // Inline comment
+"key3" = "value 3"; // Inline comment 2
 
 "key4" = "<html><head><meta name=\"format-detection\" content=\"telephone=no\"></head><style type=\"text/css\">body {font-family: \"Helvetica Neue\"; margin-left:32px; margin-right:32px; color: #808285;}</style><body style=\"font-size:15px;\"><body><p>&nbsp;</p><p>JSONKit is dual licensed under either the terms of the BSD License, or alternatively under the terms of the Apache License, Version 2.0.<br/>Copyright © 2011, John Engelhart.</p></body></html>";

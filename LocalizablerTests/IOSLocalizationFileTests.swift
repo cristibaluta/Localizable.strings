@@ -28,7 +28,7 @@ class IOSLocalizationFileTests: XCTestCase {
 		XCTAssert(lines.count == 9, "Wrong number of lines, check parsing")
         XCTAssertTrue(lines[5].term == "key3")
         XCTAssertTrue(lines[5].translation == "value 3")
-        XCTAssertTrue(lines[5].comment == " // Inline comment")
+        XCTAssertTrue(lines[5].comment == " // Inline comment 2")
 		XCTAssert(file.allTerms().count == 4, "Wrong number of keys, check parsing")
 		XCTAssert(file.translationForTerm("key1") == "value 1", "Wrong dictionary")
 		XCTAssert(file.translationForTerm("key2") == "value 2", "Wrong dictionary")
