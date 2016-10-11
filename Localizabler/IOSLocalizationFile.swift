@@ -16,7 +16,7 @@ class IOSLocalizationFile: LocalizationFile {
 	fileprivate var terms = [String: String]()// term: value
 	fileprivate var translations = [String: String]()// term: translation
     // Regex to validate a line containing term and translation
-	fileprivate let lineRegex = try? NSRegularExpression(pattern: "^(\"|[ ]*\")(.+?)\"(^|[ ]*)=(^|[ ]*)\"(.*?)\"(;|;[ ]*)$",
+	fileprivate let lineRegex = try? NSRegularExpression(pattern: "^(\"|[ ]*\")(.+?)\"(^|[ ]*)=(^|[ ]*)\"(.*?)(\";)",
 	                                                     options: NSRegularExpression.Options())
     fileprivate let separatorRegex = try? NSRegularExpression(pattern: "\"(^|[ ]*)=(^|[ ]*)\"",
                                                               options: NSRegularExpression.Options())
@@ -93,7 +93,7 @@ class IOSLocalizationFile: LocalizationFile {
 	func allTerms() -> [String] {
         var terms = [String]()
         for line in lines {
-            if !line.isComment {
+            if line.term.characters.count > 0 {
                 terms.append(line.term)
             }
         }
@@ -120,11 +120,12 @@ class IOSLocalizationFile: LocalizationFile {
 		// Iterate over lines and put them back in the string with the new translations
         var i = 0
 		for line in lines {
-			if line.isComment {
-				string += line.translation
+			if line.comment != nil && line.term.utf16.count > 0 && translationForTerm(line.term).utf16.count > 0 {
+				string += line.comment!
 			}
 			else {
-				string += "\"\(terms[line.term]!)\" = \"\(translationForTerm(line.term))\";"
+                let comment = line.comment != nil ? line.comment : ""
+				string += "\"\(terms[line.term]!)\" = \"\(translationForTerm(line.term))\";\(comment)"
 			}
             i += 1
             if i < lines.count {
@@ -162,7 +163,7 @@ extension IOSLocalizationFile {
 		if isValidLine(lineContent) {
 			addLine(splitLine(lineContent))
 		} else {
-			lines.append((term: "", translation: lineContent, isComment: true))
+			lines.append((term: "", translation: "", comment: lineContent))
 		}
 	}
 	
@@ -176,15 +177,23 @@ extension IOSLocalizationFile {
 	@inline(__always) func splitLine (_ lineContent: String) -> Line {
 		
 		// TODO: Better splitting
-        let separator = separatorRegex!.firstMatch(in: lineContent,
+        let translationMatch = lineRegex!.firstMatch(in: lineContent,
+                                                     options: NSRegularExpression.MatchingOptions(),
+                                                     range: NSMakeRange(0, lineContent.utf16.count))
+        let theTranslation = (lineContent as NSString?)?.substring(with: translationMatch!.range)
+        let theComment: String? = (translationMatch!.range.length < lineContent.utf16.count)
+        ? (lineContent as NSString?)!.substring(with: NSMakeRange(translationMatch!.range.length, lineContent.utf16.count-translationMatch!.range.length))
+        : nil
+        let separator = separatorRegex!.firstMatch(in: theTranslation!,
                                                    options: NSRegularExpression.MatchingOptions(),
-                                                   range: NSMakeRange(0, lineContent.utf16.count))
-        let nsString = lineContent as NSString?
-        let newLineContent = nsString?.replacingCharacters(in: separator!.range, with: "::separator::")
-		let comps = newLineContent!.components(separatedBy: "::separator::")
+                                                   range: NSMakeRange(0, theTranslation!.utf16.count))
+        let nsString = theTranslation as! NSString
+        let newLineContent = nsString.replacingCharacters(in: separator!.range, with: "::separator::")
+        let c = newLineContent.components(separatedBy: theTranslation!)
+		let comps = c.last!.components(separatedBy: "::separator::")
 		
 		return (term:			String(comps.first!.trim().characters.dropFirst()),
 				translation:	String(comps.last!.trim().characters.dropLast().dropLast()),
-				isComment:		false)
+				comment:		theComment)
 	}
 }

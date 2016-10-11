@@ -45,7 +45,7 @@ class Search {
 			for line in localizationFile.allLines() {
 				if line.translation != "" &&
                     line.translation.lowercased().range(of: lowercaseSearchString) != nil &&
-                    line.isComment == false {
+                    line.comment == nil {
 					
                     let data: TranslationData = (value: line.translation, newValue: nil, languageCode: lang)
 					matchedTranslations.append(data)

@@ -169,7 +169,7 @@ extension LocalizationsInteractor: LocalizationsInteractorInput {
         let currentLine = files[activeLanguage]!.lineForTerm(currentTerm)
         
         let newTerm = "term \(arc4random())"
-        let newLine: Line = (term: newTerm, translation: "", isComment: false)
+        let newLine: Line = (term: newTerm, translation: "", comment: nil)
         for (_, localizationFile) in files {
             localizationFile.addLine(newLine, belowLine: currentLine!)
         }

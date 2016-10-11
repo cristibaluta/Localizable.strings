@@ -24,13 +24,17 @@ class IOSLocalizationFileTests: XCTestCase {
 		
 		let url = Bundle(for: type(of: self)).url(forResource: "test", withExtension: "strings")
 		let file = try! IOSLocalizationFile(url: url!)
-		XCTAssert(file.allLines().count == 9, "Wrong number of lines, check parsing")
+        let lines = file.allLines()
+		XCTAssert(lines.count == 9, "Wrong number of lines, check parsing")
+        XCTAssertTrue(lines[5].term == "key3")
+        XCTAssertTrue(lines[5].translation == "value 3")
+        XCTAssertTrue(lines[5].comment == " // Inline comment")
 		XCTAssert(file.allTerms().count == 4, "Wrong number of keys, check parsing")
 		XCTAssert(file.translationForTerm("key1") == "value 1", "Wrong dictionary")
 		XCTAssert(file.translationForTerm("key2") == "value 2", "Wrong dictionary")
         XCTAssert(file.translationForTerm("key3") == "value 3", "Wrong dictionary")
         XCTAssert(file.translationForTerm("key4").hasPrefix("<html><head>"), "Splitting of line failed")
-        XCTAssert(file.translationForTerm("key4").hasSuffix("</body></html>"), "Splitting of line failed")
+        XCTAssert(file.translationForTerm("key4").hasSuffix("</body></html>"), "Splitting of html line failed")
 	}
 	
 	func testValidLines() {
@@ -50,6 +54,15 @@ class IOSLocalizationFileTests: XCTestCase {
 		XCTAssertTrue(file.isValidLine("\"key\" =    \"value\";"), "Spaces around = sign are allowed")
 		XCTAssertTrue(file.isValidLine("\"key key\" =    \"value value value value \";"), "")
 		XCTAssertTrue(file.isValidLine("\"The key \"%@\" can't.\" = \"The key \"%@\" can't be used <html> \"; %@.\";"),
-			"Html in the right side allowed. This includes termination character ;")
+		              "Html in the right side allowed. This includes termination character ;")
+        
 	}
+    
+    func testLineWithComment() {
+        
+        let url = Bundle(for: type(of: self)).url(forResource: "test", withExtension: "strings")
+        let file = try! IOSLocalizationFile(url: url!)
+        XCTAssertTrue(file.isValidLine("\"The key\" = \"The translation\"; /* The comment */"),
+                      "Line with comment should be valid")
+    }
 }

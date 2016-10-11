@@ -6,7 +6,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocalizablerTests/HistoryTests.swift"
@@ -17,54 +17,6 @@
             endingLineNumber = "34"
             landmarkName = "testLastProject()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Localizabler/LocalizationsInteractor.swift"
-            timestampString = "497813869.323352"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "loadUrls(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Localizable_strings.LocalizationsInteractor.loadUrls (Swift.Dictionary&lt;Swift.String, Foundation.URL&gt;) -&gt; ()"
-                  moduleName = "Localizable.strings"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Cristian/Documents/Localizabler/Localizabler/LocalizationsInteractor.swift"
-                  timestampString = "497814731.42137"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59"
-                  offsetFromSymbolStart = "32">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Localizable_strings.LocalizationsInteractor.loadUrls (Swift.Dictionary&lt;Swift.String, Foundation.URL&gt;) -&gt; ()"
-                  moduleName = "Localizable.strings"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Cristian/Documents/Localizabler/Localizabler/LocalizationsInteractor.swift"
-                  timestampString = "497814731.424346"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59"
-                  offsetFromSymbolStart = "123">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
