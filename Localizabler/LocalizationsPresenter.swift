@@ -43,6 +43,7 @@ class LocalizationsPresenter {
     fileprivate var termsTableDataSource: TermsTableDataSource?
     fileprivate var translationsTableDataSource: TranslationsTableDataSource?
     fileprivate var lastSearchString = ""
+    fileprivate var lastHighlightedTermRow = -1
     
     fileprivate func markFilesAsSaved() {
         
@@ -92,20 +93,26 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
             }
             
             // A translation was changed, update the term object so it knows about the change
-            if let selectedRow = wself.userInterface!.selectedTermRow(), selectedRow >= 0 {
-                let termData = wself.termsTableDataSource?.data[selectedRow]
-                wself.termsTableDataSource?.data[selectedRow].translationChanged = true
-                
-                // If there are changes in the translation
-                if let newValue = translation.newValue {
-                    wself.interactor!.updateTranslation(newValue,
-                                                        forTerm: termData!.value,
-                                                        inLanguage: translation.languageCode)
-                }
-                
-                wself.userInterface!.reloadTerm(atIndex: selectedRow)
-                wself.userInterface!.enableSaving()
+            var selectedRow = wself.userInterface!.selectedTermRow()!
+            if selectedRow < 0 {
+                selectedRow = wself.lastHighlightedTermRow
             }
+            guard selectedRow >= 0 else {
+                return
+            }
+            
+            let termData = wself.termsTableDataSource?.data[selectedRow]
+            wself.termsTableDataSource?.data[selectedRow].translationChanged = true
+            
+            // If there are changes in the translation
+            if let newValue = translation.newValue {
+                wself.interactor!.updateTranslation(newValue,
+                                                    forTerm: termData!.value,
+                                                    inLanguage: translation.languageCode)
+            }
+            
+            wself.userInterface!.reloadTerm(atIndex: selectedRow)
+            wself.userInterface!.enableSaving()
         }
         translationsTableDataSource?.translationDidBecomeFirstResponder = { [weak self] (value: String) -> Void in
             
@@ -132,6 +139,7 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
                     }
                     i += 1
                 }
+                wself.lastHighlightedTermRow = i
                 wself.termsTableDataSource!.highlightedRow = i
                 if !found {
                     wself.termsTableDataSource?.data.append((value: line.term, newValue: nil, translationChanged: false) as TermData)
