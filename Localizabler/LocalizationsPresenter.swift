@@ -137,7 +137,6 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
                     wself.termsTableDataSource?.data.append((value: line.term, newValue: nil, translationChanged: false) as TermData)
                 }
                 wself.termsTableDataSource?.reloadData()
-                wself.userInterface!.selectTerm(atRow: i)
             }
         }
     }
