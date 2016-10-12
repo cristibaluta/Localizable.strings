@@ -87,6 +87,10 @@ extension WindowController: WindowPresenterOutput {
         }
     }
     
+    func selectFileNamed (_ filename: String) {
+        filenamePopup!.selectItem(withTitle: filename)
+    }
+    
     func selectLanguageNamed (_ language: String) {
         languagePopup!.selectItem(withTitle: language)
     }

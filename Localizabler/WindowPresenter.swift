@@ -23,6 +23,7 @@ protocol WindowPresenterOutput {
     func setWindowTitle (_ title: String)
     func setFilenamesPopup (_ filenames: [String])
     func setLanguagesPopup (_ languages: [String])
+    func selectFileNamed (_ filename: String)
     func selectLanguageNamed (_ language: String)
     func showNoProjectInterface()
     func showLocalizationsInterface (withUrls urls: [String: URL])
@@ -76,13 +77,18 @@ extension WindowPresenter: WindowPresenterInput {
         let urls = interactor!.findLocalizationsInDirectory(url: url)
         let filenames = Array(urls.keys)
         userInterface!.setFilenamesPopup(filenames)
-        if let firstFile = filenames.first {
+        
+        if filenames.contains("Localizable.strings") {
+            selectFileNamed("Localizable.strings")
+        }
+        else if let firstFile = filenames.first {
             selectFileNamed(firstFile)
         }
     }
     
     func selectFileNamed (_ fileName: String) {
         
+        userInterface!.selectFileNamed(fileName)
         let urls = interactor!.selectFileNamed(fileName)
         userInterface!.showLocalizationsInterface(withUrls: urls)
     }
