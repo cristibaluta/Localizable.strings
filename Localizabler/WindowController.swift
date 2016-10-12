@@ -49,11 +49,17 @@ extension WindowController {
 	}
     
     @IBAction func handleFilePopupValueChange (_ sender: NSPopUpButton) {
+        searchField!.stringValue = ""
         presenter!.selectFileNamed(sender.titleOfSelectedItem!)
     }
     
     @IBAction func handleLanguagePopupValueChange (_ sender: NSPopUpButton) {
+        searchField!.stringValue = ""
         localizationsPresenter!.selectLanguageNamed(sender.titleOfSelectedItem!)
+    }
+    
+    @IBAction func searchAnswer (_ sender: NSSearchField) {
+        localizationsPresenter!.search(sender.stringValue)
     }
 }
 

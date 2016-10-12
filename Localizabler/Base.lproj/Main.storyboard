@@ -356,6 +356,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </searchFieldCell>
                                         <connections>
+                                            <action selector="searchAnswer:" target="B8D-0N-5wS" id="szR-5q-oLs"/>
                                             <outlet property="delegate" destination="B8D-0N-5wS" id="JAY-Ar-Xon"/>
                                         </connections>
                                     </searchField>
