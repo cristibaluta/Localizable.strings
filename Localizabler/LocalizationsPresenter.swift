@@ -32,6 +32,7 @@ protocol LocalizationsPresenterOutput: class {
     func selectLanguage (_ language: String)
     func selectTerm (atRow row: Int)
     func deselectActiveTerm()
+    func enableTermsEditingOptions (enabled: Bool)
 }
 
 class LocalizationsPresenter {
@@ -41,6 +42,7 @@ class LocalizationsPresenter {
     
     fileprivate var termsTableDataSource: TermsTableDataSource?
     fileprivate var translationsTableDataSource: TranslationsTableDataSource?
+    fileprivate var lastSearchString = ""
     
     fileprivate func markFilesAsSaved() {
         
@@ -110,9 +112,16 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
             guard let wself = self else {
                 return
             }
+            guard wself.lastSearchString != "" else {
+                return
+            }
             
             if let line: Line = wself.interactor!.lineMatchingTranslation(value) {
-            
+                
+                guard line.term.characters.count > 0 else {
+                    return
+                }
+                
                 let displayedTerms: [TermData] = wself.termsTableDataSource!.data
                 var i = 0
                 var found = false
@@ -185,6 +194,9 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
     
     func search (_ searchString: String) {
         
+        lastSearchString = searchString
+        
+        userInterface!.enableTermsEditingOptions(enabled: searchString == "")
         userInterface!.deselectActiveTerm()
         let results = interactor!.search(searchString)
         //

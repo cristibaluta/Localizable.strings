@@ -18,6 +18,8 @@ class LocalizationsViewController: NSViewController {
 	@IBOutlet weak fileprivate var termsTableView: NSTableView?
 	@IBOutlet weak fileprivate var translationsTableView: NSTableView?
     @IBOutlet weak fileprivate var butSave: NSButton?
+    @IBOutlet weak fileprivate var butAdd: NSButton?
+    @IBOutlet weak fileprivate var butRemove: NSButton?
 	
 	fileprivate var termsTableAlert: PlaceholderView?
 	fileprivate var translationsTableAlert: PlaceholderView?
@@ -151,5 +153,10 @@ extension LocalizationsViewController: LocalizationsPresenterOutput {
     
     func selectLanguage (_ language: String) {
         windowPresenter!.selectLanguageNamed(language)
+    }
+    
+    func enableTermsEditingOptions (enabled: Bool) {
+        butAdd?.isHidden = !enabled
+        butRemove?.isHidden = !enabled
     }
 }

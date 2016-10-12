@@ -101,25 +101,6 @@ extension LocalizationsInteractor: LocalizationsInteractorInput {
         }
     }
     
-//    func selectedTermRow (forTranslation translation: String) -> Int? {
-    
-//        if let line: Line = search!.lineMatchingTranslation(translation: translation) {
-//            
-//            let displayedTerms: [TermData] = self.termsTableDataSource!.data
-//            var i = 0
-//            var found = false
-//            for term in displayedTerms {
-//                if term.value == line.term {
-//                    found = true
-//                    break
-//                }
-//                i += 1
-//            }
-//            return i
-//        }
-//        return nil
-//    }
-    
     func search (_ searchString: String) -> (terms: [TermData], translations: [TranslationData]) {
         
         let search = Search(files: files)

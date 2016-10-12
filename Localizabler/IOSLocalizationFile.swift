@@ -122,11 +122,12 @@ class IOSLocalizationFile: LocalizationFile {
 		// Iterate over lines and put them back in the string with the new translations
         var i = 0
 		for line in lines {
-			if line.comment != nil && line.term.utf16.count > 0 && translationForTerm(line.term).utf16.count > 0 {
+			if line.comment != nil &&
+                line.term.utf16.count == 0 {
+                
 				string += line.comment!
-			}
-			else {
-                let comment = line.comment != nil ? line.comment : ""
+			} else {
+                let comment = line.comment != nil ? line.comment! : ""
 				string += "\"\(terms[line.term]!)\" = \"\(translationForTerm(line.term))\";\(comment)"
 			}
             i += 1
@@ -179,22 +180,16 @@ extension IOSLocalizationFile {
 	@inline(__always) func splitLine (_ lineContent: String) -> Line {
 		
 		// TODO: Better/faster splitting?
-//        let translationMatch = lineRegex!.firstMatch(in: lineContent,
-//                                                     options: NSRegularExpression.MatchingOptions(),
-//                                                     range: NSMakeRange(0, lineContent.utf16.count))
-//        let theTranslation = (lineContent as NSString?)?.substring(with: translationMatch!.range)
+        
         let commentMatch = inlineCommentRegex!.firstMatch(in: lineContent,
                                                           options: NSRegularExpression.MatchingOptions(),
                                                           range: NSMakeRange(0, lineContent.utf16.count))
-        let theComment: String? = commentMatch != nil ? (lineContent as NSString?)?.substring(with: commentMatch!.range) : nil
-//            (translationMatch!.range.length < lineContent.utf16.count)
-//        ? (lineContent as NSString?)!.substring(with: NSMakeRange(translationMatch!.range.length, lineContent.utf16.count-translationMatch2!.range.length))
-//        : nil
-        RCLog(theComment)
+        let theComment: String? = commentMatch != nil
+            ? (lineContent as NSString?)?.substring(with: commentMatch!.range)
+            : nil
         let theTranslation = commentMatch != nil
             ? (lineContent as NSString?)!.substring(with: NSMakeRange(0, commentMatch!.range.location))
             : lineContent
-        RCLog(theTranslation)
         let separator = separatorRegex!.firstMatch(in: theTranslation,
                                                    options: NSRegularExpression.MatchingOptions(),
                                                    range: NSMakeRange(0, theTranslation.utf16.count))
