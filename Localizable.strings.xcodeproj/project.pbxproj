@@ -1188,7 +1188,7 @@
 					6D1E1A711BBD5C6C00BE29EE = {
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = 5NHDC5EV44;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -1198,7 +1198,7 @@
 					};
 					6D1E1A821BBD5C6C00BE29EE = {
 						CreatedOnToolsVersion = 7.0.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 						TestTargetID = 6D1E1A711BBD5C6C00BE29EE;
 					};
 				};

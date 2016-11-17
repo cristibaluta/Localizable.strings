@@ -27,10 +27,12 @@ class History {
 	
 	func setLastProjectDir (_ url: URL?) {
         
-        let bookmark = try? url?.bookmarkData(options: URL.BookmarkCreationOptions.withSecurityScope,
-                                              includingResourceValuesForKeys: nil,
-                                              relativeTo: nil)
-        UserDefaults.standard.set(bookmark as? NSData, forKey: bookmarkKey)
+        guard let bookmark = try? url?.bookmarkData(options: URL.BookmarkCreationOptions.withSecurityScope,
+                                                    includingResourceValuesForKeys: nil,
+                                                    relativeTo: nil) else {
+            return
+        }
+        UserDefaults.standard.set(bookmark, forKey: bookmarkKey)
         UserDefaults.standard.synchronize()
 	}
 }
