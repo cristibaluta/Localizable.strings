@@ -9,11 +9,12 @@
 import Cocoa
 
 class WindowController: NSWindowController {
-	
-	@IBOutlet fileprivate var searchField: NSSearchField?
-    @IBOutlet fileprivate var filenamePopup: NSPopUpButton?
-    @IBOutlet fileprivate var languagePopup: NSPopUpButton?
-	@IBOutlet fileprivate var butOpen: NSButton?
+    
+    @IBOutlet fileprivate var segmentedControl: NSSegmentedControl!
+    @IBOutlet fileprivate var butOpen: NSButton!
+    @IBOutlet fileprivate var filenamePopup: NSPopUpButton!
+    @IBOutlet fileprivate var languagePopup: NSPopUpButton!
+    @IBOutlet fileprivate var searchField: NSSearchField!
     
     fileprivate var appWireframe: AppWireframe?
     var presenter: WindowPresenterInput?
@@ -25,8 +26,9 @@ class WindowController: NSWindowController {
 		window?.titlebarAppearsTransparent = true
 		window?.titleVisibility = NSWindowTitleVisibility.visible
 		setWindowTitle("Localizable.strings")
-        filenamePopup?.isEnabled = false
-        languagePopup?.isEnabled = false
+        segmentedControl.selectedSegment = 0
+        filenamePopup.isEnabled = false
+        languagePopup.isEnabled = false
         setFilenamesPopup([])
         setLanguagesPopup([])
         
@@ -43,7 +45,22 @@ class WindowController: NSWindowController {
 }
 
 extension WindowController {
-	
+    
+    @IBAction func handleSegmentedControl (_ segmentedControl: NSSegmentedControl) {
+        switch segmentedControl.selectedSegment {
+        case 0:
+            butOpen.isHidden = false
+            filenamePopup.isHidden = false
+            languagePopup.isHidden = false
+            break
+        default:
+            butOpen.isHidden = true
+            filenamePopup.isHidden = true
+            languagePopup.isHidden = true
+            break
+        }
+    }
+    
 	@IBAction func handleOpenButton (_ sender: NSButton) {
 		presenter!.browseFiles()
 	}
@@ -71,28 +88,28 @@ extension WindowController: WindowPresenterOutput {
     
     func setFilenamesPopup (_ filenames: [String]) {
         
-        filenamePopup?.removeAllItems()
+        filenamePopup.removeAllItems()
         if filenames.count > 0 {
-            filenamePopup!.addItems(withTitles: filenames)
-            filenamePopup!.isEnabled = true
+            filenamePopup.addItems(withTitles: filenames)
+            filenamePopup.isEnabled = true
         }
     }
     
     func setLanguagesPopup (_ languages: [String]) {
         
-        languagePopup?.removeAllItems()
+        languagePopup.removeAllItems()
         if languages.count > 0 {
-            languagePopup!.addItems(withTitles: languages)
-            languagePopup!.isEnabled = true
+            languagePopup.addItems(withTitles: languages)
+            languagePopup.isEnabled = true
         }
     }
     
     func selectFileNamed (_ filename: String) {
-        filenamePopup!.selectItem(withTitle: filename)
+        filenamePopup.selectItem(withTitle: filename)
     }
     
     func selectLanguageNamed (_ language: String) {
-        languagePopup!.selectItem(withTitle: language)
+        languagePopup.selectItem(withTitle: language)
     }
     
     func showNoProjectInterface() {

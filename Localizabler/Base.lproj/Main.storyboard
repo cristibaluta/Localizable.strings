@@ -424,8 +424,30 @@
                                         </connections>
                                     </popUpButton>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="C1447A9D-E3DA-4F7D-9ABA-53DEF59BB1F9" label="" paletteLabel="" id="qA0-Yi-jKp">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="100" height="28"/>
+                                    <size key="maxSize" width="232" height="28"/>
+                                    <segmentedControl key="view" verticalHuggingPriority="750" id="14k-vh-LzC">
+                                        <rect key="frame" x="0.0" y="14" width="232" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="VBS-Lm-Mpq">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment label="Local"/>
+                                                <segment label="Requested" selected="YES" tag="1"/>
+                                                <segment label="Community"/>
+                                            </segments>
+                                        </segmentedCell>
+                                        <connections>
+                                            <action selector="handleSegmentedControl:" target="B8D-0N-5wS" id="iPZ-vY-QCu"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
+                                <toolbarItem reference="qA0-Yi-jKp"/>
+                                <toolbarItem reference="5be-rW-6d4"/>
                                 <toolbarItem reference="Jos-Mb-0Uu"/>
                                 <toolbarItem reference="su8-oj-zTY"/>
                                 <toolbarItem reference="v77-EN-Ppf"/>
@@ -439,6 +461,7 @@
                         <outlet property="filenamePopup" destination="pIG-JL-n4j" id="twb-9s-Vzb"/>
                         <outlet property="languagePopup" destination="A9E-vX-ePx" id="O7G-gE-1zN"/>
                         <outlet property="searchField" destination="tYn-Je-5x6" id="cg2-eE-5hS"/>
+                        <outlet property="segmentedControl" destination="14k-vh-LzC" id="cyT-Lr-CpG"/>
                         <segue destination="u48-59-0ab" kind="relationship" relationship="window.shadowedContentViewController" id="VsJ-Rk-ncQ"/>
                     </connections>
                 </windowController>
@@ -513,7 +536,7 @@
                                                 </scroller>
                                             </scrollView>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fKU-eM-B9J">
-                                                <rect key="frame" x="22" y="7" width="20" height="19"/>
+                                                <rect key="frame" x="6" y="7" width="20" height="19"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="gwT-kB-bIZ"/>
                                                     <constraint firstAttribute="height" constant="19" id="leo-Wd-hJi"/>
@@ -527,7 +550,7 @@
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="E6B-1E-aaJ">
-                                                <rect key="frame" x="48" y="7" width="20" height="19"/>
+                                                <rect key="frame" x="32" y="7" width="20" height="19"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="19" id="fyU-BB-cic"/>
                                                     <constraint firstAttribute="width" constant="20" id="spt-hU-MZq"/>
@@ -541,7 +564,7 @@
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Mu-qS-WV3">
-                                                <rect key="frame" x="151" y="-1" width="81" height="32"/>
+                                                <rect key="frame" x="165" y="-1" width="81" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="69" id="CAB-AD-Qf3"/>
                                                     <constraint firstAttribute="height" constant="21" id="M64-ha-ZCI"/>
@@ -559,11 +582,11 @@
                                             <constraint firstItem="adJ-Db-AC5" firstAttribute="leading" secondItem="Seo-kw-KIc" secondAttribute="leading" id="FCY-XT-nbR"/>
                                             <constraint firstItem="E6B-1E-aaJ" firstAttribute="leading" secondItem="fKU-eM-B9J" secondAttribute="trailing" constant="6" id="Gcd-KG-c3a"/>
                                             <constraint firstAttribute="bottom" secondItem="fKU-eM-B9J" secondAttribute="bottom" constant="7" id="X86-qp-kAQ"/>
-                                            <constraint firstAttribute="trailing" secondItem="2Mu-qS-WV3" secondAttribute="trailing" constant="20" id="b6r-sh-gec"/>
+                                            <constraint firstAttribute="trailing" secondItem="2Mu-qS-WV3" secondAttribute="trailing" constant="6" id="b6r-sh-gec"/>
                                             <constraint firstAttribute="bottom" secondItem="E6B-1E-aaJ" secondAttribute="bottom" constant="7" id="cwv-ap-YVi"/>
                                             <constraint firstItem="adJ-Db-AC5" firstAttribute="top" secondItem="Seo-kw-KIc" secondAttribute="top" id="eI9-Tj-hXx"/>
                                             <constraint firstAttribute="bottom" secondItem="adJ-Db-AC5" secondAttribute="bottom" constant="35" id="kWA-1x-94d"/>
-                                            <constraint firstItem="fKU-eM-B9J" firstAttribute="leading" secondItem="Seo-kw-KIc" secondAttribute="leading" constant="22" id="mps-N8-Cbg"/>
+                                            <constraint firstItem="fKU-eM-B9J" firstAttribute="leading" secondItem="Seo-kw-KIc" secondAttribute="leading" constant="6" id="mps-N8-Cbg"/>
                                             <constraint firstAttribute="trailing" secondItem="adJ-Db-AC5" secondAttribute="trailing" constant="1" id="u4l-hr-IsQ"/>
                                             <constraint firstAttribute="bottom" secondItem="2Mu-qS-WV3" secondAttribute="bottom" constant="6" id="xr9-Id-YdN"/>
                                         </constraints>

@@ -281,6 +281,10 @@
 		28EF6A341BC44D4900F8E725 /* typedefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A331BC44D4900F8E725 /* typedefs.swift */; };
 		28EF6A371BC45A6D00F8E725 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A361BC45A6D00F8E725 /* StringExtensionTests.swift */; };
 		28EF6A3B1BC4613B00F8E725 /* TermsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28EF6A3A1BC4613B00F8E725 /* TermsTableDataSource.swift */; };
+		28FCC3EE1EA3CF2E00A08064 /* CloudKitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCC3ED1EA3CF2E00A08064 /* CloudKitRepository.swift */; };
+		28FCC3F01EA3CF4800A08064 /* SaveToCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCC3EF1EA3CF4800A08064 /* SaveToCloud.swift */; };
+		28FCC3F21EA3CF5F00A08064 /* ReadFromCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCC3F11EA3CF5F00A08064 /* ReadFromCloud.swift */; };
+		28FCC3F41EA3D18F00A08064 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FCC3F31EA3D18F00A08064 /* CloudKit.framework */; };
 		404349CA1DA4173F004CA70A /* LocalizationsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404349C91DA4173F004CA70A /* LocalizationsPresenter.swift */; };
 		404349CC1DA761D2004CA70A /* LocalizationsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404349CB1DA761D2004CA70A /* LocalizationsInteractor.swift */; };
 		404349CE1DA8F385004CA70A /* WindowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404349CD1DA8F385004CA70A /* WindowPresenter.swift */; };
@@ -583,6 +587,10 @@
 		28EF6A331BC44D4900F8E725 /* typedefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = typedefs.swift; sourceTree = "<group>"; };
 		28EF6A361BC45A6D00F8E725 /* StringExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensionTests.swift; path = LocalizablerTests/StringExtensionTests.swift; sourceTree = SOURCE_ROOT; };
 		28EF6A3A1BC4613B00F8E725 /* TermsTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsTableDataSource.swift; sourceTree = "<group>"; };
+		28FCC3ED1EA3CF2E00A08064 /* CloudKitRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitRepository.swift; sourceTree = "<group>"; };
+		28FCC3EF1EA3CF4800A08064 /* SaveToCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveToCloud.swift; sourceTree = "<group>"; };
+		28FCC3F11EA3CF5F00A08064 /* ReadFromCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadFromCloud.swift; sourceTree = "<group>"; };
+		28FCC3F31EA3D18F00A08064 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		404349C91DA4173F004CA70A /* LocalizationsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationsPresenter.swift; sourceTree = "<group>"; };
 		404349CB1DA761D2004CA70A /* LocalizationsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationsInteractor.swift; sourceTree = "<group>"; };
 		404349CD1DA8F385004CA70A /* WindowPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowPresenter.swift; sourceTree = "<group>"; };
@@ -615,6 +623,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28FCC3F41EA3D18F00A08064 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -934,6 +943,7 @@
 		28C02F9E1C01EFEB00B65478 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				28FCC3EC1EA3CEE400A08064 /* Collaboration */,
 				28EF6A2F1BC38E3200F8E725 /* Extensions */,
 				28778A611BBEF178003E4880 /* External */,
 				28778A601BBEF139003E4880 /* Entities */,
@@ -994,6 +1004,16 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		28FCC3EC1EA3CEE400A08064 /* Collaboration */ = {
+			isa = PBXGroup;
+			children = (
+				28FCC3ED1EA3CF2E00A08064 /* CloudKitRepository.swift */,
+				28FCC3EF1EA3CF4800A08064 /* SaveToCloud.swift */,
+				28FCC3F11EA3CF5F00A08064 /* ReadFromCloud.swift */,
+			);
+			name = Collaboration;
+			sourceTree = "<group>";
+		};
 		404349D11DA8FBCA004CA70A /* Window */ = {
 			isa = PBXGroup;
 			children = (
@@ -1029,6 +1049,7 @@
 		56F88FFC1C061F8900DC3807 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				28FCC3F31EA3D18F00A08064 /* CloudKit.framework */,
 				56F88FFD1C061F8900DC3807 /* AppKit.framework */,
 				56F88FFF1C061F8900DC3807 /* Foundation.framework */,
 			);
@@ -1191,8 +1212,14 @@
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
 							com.apple.Sandbox = {
 								enabled = 0;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
 							};
 						};
 					};
@@ -1531,12 +1558,14 @@
 				6D1E1AAB1BBE93AB00BE29EE /* IOSLocalizationFile.swift in Sources */,
 				6D1E1A761BBD5C6C00BE29EE /* AppDelegate.swift in Sources */,
 				28E57ABD1BE4B09200B803E6 /* NSViewAutolayout.swift in Sources */,
+				28FCC3EE1EA3CF2E00A08064 /* CloudKitRepository.swift in Sources */,
 				28DB60861BC9A43A003FDE96 /* ConsoleOutput.swift in Sources */,
 				289556DF1BC8389D00FA08E8 /* WindowController.swift in Sources */,
 				28DB60831BC9A392003FDE96 /* FileOutput.swift in Sources */,
 				289556CC1BC61A9600FA08E8 /* RCLog.swift in Sources */,
 				28DB609D1BCDC048003FDE96 /* AppWireframe.swift in Sources */,
 				289556D81BC7189F00FA08E8 /* SaveChangesInteractor.swift in Sources */,
+				28FCC3F21EA3CF5F00A08064 /* ReadFromCloud.swift in Sources */,
 				6D1E1AA21BBE686600BE29EE /* SearchLocalizationFiles.swift in Sources */,
 				404349CC1DA761D2004CA70A /* LocalizationsInteractor.swift in Sources */,
 				289556D51BC717DA00FA08E8 /* Search.swift in Sources */,
@@ -1544,6 +1573,7 @@
 				28E57AB21BE49F7C00B803E6 /* History.swift in Sources */,
 				404349CE1DA8F385004CA70A /* WindowPresenter.swift in Sources */,
 				28E57AC81BEDF00A00B803E6 /* PlaceholderView.swift in Sources */,
+				28FCC3F01EA3CF4800A08064 /* SaveToCloud.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
