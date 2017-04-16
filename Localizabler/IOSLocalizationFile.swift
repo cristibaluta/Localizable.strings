@@ -27,10 +27,10 @@ class IOSLocalizationFile: LocalizationFile {
 		self.url = url
         
         if let data = try? Data(contentsOf: url) {
-            if let fileContent = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String {
+            if let fileContent = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as String? {
                 self.parseContent(fileContent)
             }
-            else if let fileContent = NSString(data: data, encoding: String.Encoding.unicode.rawValue) as? String {
+            else if let fileContent = NSString(data: data, encoding: String.Encoding.unicode.rawValue) as String? {
                 self.parseContent(fileContent)
             }
         } else {
@@ -161,7 +161,7 @@ extension IOSLocalizationFile {
 		}
 	}
 	
-	@inline(__always) func parseLine (_ lineContent: String) {
+	@inline(__always) fileprivate func parseLine (_ lineContent: String) {
 		
 		if isValidLine(lineContent) {
 			addLine(splitLine(lineContent))
@@ -170,14 +170,14 @@ extension IOSLocalizationFile {
 		}
 	}
 	
-	@inline(__always) func isValidLine (_ lineContent: String) -> Bool {
+	@inline(__always) fileprivate func isValidLine (_ lineContent: String) -> Bool {
         
 		return lineRegex!.numberOfMatches(in: lineContent,
 		                                  options: NSRegularExpression.MatchingOptions(),
 		                                  range: NSMakeRange(0, lineContent.utf16.count)) == 1
 	}
 	
-	@inline(__always) func splitLine (_ lineContent: String) -> Line {
+	@inline(__always) fileprivate func splitLine (_ lineContent: String) -> Line {
 		
 		// TODO: Better/faster splitting?
         

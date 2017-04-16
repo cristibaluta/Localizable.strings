@@ -48,7 +48,7 @@ class SearchIOSLocalizations: SearchLocalizationFiles {
                 }
             }
         }
-        RCLog(files)
+//        RCLog(files)
         return files
     }
     
