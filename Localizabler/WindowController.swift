@@ -12,8 +12,6 @@ class WindowController: NSWindowController {
     
     @IBOutlet fileprivate var segmentedControl: NSSegmentedControl!
     @IBOutlet fileprivate var butOpen: NSButton!
-    @IBOutlet fileprivate var filenamePopup: NSPopUpButton!
-    @IBOutlet fileprivate var languagePopup: NSPopUpButton!
     @IBOutlet fileprivate var searchField: NSSearchField!
     
     fileprivate var appWireframe: AppWireframe?
@@ -24,18 +22,12 @@ class WindowController: NSWindowController {
 		super.windowDidLoad()
 		
 		window?.titlebarAppearsTransparent = true
-		window?.titleVisibility = NSWindowTitleVisibility.visible
+		window?.titleVisibility = NSWindowTitleVisibility.hidden
 		setWindowTitle("Localizable.strings")
         segmentedControl.selectedSegment = 0
-        filenamePopup.isEnabled = false
-        languagePopup.isEnabled = false
-        setFilenamesPopup([])
-        setLanguagesPopup([])
         
         let presenter = WindowPresenter()
-        let interactor = WindowInteractor()
         presenter.userInterface = self
-        presenter.interactor = interactor
         self.presenter = presenter
         
         appWireframe = AppWireframe(windowController: self)
@@ -50,13 +42,9 @@ extension WindowController {
         switch segmentedControl.selectedSegment {
         case 0:
             butOpen.isHidden = false
-            filenamePopup.isHidden = false
-            languagePopup.isHidden = false
             break
         default:
             butOpen.isHidden = true
-            filenamePopup.isHidden = true
-            languagePopup.isHidden = true
             break
         }
     }
@@ -65,17 +53,7 @@ extension WindowController {
 		presenter!.browseFiles()
 	}
     
-    @IBAction func handleFilePopupValueChange (_ sender: NSPopUpButton) {
-        searchField!.stringValue = ""
-        presenter!.selectFileNamed(sender.titleOfSelectedItem!)
-    }
-    
-    @IBAction func handleLanguagePopupValueChange (_ sender: NSPopUpButton) {
-        searchField!.stringValue = ""
-        localizationsPresenter!.selectLanguageNamed(sender.titleOfSelectedItem!)
-    }
-    
-    @IBAction func searchAnswer (_ sender: NSSearchField) {
+    @IBAction func handleSearch (_ sender: NSSearchField) {
         localizationsPresenter!.search(sender.stringValue)
     }
 }
@@ -86,45 +64,20 @@ extension WindowController: WindowPresenterOutput {
         window?.title = title
     }
     
-    func setFilenamesPopup (_ filenames: [String]) {
-        
-        filenamePopup.removeAllItems()
-        if filenames.count > 0 {
-            filenamePopup.addItems(withTitles: filenames)
-            filenamePopup.isEnabled = true
-        }
-    }
-    
-    func setLanguagesPopup (_ languages: [String]) {
-        
-        languagePopup.removeAllItems()
-        if languages.count > 0 {
-            languagePopup.addItems(withTitles: languages)
-            languagePopup.isEnabled = true
-        }
-    }
-    
-    func selectFileNamed (_ filename: String) {
-        filenamePopup.selectItem(withTitle: filename)
-    }
-    
-    func selectLanguageNamed (_ language: String) {
-        languagePopup.selectItem(withTitle: language)
-    }
-    
     func showNoProjectInterface() {
         
         let noProjectsController = appWireframe!.presentNoProjectsInterface()
         noProjectsController.onOpenButtonClicked = handleOpenButton
     }
     
-    func showLocalizationsInterface (withUrls urls: [String: URL]) {
+    func showLocalizationsInterface (withFilesResult result: FilesResult) {
         
         let localizationsController = appWireframe!.presentLocalizationsInterface()
         localizationsController.windowPresenter = presenter
         localizationsPresenter = localizationsController.presenter
         // Load urls after the module is setup
-        localizationsController.presenter!.loadUrls(urls)
+//        localizationsController.presenter!.loadUrls(urls)
+        localizationsPresenter!.openProjectWithFilesResult(result)
     }
 }
 

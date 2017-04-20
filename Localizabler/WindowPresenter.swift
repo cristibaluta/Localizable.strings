@@ -13,26 +13,19 @@ protocol WindowPresenterInput {
     func browseFiles()
     func loadLastOpenedProject()
     func openProjectAtUrl (_ url: URL)
-    func selectFileNamed (_ fileName: String)
-    func setLanguagesPopup (_ languages: [String])
-    func selectLanguageNamed (_ fileName: String)
 }
 
 protocol WindowPresenterOutput {
     
     func setWindowTitle (_ title: String)
-    func setFilenamesPopup (_ filenames: [String])
-    func setLanguagesPopup (_ languages: [String])
-    func selectFileNamed (_ filename: String)
-    func selectLanguageNamed (_ language: String)
     func showNoProjectInterface()
-    func showLocalizationsInterface (withUrls urls: [String: URL])
+    func showLocalizationsInterface (withFilesResult result: FilesResult)
 }
 
 class WindowPresenter {
     
-    var interactor: WindowInteractorInput?
     var userInterface: WindowPresenterOutput?
+    fileprivate var allUrls: FilesResult = [String: [String: URL]]() // [filename: [language: URL]]
 }
 
 extension WindowPresenter: WindowPresenterInput {
@@ -49,8 +42,6 @@ extension WindowPresenter: WindowPresenterInput {
                 if let url = panel.urls.first {
                     History().setLastProjectDir(url)
                     self?.userInterface!.setWindowTitle(url.absoluteString)
-                    self?.userInterface!.setFilenamesPopup([])
-                    self?.userInterface!.setLanguagesPopup([])
                     self?.openProjectAtUrl(url)
                 }
             }
@@ -74,35 +65,16 @@ extension WindowPresenter: WindowPresenterInput {
         
         userInterface!.setWindowTitle(url.absoluteString)
         
-        let urls = interactor!.findLocalizationsInDirectory(url: url)
-        let filenames = Array(urls.keys)
-        userInterface!.setFilenamesPopup(filenames)
-        
-        if filenames.contains("Localizable.strings") {
-            selectFileNamed("Localizable.strings")
-        }
-        else if let firstFile = filenames.first {
-            selectFileNamed(firstFile)
-        }
+        allUrls = SearchIOSLocalizations().searchInDirectory(url)
+        userInterface!.showLocalizationsInterface(withFilesResult: allUrls)
+//        let filenames = Array(allUrls.keys)
+//        userInterface!.setFilenamesPopup(filenames)
+//        
+//        if filenames.contains("Localizable.strings") {
+//            selectFileNamed("Localizable.strings")
+//        }
+//        else if let firstFile = filenames.first {
+//            selectFileNamed(firstFile)
+//        }
     }
-    
-    func selectFileNamed (_ fileName: String) {
-        
-        userInterface!.selectFileNamed(fileName)
-        let urls = interactor!.selectFileNamed(fileName)
-        userInterface!.showLocalizationsInterface(withUrls: urls)
-    }
-    
-    func setLanguagesPopup (_ languages: [String]){
-        userInterface!.setLanguagesPopup(languages)
-    }
-    
-    func selectLanguageNamed (_ language: String) {
-        userInterface!.selectLanguageNamed(language)
-    }
-}
-
-extension WindowPresenter: WindowInteractorOutput {
-    
-    
 }

@@ -20,7 +20,7 @@ class CloudKitRepository {
 //        })
         
         
-        readAllSubmittedTerms()
+//        readAllSubmittedTerms()
 //        write(term: (value: "Hello", newValue: nil, translationChanged: false), desiredLanguages: ["ro", "fi", "jp"])
     }
     
@@ -75,6 +75,9 @@ class CloudKitRepository {
     }
     
     func write (translation: TranslationData, forTerm term: TermData) {
+        
+//        CKRecordID *artistRecordID = [[CKRecordID alloc] initWithRecordName:@"Mei Chen"];
+//        CKReference *artistReference = [[CKReference alloc] initWithRecordID:artistRecordID action:CKReferenceActionNone];
         
         let record = CKRecord(recordType: "Translation")
         record["term"] = term.value as CKRecordValue

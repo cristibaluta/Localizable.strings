@@ -11,11 +11,13 @@ import Cocoa
 protocol LocalizationsPresenterInput {
     
     func setupDataSourceFor (termsTableView: NSTableView, translationsTableView: NSTableView)
+    func openProjectWithFilesResult (_ urls: FilesResult)
     func loadUrls (_ urls: [String: URL])
     func insertNewTerm (afterIndex index: Int)
     func removeTerm (atIndex index: Int)
     func search (_ searchString: String)
     func saveChanges()
+    func selectFileNamed (_ filename: String)
     func selectLanguageNamed (_ fileName: String)
 }
 
@@ -33,6 +35,11 @@ protocol LocalizationsPresenterOutput: class {
     func selectTerm (atRow row: Int)
     func deselectActiveTerm()
     func enableTermsEditingOptions (enabled: Bool)
+    
+    func setFilenamesPopup (_ filenames: [String])
+    func setLanguagesPopup (_ languages: [String])
+    func selectFileNamed (_ filename: String)
+    func selectLanguageNamed (_ language: String)
 }
 
 class LocalizationsPresenter {
@@ -44,6 +51,7 @@ class LocalizationsPresenter {
     fileprivate var translationsTableDataSource: TranslationsTableDataSource?
     fileprivate var lastSearchString = ""
     fileprivate var lastHighlightedTermRow = -1
+    fileprivate var allUrls: FilesResult = [String: [String: URL]]() // [filename: [language: URL]]
     
     fileprivate func markFilesAsSaved() {
         
@@ -149,6 +157,20 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
         }
     }
     
+    func openProjectWithFilesResult (_ urls: FilesResult) {
+        
+        self.allUrls = urls
+        let filenames = Array(urls.keys)
+        userInterface!.setFilenamesPopup(filenames)
+        
+        if filenames.contains("Localizable.strings") {
+            selectFileNamed("Localizable.strings")
+        }
+        else if let firstFile = filenames.first {
+            selectFileNamed(firstFile)
+        }
+    }
+    
     func loadUrls (_ urls: [String: URL]) {
         
         interactor!.loadUrls(urls)
@@ -235,6 +257,19 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
     func selectLanguageNamed (_ fileName: String) {
         let terms = interactor!.termsForLanguage(fileName)
         showTerms(terms)
+        //        userInterface!.selectLanguageNamed(language)
+    }
+    
+    func selectFileNamed (_ fileName: String) {
+        
+        userInterface!.selectFileNamed(fileName)
+        let urls = FileUrls(files: allUrls).urls(forFileName: fileName)
+        loadUrls(urls)
+//        userInterface!.showLocalizationsInterface(withUrls: urls)
+    }
+    
+    func setLanguagesPopup (_ languages: [String]){
+        userInterface!.setLanguagesPopup(languages)
     }
 }
 

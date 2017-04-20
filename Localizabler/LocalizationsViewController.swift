@@ -16,7 +16,9 @@ class LocalizationsViewController: NSViewController {
     
 	@IBOutlet weak fileprivate var splitView: NSSplitView?
 	@IBOutlet weak fileprivate var termsTableView: NSTableView?
-	@IBOutlet weak fileprivate var translationsTableView: NSTableView?
+    @IBOutlet weak fileprivate var translationsTableView: NSTableView?
+    @IBOutlet weak fileprivate var filenamePopup: NSPopUpButton!
+    @IBOutlet weak fileprivate var languagePopup: NSPopUpButton!
     @IBOutlet weak fileprivate var butSave: NSButton?
     @IBOutlet weak fileprivate var butAdd: NSButton?
     @IBOutlet weak fileprivate var butRemove: NSButton?
@@ -36,6 +38,8 @@ class LocalizationsViewController: NSViewController {
         butSave?.isEnabled = false
         presenter!.setupDataSourceFor(termsTableView: termsTableView!,
                                       translationsTableView: translationsTableView!)
+        setFilenamesPopup([])
+        setLanguagesPopup([])
     }
 }
 
@@ -69,6 +73,17 @@ extension LocalizationsViewController {
     @IBAction func handleSaveButtonClicked (_ sender: NSButton) {
         presenter!.saveChanges()
     }
+    
+    @IBAction func handleFilePopupValueChange (_ sender: NSPopUpButton) {
+//        searchField!.stringValue = ""
+        presenter!.selectFileNamed(sender.titleOfSelectedItem!)
+    }
+    
+    @IBAction func handleLanguagePopupValueChange (_ sender: NSPopUpButton) {
+//        searchField!.stringValue = ""
+        presenter!.selectLanguageNamed(sender.titleOfSelectedItem!)
+    }
+    
 }
 
 extension LocalizationsViewController {
@@ -148,15 +163,44 @@ extension LocalizationsViewController: LocalizationsPresenterOutput {
     }
     
     func showLanguagesPopup (_ languages: [String]) {
-        windowPresenter!.setLanguagesPopup(languages)
+//        presenter!.setLanguagesPopup(languages)
     }
     
     func selectLanguage (_ language: String) {
-        windowPresenter!.selectLanguageNamed(language)
+//        presenter!.selectLanguageNamed(language)
     }
     
     func enableTermsEditingOptions (enabled: Bool) {
         butAdd?.isHidden = !enabled
         butRemove?.isHidden = !enabled
     }
+    
+    ///MARK - Popups
+    
+    func setFilenamesPopup (_ filenames: [String]) {
+        
+        filenamePopup.removeAllItems()
+        if filenames.count > 0 {
+            filenamePopup.addItems(withTitles: filenames)
+            filenamePopup.isEnabled = true
+        }
+    }
+    
+    func setLanguagesPopup (_ languages: [String]) {
+        
+        languagePopup.removeAllItems()
+        if languages.count > 0 {
+            languagePopup.addItems(withTitles: languages)
+            languagePopup.isEnabled = true
+        }
+    }
+    
+    func selectFileNamed (_ filename: String) {
+        filenamePopup.selectItem(withTitle: filename)
+    }
+    
+    func selectLanguageNamed (_ language: String) {
+        languagePopup.selectItem(withTitle: language)
+    }
+    
 }

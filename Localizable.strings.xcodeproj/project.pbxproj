@@ -285,10 +285,10 @@
 		28FCC3F01EA3CF4800A08064 /* SaveToCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCC3EF1EA3CF4800A08064 /* SaveToCloud.swift */; };
 		28FCC3F21EA3CF5F00A08064 /* ReadFromCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCC3F11EA3CF5F00A08064 /* ReadFromCloud.swift */; };
 		28FCC3F41EA3D18F00A08064 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FCC3F31EA3D18F00A08064 /* CloudKit.framework */; };
+		28FCC4721EA95C1C00A08064 /* FileUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCC4711EA95C1C00A08064 /* FileUrls.swift */; };
 		404349CA1DA4173F004CA70A /* LocalizationsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404349C91DA4173F004CA70A /* LocalizationsPresenter.swift */; };
 		404349CC1DA761D2004CA70A /* LocalizationsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404349CB1DA761D2004CA70A /* LocalizationsInteractor.swift */; };
 		404349CE1DA8F385004CA70A /* WindowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404349CD1DA8F385004CA70A /* WindowPresenter.swift */; };
-		404349D01DA8FB4F004CA70A /* WindowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404349CF1DA8FB4F004CA70A /* WindowInteractor.swift */; };
 		409E3AB71D9C51850037DE35 /* TranslationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409E3AB61D9C51850037DE35 /* TranslationTextField.swift */; };
 		56F890161C061FED00DC3807 /* LocalizablerXcodePlugin.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = 56F890151C061FED00DC3807 /* LocalizablerXcodePlugin.xcscheme */; };
 		56F890181C061FED00DC3807 /* LocalizablerXcodePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F890171C061FED00DC3807 /* LocalizablerXcodePlugin.swift */; };
@@ -591,10 +591,10 @@
 		28FCC3EF1EA3CF4800A08064 /* SaveToCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveToCloud.swift; sourceTree = "<group>"; };
 		28FCC3F11EA3CF5F00A08064 /* ReadFromCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadFromCloud.swift; sourceTree = "<group>"; };
 		28FCC3F31EA3D18F00A08064 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		28FCC4711EA95C1C00A08064 /* FileUrls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUrls.swift; sourceTree = "<group>"; };
 		404349C91DA4173F004CA70A /* LocalizationsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationsPresenter.swift; sourceTree = "<group>"; };
 		404349CB1DA761D2004CA70A /* LocalizationsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationsInteractor.swift; sourceTree = "<group>"; };
 		404349CD1DA8F385004CA70A /* WindowPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowPresenter.swift; sourceTree = "<group>"; };
-		404349CF1DA8FB4F004CA70A /* WindowInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowInteractor.swift; sourceTree = "<group>"; };
 		407524F01D9DA675007AF3E1 /* Localizabler.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Localizabler.entitlements; sourceTree = "<group>"; };
 		409E3AB61D9C51850037DE35 /* TranslationTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationTextField.swift; sourceTree = "<group>"; };
 		56F88FFD1C061F8900DC3807 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
@@ -943,7 +943,7 @@
 		28C02F9E1C01EFEB00B65478 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				28FCC3EC1EA3CEE400A08064 /* Collaboration */,
+				28FCC3EC1EA3CEE400A08064 /* Community */,
 				28EF6A2F1BC38E3200F8E725 /* Extensions */,
 				28778A611BBEF178003E4880 /* External */,
 				28778A601BBEF139003E4880 /* Entities */,
@@ -1004,14 +1004,14 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
-		28FCC3EC1EA3CEE400A08064 /* Collaboration */ = {
+		28FCC3EC1EA3CEE400A08064 /* Community */ = {
 			isa = PBXGroup;
 			children = (
 				28FCC3ED1EA3CF2E00A08064 /* CloudKitRepository.swift */,
 				28FCC3EF1EA3CF4800A08064 /* SaveToCloud.swift */,
 				28FCC3F11EA3CF5F00A08064 /* ReadFromCloud.swift */,
 			);
-			name = Collaboration;
+			name = Community;
 			sourceTree = "<group>";
 		};
 		404349D11DA8FBCA004CA70A /* Window */ = {
@@ -1019,7 +1019,6 @@
 			children = (
 				289556DE1BC8389D00FA08E8 /* WindowController.swift */,
 				404349CD1DA8F385004CA70A /* WindowPresenter.swift */,
-				404349CF1DA8FB4F004CA70A /* WindowInteractor.swift */,
 			);
 			name = Window;
 			sourceTree = "<group>";
@@ -1124,6 +1123,7 @@
 				28E57AB11BE49F7C00B803E6 /* History.swift */,
 				28E57AB41BE4A0A400B803E6 /* HistoryTests.swift */,
 				28E57ABF1BE4B6E800B803E6 /* BaseLanguage.swift */,
+				28FCC4711EA95C1C00A08064 /* FileUrls.swift */,
 				289558D11BC8C44100FA08E8 /* CountryName.swift */,
 				289558D41BC8C57D00FA08E8 /* CountriesTests.swift */,
 			);
@@ -1548,10 +1548,10 @@
 				6D1E1AA81BBE939400BE29EE /* LocalizationFile.swift in Sources */,
 				404349CA1DA4173F004CA70A /* LocalizationsPresenter.swift in Sources */,
 				289556E21BC8BF4D00FA08E8 /* TranslationCell.swift in Sources */,
-				404349D01DA8FB4F004CA70A /* WindowInteractor.swift in Sources */,
 				6D1E1AA51BBE6CBD00BE29EE /* SearchIOSLocalizations.swift in Sources */,
 				28E57AC01BE4B6E800B803E6 /* BaseLanguage.swift in Sources */,
 				409E3AB71D9C51850037DE35 /* TranslationTextField.swift in Sources */,
+				28FCC4721EA95C1C00A08064 /* FileUrls.swift in Sources */,
 				28E57AC51BEDEC8100B803E6 /* SearchAndroidLocalizations.swift in Sources */,
 				28DB60801BC9A314003FDE96 /* Output.swift in Sources */,
 				6D1E1A781BBD5C6C00BE29EE /* LocalizationsViewController.swift in Sources */,

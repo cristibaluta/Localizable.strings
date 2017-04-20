@@ -14,7 +14,7 @@ class History {
 	
 	func getLastProjectDir() -> URL? {
         
-        if let bookmark = UserDefaults.standard.object(forKey: bookmarkKey) as? NSData as? Data {
+        if let bookmark = UserDefaults.standard.object(forKey: bookmarkKey) as? NSData as Data? {
             var stale = false
             if let url = try? URL(resolvingBookmarkData: bookmark, options: URL.BookmarkResolutionOptions.withSecurityScope,
                                   relativeTo: nil,

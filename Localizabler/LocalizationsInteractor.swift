@@ -1,5 +1,5 @@
 //
-//  AppInteractor.swift
+//  LocalizationsInteractor.swift
 //  Localizabler
 //
 //  Created by Cristian Baluta on 07/10/16.
@@ -25,7 +25,6 @@ protocol LocalizationsInteractorInput {
 }
 
 protocol LocalizationsInteractorOutput: class {
-    
     
 }
 
@@ -64,7 +63,6 @@ extension LocalizationsInteractor: LocalizationsInteractorInput {
                 loadLocalizationFile(url, countryCode: countryCode)
             }
             search = Search(files: files)
-            
             
             url.stopAccessingSecurityScopedResource()
         }
