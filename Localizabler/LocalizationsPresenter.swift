@@ -30,8 +30,6 @@ protocol LocalizationsPresenterOutput: class {
     func removeTerm (atIndex index: Int)
     func reloadTerm (atIndex index: Int)
     func selectedTermRow() -> Int?
-    func showLanguagesPopup (_ languages: [String])
-    func selectLanguage (_ language: String)
     func selectTerm (atRow row: Int)
     func deselectActiveTerm()
     func enableTermsEditingOptions (enabled: Bool)
@@ -175,7 +173,7 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
         
         interactor!.loadUrls(urls)
         let languages = interactor!.languages()
-        userInterface!.showLanguagesPopup(languages)
+        userInterface!.setLanguagesPopup(languages)
         showBaseLanguage()
     }
     
@@ -242,7 +240,7 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
     func showBaseLanguage() {
         
         let baseLanguage = interactor!.baseLanguage()
-        userInterface!.selectLanguage(baseLanguage)
+        userInterface!.selectLanguageNamed(baseLanguage)
         selectLanguageNamed(baseLanguage)
     }
     
@@ -254,22 +252,17 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
         }
     }
     
-    func selectLanguageNamed (_ fileName: String) {
-        let terms = interactor!.termsForLanguage(fileName)
-        showTerms(terms)
-        //        userInterface!.selectLanguageNamed(language)
-    }
-    
     func selectFileNamed (_ fileName: String) {
         
         userInterface!.selectFileNamed(fileName)
         let urls = FileUrls(files: allUrls).urls(forFileName: fileName)
         loadUrls(urls)
-//        userInterface!.showLocalizationsInterface(withUrls: urls)
     }
     
-    func setLanguagesPopup (_ languages: [String]){
-        userInterface!.setLanguagesPopup(languages)
+    func selectLanguageNamed (_ language: String) {
+        let terms = interactor!.termsForLanguage(language)
+        showTerms(terms)
+        userInterface!.selectLanguageNamed(language)
     }
 }
 

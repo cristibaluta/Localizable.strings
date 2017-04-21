@@ -162,14 +162,6 @@ extension LocalizationsViewController: LocalizationsPresenterOutput {
         termsTableView?.deselectRow(termsTableView!.selectedRow)
     }
     
-    func showLanguagesPopup (_ languages: [String]) {
-//        presenter!.setLanguagesPopup(languages)
-    }
-    
-    func selectLanguage (_ language: String) {
-//        presenter!.selectLanguageNamed(language)
-    }
-    
     func enableTermsEditingOptions (enabled: Bool) {
         butAdd?.isHidden = !enabled
         butRemove?.isHidden = !enabled
