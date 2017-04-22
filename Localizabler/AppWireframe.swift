@@ -33,7 +33,7 @@ class AppWireframe {
         return controller
     }
     
-    func presentRequestedInterface() -> RequestedViewController {
+    func presentRequestsInterface() -> RequestsViewController {
         
         let controller = requestedViewController
         self.windowController.contentViewController = controller
@@ -93,11 +93,11 @@ extension AppWireframe {
         }
     }
     
-    fileprivate var requestedViewController: RequestedViewController {
+    fileprivate var requestedViewController: RequestsViewController {
         get {
-            let controller = RequestedViewController.instanceFromStoryboard()
-            let presenter = RequestedPresenter()
-            let interactor = RequestedInteractor()
+            let controller = RequestsViewController.instanceFromStoryboard()
+            let presenter = RequestsPresenter()
+            let interactor = RequestsInteractor()
             interactor.presenter = presenter
             presenter.userInterface = controller
             presenter.interactor = interactor

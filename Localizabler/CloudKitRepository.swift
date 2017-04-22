@@ -40,13 +40,11 @@ class CloudKitRepository {
 //        write(term: (value: "Hello", newValue: nil, translationChanged: false), desiredLanguages: ["ro", "fi", "jp"])
     }
     
-    func readMySubmittedTerms() {
+    func readMySubmittedTerms(_ completion: @escaping (([RequestTerm]?) -> Void)) {
         
-        CKContainer.default().fetchUserRecordID { (userRecordID, err) in
+        getUser { (user) in
             
-            RCLogO(userRecordID)
-            
-            guard let userId = userRecordID else {
+            guard let userId = self.userRecord?.recordID else {
                 return
             }
             let predicate = NSPredicate(format: "creatorUserRecordID == %@", userId)
@@ -55,17 +53,28 @@ class CloudKitRepository {
             self.publicDB.perform(query, inZoneWith: nil) { (records, err) in
                 RCLogO(records)
                 RCLogErrorO(err)
+                if let records = records {
+                    var terms = [RequestTerm]()
+                    for record in records {
+                        terms.append( RequestTerm(key: record["key"] as! String, value: record["englishValue"] as! String) )
+                    }
+                    DispatchQueue.main.async {
+                        completion(terms)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
+                }
             }
         }
     }
     
-    func readAllSubmittedTerms() {
+    func readAllSubmittedTerms(_ completion: @escaping (([RequestTerm]?) -> Void)) {
         
-        CKContainer.default().fetchUserRecordID { (userRecordID, err) in
+        getUser { (user) in
             
-            RCLogO(userRecordID)
-            
-            guard let userId = userRecordID else {
+            guard let userId = self.userRecord?.recordID else {
                 return
             }
             let predicate = NSPredicate(format: "creatorUserRecordID != %@", userId)
@@ -74,29 +83,46 @@ class CloudKitRepository {
             self.publicDB.perform(query, inZoneWith: nil) { (records, err) in
                 RCLogO(records)
                 RCLogErrorO(err)
+                if let records = records {
+                    var terms = [RequestTerm]()
+                    for record in records {
+                        terms.append( RequestTerm(key: record["key"] as! String, value: record["englishValue"] as! String) )
+                    }
+                    DispatchQueue.main.async {
+                        completion(terms)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
+                }
             }
         }
     }
     
-    func write (term: TermData, desiredLanguages: [String]) {
+    func write (terms: [RequestTerm]) {
         
-        let record = CKRecord(recordType: "Term")
-        record["term"] = term.value as CKRecordValue
-        record["desiredLanguages"] = desiredLanguages as CKRecordValue
-        
-        publicDB.save(record) { (savedRecord, err) in
-            RCLogO(savedRecord)
-            RCLogErrorO(err)
+        var records = [CKRecord]()
+        for term in terms {
+            let record = CKRecord(recordType: "Term")
+            record["key"] = term.key as CKRecordValue
+            record["englishValue"] = term.value as CKRecordValue
+            records.append(record)
         }
+        let operation = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
+        operation.modifyRecordsCompletionBlock = { (saved, deleted, error) in
+            RCLogErrorO(error)
+        }
+        publicDB.add(operation)
     }
     
-    func write (translation: TranslationData, forTerm term: TermData) {
+    func write (translation: TranslationData, forTerm term: RequestTerm) {
         
 //        CKRecordID *artistRecordID = [[CKRecordID alloc] initWithRecordName:@"Mei Chen"];
 //        CKReference *artistReference = [[CKReference alloc] initWithRecordID:artistRecordID action:CKReferenceActionNone];
         
         let record = CKRecord(recordType: "Translation")
-        record["term"] = term.value as CKRecordValue
+        record["term"] = term.key as CKRecordValue
         record["translation"] = translation.newValue! as CKRecordValue
         record["language"] = translation.languageCode as CKRecordValue
         

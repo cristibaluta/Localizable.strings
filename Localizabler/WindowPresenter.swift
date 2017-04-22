@@ -107,7 +107,7 @@ extension WindowPresenter {
     fileprivate func showRequestsInterface() {
         CloudKitRepository.shared.getUser { (user) in
             if user != nil {
-                _ = self.appWireframe!.presentRequestedInterface()
+                _ = self.appWireframe!.presentRequestsInterface()
             } else {
                 self.showRegisterInterface()
             }
