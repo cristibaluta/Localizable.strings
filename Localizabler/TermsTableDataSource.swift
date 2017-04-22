@@ -11,10 +11,10 @@ import Cocoa
 class TermsTableDataSource: NSObject {
 	
     private var tableView: NSTableView!
-	var data = [TermData]()
+	var data = [Term]()
     var highlightedRow = -1
-	var onDidSelectRow: ((_ rowNumber: Int, _ key: TermData) -> Void)?
-	var termDidChange: ((TermData) -> Void)?
+	var onDidSelectRow: ((_ rowNumber: Int, _ key: Term) -> Void)?
+	var termDidChange: ((Term) -> Void)?
 	
 	init (tableView: NSTableView) {
 		super.init()
@@ -38,7 +38,7 @@ extension TermsTableDataSource: NSTableViewDataSource {
 	func tableView (_ tableView: NSTableView,
 		objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
 			
-			let theData: TermData = data[row]
+			let theData: Term = data[row]
 			
 			if (tableColumn?.identifier == "key") {
 				if theData.newValue != nil {

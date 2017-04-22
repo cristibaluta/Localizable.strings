@@ -23,7 +23,7 @@ class CountryName {
     
     class func allLanguages() -> [(languageCode: String, languageName: String?, countryName: String?)] {
         
-        let languageCodes = ["bg", "ca", "ch"]
+        let languageCodes = ["bg", "ca", "ch", "ro"]
         var languages = [(languageCode: String, languageName: String?, countryName: String?)]()
         let englishLocale = Locale.init(identifier :  "en_US") as Locale
         

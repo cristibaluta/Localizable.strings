@@ -17,24 +17,24 @@ class Search {
 		self.files = files
 	}
 	
-	func searchInTerms (_ searchString: String) -> [TermData] {
+	func searchInTerms (_ searchString: String) -> [Term] {
 		
 		let base = BaseLanguage(files: files!).get()
-		var matchedTerms = [TermData]()
+		var matchedTerms = [Term]()
 		for term in base.terms {
 			if term.lowercased().range(of: searchString.lowercased()) != nil ||
 				searchString == "" ||
 				searchString.characters.count < kMinCharactersToSearch
 			{
-				matchedTerms.append((value: term, newValue: nil, translationChanged: false) as TermData)
+				matchedTerms.append( Term(value: term, newValue: nil, translationChanged: false) )
 			}
 		}
 		return matchedTerms
 	}
 	
-	func searchInTranslations (_ searchString: String) -> [TranslationData] {
+	func searchInTranslations (_ searchString: String) -> [Translation] {
 		
-		var matchedTranslations = [TranslationData]()
+		var matchedTranslations = [Translation]()
 		
 		guard (searchString != "" && searchString.characters.count >= kMinCharactersToSearch) else {
 			return matchedTranslations
@@ -47,7 +47,7 @@ class Search {
                     line.translation.lowercased().range(of: lowercaseSearchString) != nil &&
                     line.comment == nil {
 					
-                    let data: TranslationData = (value: line.translation, newValue: nil, languageCode: lang)
+                    let data = Translation(value: line.translation, newValue: nil, languageCode: lang)
 					matchedTranslations.append(data)
 				}
 			}

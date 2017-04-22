@@ -14,8 +14,8 @@ class TranslationsTableDataSource: NSObject {
     fileprivate let kCellHeight = CGFloat(88)
     
     private var tableView: NSTableView!
-	var data = [TranslationData]()
-    var translationDidChange: ((TranslationData) -> Void)?
+	var data = [Translation]()
+    var translationDidChange: ((Translation) -> Void)?
     var translationDidBecomeFirstResponder: ((String) -> Void)?
 	
 	init (tableView: NSTableView) {
@@ -61,7 +61,7 @@ extension TranslationsTableDataSource: NSTableViewDelegate {
     func tableView (_ tableView: NSTableView,
                     viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
-        let translationData: TranslationData = data[row]
+        let translationData: Translation = data[row]
         let localeData = CountryName.fromLanguageCode(translationData.languageCode)
         guard let cell = tableView.make(withIdentifier: kTranslationCellIdentifier, owner: self) as? TranslationCell else {
             fatalError("Cell can't be nil, check TranslationCell for identifier")

@@ -44,7 +44,7 @@ protocol LocalizationFile {
     func lineForTerm (_ term: String) -> Line?
     
     /// Removes a term and it's translation. Both the old term and new term are taken into consideration
-    func removeTerm(_ term: TermData)
+    func removeTerm(_ term: Term)
     
 	/// This will convert dictionaries back to string in order to save to the original file
 	func content() -> String

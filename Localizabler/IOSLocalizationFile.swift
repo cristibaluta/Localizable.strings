@@ -73,7 +73,7 @@ class IOSLocalizationFile: LocalizationFile {
         hasChanges = true
     }
     
-    func removeTerm(_ term: TermData) {
+    func removeTerm(_ term: Term) {
         
         if let lineIndex = lines.index( where: { $0.term == term.value || $0.term == term.newValue } ) {
             lines.remove(at: lineIndex)
@@ -166,7 +166,7 @@ extension IOSLocalizationFile {
 		if isValidLine(lineContent) {
 			addLine(splitLine(lineContent))
 		} else {
-			lines.append((term: "", translation: "", comment: lineContent))
+			lines.append( Line(term: "", translation: "", comment: lineContent))
 		}
 	}
 	
@@ -198,8 +198,8 @@ extension IOSLocalizationFile {
         let c = newLineContent.components(separatedBy: theTranslation)
 		let comps = c.last!.components(separatedBy: "::separator::")
 		
-		return (term:			String(comps.first!.trim().characters.dropFirst()),
-				translation:	String(comps.last!.trim().characters.dropLast().dropLast()),
-				comment:		theComment)
+		return Line (term:			String(comps.first!.trim().characters.dropFirst()),
+		             translation:	String(comps.last!.trim().characters.dropLast().dropLast()),
+		             comment:		theComment)
 	}
 }

@@ -11,12 +11,12 @@ import Foundation
 protocol LocalizationsInteractorInput {
     
     func loadUrls (_ name: [String: URL])
-    func translationsForTerm (_ term: String) -> [TranslationData]
+    func translationsForTerm (_ term: String) -> [Translation]
     func updateTerm (_ term: String, newTerm: String)
     func updateTranslation (_ translation: String, forTerm term: String, inLanguage language: String)
-    func removeTerm (_ term: TermData)
+    func removeTerm (_ term: Term)
     func insertNewTerm (afterIndex index: Int) -> (line: Line, row: Int)
-    func search (_ searchString: String) -> (terms: [TermData], translations: [TranslationData])
+    func search (_ searchString: String) -> (terms: [Term], translations: [Translation])
     func saveChanges() -> Bool
     func languages() -> [String]
     func baseLanguage() -> String
@@ -33,8 +33,8 @@ class LocalizationsInteractor {
     weak var presenter: LocalizationsInteractorOutput?
     
     fileprivate var files = [String: LocalizationFile]() // [language: LocalizationFile]
-    fileprivate var terms = [TermData]()
-    fileprivate var translations = [TranslationData]()
+    fileprivate var terms = [Term]()
+    fileprivate var translations = [Translation]()
     fileprivate var search: Search?
     fileprivate var activeLanguage: String = ""
     
@@ -68,14 +68,14 @@ extension LocalizationsInteractor: LocalizationsInteractorInput {
         }
     }
     
-    func translationsForTerm (_ term: String) -> [TranslationData] {
+    func translationsForTerm (_ term: String) -> [Translation] {
         
         translations.removeAll()
         
         for (lang, localizationFile) in files {
-            let data: TranslationData = (value: localizationFile.translationForTerm(term),
-                                         newValue: nil,
-                                         languageCode: lang)
+            let data = Translation(value: localizationFile.translationForTerm(term),
+                                   newValue: nil,
+                                   languageCode: lang)
             translations.append(data)
         }
         
@@ -93,13 +93,13 @@ extension LocalizationsInteractor: LocalizationsInteractorInput {
         file?.updateTranslationForTerm(term, newValue: translation)
     }
     
-    func removeTerm (_ term: TermData) {
+    func removeTerm (_ term: Term) {
         for (_, localizationFile) in files {
             localizationFile.removeTerm(term)
         }
     }
     
-    func search (_ searchString: String) -> (terms: [TermData], translations: [TranslationData]) {
+    func search (_ searchString: String) -> (terms: [Term], translations: [Translation]) {
         
         let search = Search(files: files)
         
@@ -148,7 +148,7 @@ extension LocalizationsInteractor: LocalizationsInteractorInput {
         let currentLine = files[activeLanguage]!.lineForTerm(currentTerm)
         
         let newTerm = "term \(arc4random())"
-        let newLine: Line = (term: newTerm, translation: "", comment: nil)
+        let newLine = Line(term: newTerm, translation: "", comment: nil)
         for (_, localizationFile) in files {
             localizationFile.addLine(newLine, belowLine: currentLine!)
         }

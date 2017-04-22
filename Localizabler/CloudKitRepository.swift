@@ -116,7 +116,7 @@ class CloudKitRepository {
         publicDB.add(operation)
     }
     
-    func write (translation: TranslationData, forTerm term: RequestTerm) {
+    func write (translation: Translation, forTerm term: RequestTerm) {
         
 //        CKRecordID *artistRecordID = [[CKRecordID alloc] initWithRecordName:@"Mei Chen"];
 //        CKReference *artistReference = [[CKReference alloc] initWithRecordID:artistRecordID action:CKReferenceActionNone];

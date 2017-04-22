@@ -68,7 +68,7 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
         termsTableDataSource = TermsTableDataSource(tableView: termsTableView)
         translationsTableDataSource = TranslationsTableDataSource(tableView: translationsTableView)
         
-        termsTableDataSource?.onDidSelectRow = { [weak self] (rowNumber: Int, key: TermData) -> Void in
+        termsTableDataSource?.onDidSelectRow = { [weak self] (rowNumber: Int, key: Term) -> Void in
             
             guard let wself = self else {
                 return
@@ -79,7 +79,7 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
             wself.translationsTableDataSource?.reloadData()
             wself.updatePlaceholders(withMessage: "No selection")
         }
-        termsTableDataSource?.termDidChange = { [weak self] (term: TermData) -> Void in
+        termsTableDataSource?.termDidChange = { [weak self] (term: Term) -> Void in
             
             guard let wself = self else {
                 return
@@ -92,7 +92,7 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
             }
         }
         
-        translationsTableDataSource?.translationDidChange = { [weak self] (translation: TranslationData) -> Void in
+        translationsTableDataSource?.translationDidChange = { [weak self] (translation: Translation) -> Void in
             
             guard let wself = self else {
                 return
@@ -135,7 +135,7 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
                     return
                 }
                 
-                let displayedTerms: [TermData] = wself.termsTableDataSource!.data
+                let displayedTerms: [Term] = wself.termsTableDataSource!.data
                 var i = 0
                 var found = false
                 for term in displayedTerms {
@@ -148,7 +148,7 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
                 wself.lastHighlightedTermRow = i
                 wself.termsTableDataSource!.highlightedRow = i
                 if !found {
-                    wself.termsTableDataSource?.data.append((value: line.term, newValue: nil, translationChanged: false) as TermData)
+                    wself.termsTableDataSource?.data.append( Term(value: line.term, newValue: nil, translationChanged: false) )
                 }
                 wself.termsTableDataSource?.reloadData()
             }
@@ -180,7 +180,7 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
     func insertNewTerm (afterIndex index: Int) {
         
         let data = interactor!.insertNewTerm(afterIndex: index)
-        let termData: TermData = (value: data.line.term, newValue: nil, translationChanged: true)
+        let termData = Term(value: data.line.term, newValue: nil, translationChanged: true)
         termsTableDataSource!.data.insert(termData, at: data.row + 1)
         termsTableDataSource!.reloadData()
         userInterface!.selectTerm(atRow: data.row + 1)
@@ -190,7 +190,7 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
     func removeTerm (atIndex index: Int) {
         
         // Remove from files
-        let term: TermData = termsTableDataSource!.data[index]
+        let term: Term = termsTableDataSource!.data[index]
         interactor!.removeTerm(term)
         // Remove from datasource
         termsTableDataSource?.data.remove(at: index)
@@ -209,9 +209,9 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
         
         clear()
         
-        var termsData = [TermData]()
+        var termsData = [Term]()
         for term in terms {
-            termsData.append((value: term, newValue: nil, translationChanged: false) as TermData)
+            termsData.append( Term(value: term, newValue: nil, translationChanged: false) )
         }
         
         termsTableDataSource?.data = termsData

@@ -46,7 +46,7 @@ extension RequestsPresenter: RequestsPresenterInput {
 //            wself.updatePlaceholders(withMessage: "No selection")
         }
         
-        translationsTableDataSource?.translationDidChange = { [weak self] (translation: TranslationData) -> Void in
+        translationsTableDataSource?.translationDidChange = { [weak self] (translation: Translation) -> Void in
             
             guard let wself = self else {
                 return
