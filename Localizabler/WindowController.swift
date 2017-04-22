@@ -31,6 +31,7 @@ class WindowController: NSWindowController {
         self.presenter = presenter
         
         appWireframe = AppWireframe(windowController: self)
+        presenter.appWireframe = appWireframe
         
 		presenter.loadLastOpenedProject()
 	}
@@ -39,14 +40,7 @@ class WindowController: NSWindowController {
 extension WindowController {
     
     @IBAction func handleSegmentedControl (_ segmentedControl: NSSegmentedControl) {
-        switch segmentedControl.selectedSegment {
-        case 0:
-            butOpen.isHidden = false
-            break
-        default:
-            butOpen.isHidden = true
-            break
-        }
+        presenter!.selectScreen(segmentedControl.selectedSegment)
     }
     
 	@IBAction func handleOpenButton (_ sender: NSButton) {
@@ -62,22 +56,6 @@ extension WindowController: WindowPresenterOutput {
     
     func setWindowTitle (_ title: String) {
         window?.title = title
-    }
-    
-    func showNoProjectInterface() {
-        
-        let noProjectsController = appWireframe!.presentNoProjectsInterface()
-        noProjectsController.onOpenButtonClicked = handleOpenButton
-    }
-    
-    func showLocalizationsInterface (withFilesResult result: FilesResult) {
-        
-        let localizationsController = appWireframe!.presentLocalizationsInterface()
-        localizationsController.windowPresenter = presenter
-        localizationsPresenter = localizationsController.presenter
-        // Load urls after the module is setup
-//        localizationsController.presenter!.loadUrls(urls)
-        localizationsPresenter!.openProjectWithFilesResult(result)
     }
 }
 

@@ -11,14 +11,30 @@ import CloudKit
 
 class CloudKitRepository {
     
+    static let shared = CloudKitRepository()
+    
     internal let publicDB = CKContainer.default().publicCloudDatabase
+    fileprivate var userRecord: CKRecord?
     
     init() {
 //        CKContainer.default().accountStatus(completionHandler: { (status, error) in
 //            RCLog(status.rawValue)
 //            RCLogErrorO(error)
+//            if let error = error {
+//                // some error occurred (probably a failed connection, try again)
+//            } else {
+//                switch status {
+//                case .available: break
+//                // the user is logged in
+//                case .noAccount: break
+//                // the user is NOT logged in
+//                case .couldNotDetermine: break
+//                // for some reason, the status could not be determined (try again)
+//                case .restricted: break
+//                    // iCloud settings are restricted by parental controls or a configuration profile
+//                }
+//            }
 //        })
-        
         
 //        readAllSubmittedTerms()
 //        write(term: (value: "Hello", newValue: nil, translationChanged: false), desiredLanguages: ["ro", "fi", "jp"])
@@ -87,6 +103,59 @@ class CloudKitRepository {
         publicDB.save(record) { (savedRecord, err) in
             RCLogO(savedRecord)
             RCLogErrorO(err)
+        }
+    }
+    
+    func getUser (_ completion: @escaping ((User?) -> Void)) {
+        
+        if let record = self.userRecord {
+            completion( userFromRecord(record) )
+        } else {
+            CKContainer.default().fetchUserRecordID { recordID, error in
+                guard let recordID = recordID, error == nil else {
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
+                    return
+                }
+                self.publicDB.fetch(withRecordID: recordID) { record, error in
+                    guard let record = record, error == nil else {
+                        DispatchQueue.main.async {
+                            completion(nil)
+                        }
+                        return
+                    }
+                    self.userRecord = record
+                    DispatchQueue.main.async {
+                        completion( self.userFromRecord(record) )
+                    }
+                }
+            }
+        }
+    }
+    
+    fileprivate func userFromRecord (_ record: CKRecord) -> User {
+        return User(name: record["name"] as! String, languageCode: record["nativeLanguage"] as! String)
+    }
+    
+    func updateUser (name: String, languageCode: String) {
+        
+        getUser { user in
+            
+            guard let record = self.userRecord else {
+                return
+            }
+            record["name"] = name as CKRecordValue
+            record["nativeLanguage"] = languageCode as CKRecordValue
+            
+            CKContainer.default().publicCloudDatabase.save(self.userRecord!) { _, error in
+                guard error == nil else {
+                    // top-notch error handling
+                    return
+                }
+                
+                print("Successfully updated user record")
+            }
         }
     }
 }

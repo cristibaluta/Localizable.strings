@@ -743,6 +743,147 @@
             </objects>
             <point key="canvasLocation" x="1437" y="1118.5"/>
         </scene>
+        <!--Requested View Controller-->
+        <scene sceneID="lGA-rc-B6k">
+            <objects>
+                <viewController storyboardIdentifier="RequestedViewController" id="jbe-X7-Z6C" customClass="RequestedViewController" customModule="Localizable_strings" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="mzk-V8-5va">
+                        <rect key="frame" x="0.0" y="0.0" width="886" height="529"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXk-9t-rTj">
+                                <rect key="frame" x="145" y="420" width="66" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="requested" id="T6K-cI-nD3">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="k7z-14-TdY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2435" y="1118.5"/>
+        </scene>
+        <!--Register View Controller-->
+        <scene sceneID="Xqk-jD-jD1">
+            <objects>
+                <viewController storyboardIdentifier="RegisterViewController" id="amE-jT-iLj" customClass="RegisterViewController" customModule="Localizable_strings" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="2es-pb-uoM">
+                        <rect key="frame" x="0.0" y="0.0" width="992" height="492"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aZJ-OM-4Br">
+                                <rect key="frame" x="457" y="125" width="80" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="Adt-0T-dig"/>
+                                    <constraint firstAttribute="height" constant="30" id="nOt-56-yYK"/>
+                                </constraints>
+                                <buttonCell key="cell" type="inline" title="Register" bezelStyle="inline" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sqF-E7-e3e">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystemBold"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="handleRegister:" target="amE-jT-iLj" id="mzs-64-Ltl"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVA-v2-4Dn">
+                                <rect key="frame" x="18" y="286" width="956" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="952" id="H3c-re-2Ze"/>
+                                    <constraint firstAttribute="height" constant="48" id="PQY-LX-rCF"/>
+                                </constraints>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" id="vcM-DC-BeC">
+                                    <font key="font" metaFont="system"/>
+                                    <string key="title">In order to submit and translate words you need to be a member of the community. For that we need to know your native language, you will be able to translate only to that language. Multiple languages are not supported yet but if you know perfectly another one that is not english register with that.</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGu-kZ-u7f">
+                                <rect key="frame" x="0.0" y="342" width="994" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="hYl-Co-nuY"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Not registered!" id="luo-ZX-rTc">
+                                    <font key="font" metaFont="systemBold" size="20"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VIu-AX-KJC">
+                                <rect key="frame" x="376" y="183" width="243" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="238" id="swq-yX-x26"/>
+                                    <constraint firstAttribute="height" constant="21" id="uQQ-WG-GWW"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="mBm-U5-FHC" id="UEu-jE-b9d">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="akb-ik-rCO">
+                                        <items>
+                                            <menuItem title="Item 1" state="on" id="mBm-U5-FHC"/>
+                                            <menuItem title="Item 2" id="5HE-Zi-VA6"/>
+                                            <menuItem title="Item 3" id="o1b-oa-F4p"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y39-AL-keA">
+                                <rect key="frame" x="378" y="227" width="238" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="238" id="gPQ-aw-Qhk"/>
+                                    <constraint firstAttribute="height" constant="22" id="vzy-fT-pFm"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Name" drawsBackground="YES" id="7hS-JS-QIg">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Axc-OS-NZX">
+                                <rect key="frame" x="569" y="132" width="857" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="CNw-hx-LiS"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="7Y0-FF-r4I">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="aZJ-OM-4Br" firstAttribute="centerX" secondItem="2es-pb-uoM" secondAttribute="centerX" constant="1" id="0MB-Ve-7MB"/>
+                            <constraint firstItem="TVA-v2-4Dn" firstAttribute="top" secondItem="sGu-kZ-u7f" secondAttribute="bottom" constant="8" id="0Oj-y4-Nop"/>
+                            <constraint firstItem="VIu-AX-KJC" firstAttribute="top" secondItem="y39-AL-keA" secondAttribute="bottom" constant="20" id="6aX-38-BmE"/>
+                            <constraint firstItem="sGu-kZ-u7f" firstAttribute="leading" secondItem="2es-pb-uoM" secondAttribute="leading" constant="2" id="6ar-7B-41C"/>
+                            <constraint firstItem="TVA-v2-4Dn" firstAttribute="leading" secondItem="2es-pb-uoM" secondAttribute="leading" constant="20" id="LSg-qL-elf"/>
+                            <constraint firstItem="VIu-AX-KJC" firstAttribute="centerX" secondItem="2es-pb-uoM" secondAttribute="centerX" constant="1" id="QRm-db-fhs"/>
+                            <constraint firstItem="aZJ-OM-4Br" firstAttribute="top" secondItem="VIu-AX-KJC" secondAttribute="bottom" constant="30" id="U32-3P-egG"/>
+                            <constraint firstItem="y39-AL-keA" firstAttribute="centerX" secondItem="2es-pb-uoM" secondAttribute="centerX" constant="1" id="UXg-iN-Xp7"/>
+                            <constraint firstAttribute="trailing" secondItem="TVA-v2-4Dn" secondAttribute="trailing" constant="20" id="dyQ-dJ-nVY"/>
+                            <constraint firstItem="Axc-OS-NZX" firstAttribute="leading" secondItem="aZJ-OM-4Br" secondAttribute="trailing" constant="34" id="hHf-9g-7CT"/>
+                            <constraint firstAttribute="trailing" secondItem="sGu-kZ-u7f" secondAttribute="trailing" id="liH-Ob-n1l"/>
+                            <constraint firstItem="Axc-OS-NZX" firstAttribute="centerY" secondItem="aZJ-OM-4Br" secondAttribute="centerY" id="qEZ-iW-yDT"/>
+                            <constraint firstItem="sGu-kZ-u7f" firstAttribute="top" secondItem="2es-pb-uoM" secondAttribute="top" constant="126" id="vc0-ar-uLh"/>
+                            <constraint firstAttribute="trailing" secondItem="Axc-OS-NZX" secondAttribute="trailing" constant="-432" id="yKo-go-J6n"/>
+                            <constraint firstItem="y39-AL-keA" firstAttribute="top" secondItem="TVA-v2-4Dn" secondAttribute="bottom" constant="37" id="zJY-1g-fNR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="butRegister" destination="aZJ-OM-4Br" id="aUU-H4-q03"/>
+                        <outlet property="languagesPopUp" destination="VIu-AX-KJC" id="hJV-UN-EQv"/>
+                        <outlet property="nameTextField" destination="y39-AL-keA" id="FWz-l0-Pn2"/>
+                        <outlet property="validationErrorTextField" destination="Axc-OS-NZX" id="Hy7-4a-0dT"/>
+                    </connections>
+                </viewController>
+                <customObject id="WCK-jG-OGL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1437" y="1706"/>
+        </scene>
         <!--No Project View Controller-->
         <scene sceneID="L54-RQ-8wz">
             <objects>
@@ -803,6 +944,30 @@
                 <customObject id="gBf-1j-CJa" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="335" y="1118.5"/>
+        </scene>
+        <!--Community View Controller-->
+        <scene sceneID="F9V-fQ-ZmY">
+            <objects>
+                <viewController storyboardIdentifier="CommunityViewController" id="2Fx-y8-f6b" customClass="CommunityViewController" customModule="Localizable_strings" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="QFy-vx-YMO">
+                        <rect key="frame" x="0.0" y="0.0" width="886" height="529"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s91-z0-YNk">
+                                <rect key="frame" x="122" y="397" width="72" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="community" id="yRk-f9-9Ai">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="KEn-BP-mmC" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3388" y="1119"/>
         </scene>
     </scenes>
     <resources>

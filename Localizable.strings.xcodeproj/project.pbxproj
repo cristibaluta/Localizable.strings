@@ -286,6 +286,16 @@
 		28FCC3F21EA3CF5F00A08064 /* ReadFromCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCC3F11EA3CF5F00A08064 /* ReadFromCloud.swift */; };
 		28FCC3F41EA3D18F00A08064 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FCC3F31EA3D18F00A08064 /* CloudKit.framework */; };
 		28FCC4721EA95C1C00A08064 /* FileUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCC4711EA95C1C00A08064 /* FileUrls.swift */; };
+		28FCC4881EAA8BEB00A08064 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCC4871EAA8BEB00A08064 /* RegisterViewController.swift */; };
+		28FCC48A1EAA8C0300A08064 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCC4891EAA8C0300A08064 /* RegisterPresenter.swift */; };
+		28FCC48C1EAA8C1C00A08064 /* RegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCC48B1EAA8C1C00A08064 /* RegisterInteractor.swift */; };
+		28FCC4911EAA8E5300A08064 /* CommunityInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCC48E1EAA8E5300A08064 /* CommunityInteractor.swift */; };
+		28FCC4921EAA8E5300A08064 /* CommunityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCC48F1EAA8E5300A08064 /* CommunityPresenter.swift */; };
+		28FCC4931EAA8E5300A08064 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCC4901EAA8E5300A08064 /* CommunityViewController.swift */; };
+		28FCC4981EAA8EC900A08064 /* RequestedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCC4951EAA8EC900A08064 /* RequestedInteractor.swift */; };
+		28FCC4991EAA8EC900A08064 /* RequestedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCC4961EAA8EC900A08064 /* RequestedPresenter.swift */; };
+		28FCC49A1EAA8EC900A08064 /* RequestedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCC4971EAA8EC900A08064 /* RequestedViewController.swift */; };
+		28FCC49C1EAB7F7B00A08064 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCC49B1EAB7F7B00A08064 /* User.swift */; };
 		404349CA1DA4173F004CA70A /* LocalizationsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404349C91DA4173F004CA70A /* LocalizationsPresenter.swift */; };
 		404349CC1DA761D2004CA70A /* LocalizationsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404349CB1DA761D2004CA70A /* LocalizationsInteractor.swift */; };
 		404349CE1DA8F385004CA70A /* WindowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404349CD1DA8F385004CA70A /* WindowPresenter.swift */; };
@@ -592,6 +602,16 @@
 		28FCC3F11EA3CF5F00A08064 /* ReadFromCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadFromCloud.swift; sourceTree = "<group>"; };
 		28FCC3F31EA3D18F00A08064 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		28FCC4711EA95C1C00A08064 /* FileUrls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUrls.swift; sourceTree = "<group>"; };
+		28FCC4871EAA8BEB00A08064 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterViewController.swift; path = Register/RegisterViewController.swift; sourceTree = "<group>"; };
+		28FCC4891EAA8C0300A08064 /* RegisterPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterPresenter.swift; path = Register/RegisterPresenter.swift; sourceTree = "<group>"; };
+		28FCC48B1EAA8C1C00A08064 /* RegisterInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RegisterInteractor.swift; path = Register/RegisterInteractor.swift; sourceTree = "<group>"; };
+		28FCC48E1EAA8E5300A08064 /* CommunityInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityInteractor.swift; sourceTree = "<group>"; };
+		28FCC48F1EAA8E5300A08064 /* CommunityPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityPresenter.swift; sourceTree = "<group>"; };
+		28FCC4901EAA8E5300A08064 /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
+		28FCC4951EAA8EC900A08064 /* RequestedInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestedInteractor.swift; sourceTree = "<group>"; };
+		28FCC4961EAA8EC900A08064 /* RequestedPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestedPresenter.swift; sourceTree = "<group>"; };
+		28FCC4971EAA8EC900A08064 /* RequestedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestedViewController.swift; sourceTree = "<group>"; };
+		28FCC49B1EAB7F7B00A08064 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Entities/User.swift; sourceTree = "<group>"; };
 		404349C91DA4173F004CA70A /* LocalizationsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationsPresenter.swift; sourceTree = "<group>"; };
 		404349CB1DA761D2004CA70A /* LocalizationsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationsInteractor.swift; sourceTree = "<group>"; };
 		404349CD1DA8F385004CA70A /* WindowPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowPresenter.swift; sourceTree = "<group>"; };
@@ -641,6 +661,7 @@
 			isa = PBXGroup;
 			children = (
 				28EF6A331BC44D4900F8E725 /* typedefs.swift */,
+				28FCC49B1EAB7F7B00A08064 /* User.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -672,6 +693,9 @@
 				28DB609C1BCDC048003FDE96 /* AppWireframe.swift */,
 				404349D11DA8FBCA004CA70A /* Window */,
 				404349D21DA8FBDD004CA70A /* TranslationsView */,
+				28FCC4941EAA8EC900A08064 /* Requested */,
+				28FCC48D1EAA8E5300A08064 /* Community */,
+				28FCC4861EAA85D400A08064 /* Register */,
 				28E57AB61BE4A36600B803E6 /* NoProjectViewController.swift */,
 				409E3AB51D9B90490037DE35 /* Alert */,
 				28DB608E1BCA4057003FDE96 /* Localizabler.iconset */,
@@ -1012,6 +1036,36 @@
 				28FCC3F11EA3CF5F00A08064 /* ReadFromCloud.swift */,
 			);
 			name = Community;
+			sourceTree = "<group>";
+		};
+		28FCC4861EAA85D400A08064 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				28FCC4871EAA8BEB00A08064 /* RegisterViewController.swift */,
+				28FCC4891EAA8C0300A08064 /* RegisterPresenter.swift */,
+				28FCC48B1EAA8C1C00A08064 /* RegisterInteractor.swift */,
+			);
+			name = Register;
+			sourceTree = "<group>";
+		};
+		28FCC48D1EAA8E5300A08064 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				28FCC4901EAA8E5300A08064 /* CommunityViewController.swift */,
+				28FCC48F1EAA8E5300A08064 /* CommunityPresenter.swift */,
+				28FCC48E1EAA8E5300A08064 /* CommunityInteractor.swift */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
+		28FCC4941EAA8EC900A08064 /* Requested */ = {
+			isa = PBXGroup;
+			children = (
+				28FCC4971EAA8EC900A08064 /* RequestedViewController.swift */,
+				28FCC4961EAA8EC900A08064 /* RequestedPresenter.swift */,
+				28FCC4951EAA8EC900A08064 /* RequestedInteractor.swift */,
+			);
+			path = Requested;
 			sourceTree = "<group>";
 		};
 		404349D11DA8FBCA004CA70A /* Window */ = {
@@ -1540,8 +1594,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28FCC4981EAA8EC900A08064 /* RequestedInteractor.swift in Sources */,
 				289556CF1BC6365000FA08E8 /* TranslationsTableDataSource.swift in Sources */,
 				28EF6A3B1BC4613B00F8E725 /* TermsTableDataSource.swift in Sources */,
+				28FCC4921EAA8E5300A08064 /* CommunityPresenter.swift in Sources */,
 				28EF6A311BC38E6C00F8E725 /* StringExtenssion.swift in Sources */,
 				28EF6A341BC44D4900F8E725 /* typedefs.swift in Sources */,
 				289558D21BC8C44100FA08E8 /* CountryName.swift in Sources */,
@@ -1556,20 +1612,28 @@
 				28DB60801BC9A314003FDE96 /* Output.swift in Sources */,
 				6D1E1A781BBD5C6C00BE29EE /* LocalizationsViewController.swift in Sources */,
 				6D1E1AAB1BBE93AB00BE29EE /* IOSLocalizationFile.swift in Sources */,
+				28FCC4881EAA8BEB00A08064 /* RegisterViewController.swift in Sources */,
+				28FCC4991EAA8EC900A08064 /* RequestedPresenter.swift in Sources */,
 				6D1E1A761BBD5C6C00BE29EE /* AppDelegate.swift in Sources */,
 				28E57ABD1BE4B09200B803E6 /* NSViewAutolayout.swift in Sources */,
 				28FCC3EE1EA3CF2E00A08064 /* CloudKitRepository.swift in Sources */,
+				28FCC4911EAA8E5300A08064 /* CommunityInteractor.swift in Sources */,
 				28DB60861BC9A43A003FDE96 /* ConsoleOutput.swift in Sources */,
 				289556DF1BC8389D00FA08E8 /* WindowController.swift in Sources */,
 				28DB60831BC9A392003FDE96 /* FileOutput.swift in Sources */,
 				289556CC1BC61A9600FA08E8 /* RCLog.swift in Sources */,
 				28DB609D1BCDC048003FDE96 /* AppWireframe.swift in Sources */,
 				289556D81BC7189F00FA08E8 /* SaveChangesInteractor.swift in Sources */,
+				28FCC4931EAA8E5300A08064 /* CommunityViewController.swift in Sources */,
+				28FCC48C1EAA8C1C00A08064 /* RegisterInteractor.swift in Sources */,
+				28FCC49C1EAB7F7B00A08064 /* User.swift in Sources */,
 				28FCC3F21EA3CF5F00A08064 /* ReadFromCloud.swift in Sources */,
 				6D1E1AA21BBE686600BE29EE /* SearchLocalizationFiles.swift in Sources */,
 				404349CC1DA761D2004CA70A /* LocalizationsInteractor.swift in Sources */,
 				289556D51BC717DA00FA08E8 /* Search.swift in Sources */,
 				28E57AB71BE4A36600B803E6 /* NoProjectViewController.swift in Sources */,
+				28FCC49A1EAA8EC900A08064 /* RequestedViewController.swift in Sources */,
+				28FCC48A1EAA8C0300A08064 /* RegisterPresenter.swift in Sources */,
 				28E57AB21BE49F7C00B803E6 /* History.swift in Sources */,
 				404349CE1DA8F385004CA70A /* WindowPresenter.swift in Sources */,
 				28E57AC81BEDF00A00B803E6 /* PlaceholderView.swift in Sources */,

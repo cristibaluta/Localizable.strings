@@ -13,6 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 //        CloudKitRepository()
+//        History().setLastProjectDir(nil)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

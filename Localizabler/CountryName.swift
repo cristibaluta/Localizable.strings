@@ -20,4 +20,21 @@ class CountryName {
         
 		return (languageName: englishLanguageName ?? "", countryName: englishCountryName ?? "")
 	}
+    
+    class func allLanguages() -> [(languageCode: String, languageName: String?, countryName: String?)] {
+        
+        let languageCodes = ["bg", "ca", "ch"]
+        var languages = [(languageCode: String, languageName: String?, countryName: String?)]()
+        let englishLocale = Locale.init(identifier :  "en_US") as Locale
+        
+        for languageCode in languageCodes {
+            
+            let languageName = englishLocale.localizedString(forLanguageCode: languageCode)
+            let countryName = englishLocale.localizedString(forRegionCode: languageCode)
+                    
+            languages.append((languageCode: languageCode, languageName: languageName, countryName: countryName))
+        }
+        
+        return languages
+    }
 }
