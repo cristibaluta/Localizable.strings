@@ -101,13 +101,17 @@ class CloudKitRepository {
     }
     
     func write (terms: [RequestTerm]) {
-        
+        var i = 0
         var records = [CKRecord]()
         for term in terms {
             let record = CKRecord(recordType: "Term")
             record["key"] = term.key as CKRecordValue
             record["englishValue"] = term.value as CKRecordValue
             records.append(record)
+            i += 1
+            if i > 10 {
+                break
+            }
         }
         let operation = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
         operation.modifyRecordsCompletionBlock = { (saved, deleted, error) in

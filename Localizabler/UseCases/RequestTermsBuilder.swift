@@ -10,11 +10,13 @@ import Foundation
 
 class RequestTermsBuilder {
     
-    func requestTerms (fromTermData termsData: [Term]) -> [RequestTerm] {
+    func requestTerms (fromFile file: LocalizationFile) -> [RequestTerm] {
         
         var terms = [RequestTerm]()
-        for term in termsData {
-            terms.append( RequestTerm(key: term.value, value: "") )
+        for line in file.allLines() {
+            if line.term.characters.count > 0 {
+                terms.append( RequestTerm(key: line.term, value: line.translation) )
+            }
         }
         
         return terms

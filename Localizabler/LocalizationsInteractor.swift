@@ -62,6 +62,7 @@ extension LocalizationsInteractor: LocalizationsInteractorInput {
             for (countryCode, url) in urls {
                 loadLocalizationFile(url, countryCode: countryCode)
             }
+            // Prepare the search
             search = Search(files: files)
             
             url.stopAccessingSecurityScopedResource()
@@ -124,6 +125,12 @@ extension LocalizationsInteractor: LocalizationsInteractorInput {
                 result = (language: countryCode, terms: file.allTerms())
             }
         }
+        
+//        let baseFile = files[result.language]
+//        let res = RequestTermsBuilder().requestTerms(fromFile: baseFile!)
+//        RCLog(res)
+//        CloudKitRepository.shared.write(terms: res)
+        
         return result.language
     }
     

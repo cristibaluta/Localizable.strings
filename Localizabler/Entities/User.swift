@@ -6,8 +6,6 @@
 //  Copyright © 2017 Cristian Baluta. All rights reserved.
 //
 
-import Foundation
-
 struct User {
     var name: String
     var languageCode: String
