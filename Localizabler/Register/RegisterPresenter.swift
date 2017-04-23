@@ -23,7 +23,7 @@ class RegisterPresenter {
     var interactor: RegisterInteractorInput?
     weak var userInterface: RegisterPresenterOutput?
     
-    fileprivate var languages = CountryName.allLanguages()
+    fileprivate var languages = Countries.allLanguages()
 }
 
 extension RegisterPresenter: RegisterPresenterInput {

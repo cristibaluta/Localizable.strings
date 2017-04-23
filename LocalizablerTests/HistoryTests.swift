@@ -30,7 +30,7 @@ class HistoryTests: XCTestCase {
 	func testLastProject() {
 		
 		let lastProject = History()
-        lastProject.setLastProjectDir(URL(string: "http://google.ro")!)
+        lastProject.setLastProjectDir( URL(string: "http://google.ro") )
 		XCTAssert(lastProject.getLastProjectDir()?.absoluteString == "http://google.ro", "Value should be some/dir")
     }
 }

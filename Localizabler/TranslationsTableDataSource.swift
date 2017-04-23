@@ -62,7 +62,7 @@ extension TranslationsTableDataSource: NSTableViewDelegate {
                     viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
         let translationData: Translation = data[row]
-        let localeData = CountryName.fromLanguageCode(translationData.languageCode)
+        let localeData = Countries.languageName(fromLanguageCode: translationData.languageCode)
         guard let cell = tableView.make(withIdentifier: kTranslationCellIdentifier, owner: self) as? TranslationCell else {
             fatalError("Cell can't be nil, check TranslationCell for identifier")
         }

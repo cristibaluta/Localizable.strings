@@ -10,7 +10,7 @@ import XCTest
 @testable import Localizable_strings
 
 class IOSLocalizationFileTests: XCTestCase {
-	
+	/*
     func testKeyValueSeparation() {
         
         let url = Bundle(for: type(of: self)).url(forResource: "test", withExtension: "strings")
@@ -64,5 +64,5 @@ class IOSLocalizationFileTests: XCTestCase {
         let file = try! IOSLocalizationFile(url: url!)
         XCTAssertTrue(file.isValidLine("\"The key\" = \"The translation\"; /* The comment */"),
                       "Line with comment should be valid")
-    }
+    }*/
 }
