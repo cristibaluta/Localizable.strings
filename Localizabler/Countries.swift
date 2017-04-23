@@ -23,23 +23,23 @@ class Countries {
     ]
     
     class func languageName (fromLanguageCode languageCode: String) -> (languageName: String, countryName: String) {
-		
-		// init an english Locale to get the english name of the language and country
-		let englishLocale = Locale.init(identifier :  "en_US")
+        
+        // init an english Locale to get the english name of the language and country
+        let englishLocale = Locale.init(identifier :  "en_US")
         var comps = languageCode.components(separatedBy: "_")
         if comps.count == 1 {
             comps = languageCode.components(separatedBy: "-")
         }
         let languageCode = comps.first!
         let regionCode = comps.last!
-		
+        
         let englishLanguageName = englishLocale.localizedString(forLanguageCode: languageCode)
         var englishCountryName = englishLocale.localizedString(forRegionCode: regionCode)
         if let countryName = exceptions[regionCode.lowercased()] {
             englishCountryName = countryName
         }
         
-		return (languageName: englishLanguageName ?? "", countryName: englishCountryName ?? "")
+        return (languageName: englishLanguageName ?? "", countryName: englishCountryName ?? "")
 	}
     
     class func allLanguages() -> [(languageCode: String, languageName: String?, countryName: String?)] {
@@ -47,14 +47,10 @@ class Countries {
         let languageCodes = ["ca", "ch", "cs", "da", "de", "el", "en", "es", "fr", "it", "ja", "ko", "nb", "nl", "pl", "pt", "ro", "ru", "sk", "sv", "th", "zh"]
         
         var languages = [(languageCode: String, languageName: String?, countryName: String?)]()
-        let englishLocale = Locale.init(identifier :  "en_US") as Locale
         
         for languageCode in languageCodes {
-            
-            let languageName = englishLocale.localizedString(forLanguageCode: languageCode)
-            let countryName = englishLocale.localizedString(forRegionCode: languageCode)
-                    
-            languages.append((languageCode: languageCode, languageName: languageName, countryName: countryName))
+            let comp = languageName(fromLanguageCode: languageCode)
+            languages.append( (languageCode: languageCode, languageName: comp.languageName, countryName: comp.countryName) )
         }
         
         return languages
