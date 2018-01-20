@@ -35,23 +35,22 @@ extension TermsTableDataSource: NSTableViewDataSource {
 		return data.count
 	}
 	
-	func tableView (_ tableView: NSTableView,
-		objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-			
-			let theData: Term = data[row]
-			
-			if (tableColumn?.identifier == "key") {
-				if theData.newValue != nil {
-					return theData.newValue
-				}
-				return theData.value
-			}
-			else if (tableColumn?.identifier == "status") {
-				return NSImage(named: theData.translationChanged || theData.newValue != nil
-					? NSImageNameStatusPartiallyAvailable
-					: NSImageNameStatusAvailable)
-			}
-			return nil
+	func tableView (_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        
+        let theData: Term = data[row]
+        
+        if ((tableColumn?.identifier)?.rawValue == "key") {
+            if theData.newValue != nil {
+                return theData.newValue
+            }
+            return theData.value
+        }
+        else if ((tableColumn?.identifier)?.rawValue == "status") {
+            return NSImage(named: theData.translationChanged || theData.newValue != nil
+                ? NSImage.Name.statusPartiallyAvailable
+                : NSImage.Name.statusAvailable)
+        }
+        return nil
 	}
     
     func tableView (_ tableView: NSTableView, setObjectValue object: Any?, for tableColumn: NSTableColumn?, row: Int) {

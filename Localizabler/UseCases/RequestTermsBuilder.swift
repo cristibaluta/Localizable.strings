@@ -14,7 +14,7 @@ class RequestTermsBuilder {
         
         var terms = [RequestTerm]()
         for line in file.allLines() {
-            if line.term.characters.count > 0 {
+            if line.term.count > 0 {
                 terms.append( RequestTerm(key: line.term, value: line.translation) )
             }
         }

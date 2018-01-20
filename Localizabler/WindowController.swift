@@ -22,7 +22,7 @@ class WindowController: NSWindowController {
 		super.windowDidLoad()
 		
 		window?.titlebarAppearsTransparent = true
-		window?.titleVisibility = NSWindowTitleVisibility.hidden
+		window?.titleVisibility = NSWindow.TitleVisibility.hidden
 		setWindowTitle("Localizable.strings")
         segmentedControl.selectedSegment = 0
         

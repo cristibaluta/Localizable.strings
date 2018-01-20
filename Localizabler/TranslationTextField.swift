@@ -10,7 +10,7 @@ import Cocoa
 
 class TranslationTextField: NSTextField {
     
-    var didBecomeFirstResponder: ((Void) -> Void)?
+    var didBecomeFirstResponder: (() -> Void)?
     
     override func becomeFirstResponder() -> Bool {
         didBecomeFirstResponder?()

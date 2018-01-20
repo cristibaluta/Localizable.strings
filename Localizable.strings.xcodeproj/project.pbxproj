@@ -213,7 +213,7 @@
 		289558A01BC8C07700FA08E8 /* Solomon Islands.png in Resources */ = {isa = PBXBuildFile; fileRef = 289557AC1BC8C07700FA08E8 /* Solomon Islands.png */; };
 		289558A11BC8C07700FA08E8 /* Somalia.png in Resources */ = {isa = PBXBuildFile; fileRef = 289557AD1BC8C07700FA08E8 /* Somalia.png */; };
 		289558A21BC8C07700FA08E8 /* Somaliland.png in Resources */ = {isa = PBXBuildFile; fileRef = 289557AE1BC8C07700FA08E8 /* Somaliland.png */; };
-		289558A31BC8C07700FA08E8 /* South Afriica.png in Resources */ = {isa = PBXBuildFile; fileRef = 289557AF1BC8C07700FA08E8 /* South Afriica.png */; };
+		289558A31BC8C07700FA08E8 /* South Africa.png in Resources */ = {isa = PBXBuildFile; fileRef = 289557AF1BC8C07700FA08E8 /* South Africa.png */; };
 		289558A41BC8C07700FA08E8 /* South Korea.png in Resources */ = {isa = PBXBuildFile; fileRef = 289557B01BC8C07700FA08E8 /* South Korea.png */; };
 		289558A51BC8C07700FA08E8 /* Spain.png in Resources */ = {isa = PBXBuildFile; fileRef = 289557B11BC8C07700FA08E8 /* Spain.png */; };
 		289558A61BC8C07700FA08E8 /* Sri Lanka.png in Resources */ = {isa = PBXBuildFile; fileRef = 289557B21BC8C07700FA08E8 /* Sri Lanka.png */; };
@@ -535,7 +535,7 @@
 		289557AC1BC8C07700FA08E8 /* Solomon Islands.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Solomon Islands.png"; sourceTree = "<group>"; };
 		289557AD1BC8C07700FA08E8 /* Somalia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Somalia.png; sourceTree = "<group>"; };
 		289557AE1BC8C07700FA08E8 /* Somaliland.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Somaliland.png; sourceTree = "<group>"; };
-		289557AF1BC8C07700FA08E8 /* South Afriica.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "South Afriica.png"; sourceTree = "<group>"; };
+		289557AF1BC8C07700FA08E8 /* South Africa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "South Africa.png"; sourceTree = "<group>"; };
 		289557B01BC8C07700FA08E8 /* South Korea.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "South Korea.png"; sourceTree = "<group>"; };
 		289557B11BC8C07700FA08E8 /* Spain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spain.png; sourceTree = "<group>"; };
 		289557B21BC8C07700FA08E8 /* Sri Lanka.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sri Lanka.png"; sourceTree = "<group>"; };
@@ -928,7 +928,7 @@
 				289557AC1BC8C07700FA08E8 /* Solomon Islands.png */,
 				289557AD1BC8C07700FA08E8 /* Somalia.png */,
 				289557AE1BC8C07700FA08E8 /* Somaliland.png */,
-				289557AF1BC8C07700FA08E8 /* South Afriica.png */,
+				289557AF1BC8C07700FA08E8 /* South Africa.png */,
 				289557B01BC8C07700FA08E8 /* South Korea.png */,
 				289557B11BC8C07700FA08E8 /* Spain.png */,
 				289557B21BC8C07700FA08E8 /* Sri Lanka.png */,
@@ -1269,7 +1269,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Cristian Baluta";
 				TargetAttributes = {
 					56F890111C061FED00DC3807 = {
@@ -1278,7 +1278,7 @@
 					6D1E1A711BBD5C6C00BE29EE = {
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = 5NHDC5EV44;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -1449,7 +1449,7 @@
 				289558B91BC8C07700FA08E8 /* Turkey.png in Resources */,
 				2895581C1BC8C07700FA08E8 /* Ecuador.png in Resources */,
 				2895582D1BC8C07700FA08E8 /* Ghana.png in Resources */,
-				289558A31BC8C07700FA08E8 /* South Afriica.png in Resources */,
+				289558A31BC8C07700FA08E8 /* South Africa.png in Resources */,
 				289558961BC8C07700FA08E8 /* Sao Tome & Principe.png in Resources */,
 				289558421BC8C07700FA08E8 /* Ireland.png in Resources */,
 				289558441BC8C07700FA08E8 /* Isle of Man.png in Resources */,
@@ -1738,14 +1738,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1784,14 +1790,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1827,7 +1839,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ralcr.Localizabler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1844,8 +1857,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ralcr.Localizabler;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 3.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

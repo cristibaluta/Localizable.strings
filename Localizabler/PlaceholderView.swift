@@ -23,11 +23,11 @@ class PlaceholderView: NSView {
 	
 	class func instanceFromNib() -> PlaceholderView {
 		
-		var viewArray: NSArray = []
-		_ = Bundle.main.loadNibNamed("PlaceholderView", owner: self, topLevelObjects: &viewArray)
-		if let view = viewArray[0] as? PlaceholderView {
+		var viewArray: NSArray? = []
+		_ = Bundle.main.loadNibNamed(NSNib.Name(rawValue: "PlaceholderView"), owner: self, topLevelObjects: &viewArray)
+		if let view = viewArray?[0] as? PlaceholderView {
 			return view
-		} else if let view = viewArray[1] as? PlaceholderView {
+		} else if let view = viewArray?[1] as? PlaceholderView {
 			return view
 		}
 		return PlaceholderView()

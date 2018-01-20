@@ -19,8 +19,8 @@ class RegisterViewController: NSViewController {
     @IBOutlet weak var validationErrorTextField: NSTextField!
     
     class func instanceFromStoryboard() -> RegisterViewController {
-        let storyBoard = NSStoryboard(name: "Main", bundle: nil)
-        return storyBoard.instantiateController(withIdentifier: "RegisterViewController") as! RegisterViewController
+        let storyBoard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
+        return storyBoard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "RegisterViewController")) as! RegisterViewController
     }
     
     override func viewDidLoad() {

@@ -131,7 +131,7 @@ extension LocalizationsPresenter: LocalizationsPresenterInput {
             
             if let line: Line = wself.interactor!.lineMatchingTranslation(value) {
                 
-                guard line.term.characters.count > 0 else {
+                guard line.term.count > 0 else {
                     return
                 }
                 

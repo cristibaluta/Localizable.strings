@@ -13,8 +13,8 @@ class NoProjectViewController: NSViewController {
 	var onOpenButtonClicked: ((_ sender: NSButton) -> ())?
 	
 	class func instanceFromStoryboard() -> NoProjectViewController {
-		let storyBoard = NSStoryboard(name: "Main", bundle: nil)
-		return storyBoard.instantiateController(withIdentifier: "NoProjectViewController") as! NoProjectViewController
+		let storyBoard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
+		return storyBoard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "NoProjectViewController")) as! NoProjectViewController
 	}
 	
 	@IBAction func browseButtonClicked (_ sender: NSButton) {

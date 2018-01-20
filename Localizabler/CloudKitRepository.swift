@@ -45,6 +45,9 @@ class CloudKitRepository {
         getUser { (user) in
             
             guard let userId = self.userRecord?.recordID else {
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
                 return
             }
             let predicate = NSPredicate(format: "creatorUserRecordID == %@", userId)
@@ -75,6 +78,9 @@ class CloudKitRepository {
         getUser { (user) in
             
             guard let userId = self.userRecord?.recordID else {
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
                 return
             }
             let predicate = NSPredicate(format: "creatorUserRecordID != %@", userId)

@@ -39,13 +39,13 @@ extension RequestsTermsDataSource: NSTableViewDataSource {
         
         let theData: RequestTerm = data[row]
         
-        if (tableColumn?.identifier == "key") {
+        if ((tableColumn?.identifier)?.rawValue == "key") {
             return theData.key
         }
-        else if (tableColumn?.identifier == "status") {
+        else if ((tableColumn?.identifier)?.rawValue == "status") {
             return NSImage(named: true//theData.translationChanged || theData.newValue != nil
-                ? NSImageNameStatusPartiallyAvailable
-                : NSImageNameStatusAvailable)
+                ? NSImage.Name.statusPartiallyAvailable
+                : NSImage.Name.statusAvailable)
         }
         return nil
     }

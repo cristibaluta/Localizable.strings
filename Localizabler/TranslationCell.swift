@@ -27,7 +27,7 @@ class TranslationCell: NSTableRowView {
             if let strongSelf = self {
                 strongSelf.didSelect?(strongSelf, strongSelf.textField!.stringValue)
             }
-        }
+        } as (() -> Void)
     }
 }
 

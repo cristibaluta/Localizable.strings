@@ -55,7 +55,7 @@ extension WindowPresenter: WindowPresenterInput {
         panel.allowsMultipleSelection = false
         panel.begin { [weak self] (result) -> Void in
             
-            if result == NSFileHandlingPanelOKButton {
+            if result.rawValue == NSFileHandlingPanelOKButton {
                 if let url = panel.urls.first {
                     History().setLastProjectDir(url)
                     self?.userInterface!.setWindowTitle(url.absoluteString)

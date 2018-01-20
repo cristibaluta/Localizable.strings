@@ -24,7 +24,7 @@ class Search {
 		for term in base.terms {
 			if term.lowercased().range(of: searchString.lowercased()) != nil ||
 				searchString == "" ||
-				searchString.characters.count < kMinCharactersToSearch
+				searchString.count < kMinCharactersToSearch
 			{
 				matchedTerms.append( Term(value: term, newValue: nil, translationChanged: false) )
 			}
@@ -36,7 +36,7 @@ class Search {
 		
 		var matchedTranslations = [Translation]()
 		
-		guard (searchString != "" && searchString.characters.count >= kMinCharactersToSearch) else {
+		guard (searchString != "" && searchString.count >= kMinCharactersToSearch) else {
 			return matchedTranslations
 		}
 		let lowercaseSearchString = searchString.lowercased()

@@ -27,8 +27,8 @@ class LocalizationsViewController: NSViewController {
 	fileprivate var translationsTableAlert: PlaceholderView?
     
     class func instanceFromStoryboard() -> LocalizationsViewController {
-        let storyBoard = NSStoryboard(name: "Main", bundle: nil)
-        return storyBoard.instantiateController(withIdentifier: "LocalizationsViewController") as! LocalizationsViewController
+        let storyBoard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
+        return storyBoard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "LocalizationsViewController")) as! LocalizationsViewController
     }
     
 	override func viewDidLoad() {
@@ -59,9 +59,9 @@ extension LocalizationsViewController {
         
         let result = alert.runModal()
         
-        if result == NSAlertFirstButtonReturn {
+        if result == NSApplication.ModalResponse.alertFirstButtonReturn {
             
-        } else if ( result == NSAlertSecondButtonReturn ) {
+        } else if ( result == NSApplication.ModalResponse.alertSecondButtonReturn ) {
             
         }
         
@@ -132,14 +132,14 @@ extension LocalizationsViewController: LocalizationsPresenterOutput {
     func insertNewTerm (atIndex index: Int) {
         
         termsTableView?.beginUpdates()
-        termsTableView?.insertRows(at: IndexSet(integer: index), withAnimation: .effectFade)
+        termsTableView?.insertRows(at: IndexSet(integer: index), withAnimation: NSTableView.AnimationOptions.effectFade)
         termsTableView?.endUpdates()
     }
     
     func removeTerm (atIndex index: Int) {
         
         termsTableView?.beginUpdates()
-        termsTableView?.removeRows(at: IndexSet(integer: index), withAnimation: .effectFade)
+        termsTableView?.removeRows(at: IndexSet(integer: index), withAnimation: NSTableView.AnimationOptions.effectFade)
         termsTableView?.endUpdates()
     }
     

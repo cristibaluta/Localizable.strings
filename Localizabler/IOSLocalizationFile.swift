@@ -93,13 +93,14 @@ class IOSLocalizationFile: LocalizationFile {
 	}
 	
 	func allTerms() -> [String] {
-        var terms = [String]()
-        for line in lines {
-            if line.term.characters.count > 0 {
-                terms.append(line.term)
-            }
-        }
-		return terms
+        return lines.flatMap({ $0.term.count > 0 ? $0.term : nil })
+//        var terms = [String]()
+//        for line in lines {
+//            if line.term.count > 0 {
+//                terms.append(line.term)
+//            }
+//        }
+//        return terms
 	}
     
     func lineForTerm (_ term: String) -> Line? {
@@ -198,8 +199,8 @@ extension IOSLocalizationFile {
         let c = newLineContent.components(separatedBy: theTranslation)
 		let comps = c.last!.components(separatedBy: "::separator::")
 		
-		return Line (term:			String(comps.first!.trim().characters.dropFirst()),
-		             translation:	String(comps.last!.trim().characters.dropLast().dropLast()),
+		return Line (term:			String(comps.first!.trim().dropFirst()),
+		             translation:	String(comps.last!.trim().dropLast().dropLast()),
 		             comment:		theComment)
 	}
 }

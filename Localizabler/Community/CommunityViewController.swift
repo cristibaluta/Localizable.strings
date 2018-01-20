@@ -13,8 +13,8 @@ class CommunityViewController: NSViewController {
     var presenter: CommunityPresenterInput?
     
     class func instanceFromStoryboard() -> CommunityViewController {
-        let storyBoard = NSStoryboard(name: "Main", bundle: nil)
-        return storyBoard.instantiateController(withIdentifier: "CommunityViewController") as! CommunityViewController
+        let storyBoard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
+        return storyBoard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "CommunityViewController")) as! CommunityViewController
     }
     
     override func viewDidLoad() {
